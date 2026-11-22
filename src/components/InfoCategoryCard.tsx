@@ -14,7 +14,7 @@ export default function InfoCategoryCard({
   selected = false,
   onClick,
 }: InfoCategoryProps) {
-  const { label, icon: Icon, bgColor } = infoCategoryMap[type];
+  const { label, icon: Icon, bgColor, textColor } = infoCategoryMap[type];
 
   return (
     <button
@@ -26,9 +26,9 @@ export default function InfoCategoryCard({
       } shadow-[#00000026]`}
     >
       <div
-        className={`flex h-[40px] w-[40px] items-center justify-center rounded-[10px] ${bgColor}`}
+        className={`flex h-[40px] w-[40px] items-center justify-center rounded-[10px] ${bgColor} ${textColor}`}
       >
-        <Icon className="h-[40px] w-[40px]" />
+        <Icon className="h-[22px] w-[22px]" />
       </div>
 
       <div className="flex flex-col items-center gap-[3px] sm:items-start">

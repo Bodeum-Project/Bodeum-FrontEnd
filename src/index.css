@@ -9,14 +9,19 @@
   /* Font */
   --font-sans: "Noto Sans KR", sans-serif;
 
-  /* Main Colors */
+  /* Main Colors (mint) */
 
-  --color-main-500: #063F7B;
-  --color-main-400: #0C72E0;
-  --color-main-300: #91C3F9;
-  --color-main-200: #E5F1FF;
-  --color-main-150: #E1EFFE;
-  --color-main-100: #EDF0F6;
+  --color-main-500: #0C8F72;
+  --color-main-400: #15B894;
+  --color-main-300: #8FE0C8;
+  --color-main-200: #D9F7EC;
+  --color-main-150: #E3F8F0;
+  --color-main-100: #EDF6F3;
+
+  /* Accent (dark, for primary CTAs / selected states) */
+
+  --color-accent-900: #14171F;
+  --color-accent-800: #262B38;
 
   /* Sub Colors */
 
@@ -42,9 +47,21 @@
   --color-background-200: #F3F4F8;
   --color-background-100: #FFFFFF;
 
+  /* Radius */
+
+  --radius-card: 20px;
+  --radius-pill: 999px;
+  --radius-sheet: 24px;
+
   /* Effects */
 
   --shadow-button: 1px 2px 15px rgb(0 0 0 / 0.15);
+  --shadow-card: 0 2px 12px rgb(20 23 31 / 0.06);
+
+  /* Gradients */
+
+  --gradient-hero: linear-gradient(180deg, var(--color-main-200) 0%, #FFFFFF 60%);
+  --gradient-accent-soft: linear-gradient(135deg, var(--color-main-200), var(--color-main-100));
 
   /* Typography */
 

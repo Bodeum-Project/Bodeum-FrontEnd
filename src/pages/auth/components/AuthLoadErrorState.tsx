@@ -16,7 +16,7 @@ export default function AuthLoadErrorState({
       aria-live="assertive"
       className="flex w-full max-w-[536px] flex-col items-center rounded-[10px] bg-background-100 px-[32px] py-[40px] text-center shadow-[0_0_15px_rgb(0_0_0_/_0.12)] max-sm:px-[20px] max-sm:py-[32px]"
     >
-      <Logo className="h-[35px] w-[90px]" aria-label="보듬" />
+      <Logo className="h-[35px] w-[90px]" aria-label="보듬보듬" />
       <h1 className="mt-[28px] text-h1 text-background-600">
         진행 정보를 불러오지 못했습니다
       </h1>

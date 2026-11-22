@@ -17,7 +17,7 @@ export default function AuthLoadingState({
       aria-live="polite"
       className="flex min-h-[220px] flex-col items-center justify-center gap-[24px]"
     >
-      <Logo className="h-[35px] w-[90px]" aria-label="보듬" />
+      <Logo className="h-[35px] w-[90px]" aria-label="보듬보듬" />
       <div
         aria-hidden="true"
         className={[

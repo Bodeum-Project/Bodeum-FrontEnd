@@ -16,7 +16,10 @@ export default function RequiredInfoSection() {
   const { data: counts } = useInfoItemCounts();
 
   return (
-    <section className="overflow-hidden rounded-[10px] bg-background-200 px-[16px] py-[16px] sm:px-[20px] sm:py-[19.6px]">
+    <section
+      className="overflow-hidden rounded-[20px] px-[16px] py-[16px] sm:px-[20px] sm:py-[19.6px]"
+      style={{ backgroundImage: "var(--gradient-hero)" }}
+    >
       <div className="mb-[12px]">
         <h2 className="text-h2-list text-background-600">
           바로 찾는 필수 정보
