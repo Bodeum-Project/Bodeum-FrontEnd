@@ -1,7 +1,7 @@
 <svg width="257" height="100" viewBox="0 0 257 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g>
-  <circle cx="34" cy="50" r="30" fill="#17B5C0"/>
+  <circle cx="34" cy="50" r="30" fill="#1BB8BC"/>
   <circle cx="60" cy="54" r="24" fill="#3182F6" fill-opacity="0.55"/>
 </g>
-<text x="92" y="68" font-family="'Noto Sans KR', sans-serif" font-size="38" font-weight="700" fill="#191F28" letter-spacing="-0.5">보듬보듬</text>
+<text x="92" y="68" font-family="'Noto Sans KR', sans-serif" font-size="38" font-weight="700" fill="#2A3546" letter-spacing="-0.5">보듬보듬</text>
 </svg>

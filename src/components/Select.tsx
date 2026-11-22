@@ -78,7 +78,7 @@ const optionVariantClass: Record<SelectVariant, string> = {
 };
 
 const optionHoverClass =
-  "hover:bg-background-100 hover:text-background-500 hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)]";
+  "hover:bg-background-200 hover:text-background-600";
 
 const optionPressedClass = "active:bg-main-100 active:text-background-600";
 

@@ -34,7 +34,7 @@ export default function UserSection({
     .join(" · ");
 
   return (
-    <div className="rounded-[8px] border border-background-250 bg-background-100">
+    <div className="rounded-[14px] border border-background-250 bg-background-100">
       <div className="flex w-[181px] px-[8px] py-[12px]">
         {profileImageUrl ? (
           <img

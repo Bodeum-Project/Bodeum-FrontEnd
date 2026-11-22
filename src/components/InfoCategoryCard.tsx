@@ -19,7 +19,7 @@ export default function InfoCategoryCard({
   return (
     <button
       onClick={onClick}
-      className={`flex min-w-0 shrink-0 cursor-pointer flex-col items-center gap-[6px] rounded-[8px] border bg-white px-[4px] py-[10px] transition hover:shadow-sm sm:w-[150px] sm:flex-row sm:gap-[12px] sm:px-[16px] sm:py-[9px] ${
+      className={`flex min-w-0 shrink-0 cursor-pointer flex-col items-center gap-[6px] rounded-[8px] border bg-white px-[4px] py-[10px] transition-colors hover:bg-background-200 sm:w-[150px] sm:flex-row sm:gap-[12px] sm:px-[16px] sm:py-[9px] ${
         selected
           ? "border-background-500"
           : "border-background-250 active:border-background-500"

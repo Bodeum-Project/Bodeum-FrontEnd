@@ -19,7 +19,7 @@ export default function CommunitySection({ onWriteClick }: CommunitySectionProps
           <button
             type="button"
             onClick={onWriteClick}
-            className="flex shrink-0 cursor-pointer items-center gap-[4px] rounded-full bg-accent-900 px-[14px] py-[8px] text-[13px] font-semibold text-background-100 active:bg-accent-800"
+            className="flex shrink-0 cursor-pointer items-center gap-[4px] rounded-full btn-dark px-[14px] py-[8px] text-[13px] font-semibold"
           >
             <span className="text-[15px] leading-none">+</span> 글쓰기
           </button>

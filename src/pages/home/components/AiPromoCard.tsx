@@ -24,7 +24,7 @@ export default function AiPromoCard() {
         </span>
       </span>
 
-      <span className="shrink-0 rounded-full bg-accent-900 px-[12px] py-[7px] text-[12px] font-semibold text-background-100">
+      <span className="shrink-0 rounded-full btn-dark px-[12px] py-[7px] text-[12px] font-semibold text-background-100">
         질문하기
       </span>
     </button>

@@ -41,7 +41,7 @@ export default function CommunityPostCard({
           onClick?.();
         }
       }}
-      className="flex h-[102px] w-full min-w-0 cursor-pointer flex-col rounded-[10px] border border-background-250 bg-background-100 p-[16px] hover:shadow-[1px_2px_15px_0px_#00000026] active:border-main-400"
+      className="group flex h-[102px] w-full min-w-0 cursor-pointer flex-col rounded-[10px] border border-background-250 bg-background-100 p-[16px] transition-colors hover:bg-background-200 active:bg-background-250"
     >
       <div className="flex items-center justify-between gap-2 sm:gap-4">
         <div className="flex min-w-0 items-center gap-2">
@@ -55,7 +55,7 @@ export default function CommunityPostCard({
         <span className="shrink-0 text-body-sub text-background-400">{createdAt}</span>
       </div>
 
-      <p className="mt-[8px] line-clamp-1 text-h5-list text-background-600">{title}</p>
+      <p className="mt-[8px] line-clamp-1 text-h5-list text-background-600 transition-colors group-hover:text-main-500">{title}</p>
       <p className="mt-[4px] line-clamp-1 text-h6-list text-background-500">{content}</p>
     </article>
   );

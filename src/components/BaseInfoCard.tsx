@@ -31,7 +31,7 @@ export default function BaseInfoCard({
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 -z-10 rounded-[16px] border border-background-250 bg-background-100 transition ${
           isClickable
-            ? `group-hover:shadow-card peer-active:bg-background-200 ${pressedBorderColor}`
+            ? `group-hover:bg-background-200 peer-active:bg-background-250 ${pressedBorderColor}`
             : ""
         }`}
       />

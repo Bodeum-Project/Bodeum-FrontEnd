@@ -24,7 +24,7 @@ export default function MyPageCard({ item, onDelete, deleteDisabled = false }: M
   const targetPath = isScrap && item.targetPath ? item.targetPath : `/community/${item.postId}`;
 
   return (
-    <article className="relative flex w-full max-w-[577px] items-center rounded-[10px] border border-background-250 bg-background-100 px-[17px] py-[15px] transition-[border-color,box-shadow] duration-300 ease-out hover:shadow-[1px_2px_15px_0px_#00000026] has-[a:active]:border-main-400">
+    <article className="relative flex w-full max-w-[577px] items-center rounded-[10px] border border-background-250 bg-background-100 px-[17px] py-[15px] transition-colors hover:bg-background-200 has-[a:active]:border-main-400">
       <Link
         to={targetPath}
         className="flex min-w-0 flex-1 items-center self-stretch before:pointer-events-none before:absolute before:inset-0 before:rounded-[10px] focus-visible:outline-none focus-visible:before:outline focus-visible:before:outline-2 focus-visible:before:outline-offset-2"

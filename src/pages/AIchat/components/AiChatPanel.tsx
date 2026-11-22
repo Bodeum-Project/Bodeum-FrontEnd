@@ -144,7 +144,7 @@ export default function AiChatPanel({
             onClick={onSend}
             className={`flex size-[44px] shrink-0 items-center justify-center rounded-[10px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${
               canSend
-                ? "cursor-pointer bg-main-400 text-background-100 hover:bg-main-500"
+                ? "cursor-pointer btn-primary"
                 : "cursor-not-allowed bg-background-250 text-background-400"
             }`}
           >

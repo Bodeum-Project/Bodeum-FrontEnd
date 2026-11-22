@@ -43,7 +43,7 @@ function DetailBackButton({
       onClick={handleClick}
       disabled={disabled}
       aria-pressed={selected}
-      className={`inline-flex cursor-pointer items-center gap-2 rounded-[10px] border px-4 py-2 text-h4-list hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)] disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none ${
+      className={`inline-flex cursor-pointer items-center gap-2 rounded-[10px] border px-4 py-2 text-h4-list transition-colors hover:bg-background-200 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none ${
         selected && selectedClassName
           ? selectedClassName
           : tone === "danger"

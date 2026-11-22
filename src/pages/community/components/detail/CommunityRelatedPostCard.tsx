@@ -34,7 +34,7 @@ export default function CommunityRelatedPostCard({
           onClick?.();
         }
       }}
-      className="grid h-[44px] w-full cursor-pointer items-center gap-x-[8px] rounded-[10px] border border-transparent bg-background-200 px-[16px] py-[12px] text-left transition-[border-color,box-shadow] duration-300 ease-out hover:shadow-[1px_2px_15px_0px_#00000026] active:border-background-500"
+      className="grid h-[44px] w-full cursor-pointer items-center gap-x-[8px] rounded-[10px] border border-transparent bg-background-200 px-[16px] py-[12px] text-left transition-colors hover:bg-background-250 active:border-background-500"
       style={{ gridTemplateColumns: "max-content minmax(0, 1fr) max-content" }}
     >
       <time className="text-body-sub text-background-500">{createdAt}</time>

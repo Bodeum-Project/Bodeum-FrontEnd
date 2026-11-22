@@ -32,12 +32,10 @@ export default function SideNavItem({
           ${active
             ? "bg-main-150 text-main-400"
             : `
-              text-background-600
-              hover:bg-background-100
-              hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)]
-
-              active:bg-main-400
-              active:text-background-100
+              text-background-500
+              hover:bg-background-200
+              hover:text-background-600
+              active:bg-background-250
             `
           }
         `}

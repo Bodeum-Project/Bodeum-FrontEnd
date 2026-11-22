@@ -2,7 +2,7 @@ import HomeIcon from "@/assets/icons/Home.svg?react";
 import ChatIcon from "@/assets/icons/Chat.svg?react";
 import InfoIcon from "@/assets/icons/Info.svg?react";
 import NewsIcon from "@/assets/icons/News.svg?react";
-import CommunityIcon from "@/assets/icons/Community.svg?react";
+import CommunityIcon from "@/assets/icons/SideCommunity.svg?react";
 import SideNavItem from "./SideNavItem";
 import SideSubNavItem from "./SideSubNavItem";
 import { useLocation, useNavigate, useParams } from "react-router-dom";

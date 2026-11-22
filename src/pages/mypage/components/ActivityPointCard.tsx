@@ -70,7 +70,7 @@ export default function ActivityPointCard({
         <button
           type="button"
           onClick={onOpenBadgeGrade}
-          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-shadow hover:shadow-button"
+          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-colors hover:bg-main-150"
         >
           <BadgeIcon className="h-[20px] w-[20px]" aria-hidden="true" />
           보듬 뱃지 등급 안내
@@ -78,7 +78,7 @@ export default function ActivityPointCard({
         <button
           type="button"
           onClick={onOpenBadgeHelp}
-          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-shadow hover:shadow-button"
+          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-colors hover:bg-main-150"
         >
           <BadgeHelpIcon className="h-[24px] w-[24px]" aria-hidden="true" />
           보듬 뱃지란?

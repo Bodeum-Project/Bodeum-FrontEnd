@@ -26,7 +26,7 @@ const sizeClasses: Record<MainButtonSize, string> = {
 };
 
 const filledEnabledClasses =
-  'bg-accent-900 text-background-100 hover:bg-accent-900 hover:shadow-button active:bg-accent-800 active:shadow-none';
+  'btn-dark';
 const filledDisabledClasses: Record<MainButtonSize, string> = {
   L: 'bg-background-250 text-background-500',
   M: 'bg-background-250 text-background-500',

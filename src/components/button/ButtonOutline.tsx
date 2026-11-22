@@ -39,9 +39,9 @@ const joinClassNames = (...classNames: Array<string | false | undefined>) =>
 
 const enabledToneClasses: Record<ButtonOutlineTone, string> = {
   primary:
-    "border-main-400 bg-background-100 text-main-400 hover:bg-background-100 hover:shadow-button active:border-main-500 active:bg-background-100 active:text-main-500",
+    "border-main-400 bg-background-100 text-main-400 hover:bg-background-200 active:border-main-500 active:bg-background-100 active:text-main-500",
   black:
-    "border-background-500 bg-background-100 text-background-600 hover:border-background-600 hover:bg-background-100 hover:shadow-button active:border-background-600 active:bg-background-600 active:text-background-100",
+    "border-background-500 bg-background-100 text-background-600 hover:border-background-600 hover:bg-background-200 active:border-background-600 active:bg-background-600 active:text-background-100",
 };
 
 export default function ButtonOutline({

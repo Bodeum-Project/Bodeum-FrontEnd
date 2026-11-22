@@ -1,4 +1,4 @@
-import ImagePlaceholder from "@/assets/images/news-img.svg";
+import { getNewsThumbnail } from "@/constants/newsThumbnails";
 import { useNavigate } from "react-router-dom";
 
 interface NewsCardProps {
@@ -21,7 +21,6 @@ export default function NewsCard({
   status,
   dDay,
   viewCount,
-  thumbnailUrl,
 }: NewsCardProps) {
   const navigate = useNavigate();
   const tag = dDay != null ? `D-${dDay}` : status;
@@ -33,7 +32,8 @@ export default function NewsCard({
     >
       <div className="relative overflow-hidden rounded-[16px] bg-background-200">
         <img
-          src={thumbnailUrl || ImagePlaceholder}
+          src={getNewsThumbnail(newsId)}
+          loading="lazy"
           alt={title}
           className="h-[128px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
@@ -44,7 +44,7 @@ export default function NewsCard({
         )}
       </div>
 
-      <p className="mt-[10px] line-clamp-2 text-[15px] font-semibold leading-[21px] tracking-[-0.02em] text-background-600">
+      <p className="mt-[10px] line-clamp-2 text-[15px] font-semibold leading-[21px] tracking-[-0.02em] text-background-600 transition-colors group-hover:text-main-500">
         {title}
       </p>
       <p className="mt-[4px] truncate text-[12px] text-background-400">

@@ -55,7 +55,7 @@ export default function ButtonFill({
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
         disabled
           ? "cursor-not-allowed bg-background-250 text-background-500"
-          : "cursor-pointer bg-accent-900 text-background-100 hover:bg-accent-900 hover:shadow-button active:bg-accent-800 active:shadow-none",
+          : "cursor-pointer btn-dark",
         className,
       )}
       {...buttonProps}

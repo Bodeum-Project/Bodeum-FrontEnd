@@ -103,7 +103,7 @@ export default function AiChatMessageList({
           <button
             type="button"
             onClick={onRetry}
-            className="cursor-pointer rounded-[10px] bg-main-400 px-[16px] py-[8px] text-h4-list text-background-100 transition-colors hover:bg-main-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
+            className="cursor-pointer rounded-[10px] btn-primary px-[16px] py-[8px] text-h4-list focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
           >
             다시 시도
           </button>
