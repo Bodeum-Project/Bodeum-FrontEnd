@@ -54,7 +54,10 @@ export default function ProfileSummaryCard({
   const displayNickname = dashboard.nickname;
 
   return (
-    <section className="w-full max-w-[900px] rounded-[10px] bg-main-500 px-[20px] py-[20px] text-background-100 sm:px-[40px] sm:py-[28px]">
+    <section
+      className="w-full max-w-[900px] rounded-[20px] px-[20px] py-[20px] text-background-100 shadow-[0_8px_24px_rgb(23_181_192_/_0.25)] sm:px-[40px] sm:py-[28px]"
+      style={{ backgroundImage: "var(--gradient-brand)" }}
+    >
       <div className="flex items-center">
         {dashboard.profileImageUrl ? (
           <img

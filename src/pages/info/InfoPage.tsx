@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import type { ParentCategory } from "@/types/info";
-import { infoSubCategoryMap } from "@/constants/infoCategory";
+import { infoCategoryMap, infoSubCategoryMap } from "@/constants/infoCategory";
 import CategoryChips from "./components/CategoryChips";
 import Pagination from "@/components/pagination/Pagination";
 import InfoItem from "@/pages/info/components/InfoItem";
@@ -246,10 +246,16 @@ export default function InfoPage() {
   return (
     <div className="flex min-h-screen flex-col gap-[14px] bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:gap-[18px] lg:px-[32px] lg:py-[20px]">
       
-      <h2 className="text-h1-info -mb-[10px]">
-        {profile?.nickname || "보호자"}님,
-      </h2>
-      <div className="flex flex-wrap items-center gap-[8px] lg:gap-[10px]">
+      <h1 className="pt-[4px] text-[22px] font-bold leading-[31px] tracking-[-0.03em] text-background-600">
+        {profile?.nickname || "보호자"}님을 위한
+        <br />
+        <span className={infoCategoryMap[parentCategory].textColor}>
+          {infoCategoryMap[parentCategory].label} 정보 {count.toLocaleString()}곳
+        </span>
+        을 모았어요
+      </h1>
+
+      <div className="flex items-center gap-[8px]">
         <LocationButton
           value={location}
           onClick={() => setLocationOpen(true)}
@@ -259,17 +265,7 @@ export default function InfoPage() {
           count={count}
           onClick={() => setCategoryOpen(true)}
         />
-        <h2 className="text-h1-info">
-          의 정보를 모았어요
-        </h2>
-      </div>
-
-      <div className="flex flex-col-reverse items-stretch gap-[10px] sm:flex-row sm:items-center sm:justify-between">
-        <CategoryChips
-          parentCategory={parentCategory}
-          subCategory={subCategory}
-          onChange={moveToSubCategory}
-        />
+        <div className="ml-auto" />
         <Select
           options={sortOptions}
           value={sort}
@@ -285,9 +281,15 @@ export default function InfoPage() {
           }}
           placeholder="조회순"
           variant="S"
-          className="w-[120px] self-end sm:self-auto"
+          className="w-[104px] shrink-0"
         />
       </div>
+
+      <CategoryChips
+        parentCategory={parentCategory}
+        subCategory={subCategory}
+        onChange={moveToSubCategory}
+      />
       
       {shouldShowEmptyMessage ? (
         <div className="flex h-[200px] items-center justify-center text-background-500">

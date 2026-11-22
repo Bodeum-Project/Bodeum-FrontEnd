@@ -6,8 +6,8 @@ import BaseInfoCard from "./BaseInfoCard";
 import InfoItemNewsIcon from "@/assets/icons/InfoItem-news.svg?react";
 
 const newsCategoryStyle = {
-  bgColor: "bg-background-200",
-  textColor: "text-background-600",
+  bgColor: "bg-main-150",
+  textColor: "text-main-500",
 } as const;
 
 interface ProgramItemProps {
@@ -47,15 +47,15 @@ export default function ProgramItem({
       pressedBorderColor="peer-active:border-main-400"
       onClick={onClick}
       icon={
-        <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-[10px] bg-main-100">
-          <InfoItemNewsIcon className="h-[60px] w-[60px]" />
+        <div className="flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-[16px] bg-main-200 text-main-500 sm:h-[64px] sm:w-[64px]">
+          <InfoItemNewsIcon className="h-[30px] w-[30px] sm:h-[34px] sm:w-[34px]" />
         </div>
       }
       left={
         <div className="flex h-[66px] min-w-0 flex-col">
           <div className="flex h-[24px] min-w-0 items-center gap-[4px]">
             <span
-              className={`shrink-0 rounded-[10px] ${newsCategoryStyle.bgColor} px-2 py-[5px] text-h5-list leading-none ${newsCategoryStyle.textColor}`}
+              className={`shrink-0 rounded-[6px] ${newsCategoryStyle.bgColor} px-[6px] py-[4px] text-body-label font-semibold leading-none ${newsCategoryStyle.textColor}`}
             >
               {categoryLabel}
             </span>

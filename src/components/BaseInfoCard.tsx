@@ -13,25 +13,25 @@ export default function BaseInfoCard({
   left,
   right,
   onClick,
-  pressedBorderColor = "peer-active:border-main-400",
+  pressedBorderColor = "peer-active:border-background-300",
 }: BaseInfoCardProps) {
   const isClickable = Boolean(onClick);
 
   return (
-    <article className="group relative isolate flex min-h-[96px] w-full items-center justify-between gap-[8px] rounded-[10px] px-[14px] py-[12px] sm:h-[102px] sm:px-[20px]">
+    <article className="group relative isolate flex min-h-[96px] w-full items-center justify-between gap-[8px] rounded-[16px] px-[14px] py-[14px] sm:h-[102px] sm:px-[20px]">
       {isClickable && (
         <button
           type="button"
           onClick={onClick}
-          className="peer absolute inset-0 z-10 cursor-pointer rounded-[10px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
+          className="peer absolute inset-0 z-10 cursor-pointer rounded-[16px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
         />
       )}
 
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 -z-10 rounded-[10px] border border-background-250 bg-background-100 transition ${
+        className={`pointer-events-none absolute inset-0 -z-10 rounded-[16px] border border-background-250 bg-background-100 transition ${
           isClickable
-            ? `group-hover:shadow-[0.76px_1.51px_11.36px_0px_#00000026] ${pressedBorderColor}`
+            ? `group-hover:shadow-card peer-active:bg-background-200 ${pressedBorderColor}`
             : ""
         }`}
       />

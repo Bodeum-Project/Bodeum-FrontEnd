@@ -11,12 +11,12 @@
 
   /* Main Colors (mint) */
 
-  --color-main-500: #0C8F72;
-  --color-main-400: #15B894;
-  --color-main-300: #8FE0C8;
-  --color-main-200: #D9F7EC;
-  --color-main-150: #E3F8F0;
-  --color-main-100: #EDF6F3;
+  --color-main-500: #0B8E99;
+  --color-main-400: #17B5C0;
+  --color-main-300: #8DDCE2;
+  --color-main-200: #DCF4F6;
+  --color-main-150: #EAF7F8;
+  --color-main-100: #F2F4F6;
 
   /* Accent (dark, for primary CTAs / selected states) */
 
@@ -28,23 +28,29 @@
   --color-sub-yellow: #F2B31D;
   --color-sub-yellow-2: #FFF7E4;
 
-  --color-sub-red: #DC2E31;
-  --color-sub-red-2: #FDF2F8;
+  --color-sub-red: #F04452;
+  --color-sub-red-2: #FFEEF0;
 
   --color-sub-green: #0EA345;
   --color-sub-green-2: #F0FFF6;
 
-  --color-sub-purple: #603183;
-  --color-sub-purple-2: #F4EEFF;
+  --color-sub-purple: #7B61FF;
+  --color-sub-purple-2: #F1EEFF;
 
-  /* Background */
+  --color-sub-blue: #3182F6;
+  --color-sub-blue-2: #E8F3FF;
 
-  --color-background-600: #2E2E2E;
-  --color-background-500: #616368;
-  --color-background-400: #9DA0AD;
-  --color-background-300: #C1C6D1;
-  --color-background-250: #D7DBE4;
-  --color-background-200: #F3F4F8;
+  --color-sub-orange: #FF7A1A;
+  --color-sub-orange-2: #FFF1E6;
+
+  /* Background (cool gray) */
+
+  --color-background-600: #191F28;
+  --color-background-500: #4E5968;
+  --color-background-400: #8B95A1;
+  --color-background-300: #B0B8C1;
+  --color-background-250: #E5E8EB;
+  --color-background-200: #F2F4F6;
   --color-background-100: #FFFFFF;
 
   /* Radius */
@@ -60,8 +66,9 @@
 
   /* Gradients */
 
-  --gradient-hero: linear-gradient(180deg, var(--color-main-200) 0%, #FFFFFF 60%);
-  --gradient-accent-soft: linear-gradient(135deg, var(--color-main-200), var(--color-main-100));
+  --gradient-hero: radial-gradient(90% 70% at 100% 0%, rgb(49 130 246 / 0.16) 0%, rgb(49 130 246 / 0) 70%), linear-gradient(180deg, #D7F3F5 0%, #EEF9FA 55%, #FFFFFF 100%);
+  --gradient-brand: radial-gradient(80% 100% at 100% 0%, rgb(255 255 255 / 0.22) 0%, rgb(255 255 255 / 0) 60%), linear-gradient(135deg, #17B5C0 0%, #2E9BEF 100%);
+  --gradient-accent-soft: linear-gradient(135deg, #E3F6F7 0%, #E8F1FF 100%);
 
   /* Typography */
 
@@ -136,6 +143,8 @@
 
 body {
   font-family: var(--font-sans);
+  color: var(--color-background-600);
+  letter-spacing: -0.01em;
   -webkit-tap-highlight-color: transparent;
 }
 

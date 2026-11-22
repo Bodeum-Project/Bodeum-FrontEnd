@@ -1,5 +1,5 @@
-import ButtonFill from "@/components/button/ButtonFill";
 import RecommendedCommunitySection from "@/components/RecommendedCommunitySection";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { useNavigate } from "react-router-dom";
 
 interface CommunitySectionProps {
@@ -12,20 +12,19 @@ export default function CommunitySection({ onWriteClick }: CommunitySectionProps
 
   return (
     <section className="w-full min-w-0 overflow-hidden">
-      <div className="mb-[12px] flex items-center justify-between">
-        <div>
-          <h2 className="text-h2-list">커뮤니티 이야기</h2>
-          <p className="mt-[3.6px] text-h6-list text-gray-500">
-            다른 부모들이 작성한 글을 확인하세요
-          </p>
-        </div>
-
-        <ButtonFill
-          label="글쓰기"
-          onClick={onWriteClick}
-          className="!h-[38px] !w-[84px] !px-[16px] !py-[10px]"
-        />
-      </div>
+      <SectionHeader
+        title="커뮤니티 이야기"
+        description="다른 부모님들의 경험을 나눠요"
+        right={
+          <button
+            type="button"
+            onClick={onWriteClick}
+            className="flex shrink-0 cursor-pointer items-center gap-[4px] rounded-full bg-accent-900 px-[14px] py-[8px] text-[13px] font-semibold text-background-100 active:bg-accent-800"
+          >
+            <span className="text-[15px] leading-none">+</span> 글쓰기
+          </button>
+        }
+      />
 
       <RecommendedCommunitySection
         onPostClick={(postId) => navigate(`/community/${postId}`)}

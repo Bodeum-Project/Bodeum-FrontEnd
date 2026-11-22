@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
 
-import HeartIcon from "@/assets/icons/HeartDisabled.svg?react";
-import TalkIcon from "@/assets/icons/Community.svg?react";
-import ViewIcon from "@/assets/icons/Views.svg?react";
-import RegionLabel from "@/components/RegionLabel";
-
 interface PostListItemProps {
   title: string;
   region: string;
@@ -24,41 +19,25 @@ export default function PostListItem({
   rightSlot,
   onClick,
 }: PostListItemProps) {
+  const stats = [
+    likes !== undefined && `좋아요 ${likes.toLocaleString()}`,
+    talks !== undefined && `댓글 ${talks.toLocaleString()}`,
+    views !== undefined && `조회 ${views.toLocaleString()}`,
+  ].filter(Boolean);
+
   return (
     <button
       onClick={onClick}
-      className="flex w-full flex-col items-start gap-[8px] rounded-[10px] bg-background-200 px-[14px] py-[12px] text-left cursor-pointer transition-colors active:bg-background-250 sm:flex-row sm:items-center sm:justify-between sm:gap-[12px] sm:px-[16px]"
+      className="flex w-full cursor-pointer items-center gap-[12px] border-b border-background-250 py-[14px] text-left last:border-b-0 active:opacity-70"
     >
-      <div className="flex w-full min-w-0 items-center gap-3 sm:w-auto">
-        <RegionLabel region={region} />
-
-        <p className="truncate text-h4-list text-gray-800">{title}</p>
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-[15px] font-medium tracking-[-0.02em] text-background-600">{title}</p>
+        <p className="mt-[4px] truncate text-[12px] text-background-400">
+          <span className="font-medium text-main-500">{region}</span>
+          {stats.length > 0 && <span> · {stats.join(" · ")}</span>}
+        </p>
       </div>
-
-      <div className="flex shrink-0 items-center gap-[8px] text-h4-list text-background-500">
-        {likes !== undefined && (
-          <div className="flex items-center gap-1">
-            <HeartIcon className="w-[12px] h-[12px]" />
-            <span>{likes.toLocaleString()}</span>
-          </div>
-        )}
-
-        {talks !== undefined && (
-          <div className="flex items-center gap-1">
-            <TalkIcon className="w-[12px] h-[12px]" />
-            <span>{talks.toLocaleString()}</span>
-          </div>
-        )}
-
-        {views !== undefined && (
-          <div className="flex items-center gap-1">
-            <ViewIcon className="w-[12px] h-[12px]" />
-            <span>{views.toLocaleString()}</span>
-          </div>
-        )}
-
-        {rightSlot}
-      </div>
+      {rightSlot}
     </button>
   );
 }

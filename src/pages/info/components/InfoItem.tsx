@@ -2,6 +2,7 @@ import Chip from "@/components/Chips";
 import ViewStat from "@/components/post-stat/ViewStat";
 import ScrapStat from "@/components/post-stat/ScrapStat";
 import CategoryLabel from "@/components/CategoryLabel";
+import { infoCategoryMap } from "@/constants/infoCategory";
 import BaseInfoCard from "../../../components/BaseInfoCard";
 
 import InfoItemInstitutionIcon from "@/assets/icons/InfoItem-institution.svg?react";
@@ -25,22 +26,6 @@ const infoItemIconMap = {
   ParentCategory,
   ComponentType<SVGProps<SVGSVGElement>>
 >;
-
-const infoItemPressedBorderMap = {
-  INSTITUTION: "peer-active:border-sub-yellow",
-  HOSPITAL: "peer-active:border-main-400",
-  WELFARE: "peer-active:border-sub-green",
-  EDUCATION: "peer-active:border-sub-purple",
-  EMPLOYMENT: "peer-active:border-sub-red",
-} satisfies Record<ParentCategory, string>;
-
-const infoItemIconSizeMap = {
-  INSTITUTION: "h-[43.73px] w-[43.73px]",
-  HOSPITAL: "h-[43.73px] w-[43.73px]",
-  WELFARE: "h-[43.73px] w-[43.73px]",
-  EDUCATION: "h-[43.73px] w-[43.73px]",
-  EMPLOYMENT: "h-[43.73px] w-[43.73px]",
-} satisfies Record<ParentCategory, string>;
 
 interface InfoItemProps {
   mainCategory: ParentCategory;
@@ -70,16 +55,14 @@ export default function InfoItem({
   clickable = true,
 }: InfoItemProps) {
   const Icon = infoItemIconMap[mainCategory];
-  const pressedBorderColor = infoItemPressedBorderMap[mainCategory];
-  const iconSize = infoItemIconSizeMap[mainCategory];
+  const { bgColor, textColor } = infoCategoryMap[mainCategory];
 
   return (
     <BaseInfoCard
-      pressedBorderColor={pressedBorderColor}
       onClick={clickable ? onClick : undefined}
       icon={
-        <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-[10px] bg-main-100">
-          <Icon className={iconSize} />
+        <div className={`flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-[16px] sm:h-[64px] sm:w-[64px] ${bgColor} ${textColor}`}>
+          <Icon className="h-[30px] w-[30px] sm:h-[34px] sm:w-[34px]" />
         </div>
       }
       left={

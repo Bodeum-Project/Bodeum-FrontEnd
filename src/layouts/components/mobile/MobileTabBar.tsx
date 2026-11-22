@@ -1,8 +1,8 @@
-import HomeIcon from "@/assets/icons/Home.svg?react";
-import ChatIcon from "@/assets/icons/Chat.svg?react";
-import InfoIcon from "@/assets/icons/Info.svg?react";
-import NewsIcon from "@/assets/icons/News.svg?react";
-import CommunityIcon from "@/assets/icons/Community.svg?react";
+import HomeIcon from "@/assets/icons/TabHome.svg?react";
+import ChatIcon from "@/assets/icons/TabChat.svg?react";
+import InfoIcon from "@/assets/icons/TabInfo.svg?react";
+import NewsIcon from "@/assets/icons/TabNews.svg?react";
+import CommunityIcon from "@/assets/icons/TabCommunity.svg?react";
 import type { ComponentType, SVGProps } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -44,7 +44,7 @@ export default function MobileTabBar() {
   return (
     <nav
       aria-label="주요 메뉴"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-background-250 bg-background-100/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 rounded-t-[20px] bg-background-100/95 shadow-[0_-4px_20px_rgb(20_23_31_/_0.06)] pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
     >
       <ul className="mx-auto flex h-[64px] max-w-[640px] items-stretch">
         {tabs.map(({ label, to, icon: Icon, isActive }) => {
@@ -56,11 +56,11 @@ export default function MobileTabBar() {
                 type="button"
                 aria-current={active ? "page" : undefined}
                 onClick={() => navigate(to)}
-                className={`flex h-full w-full cursor-pointer flex-col items-center justify-center gap-[4px] text-body-label transition-colors ${
-                  active ? "text-main-400" : "text-background-500 active:text-background-600"
+                className={`flex h-full w-full cursor-pointer flex-col items-center justify-center gap-[3px] text-body-label transition-colors ${
+                  active ? "font-semibold text-background-600" : "text-background-300 active:text-background-400"
                 }`}
               >
-                <Icon aria-hidden="true" className="bodeum-icon-color h-[22px] w-[22px]" />
+                <Icon aria-hidden="true" className="h-[24px] w-[24px]" />
                 <span>{label}</span>
               </button>
             </li>

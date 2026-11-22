@@ -42,9 +42,7 @@ export default function CountButton({
       onClick={onClick}
       className={buttonClass}
     >
-      <span className="text-h3-heading">
-        {label} +{count}
-      </span>
+      <span>{label}</span>
 
       {!disabled && <ChevronDownIcon />}
     </FilterButton>

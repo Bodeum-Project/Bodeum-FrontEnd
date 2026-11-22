@@ -19,7 +19,7 @@ export default function LocationButton({
       disabled={disabled}
       onClick={onClick}
     >
-      <LocationSearchIcon />
+      <LocationSearchIcon className="h-[16px] w-[16px]" />
       <span>{value}</span>
       <ChevronDownIcon />
     </FilterButton>

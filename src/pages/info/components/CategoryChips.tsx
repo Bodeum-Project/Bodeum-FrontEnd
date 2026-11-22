@@ -27,7 +27,7 @@ export default function CategoryChips({
   );
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="no-scrollbar -mx-[16px] flex gap-[8px] overflow-x-auto px-[16px] sm:mx-0 sm:flex-wrap sm:px-0">
       {visibleCategories
         .filter((item) => item.value.endsWith("_ETC"))
         .map((item) => (

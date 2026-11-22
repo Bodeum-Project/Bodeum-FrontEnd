@@ -57,7 +57,7 @@ export default function CommunityToolbar({
           onSearch(nextKeyword);
         }}
         placeholder="게시글을 검색해보세요"
-        className="h-[44px] w-full max-w-[640px]"
+        className="h-[44px] w-full min-w-0 max-w-[640px] flex-1"
       />
 
       <Select

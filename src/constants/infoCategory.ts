@@ -14,15 +14,15 @@ export const infoCategoryMap = {
   INSTITUTION: {
     label: "기관",
     icon: InstitutionIcon,
-    bgColor: "bg-sub-yellow-2",
-    textColor: "text-sub-yellow",
+    bgColor: "bg-sub-blue-2",
+    textColor: "text-sub-blue",
     buttonClass:
-      "bg-sub-yellow-2 text-sub-yellow active:bg-sub-yellow active:text-sub-yellow-2",
+      "bg-sub-blue-2 text-sub-blue active:bg-sub-blue active:text-sub-blue-2",
   },
   HOSPITAL: {
     label: "병원",
     icon: HospitalIcon,
-    bgColor: "bg-main-150",
+    bgColor: "bg-main-200",
     textColor: "text-main-500",
     buttonClass:
       "bg-main-150 text-main-500 active:bg-main-500 active:text-main-150",
@@ -30,27 +30,26 @@ export const infoCategoryMap = {
   WELFARE: {
     label: "복지",
     icon: WelfareIcon,
-    bgColor: "bg-sub-green-2",
-    textColor: "text-sub-green",
-    buttonClass:
-      "bg-sub-green-2 text-sub-green active:bg-sub-green active:text-sub-green-2",
-  },
-  EDUCATION: {
-    label: "교육",
-    icon: EducationIcon,
-    bgColor: "bg-sub-purple-2",
-    textColor: "text-sub-purple",
-    buttonClass:
-      "bg-sub-purple-2 text-sub-purple active:bg-sub-purple active:text-sub-purple-2",
-
-  },
-  EMPLOYMENT: {
-    label: "취업",
-    icon: EmploymentIcon,
     bgColor: "bg-sub-red-2",
     textColor: "text-sub-red",
     buttonClass:
       "bg-sub-red-2 text-sub-red active:bg-sub-red active:text-sub-red-2",
+  },
+  EDUCATION: {
+    label: "교육",
+    icon: EducationIcon,
+    bgColor: "bg-sub-orange-2",
+    textColor: "text-sub-orange",
+    buttonClass:
+      "bg-sub-orange-2 text-sub-orange active:bg-sub-orange active:text-sub-orange-2",
+  },
+  EMPLOYMENT: {
+    label: "취업",
+    icon: EmploymentIcon,
+    bgColor: "bg-sub-purple-2",
+    textColor: "text-sub-purple",
+    buttonClass:
+      "bg-sub-purple-2 text-sub-purple active:bg-sub-purple active:text-sub-purple-2",
   },
 } as const;
 

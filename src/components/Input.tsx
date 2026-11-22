@@ -181,13 +181,13 @@ export default function Input({
     <div className={`relative ${className}`}>
       <div
         className={`
-          flex ${search ? "h-[40px]" : "h-[48px]"} items-center rounded-[10px] px-[20px] transition-all ${wrapperStyle}
+          flex ${search ? "h-[40px]" : "h-[48px]"} items-center rounded-[12px] px-[16px] transition-all ${wrapperStyle}
           focus-within:border-main-400
           focus-within:bg-background-100
         `}
       >
         {search && (
-          <SearchIcon className="text-background-500 mr-[15px] h-[18px] w-[18px] shrink-0" />
+          <SearchIcon className="text-background-400 mr-[10px] h-[18px] w-[18px] shrink-0" />
         )}
 
         <input
@@ -212,10 +212,10 @@ export default function Input({
           }}
           onKeyDown={handleKeyDown}
           className={`
-            flex-1 bg-transparent
+            min-w-0 flex-1 bg-transparent
             ${search ? "text-h3-category-sub" : "text-h2-onboard"}
             text-background-600 outline-none
-            ${search ? "placeholder:text-background-500" : "placeholder:text-background-400"}
+            placeholder:text-background-400
           `}
         />
 
