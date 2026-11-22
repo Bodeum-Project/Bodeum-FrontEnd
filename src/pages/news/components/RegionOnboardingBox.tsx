@@ -36,7 +36,7 @@ export default function RegionOnboardingBox({ onClose, onComplete }: RegionOnboa
           rightButtonText="완료"
           showClose
           showOverlay={false}
-          className="h-[482px]! w-[624px]! p-[44px]!"
+          className="h-[482px]! w-full max-w-[624px]! p-[44px]!"
           ariaLabelledby={titleId}
           rightButtonDisabled={!isComplete}
           onClose={onClose}

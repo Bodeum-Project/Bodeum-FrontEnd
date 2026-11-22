@@ -105,7 +105,7 @@ export default function AuthAgreementCard({
         rightButtonText={isSubmitting ? "저장 중..." : "다음"}
         showOverlay={false}
         rightButtonDisabled={!requiredChecked || isSubmitting}
-        className="w-[624px]! p-[44px]! shadow-[0_0_15px_rgb(102_128_155_/_0.1)] max-sm:px-[24px]! max-sm:py-[32px]!"
+        className="w-full max-w-[624px]! p-[44px]! shadow-[0_0_15px_rgb(102_128_155_/_0.1)] max-sm:px-[24px]! max-sm:py-[32px]!"
         ariaLabelledby={titleId}
         onRightButtonClick={() => onSubmit(agreements)}
       >

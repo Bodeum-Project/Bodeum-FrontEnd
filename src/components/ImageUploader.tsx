@@ -97,12 +97,12 @@ export default function ImageUploader({
     <div>
       <p className="mb-4 mt-4 text-h3-onboard text-background-500">이미지를 첨부해주세요</p>
 
-      <div className="flex gap-[12px]">
+      <div className="flex gap-[8px] overflow-x-auto no-scrollbar sm:gap-[12px]">
         {totalCount < MAX_IMAGE && (
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
-            className="flex h-[140px] w-[140px] cursor-pointer flex-col items-center justify-center rounded-[10px] border border-transparent bg-background-250 hover:shadow-[1px_2px_15px_0px_#00000026] active:border-background-500 active:bg-background-300"
+            className="flex h-[104px] w-[104px] shrink-0 sm:h-[140px] sm:w-[140px] cursor-pointer flex-col items-center justify-center rounded-[10px] border border-transparent bg-background-250 hover:shadow-[1px_2px_15px_0px_#00000026] active:border-background-500 active:bg-background-300"
           >
             <PlusIcon className="mb-2 h-[32px] w-[32px]" />
 
@@ -112,7 +112,7 @@ export default function ImageUploader({
         )}
 
         {existingImages.map((url) => (
-          <div key={url} className="relative h-[140px] w-[140px] overflow-hidden rounded-[10px]">
+          <div key={url} className="relative h-[104px] w-[104px] shrink-0 sm:h-[140px] sm:w-[140px] overflow-hidden rounded-[10px]">
             <img src={url} alt="" className="h-full w-full object-cover" />
 
             <button
@@ -126,7 +126,7 @@ export default function ImageUploader({
         ))}
 
         {images.map((image, index) => (
-          <div key={index} className="relative h-[140px] w-[140px] overflow-hidden rounded-[10px]">
+          <div key={index} className="relative h-[104px] w-[104px] shrink-0 sm:h-[140px] sm:w-[140px] overflow-hidden rounded-[10px]">
             <LocalImagePreview file={image} />
 
             <button

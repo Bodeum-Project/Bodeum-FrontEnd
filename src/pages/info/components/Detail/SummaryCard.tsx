@@ -112,7 +112,7 @@ export default function SummaryCard({
 
   return (
     <div className="overflow-hidden rounded-[10px] border border-background-250 bg-background-100">
-      <div className="px-[25px] py-[24px]">
+      <div className="px-[16px] py-[20px] sm:px-[25px] sm:py-[24px]">
         <div className="flex items-center gap-[10px] mb-[12px]">
           <CategoryLabel category={mainCategory as any} />
           
@@ -124,7 +124,7 @@ export default function SummaryCard({
 
         <h1 className="text-h1-onboard">{name}</h1>
 
-        <div className="flex gap-x-5 mb-[8px]">
+        <div className="mb-[8px] flex flex-wrap gap-x-5 gap-y-1">
           <ViewStat count={viewCount} showLabel={true} />
           <ScrapStat
             count={scrapCountState}
@@ -136,7 +136,7 @@ export default function SummaryCard({
 
         <div className="border-b border-main-100 mb-[12px]" />
 
-        <div className="flex gap-[8px]">
+        <div className="flex flex-wrap gap-[8px]">
           <ButtonFill
             label="홈페이지"
             icon={GoIcon}

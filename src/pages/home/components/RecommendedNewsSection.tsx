@@ -48,7 +48,7 @@ export default function RecommendedNewsSection() {
         </div>
       )}
 
-      <div className="flex flex-row mt-[20.5px] gap-[24px]">
+      <div className="mt-[20.5px] flex flex-col gap-[20px] md:flex-row md:gap-[24px]">
         <PostSection
           title="활동소식"
           onMoreClick={() => navigate("/news?newsType=ACTIVITY")}

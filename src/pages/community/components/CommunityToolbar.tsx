@@ -42,7 +42,7 @@ export default function CommunityToolbar({
   onSortChange,
 }: CommunityToolbarProps) {
   return (
-    <div className="flex items-center justify-between gap-6">
+    <div className="flex items-center justify-between gap-3 sm:gap-6">
       <Input
         search
         searchType="community"
@@ -57,7 +57,7 @@ export default function CommunityToolbar({
           onSearch(nextKeyword);
         }}
         placeholder="게시글을 검색해보세요"
-        className="h-[44px] w-[640px]"
+        className="h-[44px] w-full max-w-[640px]"
       />
 
       <Select
@@ -67,7 +67,7 @@ export default function CommunityToolbar({
         placeholder={isLoggedIn ? "최신순" : "조회순"}
         variant="S"
         ariaLabel="게시글 정렬"
-        className="w-[120px]"
+        className="w-[104px] shrink-0 sm:w-[120px]"
       />
     </div>
   );

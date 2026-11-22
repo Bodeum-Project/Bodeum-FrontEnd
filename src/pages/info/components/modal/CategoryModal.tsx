@@ -49,7 +49,7 @@ export default function CategoryModal({
       onLeftButtonClick={onClose}
       onRightButtonClick={handleComplete}
       rightButtonDisabled={!selectedCategory}
-      className="w-[624px]"
+      className="w-full max-w-[624px]"
     >
       <div className="flex flex-col">
         <div className="pb-[20px]">
@@ -64,7 +64,7 @@ export default function CategoryModal({
           어느 정보를 찾아보시겠어요?
         </span>
 
-        <div className="grid grid-cols-3 gap-x-[40px] gap-y-[20px] pb-[110px]">
+        <div className="grid grid-cols-3 gap-[8px] pb-[24px] sm:gap-x-[40px] sm:gap-y-[20px] sm:pb-[110px]">
           {categoryTypes.map((type) => (
             <InfoCategoryCard
               key={type}

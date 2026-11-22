@@ -53,18 +53,18 @@ export default function MyPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-60px)] bg-background-200 px-[32px] py-[20px]">
-      <div className="mx-auto w-[896px]">
+    <div className="min-h-[calc(100vh-60px)] bg-background-200 px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
+      <div className="mx-auto w-full max-w-[896px]">
         <ProfileSummaryCard
           dashboard={dashboard}
           counts={counts}
           onSettingsClick={() => navigate("/mypage/settings")}
         />
 
-        <div className="mt-[18px] grid grid-cols-[576px_299px] gap-x-[18px] gap-y-[16px]">
+        <div className="mt-[16px] grid grid-cols-1 gap-x-[18px] gap-y-[16px] lg:mt-[18px] lg:grid-cols-[576px_299px]">
           <MyPageActivitySection counts={counts} />
 
-          <div className="col-start-2 row-start-2 self-start">
+          <div className="self-start lg:col-start-2 lg:row-start-2">
             <ActivityPointCard
               totalPoint={pointsQuery.data?.totalPoint ?? dashboard.point}
               activities={pointsQuery.data?.activities ?? []}

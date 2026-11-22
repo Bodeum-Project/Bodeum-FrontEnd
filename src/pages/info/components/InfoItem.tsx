@@ -101,8 +101,8 @@ export default function InfoItem({
         </div>
       }
       right={
-        <div className="flex h-[64px] w-[130px] shrink-0 flex-col items-end justify-center gap-[11px]">
-          <div className="flex h-[33px] w-full items-end justify-center">
+        <div className="flex h-[64px] w-auto shrink-0 flex-col items-end justify-center gap-[11px] sm:w-[130px]">
+          <div className="hidden h-[33px] w-full items-end justify-center sm:flex">
             {phone && (
               <Chip variant="default" className="min-w-[100px]">
                 {phone}
@@ -110,7 +110,7 @@ export default function InfoItem({
             )}
           </div>
 
-          <div className="flex h-5 w-full items-center justify-center gap-2">
+          <div className="flex w-full flex-col items-end justify-center gap-[6px] sm:h-5 sm:flex-row sm:items-center sm:gap-2">
             <ViewStat count={viewCount} />
             <span className="relative z-20 inline-flex h-5 items-center">
               <ScrapStat

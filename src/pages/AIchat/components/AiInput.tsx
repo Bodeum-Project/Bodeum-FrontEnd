@@ -170,7 +170,7 @@ export default function AiInput({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onScroll={(event) => syncScrollThumb(event.currentTarget)}
-        className="no-scrollbar max-h-[42px] min-h-[21px] min-w-0 flex-1 resize-none overflow-y-auto bg-transparent text-h4-list text-background-600 outline-none placeholder:text-background-500"
+        className="no-scrollbar max-h-[48px] min-h-[21px] min-w-0 flex-1 resize-none overflow-y-auto bg-transparent text-[16px] leading-[24px] sm:max-h-[42px] sm:text-h4-list text-background-600 outline-none placeholder:text-background-500"
       />
 
       {isOverflowing && (

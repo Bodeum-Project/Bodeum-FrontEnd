@@ -61,7 +61,7 @@ export default function LocationModal({
         </div>
 
         <span className="text-h3-onboard text-background-500 pb-[12px]">어느 지역을 찾아보시겠어요?</span>
-        <div className="flex gap-5 pb-[192px]">
+        <div className="flex flex-col gap-3 pb-[160px] sm:flex-row sm:gap-5 sm:pb-[192px]">
           <Select
             options={regionOptions}
             value={province}
@@ -71,7 +71,7 @@ export default function LocationModal({
             }}
             placeholder="시/도"
             variant="L"
-            className="w-[262px]"
+            className="w-full sm:w-[262px]"
           />
 
           <Select
@@ -80,7 +80,7 @@ export default function LocationModal({
             onChange={setCity}
             placeholder="시/군/구"
             variant="L"
-            className="w-[262px]"
+            className="w-full sm:w-[262px]"
             disabled={!province || province === "지역 전체"}
           />
         </div>

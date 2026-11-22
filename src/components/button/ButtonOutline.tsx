@@ -85,7 +85,7 @@ export default function ButtonOutline({
         "inline-flex h-[38px] shrink-0 items-center justify-center rounded-[10px] border px-[16px] py-[10px]",
         "text-h4-list transition-[background-color,border-color,color,box-shadow] duration-150 ease-out",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
-        size === "L" ? "w-[632px] gap-[6px]" : "gap-[4px]",
+        size === "L" ? "w-full max-w-[632px] gap-[6px]" : "gap-[4px]",
         disabled
           ? "cursor-not-allowed border-background-400 bg-background-100 text-background-400"
           : joinClassNames("cursor-pointer", enabledToneClasses[tone]),

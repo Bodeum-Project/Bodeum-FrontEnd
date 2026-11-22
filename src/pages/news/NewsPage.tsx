@@ -46,7 +46,7 @@ export default function NewsPage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-background-100">
-      <div className="flex flex-col gap-[18px] px-[32px] py-[20px]">
+      <div className="flex flex-col gap-[16px] px-[16px] py-[16px] md:px-[24px] lg:gap-[18px] lg:px-[32px] lg:py-[20px]">
         <RecommendedNewsTopSection />
 
         <div className="flex flex-col gap-[16px]">

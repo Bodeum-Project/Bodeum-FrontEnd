@@ -27,9 +27,9 @@ export default function PostListItem({
   return (
     <button
       onClick={onClick}
-      className="flex w-full items-center justify-between rounded-[10px] bg-background-200 px-[16px] py-[12px] cursor-pointer"
+      className="flex w-full flex-col items-start gap-[8px] rounded-[10px] bg-background-200 px-[14px] py-[12px] text-left cursor-pointer transition-colors active:bg-background-250 sm:flex-row sm:items-center sm:justify-between sm:gap-[12px] sm:px-[16px]"
     >
-      <div className="flex min-w-0 items-center gap-3">
+      <div className="flex w-full min-w-0 items-center gap-3 sm:w-auto">
         <RegionLabel region={region} />
 
         <p className="truncate text-h4-list text-gray-800">{title}</p>

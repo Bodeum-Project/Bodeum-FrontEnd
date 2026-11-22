@@ -35,7 +35,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 px-[20px]"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
           onClose();

@@ -18,7 +18,7 @@ export default function BaseInfoCard({
   const isClickable = Boolean(onClick);
 
   return (
-    <article className="group relative isolate flex h-[102px] w-full items-center justify-between rounded-[10px] px-[20px] py-[12px]">
+    <article className="group relative isolate flex min-h-[96px] w-full items-center justify-between gap-[8px] rounded-[10px] px-[14px] py-[12px] sm:h-[102px] sm:px-[20px]">
       {isClickable && (
         <button
           type="button"
@@ -36,7 +36,7 @@ export default function BaseInfoCard({
         }`}
       />
 
-      <div className="flex min-w-0 flex-1 items-center gap-4">
+      <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
         {icon}
         {left}
       </div>

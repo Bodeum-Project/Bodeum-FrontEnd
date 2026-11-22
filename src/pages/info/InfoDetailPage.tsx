@@ -60,8 +60,8 @@ export default function InfoDetailPage() {
   }
 
   return (
-    <div className="flex justify-center gap-6 px-8 py-5">
-      <main className="w-[680px] space-y-[10px]">
+    <div className="flex justify-center gap-6 px-4 py-4 md:px-8 md:py-5">
+      <main className="w-full max-w-[680px] space-y-[10px]">
         <SummaryCard
           infoItemId={detail.infoItemId}
           name={detail.name}

@@ -29,10 +29,10 @@ export default function CommunityReplyForm({
   };
 
   return (
-    <div className="relative border-y border-background-250 bg-background-200 py-[20px] px-[80px]">
+    <div className="relative border-y border-background-250 bg-background-200 py-[16px] pr-[16px] pl-[52px] sm:py-[20px] sm:px-[80px]">
       <span
         aria-hidden="true"
-        className="absolute top-[20px] left-[17px] flex h-[40px] w-[40px] items-center justify-center"
+        className="absolute top-[16px] left-[8px] sm:top-[20px] sm:left-[17px] flex h-[40px] w-[40px] items-center justify-center"
       >
         <span className="h-[24px] w-[24px] border-b border-l border-background-300" />
       </span>

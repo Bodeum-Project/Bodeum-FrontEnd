@@ -100,7 +100,7 @@ export default function CommunityPostDetailCard({
       ].filter((item): item is string => item !== null);
 
   return (
-    <article className="min-h-[574px] rounded-[18px] border border-background-250 bg-background-100 px-[40px] py-[20px]">
+    <article className="rounded-[14px] border border-background-250 bg-background-100 px-[16px] py-[18px] sm:min-h-[574px] sm:rounded-[18px] sm:px-[40px] sm:py-[20px]">
       <header className="flex items-center justify-between border-b border-background-250 pb-[20px]">
         <div className="flex min-w-0 items-center gap-[12px] [&>span:first-child]:!h-[20px]">
           <PostTag type="ETC" label={communityCategoryMap[category]} />
@@ -138,7 +138,7 @@ export default function CommunityPostDetailCard({
         )}
       </div>
 
-      <div className="flex items-center justify-between border-b border-background-250 py-[16px]">
+      <div className="flex flex-wrap items-center justify-between gap-y-[10px] border-b border-background-250 py-[16px]">
         <div className="flex items-center gap-[10px]">
           <DetailBackButton
             icon={post.isLiked ? HeartIcon : HeartDisabledIcon}

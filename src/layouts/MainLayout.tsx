@@ -3,7 +3,9 @@ import SideBar from "./components/sidebar/SideBar";
 import SearchTopBar from "./components/Header/SearchTopBar";
 import BackTopBar from "./components/Header/BackTopBar";
 import { BreadcrumbProvider } from "@/contexts/BreadcrumbContext";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import MobileTabBar from "./components/mobile/MobileTabBar";
+import MobileDrawer from "./components/mobile/MobileDrawer";
 
 export default function MainLayout() {
   const navigationType = useNavigationType();
@@ -14,6 +16,12 @@ export default function MainLayout() {
 
   const mainRef = useRef<HTMLElement>(null);
   const location = useLocation();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // 페이지 이동 시 모바일 메뉴 닫기
+  useEffect(() => {
+    setIsDrawerOpen(false);
+  }, [location.pathname, location.search]);
 
   // 현재 스크롤 위치 저장
   useEffect(() => {
@@ -69,21 +77,33 @@ export default function MainLayout() {
   return (
     <BreadcrumbProvider>
       <div className="fixed inset-0 flex overflow-hidden">
-        <SideBar />
+        <div className="hidden lg:flex">
+          <SideBar />
+        </div>
 
         <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-          {header === "back" ? <BackTopBar /> : <SearchTopBar />}
+          {header === "back" ? (
+            <BackTopBar />
+          ) : (
+            <SearchTopBar onMenuClick={() => setIsDrawerOpen(true)} />
+          )}
 
           <main
             ref={mainRef}
-            className="min-h-0 flex-1 overflow-auto"
+            className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pb-[calc(64px+env(safe-area-inset-bottom))] lg:pb-0"
           >
-            <div className="min-w-[1227px]">
+            <div className="mx-auto w-full">
               <Outlet />
             </div>
           </main>
+
+          <MobileTabBar />
         </div>
       </div>
+
+      <MobileDrawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <SideBar />
+      </MobileDrawer>
     </BreadcrumbProvider>
   );
 }

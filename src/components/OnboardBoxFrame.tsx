@@ -137,7 +137,7 @@ export default function OnboardBoxFrame(props: OnboardBoxFrameProps) {
       aria-modal
       aria-labelledby={props.ariaLabelledby}
       className={joinClassNames(
-        'relative flex w-[581px] max-w-[calc(100vw-40px)] flex-col items-start gap-[44px] rounded-[20px] bg-background-100 px-[40px] py-[44px]',
+        'relative flex w-[581px] max-w-[calc(100vw-40px)] flex-col items-start gap-[28px] rounded-[20px] bg-background-100 px-[24px] py-[32px] sm:gap-[44px] sm:px-[40px] sm:py-[44px]',
         'z-50',
         props.className,
       )}

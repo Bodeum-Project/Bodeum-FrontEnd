@@ -6,7 +6,7 @@ import RequiredInfoSection from "./components/RequiredInfoSection";
 export default function HomePage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background-100">
-      <div className="mx-auto flex  flex-col gap-[18px] px-[32px] py-[20px] mb-[44px]">
+      <div className="mx-auto flex  flex-col gap-[18px] px-[16px] py-[16px] mb-[24px] md:px-[24px] lg:px-[32px] lg:py-[20px] lg:mb-[44px]">
         <NoticeBanner />
 
         <RequiredInfoSection />

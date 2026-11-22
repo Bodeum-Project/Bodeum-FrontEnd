@@ -724,7 +724,7 @@ export default function OnboardingStepCard({
         showClose
         showOverlay={false}
         rightButtonDisabled={!isComplete || isSubmitting}
-        className="w-[624px]! gap-[16px]! px-[44px]! py-[36px]! max-sm:px-[24px]! max-sm:py-[32px]!"
+        className="w-full max-w-[624px]! gap-[16px]! px-[44px]! py-[36px]! max-sm:px-[24px]! max-sm:py-[32px]!"
         ariaLabelledby={titleId}
         onClose={isSubmitting ? undefined : onClose}
         onRightButtonClick={onNext}
@@ -745,7 +745,7 @@ export default function OnboardingStepCard({
       showOverlay={false}
       leftButtonDisabled={isSubmitting}
       rightButtonDisabled={!isComplete || isSubmitting}
-      className="w-[624px]! gap-[16px]! px-[44px]! py-[36px]! max-sm:px-[24px]! max-sm:py-[32px]!"
+      className="w-full max-w-[624px]! gap-[16px]! px-[44px]! py-[36px]! max-sm:px-[24px]! max-sm:py-[32px]!"
       ariaLabelledby={titleId}
       onClose={isSubmitting ? undefined : onClose}
       onLeftButtonClick={onPrev}

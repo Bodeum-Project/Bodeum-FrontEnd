@@ -138,12 +138,12 @@ export default function ProfileManagementCard({
     isEditing && selectedFieldsRef.current.has(field);
 
   return (
-    <section className="w-[634px] rounded-[20px] bg-background-100 p-[20px]">
+    <section className="w-full max-w-[634px] rounded-[20px] bg-background-100 p-[20px]">
       <h1 className="border-b border-background-300 py-[8px] text-h2-list text-background-600">
         프로필 관리
       </h1>
 
-      <div className="mt-[24px] flex items-center">
+      <div className="mt-[24px] flex flex-wrap items-center gap-y-[12px]">
         <ProfileImagePicker
           imageUrl={form.profileImageUrl}
           imageFile={form.profileImageFile}
@@ -151,7 +151,7 @@ export default function ProfileManagementCard({
           disabled={isApplying}
           onChange={(profileImageFile) => updateField("profileImageFile", profileImageFile)}
         />
-        <div className="ml-[20px]">
+        <div className="ml-[14px] min-w-0 sm:ml-[20px]">
           <h2 className="min-h-[24px] text-h2-list text-background-600">{form.parentNickname}</h2>
           <p className="mt-[4px] text-h4-list text-background-500">
             가입일 {formatDateWithDots(joinedAt)}

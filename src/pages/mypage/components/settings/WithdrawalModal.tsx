@@ -91,7 +91,7 @@ export default function WithdrawalModal({
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto px-[40px] py-[44px]"
+      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto px-[20px] py-[40px] sm:px-[40px] sm:py-[44px]"
       onMouseDown={() => {
         if (!isSubmitting) {
           onClose();
@@ -105,7 +105,7 @@ export default function WithdrawalModal({
           leftButtonText="취소"
           rightButtonText="탈퇴하기"
           rightButtonColor="sub-red"
-          className="!z-[70] !w-[581px]"
+          className="!z-[70] !w-full max-w-[581px]"
           onLeftButtonClick={onClose}
           onRightButtonClick={() => void handleConfirm()}
           leftButtonDisabled={isSubmitting}

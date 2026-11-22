@@ -31,10 +31,10 @@ export default function CloseModalFrame({
 }: CloseModalFrameProps) {
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/40 ${overlayClassName ?? ""}`}
+      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center sm:px-[20px] ${overlayClassName ?? ""}`}
     >
       <div
-        className={`relative flex w-[624px] flex-col rounded-[20px] bg-background-100 px-[44px] py-[44px] ${className ?? ""}`}
+        className={`relative flex max-h-[90dvh] w-full max-w-[624px] flex-col overflow-y-auto rounded-t-[20px] bg-background-100 px-[20px] pt-[36px] pb-[calc(24px+env(safe-area-inset-bottom))] sm:rounded-[20px] sm:px-[44px] sm:py-[44px] ${className ?? ""}`}
       >
         {showCloseButton && (
           <button
@@ -49,7 +49,7 @@ export default function CloseModalFrame({
         <div className="mt-2 flex-1">{children}</div>
 
         {showFooter && (
-          <div className="mt-[40px] flex gap-[16px]">
+          <div className="mt-[28px] flex gap-[10px] sm:mt-[40px] sm:gap-[16px]">
             <MainButton
               size="L"
               className="flex-1 !bg-background-250 !text-background-500 hover:!bg-background-250 active:!bg-background-250"

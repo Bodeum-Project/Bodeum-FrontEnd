@@ -62,9 +62,9 @@ export default function AiChatPanel({
 
   return (
     <section
-      className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden rounded-[10px] bg-background-100 shadow-[1px_1px_10px_rgba(0,0,0,0.1)] ring-1 ring-inset ring-background-250"
+      className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden bg-background-100 sm:rounded-[10px] sm:shadow-[1px_1px_10px_rgba(0,0,0,0.1)] sm:ring-1 sm:ring-inset sm:ring-background-250"
     >
-      <header className="flex h-[70px] w-full shrink-0 items-center justify-center gap-[12px] bg-background-100 px-[20px] py-[16px]">
+      <header className="flex h-[60px] w-full shrink-0 items-center justify-center gap-[10px] border-b border-background-250 bg-background-100 px-[14px] py-[10px] sm:h-[70px] sm:gap-[12px] sm:border-b-0 sm:px-[20px] sm:py-[16px]">
         <AIMsgIcon aria-hidden="true" className="size-[32px] shrink-0" />
 
         <div className="flex min-w-0 flex-1 items-center justify-between">
@@ -81,7 +81,7 @@ export default function AiChatPanel({
             <button
               type="button"
               onClick={onHistoryClick}
-              className="ml-[12px] inline-flex shrink-0 cursor-pointer items-center justify-center gap-[4px] rounded-[10px] border border-background-300 bg-background-100 px-[16px] py-[8px] text-h4-list text-background-500 transition-colors hover:bg-background-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
+              className="ml-[8px] inline-flex shrink-0 cursor-pointer items-center justify-center gap-[4px] rounded-[10px] border border-background-300 bg-background-100 px-[10px] py-[6px] sm:ml-[12px] sm:px-[16px] sm:py-[8px] text-h4-list text-background-500 transition-colors hover:bg-background-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
             >
               <ChevronLeftIcon aria-hidden="true" className="size-[14px]" />
               이전 대화 보기
@@ -93,7 +93,7 @@ export default function AiChatPanel({
       {isNoticeOpen && (
         <div
           role="status"
-          className="absolute left-[26px] right-[26px] top-[78px] z-10 flex items-start gap-[12px] rounded-[8px] border border-main-300 bg-main-200 px-[14px] py-[10px] text-body-sub text-main-500 shadow-[1px_2px_8px_rgba(0,0,0,0.12)]"
+          className="absolute left-[12px] right-[12px] top-[68px] sm:left-[26px] sm:right-[26px] sm:top-[78px] z-10 flex items-start gap-[12px] rounded-[8px] border border-main-300 bg-main-200 px-[14px] py-[10px] text-body-sub text-main-500 shadow-[1px_2px_8px_rgba(0,0,0,0.12)]"
         >
           <p className="min-w-0 flex-1">
             AI 답변의 특성상 최신 변경된 제도와 일부 다를 수 있습니다. 정확한
@@ -113,7 +113,7 @@ export default function AiChatPanel({
 
       <div
         ref={messagesRef}
-        className="min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto bg-background-200 px-[26px] [scrollbar-color:#C1C6D1_transparent] [scrollbar-width:thin]"
+        className="min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto bg-background-200 px-[14px] sm:px-[26px] [scrollbar-color:#C1C6D1_transparent] [scrollbar-width:thin]"
       >
         <div className="flex min-h-full w-full flex-col items-start">
           {children}

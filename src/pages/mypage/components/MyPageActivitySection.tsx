@@ -27,7 +27,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
 
   return (
     <>
-      <section className="col-start-1 row-start-1">
+      <section className="lg:col-start-1 lg:row-start-1">
         <MyPageTabs
           activeTab={activity.activeTab}
           counts={counts}
@@ -35,7 +35,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
         />
       </section>
 
-      <div className="col-start-1 row-start-2 flex flex-col gap-[8px]">
+      <div className="flex flex-col gap-[8px] lg:col-start-1 lg:row-start-2">
         {activity.isPending && (
           <div
             role="status"

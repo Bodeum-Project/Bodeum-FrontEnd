@@ -119,6 +119,12 @@
 
 body {
   font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* fieldset 기본 min-width(min-content) 때문에 모바일에서 가로로 넘치는 문제 방지 */
+fieldset {
+  min-width: 0;
 }
 
 .bodeum-icon-color [fill]:not([fill="none"]) {

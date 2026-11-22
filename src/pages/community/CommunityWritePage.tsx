@@ -40,7 +40,7 @@ export default function CommunityWritePage() {
   }
 
   return (
-    <div className="min-h-full bg-background-100 px-[24px] py-[16px]">
+    <div className="min-h-full bg-background-100 px-[16px] py-[16px] md:px-[24px]">
       <CommunityWriteForm
         key={editor.post?.postId ?? "create"}
         onCancel={navigation.requestCancel}

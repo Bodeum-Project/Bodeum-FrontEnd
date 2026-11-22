@@ -105,8 +105,8 @@ export default function WriteReviewPage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-[1240px] justify-center py-[20px]">
-      <main className="w-[1240px] space-y-[20px]">
+    <div className="mx-auto flex max-w-[1240px] justify-center px-4 py-4 md:px-8 md:py-[20px]">
+      <main className="w-full max-w-[1240px] space-y-[20px]">
         <InfoItem
           mainCategory={detail?.mainCategory}
           name={detail?.name}
@@ -119,7 +119,7 @@ export default function WriteReviewPage() {
           clickable={false}
         />
 
-        <section className="rounded-[10px] border border-background-250 bg-background-100 p-[20px]">
+        <section className="rounded-[10px] border border-background-250 bg-background-100 p-[16px] sm:p-[20px]">
           <h2 className="mb-[16px] text-h1-onboard text-background-600">
             후기 작성하기
           </h2>
@@ -144,14 +144,14 @@ export default function WriteReviewPage() {
           <ButtonOutline
             label="취소하기"
             tone="black"
-            className="w-[200px]"
+            className="flex-1 sm:w-[200px] sm:flex-none"
             onClick={() => setIsCancelOpen(true)}
           />
 
           <ButtonFill
             label="게시하기"
             disabled={!isValid || isUploading || isSubmitting}
-            className="w-[200px]"
+            className="flex-1 sm:w-[200px] sm:flex-none"
             onClick={handleSubmit}
           />
         </div>

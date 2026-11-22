@@ -74,7 +74,7 @@ export default function CommunityDetailPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-60px)] bg-background-200 px-[32px] py-[20px]">
+    <div className="min-h-[calc(100vh-60px)] bg-background-200 px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
       <div
         className="mx-auto flex w-full flex-col gap-[18px]"
       >
@@ -127,7 +127,7 @@ function CommunityRelatedPostsSection({
   ).slice(0, 5);
 
   return (
-    <section className="flex flex-col gap-[14px] rounded-[10px] border border-background-250 bg-background-100 px-[24px] py-[20px]">
+    <section className="flex flex-col gap-[14px] rounded-[10px] border border-background-250 bg-background-100 px-[16px] py-[18px] sm:px-[24px] sm:py-[20px]">
       <p className="text-h2-list text-background-600">
         {communityCategoryMap[category]} 게시판의 다른 글
       </p>

@@ -17,7 +17,7 @@ export default function Section({
 }: SectionProps) {
   return (
     <section
-      className={`w-[680px] rounded-[10px] border border-background-250 bg-background-100 px-[24px] py-[20px] ${className}`}
+      className={`w-full max-w-[680px] rounded-[10px] border border-background-250 bg-background-100 px-[16px] py-[18px] sm:px-[24px] sm:py-[20px] ${className}`}
     >
       {headerTop && <div className="mb-[14px]">{headerTop}</div>}
       <div className="mb-[14px] flex items-center gap-[8px]">

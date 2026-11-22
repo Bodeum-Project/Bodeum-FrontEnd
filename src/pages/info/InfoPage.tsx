@@ -244,12 +244,12 @@ export default function InfoPage() {
   }
   
   return (
-    <div className="flex min-h-screen flex-col gap-[18px] bg-background-100 px-[32px] py-[20px]">
+    <div className="flex min-h-screen flex-col gap-[14px] bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:gap-[18px] lg:px-[32px] lg:py-[20px]">
       
       <h2 className="text-h1-info -mb-[10px]">
         {profile?.nickname || "보호자"}님,
       </h2>
-      <div className="flex gap-[10px] items-center">
+      <div className="flex flex-wrap items-center gap-[8px] lg:gap-[10px]">
         <LocationButton
           value={location}
           onClick={() => setLocationOpen(true)}
@@ -264,7 +264,7 @@ export default function InfoPage() {
         </h2>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col-reverse items-stretch gap-[10px] sm:flex-row sm:items-center sm:justify-between">
         <CategoryChips
           parentCategory={parentCategory}
           subCategory={subCategory}
@@ -285,7 +285,7 @@ export default function InfoPage() {
           }}
           placeholder="조회순"
           variant="S"
-          className="w-[120px]"
+          className="w-[120px] self-end sm:self-auto"
         />
       </div>
       
@@ -295,7 +295,7 @@ export default function InfoPage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-x-[20px] gap-y-[12px]">
+          <div className="grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
             {items.map((item) => (
               <InfoItem
                 key={item.infoItemId}

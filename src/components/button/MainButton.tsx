@@ -20,7 +20,7 @@ type MainButtonProps = MainButtonBaseProps &
   );
 
 const sizeClasses: Record<MainButtonSize, string> = {
-  L: 'h-[50px] w-[536px] rounded-[10px] text-h2-onboard',
+  L: 'h-[50px] w-full max-w-[536px] rounded-[10px] text-h2-onboard',
   M: 'h-[50px] w-[260px] rounded-[10px] text-h2-onboard',
   S: 'h-[25px] w-[66px] rounded-[5px] text-h6',
 };

@@ -25,9 +25,9 @@ export default function NewsListSection({ items, isError }: NewsListSectionProps
   }
 
   return (
-    <section className="grid grid-cols-2 gap-x-[20px] gap-y-[12px]">
+    <section className="grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
       {items.length === 0 && (
-        <div className="col-span-2 flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-background-500">
+        <div className="col-span-full flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-background-500">
           조건에 맞는 뉴스가 없습니다.
         </div>
       )}

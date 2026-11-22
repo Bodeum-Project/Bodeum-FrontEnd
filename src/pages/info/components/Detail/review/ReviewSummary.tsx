@@ -13,7 +13,7 @@ export default function ReviewSummary({
   onWriteReview,
 }: Props) {
   return (
-    <div className="flex items-center justify-between rounded-[10px] bg-main-100 px-[25px] py-[16px]">
+    <div className="flex items-center justify-between rounded-[10px] bg-main-100 px-[16px] py-[14px] sm:px-[25px] sm:py-[16px]">
       <div>
         <div className="flex items-center">
           <StarIcon />

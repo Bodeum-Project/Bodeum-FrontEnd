@@ -46,7 +46,7 @@ export default function CommunitySection() {
       <RecommendedCommunitySection
         onPostClick={(postId) => navigate(`/community/${postId}`)}
       />
-      <div className="flex flex-row mt-[20.5px] gap-[24px]">
+      <div className="mt-[20.5px] flex flex-col gap-[20px] md:flex-row md:gap-[24px]">
         <PostSection
           title="인기글"
           onMoreClick={() => navigate("/community?sort=view")}
@@ -75,7 +75,7 @@ export default function CommunitySection() {
               likes={post.likeCount}
               talks={post.commentCount}
               views={post.viewCount}
-              onClick={() => navigate(`/communuty/${post.postId}`)}
+              onClick={() => navigate(`/community/${post.postId}`)}
             />
           ))}
         </PostSection>
