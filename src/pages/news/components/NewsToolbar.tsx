@@ -58,8 +58,8 @@ export default function NewsToolbar({
   const categoryOptions = categoryOptionsByTab[tab];
   const selectedRegionLabel = selectedRegion || ALL_REGIONS_LABEL;
   const selectedRegionButtonStateClass = selectedRegion
-    ? "border-main-400 text-background-600"
-    : "border-background-250 text-background-500";
+    ? "bg-main-150 text-main-500"
+    : "bg-background-200 text-background-500 hover:bg-[#EDF0F4]";
 
   const normalizedKeyword = keyword.trim();
   const debouncedKeyword = useDebouncedValue(normalizedKeyword, 300);
@@ -92,7 +92,7 @@ export default function NewsToolbar({
         type="button"
         onClick={onSelectedRegionClick}
         aria-label={`지역 선택: ${selectedRegionLabel}`}
-        className={`flex h-[34px] min-w-0 flex-[1.2] cursor-pointer sm:w-[147px] sm:flex-none items-center justify-between gap-3 rounded-[8px] border bg-background-100 py-2 pr-2 pl-3 text-left text-h6-list transition-colors hover:border-background-300 hover:text-background-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background-600 ${selectedRegionButtonStateClass}`}
+        className={`flex h-[40px] min-w-0 flex-[1.2] cursor-pointer sm:w-[147px] sm:flex-none items-center justify-between gap-3 rounded-[12px] py-2 pr-[10px] pl-[14px] text-left text-[14px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background-600 ${selectedRegionButtonStateClass}`}
       >
         <span className="flex min-w-0 items-center gap-0.5">
           <LocationPinIcon className="h-[16px] w-[16px] shrink-0 text-main-400" />

@@ -28,16 +28,16 @@ export interface SelectProps {
 }
 
 const triggerBaseClass =
-  "flex w-full items-center justify-between gap-3 border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background-600";
+  "flex w-full items-center justify-between gap-[6px] border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background-600";
 
 const triggerVariantClass: Record<SelectVariant, string> = {
   L: "h-[48px] rounded-[10px] p-3 text-h2-onboard",
-  S: "h-[34px] rounded-[8px] py-2 pr-2 pl-3 text-h6-list",
+  S: "h-[40px] rounded-[12px] py-2 pr-[10px] pl-[14px] text-[14px] font-medium",
 };
 
 const triggerHoverClass: Record<SelectVariant, string> = {
   L: "hover:bg-background-200 hover:border-background-400 hover:text-background-500",
-  S: "hover:border-background-300 hover:text-background-500",
+  S: "hover:bg-[#EDF0F4]",
 };
 
 const triggerPlaceholderClass: Record<SelectVariant, Record<"true" | "false", string>> = {
@@ -46,19 +46,19 @@ const triggerPlaceholderClass: Record<SelectVariant, Record<"true" | "false", st
     false: "border-main-400 bg-background-100 text-background-600",
   },
   S: {
-    true: "border-background-250 bg-background-100 text-background-500",
-    false: "border-main-400 bg-background-100 text-background-600",
+    true: "border-transparent bg-background-200 text-background-500",
+    false: "border-transparent bg-background-200 text-background-600",
   },
 };
 
 const triggerOpenClass: Record<SelectVariant, string> = {
   L: "border-main-400 bg-background-100 text-background-500",
-  S: "border-main-400 bg-background-100 text-background-500",
+  S: "border-main-400 bg-background-100 text-background-600",
 };
 
 const dropdownVariantClass: Record<SelectVariant, string> = {
   L: "rounded-[10px]",
-  S: "rounded-[8px]",
+  S: "rounded-[12px]",
 };
 
 const dropdownMaxHeight: Record<SelectVariant, number> = {
