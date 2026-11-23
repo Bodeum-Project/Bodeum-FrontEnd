@@ -11,7 +11,7 @@ export default function HeaderAccountButton() {
 
   const isLoggedIn = !isError && brief?.isLoggedIn === true;
   const base =
-    "flex h-[44px] shrink-0 cursor-pointer items-center gap-[8px] rounded-[12px] border border-background-250 bg-background-100 px-[18px] text-[15px] font-semibold text-background-600 transition-colors hover:bg-background-200";
+    "flex h-[44px] shrink-0 cursor-pointer items-center gap-[8px] rounded-[12px] border border-[#DCE1E8] bg-background-100 px-[18px] text-[15px] font-semibold text-background-600 transition-colors hover:bg-background-200";
 
   if (!isLoggedIn) {
     return (
