@@ -70,7 +70,7 @@ export default function AiChatPanel({
         <div className="flex min-w-0 flex-1 items-center justify-between">
           <div className="flex min-w-0 flex-1 flex-col items-start leading-[1.5]">
             <h1 className="w-full text-h2-list text-background-600">
-              보듬 AI 요약 큐레이션
+              보듬보듬 AI 챗봇
             </h1>
             <p className="w-full text-body-sub text-background-500">
               복지·기관·바우처 정보를 쉽게 안내해드립니다 · 실시간 응답

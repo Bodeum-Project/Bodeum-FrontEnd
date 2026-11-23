@@ -48,12 +48,12 @@ export function AiChatEntryModal({
   onGuideSubmit,
 }: AiChatEntryModalProps) {
   if (type === "login-required") {
-    return <LoginRequiredModal open onClose={onClose} />;
+    return <LoginRequiredModal open onClose={onClose} backdrop="blur" />;
   }
 
   if (type === "consent-required") {
     return (
-      <Modal open onClose={onClose}>
+      <Modal open onClose={onClose} backdrop="blur">
         <OnboardCancelBox
           title="대화를 시작하기 전, 이용 동의가 필요해요!"
           description={
@@ -94,7 +94,7 @@ export function AiChatEntryModal({
   if (type !== "guide") return null;
 
   return (
-    <Modal open onClose={onClose}>
+    <Modal open onClose={onClose} backdrop="blur">
       <OnboardCancelBox
         title="AI 챗봇 이용 전 안내드립니다"
         description={

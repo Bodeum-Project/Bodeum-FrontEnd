@@ -58,6 +58,16 @@ export const router = createBrowserRouter([
             handle: { header: "back" },
           },
           {
+            path: "/info/:category/:id",
+            element: <InfoDetailPage />,
+            handle: { header: "back" },
+          },
+          {
+            path: "/news/:id",
+            element: <NewsDetailPage />,
+            handle: { header: "back" },
+          },
+          {
             path: "/mypage",
             element: (
               <ProtectedRoute>
@@ -96,14 +106,6 @@ export const router = createBrowserRouter([
           </AuthStateGate>
         ),
         children: [
-          {
-            path: "/info/:category/:id",
-            element: <InfoDetailPage />,
-          },
-          {
-            path: "/news/:id",
-            element: <NewsDetailPage />,
-          },
           {
             path: "/info/:category/:id/review/write",
             element: <WriteReviewPage />,
