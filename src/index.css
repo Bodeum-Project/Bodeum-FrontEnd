@@ -221,6 +221,12 @@ fieldset {
   will-change: transform;
 }
 
+/* 마우스를 더 빠르게 따라오는 작은 원: 큰 원보다 살짝 진하게 */
+.hero-blob-strong {
+  background: radial-gradient(circle at center, rgb(40 189 192 / 0.2) 0%, rgb(40 189 192 / 0.09) 42%, rgb(40 189 192 / 0) 70%);
+  filter: blur(36px);
+}
+
 /* 사이드바 AI 챗봇: 색이 계속 흐르는 그라데이션 (아이콘은 mask, 글씨는 background-clip) */
 @keyframes ai-gradient-flow {
   0% { background-position: 0% 50%; }

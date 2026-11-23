@@ -17,6 +17,7 @@ export default function RequiredInfoSection() {
   const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLSpanElement>(null);
+  const smallGlowRef = useRef<HTMLSpanElement>(null);
   const mascotRef = useRef<HTMLImageElement>(null);
 
   // 히어로 폭이 줄어들수록 캐릭터가 서서히 투명해지도록 (갑자기 사라지지 않게)
@@ -50,6 +51,8 @@ export default function RequiredInfoSection() {
   // 마우스를 살짝 늦게 따라다니는 흐릿한 원 (데스크톱 마우스에서만)
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
+  // 작은 원: 큰 원보다 빠르게(마우스보다는 느리게) 따라옴
+  const smallCurrent = useRef({ x: 0, y: 0 });
   const frame = useRef<number | null>(null);
 
   useEffect(() => {
@@ -58,15 +61,25 @@ export default function RequiredInfoSection() {
     };
   }, []);
 
+  const follow = (
+    element: HTMLElement | null,
+    position: { x: number; y: number },
+    ease: number,
+  ) => {
+    const dx = target.current.x - position.x;
+    const dy = target.current.y - position.y;
+    position.x += dx * ease;
+    position.y += dy * ease;
+    if (element) {
+      element.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`;
+    }
+    return Math.abs(dx) + Math.abs(dy);
+  };
+
   const tick = () => {
-    const glow = glowRef.current;
-    if (!glow) return;
-    const dx = target.current.x - current.current.x;
-    const dy = target.current.y - current.current.y;
-    current.current.x += dx * 0.06;
-    current.current.y += dy * 0.06;
-    glow.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0) translate(-50%, -50%)`;
-    frame.current = Math.abs(dx) + Math.abs(dy) > 0.5 ? requestAnimationFrame(tick) : null;
+    const bigRemaining = follow(glowRef.current, current.current, 0.06);
+    const smallRemaining = follow(smallGlowRef.current, smallCurrent.current, 0.16);
+    frame.current = bigRemaining + smallRemaining > 0.5 ? requestAnimationFrame(tick) : null;
   };
 
   const handlePointerEnter = (event: React.PointerEvent<HTMLElement>) => {
@@ -74,6 +87,7 @@ export default function RequiredInfoSection() {
     const rect = sectionRef.current.getBoundingClientRect();
     // 처음 들어올 때는 커서 위치에서 시작해 튀지 않게
     current.current = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    smallCurrent.current = { ...current.current };
     target.current = { ...current.current };
   };
 
@@ -85,11 +99,13 @@ export default function RequiredInfoSection() {
     const rect = section.getBoundingClientRect();
     target.current = { x: event.clientX - rect.left, y: event.clientY - rect.top };
     glow.style.opacity = "1";
+    if (smallGlowRef.current) smallGlowRef.current.style.opacity = "1";
     if (frame.current === null) frame.current = requestAnimationFrame(tick);
   };
 
   const handlePointerLeave = () => {
     if (glowRef.current) glowRef.current.style.opacity = "0";
+    if (smallGlowRef.current) smallGlowRef.current.style.opacity = "0";
   };
 
   return (
@@ -107,6 +123,11 @@ export default function RequiredInfoSection() {
         ref={glowRef}
         aria-hidden="true"
         className="hero-blob pointer-events-none absolute left-0 top-0 -z-10 hidden h-[360px] w-[360px] opacity-0 transition-opacity duration-700 lg:block"
+      />
+      <span
+        ref={smallGlowRef}
+        aria-hidden="true"
+        className="hero-blob hero-blob-strong pointer-events-none absolute left-0 top-0 -z-10 hidden h-[170px] w-[170px] opacity-0 transition-opacity duration-500 lg:block"
       />
 
       {/* 임시 마스코트: PC에서만 우측 하단에 살짝 기울여 배치, 몸통 아래는 카드 밖으로 잘림 */}
