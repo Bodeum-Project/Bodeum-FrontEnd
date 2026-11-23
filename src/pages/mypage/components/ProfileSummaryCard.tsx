@@ -1,7 +1,7 @@
 import type { UserDashboard } from "@/types/mypage";
 import ProfileIcon from "@/assets/icons/Profile.svg?react";
 import SettingIcon from "@/assets/icons/Setting.svg?react";
-import ButtonOutline from "@/components/button/ButtonOutline";
+import DetailActionButton from "@/components/button/DetailActionButton";
 import { sidoDisplayNameByRegion } from "@/constants/regions";
 import { myPageTabs } from "../myPageTabConfig";
 import type { MyPageTabKey } from "@/types/mypage";
@@ -54,45 +54,48 @@ export default function ProfileSummaryCard({
   const displayNickname = dashboard.nickname;
 
   return (
-    <section
-      className="w-full max-w-[900px] rounded-[20px] px-[20px] py-[20px] text-background-100 shadow-[0_8px_24px_rgb(23_181_192_/_0.25)] sm:px-[40px] sm:py-[28px]"
-      style={{ backgroundImage: "var(--gradient-brand)" }}
-    >
-      <div className="flex items-center">
+    <section className="relative isolate w-full overflow-hidden rounded-[24px] bg-[#F0FCFC] px-[20px] py-[22px] sm:px-[32px] sm:py-[28px]">
+      <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[120px] -top-[160px] -z-10 h-[360px] w-[360px]" />
+
+      <div className="flex items-center gap-[14px] sm:gap-[18px]">
         {dashboard.profileImageUrl ? (
           <img
             src={dashboard.profileImageUrl}
             alt="프로필"
-            className="h-[60px] w-[60px] shrink-0 rounded-full object-cover sm:h-[90px] sm:w-[90px]"
+            className="h-[56px] w-[56px] shrink-0 rounded-full object-cover sm:h-[72px] sm:w-[72px]"
           />
         ) : (
-          <ProfileIcon className="h-[60px] w-[60px] shrink-0 sm:h-[90px] sm:w-[90px]" aria-label="보듬 부모님 프로필" />
+          <ProfileIcon className="h-[56px] w-[56px] shrink-0 sm:h-[72px] sm:w-[72px]" aria-label="보듬 부모님 프로필" />
         )}
 
-        <div className="ml-[14px] min-w-0 flex-1 sm:ml-[19px]">
-          <h1 className="text-h1-onboard">{displayNickname}</h1>
-          <p className="mt-[6px] text-h6-list break-keep sm:mt-[19px] sm:text-h3-onboard">
+        <div className="min-w-0 flex-1">
+          <h1 className="truncate text-[20px] font-bold leading-[28px] tracking-[-0.02em] text-background-600 sm:text-[22px]">
+            {displayNickname}
+          </h1>
+          <p className="mt-[4px] break-keep text-[13px] leading-[19px] text-background-500">
             LEVEL {dashboard.level} · {diagnosisLabel} ·{" "}
             {childAge === null ? "연령 미등록" : `${childAge}세 아이`} · {region || "지역 미등록"}
           </p>
         </div>
 
-        <ButtonOutline
+        <DetailActionButton
           label="설정"
           icon={SettingIcon}
-          iconPosition="left"
           onClick={onSettingsClick}
-          className="ml-[8px] h-[36px] w-auto shrink-0 !px-[12px] sm:ml-auto sm:h-[44px] sm:w-[160px] sm:!text-h2-onboard"
+          className="shrink-0 !bg-background-100/80 hover:!bg-background-100"
         />
       </div>
 
-      <div className="mt-[20px] h-px bg-background-400" />
-
-      <div className="mt-[12px] grid grid-cols-3 gap-2 sm:flex">
+      <div className="mt-[20px] grid grid-cols-3 gap-[8px] sm:gap-[12px]">
         {myPageTabs.map((tab) => (
-          <div key={tab.key} className="min-w-[68px] text-center">
-            <strong className="block text-h1-onboard">{counts[tab.key]}</strong>
-            <span className="mt-[6px] block text-h6-list sm:mt-[11px] sm:text-h3-onboard">{tab.label}</span>
+          <div
+            key={tab.key}
+            className="rounded-[16px] bg-background-100/80 px-[8px] py-[14px] text-center shadow-[0_8px_40px_rgb(180_207_207_/_0.2)]"
+          >
+            <strong className="block text-[20px] font-bold leading-[26px] text-background-600">
+              {counts[tab.key]}
+            </strong>
+            <span className="mt-[2px] block text-[12px] text-background-500 sm:text-[13px]">{tab.label}</span>
           </div>
         ))}
       </div>

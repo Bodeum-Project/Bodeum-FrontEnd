@@ -24,11 +24,14 @@ export default function ActivityPointCard({
 }: ActivityPointCardProps) {
   return (
     <aside>
-      <section className="rounded-[8px] bg-white px-[16px] py-[12px]">
-        <h2 className="text-h3-category-sub text-background-600">나의 활동(포인트)</h2>
-        <p className="mt-[4px] text-h4-list text-main-400">총 {totalPoint}pt</p>
+      <section className="rounded-[20px] border border-background-250 bg-background-100 px-[20px] py-[20px]">
+        <h2 className="text-[14px] font-semibold text-background-500">나의 활동 포인트</h2>
+        <p className="mt-[4px] text-[24px] font-bold leading-[32px] tracking-[-0.02em] text-main-500">
+          {totalPoint.toLocaleString()}
+          <span className="ml-[2px] text-[16px] font-semibold">pt</span>
+        </p>
 
-        <div className="mt-[8px] flex flex-col gap-[8px]">
+        <div className="mt-[14px] flex flex-col divide-y divide-background-250 border-t border-background-250">
           {isLoading && (
             <RowsSkeleton count={3} label="포인트 내역을 불러오는 중입니다." />
           )}
@@ -49,27 +52,26 @@ export default function ActivityPointCard({
           {!isLoading && !errorMessage && activities.map((activity) => (
             <div
               key={activity.pointType}
-              className="flex h-[32px] w-[260px] items-center justify-between"
+              className="flex items-center justify-between py-[12px]"
             >
-              <span className="text-h4-list text-background-500">
-                {activity.label} (+{activity.pointPerAction}pt)
+              <span className="text-[13px] text-background-500">
+                {activity.label}
+                <span className="ml-[4px] text-background-400">+{activity.pointPerAction}pt</span>
               </span>
-              <span className="flex h-[32px] w-[137px] items-center rounded-[8px] bg-background-200 px-3 py-2 text-h4-list text-main-400">
-                {activity.earnedPoint}
-                <span className="text-background-600">pt · </span>
-                {activity.activityCount}
-                <span className="text-background-600">회</span>
+              <span className="text-[14px] font-semibold text-background-600">
+                {activity.earnedPoint}pt
+                <span className="ml-[6px] text-[12px] font-medium text-background-400">{activity.activityCount}회</span>
               </span>
             </div>
           ))}
         </div>
       </section>
 
-      <div className="mt-[13px] grid grid-cols-2 gap-[11px]">
+      <div className="mt-[12px] grid grid-cols-2 gap-[10px]">
         <button
           type="button"
           onClick={onOpenBadgeGrade}
-          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-colors hover:bg-main-150"
+          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-[16px] bg-main-150 text-[13px] font-semibold text-background-600 transition-colors hover:bg-main-200"
         >
           <BadgeIcon className="h-[20px] w-[20px]" aria-hidden="true" />
           보듬 뱃지 등급 안내
@@ -77,7 +79,7 @@ export default function ActivityPointCard({
         <button
           type="button"
           onClick={onOpenBadgeHelp}
-          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-colors hover:bg-main-150"
+          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-[16px] bg-main-150 text-[13px] font-semibold text-background-600 transition-colors hover:bg-main-200"
         >
           <BadgeHelpIcon className="h-[24px] w-[24px]" aria-hidden="true" />
           보듬 뱃지란?

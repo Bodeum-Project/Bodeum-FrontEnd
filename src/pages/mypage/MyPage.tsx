@@ -54,7 +54,7 @@ export default function MyPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-72px)] bg-background-200 px-[16px] py-[16px] md:px-[32px] md:py-[20px] lg:px-[48px] lg:py-[36px]">
+    <div className="min-h-full bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
       <div className="mx-auto w-full max-w-[896px]">
         <ProfileSummaryCard
           dashboard={dashboard}
@@ -62,7 +62,7 @@ export default function MyPage() {
           onSettingsClick={() => navigate("/mypage/settings")}
         />
 
-        <div className="mt-[16px] grid grid-cols-1 gap-x-[18px] gap-y-[16px] lg:mt-[18px] lg:grid-cols-[576px_299px]">
+        <div className="mt-[16px] grid grid-cols-1 gap-x-[18px] gap-y-[16px] lg:mt-[18px] lg:grid-cols-[minmax(0,1fr)_300px]">
           <MyPageActivitySection counts={counts} />
 
           <div className="self-start lg:col-start-2 lg:row-start-2">

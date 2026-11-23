@@ -38,7 +38,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
 
       <div className="flex flex-col gap-[8px] lg:col-start-1 lg:row-start-2">
         {activity.isPending && (
-          <div className="rounded-[10px] border border-background-250 bg-background-100 px-[16px] py-[14px]">
+          <div className="rounded-[16px] border border-background-250 bg-background-100 px-[16px] py-[14px]">
             <RowsSkeleton count={3} label={pendingMessage[activity.activeTab]} />
           </div>
         )}
@@ -46,7 +46,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
         {activity.error && (
           <div
             role="alert"
-            className="flex h-[144px] flex-col items-center justify-center gap-[12px] rounded-[10px] border border-background-250 bg-background-100 text-[13px] text-background-500"
+            className="flex h-[144px] flex-col items-center justify-center gap-[12px] rounded-[16px] border border-background-250 bg-background-100 text-[13px] text-background-500"
           >
             <p>{getApiErrorMessage(activity.error, errorMessage[activity.activeTab])}</p>
             <button
@@ -71,7 +71,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
           ))}
 
         {!activity.isPending && !activity.error && activity.items.length === 0 && (
-          <div className="flex h-[144px] items-center justify-center rounded-[10px] border border-background-250 bg-background-100 text-[13px] text-background-500">
+          <div className="flex h-[144px] items-center justify-center rounded-[16px] border border-background-250 bg-background-100 text-[13px] text-background-500">
             표시할 항목이 없습니다.
           </div>
         )}
