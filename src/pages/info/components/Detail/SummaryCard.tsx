@@ -7,6 +7,7 @@ import CommentStat from "@/components/post-stat/CommentStat";
 import { getInfoShareUrl, toggleInfoScrap } from "@/apis/infoApi";
 import { showToast } from "@/components/Toast";
 import { useState } from "react";
+import DetailActionButton from "@/components/button/DetailActionButton";
 
 interface SummaryCardProps {
   infoItemId: number;
@@ -98,9 +99,6 @@ export default function SummaryCard({
     }
   };
 
-  const secondaryButton =
-    "inline-flex h-[40px] cursor-pointer items-center justify-center gap-[6px] rounded-[12px] px-[16px] text-[14px] font-semibold transition-colors";
-
   return (
     <div className="relative overflow-hidden rounded-[20px] border border-background-250 bg-background-100">
       <div className="px-[20px] py-[22px] sm:px-[28px] sm:py-[26px]">
@@ -120,38 +118,24 @@ export default function SummaryCard({
         </h1>
 
         <div className="mt-[18px] flex flex-wrap gap-[8px]">
-          <button
-            type="button"
+          <DetailActionButton
+            label="홈페이지"
+            icon={GoIcon}
+            iconPosition="right"
+            variant="dark"
             disabled={!homepageUrl}
             onClick={() => {
               if (homepageUrl) window.open(homepageUrl, "_blank", "noopener,noreferrer");
             }}
-            className={`${secondaryButton} btn-dark disabled:cursor-not-allowed disabled:bg-background-250 disabled:bg-none disabled:text-background-400`}
-          >
-            홈페이지
-            <GoIcon className="h-[14px] w-[14px]" />
-          </button>
-          <button
-            type="button"
+          />
+          <DetailActionButton
+            label={scrapped ? "스크랩됨" : "스크랩"}
+            icon={ScrapIcon}
+            variant={scrapped ? "primarySoft" : "soft"}
+            pressed={scrapped}
             onClick={handleScrap}
-            aria-pressed={scrapped}
-            className={`${secondaryButton} ${
-              scrapped
-                ? "bg-main-150 text-main-500 hover:bg-main-200"
-                : "bg-background-200 text-background-600 hover:bg-[#DFE3EA]"
-            }`}
-          >
-            <ScrapIcon className="h-[16px] w-[16px]" />
-            {scrapped ? "스크랩됨" : "스크랩"}
-          </button>
-          <button
-            type="button"
-            onClick={handleShare}
-            className={`${secondaryButton} bg-background-200 text-background-600 hover:bg-[#DFE3EA]`}
-          >
-            <ShareIcon className="h-[16px] w-[16px]" />
-            공유
-          </button>
+          />
+          <DetailActionButton label="공유" icon={ShareIcon} onClick={handleShare} />
         </div>
 
         <div className="mt-[28px] border-t border-background-250 pt-[18px]">
