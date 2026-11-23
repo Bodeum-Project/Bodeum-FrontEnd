@@ -6,6 +6,7 @@ import AsyncState from "@/components/AsyncState";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SegmentedTabs from "@/components/ui/SegmentedTabs";
 import { useHomeNewsPreview, useRecommendedNews } from "@/hooks/useHome";
+import { useHorizontalWheel } from "@/components/ui/useHorizontalWheel";
 
 type NewsTab = "ACTIVITY" | "LOCAL";
 
@@ -15,6 +16,7 @@ export default function RecommendedNewsSection() {
   const { data: activityNews = [] } = useHomeNewsPreview("ACTIVITY");
   const { data: localNews = [] } = useHomeNewsPreview("LOCAL");
   const { data: news = [], isPending, isError } = useRecommendedNews();
+  const wheelRef = useHorizontalWheel<HTMLDivElement>();
   const list = tab === "ACTIVITY" ? activityNews : localNews;
 
   return (
@@ -42,7 +44,7 @@ export default function RecommendedNewsSection() {
           textClassName=""
         />
       ) : (
-        <div className="no-scrollbar -mx-[16px] flex gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
+        <div ref={wheelRef} className="no-scrollbar -mx-[16px] flex items-start gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
           {news.map((item) => (
             <NewsCard key={item.newsId} {...item} />
           ))}

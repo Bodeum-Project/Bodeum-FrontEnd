@@ -1,6 +1,7 @@
 import CommunityCard from "@/components/CommunityCard";
 import { useDragScroll } from "@/hooks/useDragScroll";
 import { useRecommendedCommunityPosts } from "@/hooks/useHome";
+import { useHorizontalWheel } from "@/components/ui/useHorizontalWheel";
 
 interface RecommendedCommunitySectionProps {
   onPostClick?: (postId: number) => void;
@@ -11,6 +12,8 @@ export default function RecommendedCommunitySection({
 }: RecommendedCommunitySectionProps) {
   const { data: posts = [], isPending, isError } =
     useRecommendedCommunityPosts();
+
+  const wheelRef = useHorizontalWheel<HTMLDivElement>();
 
   const {
     isDragging,
@@ -47,6 +50,7 @@ export default function RecommendedCommunitySection({
 
   return (
     <div
+      ref={wheelRef}
       className={`drag-scroll no-scrollbar overflow-x-auto ${
         isDragging ? "cursor-grabbing" : "cursor-grab"
       }`}

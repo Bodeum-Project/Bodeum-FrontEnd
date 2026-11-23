@@ -2,9 +2,11 @@ import { useRecommendedNews } from "@/hooks/useHome";
 import NewsCard from "@/pages/home/components/NewsCard";
 import AsyncState from "@/components/AsyncState";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { useHorizontalWheel } from "@/components/ui/useHorizontalWheel";
 
 export default function RecommendedNewsTopSection() {
   const { data: news = [], isPending, isError } = useRecommendedNews();
+  const wheelRef = useHorizontalWheel<HTMLDivElement>();
 
   if (isPending) {
     return (
@@ -34,7 +36,7 @@ export default function RecommendedNewsTopSection() {
     <section className="flex shrink-0 flex-col">
       <SectionHeader title="추천 소식 TOP 5" description="지역·활동별로 골라봤어요" />
 
-      <div className="no-scrollbar -mx-[16px] flex gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
+      <div ref={wheelRef} className="no-scrollbar -mx-[16px] flex items-start gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
         {news.map((item) => (
           <NewsCard key={item.newsId} {...item} />
         ))}

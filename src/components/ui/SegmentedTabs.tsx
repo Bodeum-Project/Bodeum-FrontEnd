@@ -28,7 +28,7 @@ export default function SegmentedTabs<T extends string>({
             onClick={() => onChange(option.value)}
             className={`h-[36px] flex-1 cursor-pointer rounded-full text-[14px] transition-colors ${
               selected
-                ? "bg-background-100 font-semibold text-background-600 shadow-[0_1px_4px_rgb(20_23_31_/_0.08)]"
+                ? "bg-background-100 font-semibold text-background-600"
                 : "font-medium text-background-400"
             }`}
           >

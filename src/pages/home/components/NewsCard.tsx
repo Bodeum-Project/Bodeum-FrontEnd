@@ -29,26 +29,17 @@ export default function NewsCard({
   return (
     <button
       onClick={() => navigate(`/news/${newsId}`)}
-      className="group w-[200px] shrink-0 cursor-pointer text-left sm:w-[220px]"
+      className="group flex w-[200px] shrink-0 cursor-pointer flex-col self-start text-left sm:w-[220px]"
     >
       <div className="relative h-[128px] overflow-hidden rounded-[16px] bg-background-200">
         {thumbnailUrl ? (
-          <>
-            {/* 포스터 비율이 제각각이라: 같은 이미지를 흐리게 깔고, 위에 잘리지 않게 원본을 올린다 */}
-            <img
-              src={thumbnailUrl}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-[18px] saturate-[1.1]"
-            />
-            <img
-              src={thumbnailUrl}
-              alt={title}
-              loading="lazy"
-              className="relative h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
-            />
-          </>
+          // 포스터는 보통 제목이 위쪽에 있어서, 꽉 채우되 윗부분 기준으로 자른다
+          <img
+            src={thumbnailUrl}
+            alt={title}
+            loading="lazy"
+            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+          />
         ) : (
           <div
             className="flex h-full w-full items-center justify-center text-main-400"
@@ -58,7 +49,7 @@ export default function NewsCard({
           </div>
         )}
         {tag && (
-          <span className="absolute left-[10px] top-[10px] rounded-[8px] bg-accent-900/80 px-[7px] py-[3px] text-[11px] font-semibold text-background-100 backdrop-blur">
+          <span className="absolute bottom-[10px] left-[10px] rounded-[8px] bg-accent-900/80 px-[7px] py-[3px] text-[11px] font-semibold text-background-100 backdrop-blur">
             {tag}
           </span>
         )}
