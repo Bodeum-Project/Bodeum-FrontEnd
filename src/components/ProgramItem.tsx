@@ -52,25 +52,28 @@ export default function ProgramItem({
         </div>
       }
       left={
-        <div className="flex h-[66px] min-w-0 flex-col">
-          <div className="flex h-[24px] min-w-0 items-center gap-[4px]">
+        <div className="flex min-w-0 flex-col">
+          {/* 토스처럼 딱지를 제목 위로: 카테고리(민트) + 지역(연한 그레이) */}
+          <div className="flex min-w-0 items-center gap-[6px]">
             <span
-              className={`shrink-0 rounded-[6px] ${newsCategoryStyle.bgColor} px-[6px] py-[4px] text-body-label font-semibold leading-none ${newsCategoryStyle.textColor}`}
+              className={`shrink-0 rounded-[8px] ${newsCategoryStyle.bgColor} px-[8px] py-[4px] text-[12px] font-medium leading-[16px] ${newsCategoryStyle.textColor}`}
             >
               {categoryLabel}
             </span>
-            <h3 className="truncate text-h2-list text-background-600">{name}</h3>
-          </div>
-
-          <div className="mt-1 h-[18px] min-w-0">
-            {address && <p className="truncate text-h6-list text-background-600">{address}</p>}
-          </div>
-
-          <div className="mt-0.5 h-[14px] min-w-0">
-            {serviceText && (
-              <p className="truncate text-body-sub text-background-500">{serviceText}</p>
+            {address && (
+              <span className="min-w-0 truncate rounded-[8px] bg-background-200 px-[8px] py-[4px] text-[12px] font-medium leading-[16px] text-background-500">
+                {address}
+              </span>
             )}
           </div>
+
+          <h3 className="mt-[8px] truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600">
+            {name}
+          </h3>
+
+          {serviceText && (
+            <p className="mt-[2px] truncate text-[13px] leading-[19px] text-background-400">{serviceText}</p>
+          )}
         </div>
       }
       right={
