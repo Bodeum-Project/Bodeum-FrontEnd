@@ -215,7 +215,7 @@ export default function Input({
             min-w-0 flex-1 bg-transparent
             ${search ? "text-h3-category-sub" : "text-h2-onboard"}
             text-background-600 outline-none
-            placeholder:text-background-400
+            placeholder:text-[#A4AEBC]
           `}
         />
 

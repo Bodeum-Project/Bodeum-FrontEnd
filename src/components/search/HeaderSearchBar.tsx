@@ -116,7 +116,7 @@ export default function HeaderSearchBar({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           onKeyDown={handleKeyDown}
-          className="w-full min-w-0 bg-transparent text-[16px] lg:text-h3-category-sub text-background-700 placeholder:text-background-500 outline-none"
+          className="w-full min-w-0 bg-transparent text-[16px] lg:text-h3-category-sub text-background-700 placeholder:text-[#A4AEBC] outline-none"
         />
 
         {value.trim() !== "" && (

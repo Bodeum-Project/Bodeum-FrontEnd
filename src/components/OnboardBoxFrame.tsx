@@ -58,7 +58,7 @@ const joinClassNames = (...classNames: Array<string | false | undefined>) =>
   classNames.filter(Boolean).join(' ');
 
 const leftButtonClassName =
-  'w-full! bg-background-250! text-background-500! hover:bg-background-250! active:bg-background-250! active:text-background-500!';
+  'w-full! bg-none! filter-none! bg-background-250! text-background-500! hover:bg-[#DFE3EA]! active:bg-[#D6DBE3]! active:text-background-500!';
 
 const rightButtonColorClassNames: Record<OnboardBoxFrameButtonColor, string> = {
   'main-500':
