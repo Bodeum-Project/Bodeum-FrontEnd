@@ -1,7 +1,6 @@
 import Chip from "@/components/Chips";
 import ViewStat from "@/components/post-stat/ViewStat";
 import ScrapStat from "@/components/post-stat/ScrapStat";
-import CategoryLabel from "@/components/CategoryLabel";
 import { infoCategoryMap } from "@/constants/infoCategory";
 import BaseInfoCard from "../../../components/BaseInfoCard";
 
@@ -61,39 +60,36 @@ export default function InfoItem({
     <BaseInfoCard
       onClick={clickable ? onClick : undefined}
       icon={
-        <div className={`flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-[16px] sm:h-[64px] sm:w-[64px] ${bgColor} ${textColor}`}>
-          <Icon className="h-[30px] w-[30px] sm:h-[34px] sm:w-[34px]" />
+        <div className={`mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-[18px] sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-[20px] ${bgColor} ${textColor}`}>
+          <Icon className="h-[32px] w-[32px] sm:h-[38px] sm:w-[38px]" />
         </div>
       }
       left={
-        <div className="min-w-0">
-          <div className="flex min-w-0 items-center gap-[4px]">
-            <CategoryLabel category={mainCategory} />
-            <h3 className="truncate text-h2-list text-background-600">
-              {name}
-            </h3>
-          </div>
+        <div className="min-w-0 py-[2px]">
+          {/* 카테고리는 한 번에 하나만 보이므로 제목 앞 딱지는 생략 */}
+          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 ${phone ? "sm:pr-[120px]" : ""}`}>
+            {name}
+          </h3>
 
-          <p className="mt-1 truncate text-h6-list text-background-600">
+          <p className="mt-[6px] truncate text-[13px] leading-[19px] text-background-500">
             {address}
           </p>
 
-          <p className="mt-0.5 truncate text-body-sub text-background-500">
+          <p className="mt-[4px] truncate pr-[84px] text-[12px] leading-[17px] text-background-400 sm:pr-[110px]">
             {subCategoryKo}
           </p>
         </div>
       }
       right={
-        <div className="flex h-[64px] w-auto shrink-0 flex-col items-end justify-center gap-[11px] sm:w-[130px]">
-          <div className="hidden h-[33px] w-full items-end justify-center sm:flex">
-            {phone && (
+        <>
+          {phone && (
+            <div className="absolute right-[16px] top-[16px] hidden sm:block sm:right-[24px] sm:top-[18px]">
               <Chip variant="default" className="min-w-[100px]">
                 {phone}
               </Chip>
-            )}
-          </div>
-
-          <div className="flex w-full flex-col items-end justify-center gap-[6px] sm:h-5 sm:flex-row sm:items-center sm:gap-2">
+            </div>
+          )}
+          <div className="absolute bottom-[14px] right-[16px] flex items-center gap-[8px] sm:bottom-[18px] sm:right-[24px]">
             <ViewStat count={viewCount} />
             <span className="relative z-20 inline-flex h-5 items-center">
               <ScrapStat
@@ -103,7 +99,7 @@ export default function InfoItem({
               />
             </span>
           </div>
-        </div>
+        </>
       }
     />
   );
