@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import type { ParentCategory } from "@/types/info";
 import { infoCategoryMap } from "@/constants/infoCategory";
@@ -26,15 +26,45 @@ export default function RequiredInfoSection() {
     EDUCATION: counts?.education ?? 0,
   };
 
-  // 마우스를 따라다니는 흐릿한 원 (데스크톱 hover 기기에서만)
+  // 마우스를 살짝 늦게 따라다니는 흐릿한 원 (데스크톱 마우스에서만)
+  const target = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
+  const frame = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (frame.current !== null) cancelAnimationFrame(frame.current);
+    };
+  }, []);
+
+  const tick = () => {
+    const glow = glowRef.current;
+    if (!glow) return;
+    const dx = target.current.x - current.current.x;
+    const dy = target.current.y - current.current.y;
+    current.current.x += dx * 0.06;
+    current.current.y += dy * 0.06;
+    glow.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0) translate(-50%, -50%)`;
+    frame.current = Math.abs(dx) + Math.abs(dy) > 0.5 ? requestAnimationFrame(tick) : null;
+  };
+
+  const handlePointerEnter = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse" || !sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    // 처음 들어올 때는 커서 위치에서 시작해 튀지 않게
+    current.current = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    target.current = { ...current.current };
+  };
+
   const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
     if (event.pointerType !== "mouse") return;
     const section = sectionRef.current;
     const glow = glowRef.current;
     if (!section || !glow) return;
     const rect = section.getBoundingClientRect();
-    glow.style.transform = `translate3d(${event.clientX - rect.left}px, ${event.clientY - rect.top}px, 0) translate(-50%, -50%)`;
+    target.current = { x: event.clientX - rect.left, y: event.clientY - rect.top };
     glow.style.opacity = "1";
+    if (frame.current === null) frame.current = requestAnimationFrame(tick);
   };
 
   const handlePointerLeave = () => {
@@ -44,17 +74,18 @@ export default function RequiredInfoSection() {
   return (
     <section
       ref={sectionRef}
+      onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       className="relative isolate -mx-[16px] -mt-[16px] overflow-hidden bg-[linear-gradient(180deg,#F0FCFC_72%,#FFFFFF)] px-[20px] lg:bg-none lg:bg-[#F0FCFC] pb-[28px] pt-[32px] md:-mx-[24px] md:px-[28px] lg:mx-0 lg:mt-0 lg:rounded-[28px] lg:px-[40px] lg:pb-[40px] lg:pt-[44px]"
     >
-      {/* 은은한 블러 원: 좌측 상단 모서리 + 좌측 전체를 덮는 큰 원 */}
-      <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[120px] -top-[140px] -z-10 h-[340px] w-[340px]" />
-      <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[360px] top-1/2 -z-10 h-[900px] w-[900px] -translate-y-1/2" />
+      {/* 은은한 블러 원: 무게가 좌측 상단에 실리도록 두 원 모두 좌상단 모서리 쪽에 둔다 */}
+      <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[110px] -top-[130px] -z-10 h-[320px] w-[320px]" />
+      <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[340px] -top-[420px] -z-10 h-[820px] w-[820px]" />
       <span
         ref={glowRef}
         aria-hidden="true"
-        className="hero-blob pointer-events-none absolute left-0 top-0 -z-10 hidden h-[360px] w-[360px] opacity-0 transition-opacity duration-500 lg:block"
+        className="hero-blob pointer-events-none absolute left-0 top-0 -z-10 hidden h-[360px] w-[360px] opacity-0 transition-opacity duration-700 lg:block"
       />
 
       <p className="text-[14px] font-medium text-background-400">우리 아이를 위한 정보</p>

@@ -1,4 +1,3 @@
-import AiPromoCard from "./components/AiPromoCard";
 import CommunitySection from "./components/CommunitySection";
 import NoticeBanner from "./components/NoticeBanner";
 import RecommendedNewsSection from "./components/RecommendedNewsSection";
@@ -12,7 +11,6 @@ export default function HomePage() {
 
         <div className="mt-[8px] flex flex-col gap-[12px] lg:mt-[20px] lg:gap-[16px]">
           <NoticeBanner />
-          <AiPromoCard />
         </div>
 
         <div className="my-[28px] h-[8px] -mx-[16px] bg-background-200 md:-mx-[24px] lg:hidden" />

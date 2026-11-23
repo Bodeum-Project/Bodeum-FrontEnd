@@ -3,6 +3,7 @@ import ChevronRightIcon from "@/assets/icons/ChevronRight.svg?react";
 interface SideNavItemProps {
   icon: React.ReactNode;
   label: string;
+  labelClassName?: string;
 
   active?: boolean;     
   expanded?: boolean;   
@@ -16,6 +17,7 @@ interface SideNavItemProps {
 export default function SideNavItem({
   icon,
   label,
+  labelClassName = "",
   active = false,
   expanded = false,
   disabled = false,
@@ -42,7 +44,7 @@ export default function SideNavItem({
       >
         <div className="flex items-center gap-[10px]">
           {icon}
-          <span>{label}</span>
+          <span className={labelClassName}>{label}</span>
         </div>
 
         {children && <ChevronRightIcon />}
