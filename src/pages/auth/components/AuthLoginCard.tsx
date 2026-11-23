@@ -1,4 +1,4 @@
-import Logo from "@/assets/icons/Logo_kr.svg?react";
+import BrandLogo from "@/components/BrandLogo";
 import KakaoIcon from "@/assets/icons/KakaoIcon.svg?react";
 import NaverIcon from "@/assets/icons/NaverIcon.svg?react";
 import type { SocialProvider } from "@/types/auth";
@@ -63,7 +63,7 @@ export default function AuthLoginCard({
           <div className="flex w-full flex-col items-center">
             <div className="flex w-full flex-col items-center gap-[4px]">
               <div className="flex w-full items-center justify-center py-[10px]">
-                <Logo className="h-[35px] w-[90px]" aria-label="보듬보듬" />
+                <BrandLogo className="h-[34px]" />
               </div>
               <p className="w-full text-center text-h1 text-background-600">
                 장애아동을 위한 복지 큐레이션 서비스

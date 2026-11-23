@@ -7,7 +7,7 @@
 
 @theme {
   /* Font */
-  --font-sans: "Noto Sans KR", sans-serif;
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Noto Sans KR", sans-serif;
 
   /* Main Colors (mint) */
 
@@ -39,6 +39,12 @@
 
   --color-sub-blue: #3182F6;
   --color-sub-blue-2: #E8F3FF;
+
+  --color-sub-mint: #23A97B;
+  --color-sub-mint-2: #E4F8EE;
+
+  --color-sub-pink: #F4707E;
+  --color-sub-pink-2: #FFEFF1;
 
   --color-sub-orange: #FF7A1A;
   --color-sub-orange-2: #FFF1E6;
@@ -205,4 +211,12 @@ fieldset {
   transition: filter 0.15s ease, transform 0.1s ease;
   &:hover { filter: brightness(1.12); }
   &:active { filter: brightness(0.92); }
+}
+
+/* 홈 히어로의 흐릿한 원: 중앙 #28BDC0 radial + blur, 경계가 거의 안 보이도록 */
+.hero-blob {
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgb(40 189 192 / 0.13) 0%, rgb(40 189 192 / 0.06) 40%, rgb(40 189 192 / 0) 70%);
+  filter: blur(60px);
+  will-change: transform;
 }

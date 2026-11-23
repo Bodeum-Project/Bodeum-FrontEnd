@@ -22,18 +22,18 @@ export const infoCategoryMap = {
   HOSPITAL: {
     label: "병원",
     icon: HospitalIcon,
-    bgColor: "bg-main-200",
-    textColor: "text-main-500",
+    bgColor: "bg-sub-mint-2",
+    textColor: "text-sub-mint",
     buttonClass:
-      "bg-main-150 text-main-500 active:bg-main-500 active:text-main-150",
+      "bg-sub-mint-2 text-sub-mint active:bg-sub-mint active:text-sub-mint-2",
   },
   WELFARE: {
     label: "복지",
     icon: WelfareIcon,
-    bgColor: "bg-sub-red-2",
-    textColor: "text-sub-red",
+    bgColor: "bg-sub-pink-2",
+    textColor: "text-sub-pink",
     buttonClass:
-      "bg-sub-red-2 text-sub-red active:bg-sub-red active:text-sub-red-2",
+      "bg-sub-pink-2 text-sub-pink active:bg-sub-pink active:text-sub-pink-2",
   },
   EDUCATION: {
     label: "교육",

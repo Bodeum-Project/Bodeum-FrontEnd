@@ -1,5 +1,5 @@
 import ExportIcon from "@/assets/icons/Export.svg?react";
-import Logo from "@/assets/icons/Logo_kr.svg?react";
+import BrandLogo from "@/components/BrandLogo";
 import { AUTH_STATE_CHANGED_EVENT } from "@/apis/authApi";
 import { getApiErrorMessage } from "@/apis/apiError";
 import { USER_PROFILE_CHANGED_EVENT } from "@/apis/userApi";
@@ -30,7 +30,12 @@ const guestBrief: UserBrief = {
   region: null,
 };
 
-export default function SideBar() {
+interface SideBarProps {
+  /** desktop: 프로필 카드 없이 (로그인은 헤더 우측), drawer: 모바일 메뉴용 */
+  variant?: "desktop" | "drawer";
+}
+
+export default function SideBar({ variant = "desktop" }: SideBarProps) {
   const navigate = useNavigate();
   const { mutateAsync: logoutRequest } = useLogoutMutation();
   const { data, error, isError, refetch } = useUserBrief();
@@ -110,9 +115,9 @@ export default function SideBar() {
     .join(" · ");
 
   return (
-    <aside className="flex h-screen flex-col bg-white w-[213px]">
+    <aside className={`flex h-screen flex-col bg-white ${variant === "desktop" ? "w-[232px]" : "w-[260px]"}`}>
       <div
-        className="h-[60px] py-[18px] flex items-center justify-center border-b border-background-250"
+        className={`flex shrink-0 items-center border-b border-background-250 ${variant === "desktop" ? "h-[72px] px-[30px]" : "h-[60px] px-[20px]"}`}
       >
         <button
           type="button"
@@ -125,13 +130,13 @@ export default function SideBar() {
             navigate("/");
           }}
         >
-          <Logo className="h-[24px] w-[62px]" />
+          <BrandLogo className="h-[30px]" />
         </button>
       </div>
 
       <div className="flex flex-1 flex-col border-r border-background-250">
-        <div className="px-4 pt-[20px]">
-          {brief === null ? (
+        <div className={variant === "desktop" ? "px-[16px] pt-[24px]" : "px-4 pt-[20px]"}>
+          {variant === "desktop" ? null : brief === null ? (
             <div className="h-[142px] w-[181px] animate-pulse rounded-[8px] border border-background-250 bg-background-150" />
           ) : (
             <UserSection
@@ -157,7 +162,7 @@ export default function SideBar() {
             />
           )}
 
-          <div className="mt-[18px]">
+          <div className={variant === "desktop" ? "" : "mt-[18px]"}>
             <SideNav />
           </div>
         </div>

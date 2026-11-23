@@ -98,10 +98,10 @@ export default function HeaderSearchBar({
   }, [activeIndex]);
 
   return (
-    <div ref={wrapperRef} className={`relative w-full lg:w-[921px] lg:max-w-full ${className}`}>
+    <div ref={wrapperRef} className={`relative w-full ${className}`}>
       <div
         className={`
-          flex h-[40px] items-center rounded-[10px]
+          flex h-[40px] items-center rounded-[10px] lg:h-[48px] lg:rounded-[12px]
           border px-[14px] lg:px-[20px]
           transition-colors
           ${focused ? "border-main-400 bg-background-100" : "border-background-200 bg-background-200"}

@@ -102,7 +102,7 @@ export default function MainLayout() {
       </div>
 
       <MobileDrawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <SideBar />
+        <SideBar variant="drawer" />
       </MobileDrawer>
     </BreadcrumbProvider>
   );

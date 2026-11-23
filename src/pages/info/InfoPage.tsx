@@ -244,7 +244,7 @@ export default function InfoPage() {
   }
   
   return (
-    <div className="flex min-h-screen flex-col gap-[14px] bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:gap-[18px] lg:px-[32px] lg:py-[20px]">
+    <div className="flex min-h-screen flex-col gap-[14px] bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
       
       <h1 className="pt-[4px] text-[22px] font-bold leading-[31px] tracking-[-0.03em] text-background-600">
         {profile?.nickname || "보호자"}님을 위한

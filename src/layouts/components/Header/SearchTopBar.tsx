@@ -2,7 +2,8 @@ import { useState } from "react";
 import HeaderSearchBar from "@/components/search/HeaderSearchBar";
 import { useNavigate } from "react-router-dom";
 import { useInfoSearch } from "@/hooks/useInfo";
-import Logo from "@/assets/icons/Logo_kr.svg?react";
+import BrandLogo from "@/components/BrandLogo";
+import HeaderAccountButton from "./HeaderAccountButton";
 
 interface SearchTopBarProps {
   onMenuClick?: () => void;
@@ -14,7 +15,7 @@ export default function SearchTopBar({ onMenuClick }: SearchTopBarProps) {
   const { data: results = [] } = useInfoSearch(keyword);
 
   return (
-    <header className="flex h-[56px] shrink-0 items-center gap-[12px] border-b border-background-250 bg-background-100 px-[16px] lg:h-[60px] lg:justify-center lg:px-[20px] lg:py-[10px]">
+    <header className="flex h-[56px] shrink-0 items-center gap-[12px] border-b border-background-250 bg-background-100 px-[16px] lg:h-[72px] lg:justify-between lg:gap-[24px] lg:px-[48px]">
       <button
         type="button"
         aria-label="메뉴 열기"
@@ -32,11 +33,11 @@ export default function SearchTopBar({ onMenuClick }: SearchTopBarProps) {
         onClick={() => navigate("/")}
         className="shrink-0 cursor-pointer lg:hidden"
       >
-        <Logo className="h-[22px] w-[57px]" />
+        <BrandLogo className="h-[22px]" />
       </button>
 
       <HeaderSearchBar
-        className="min-w-0 flex-1 lg:flex-none"
+        className="min-w-0 flex-1 lg:max-w-[640px]"
         value={keyword}
         onChange={setKeyword}
         results={results}
@@ -44,6 +45,10 @@ export default function SearchTopBar({ onMenuClick }: SearchTopBarProps) {
           navigate(`/info/${item.category}/${item.infoItemId}`)
         }}
       />
+
+      <div className="hidden lg:block">
+        <HeaderAccountButton />
+      </div>
     </header>
   );
 }

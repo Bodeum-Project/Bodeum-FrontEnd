@@ -13,9 +13,9 @@ export default function NoticeBanner() {
     <button
       type="button"
       onClick={() => navigate(`/news/${banner.newsId}`)}
-      className="flex w-full cursor-pointer items-center gap-[12px] rounded-[16px] bg-background-200 px-[16px] py-[14px] text-left transition-colors active:bg-background-250"
+      className="flex w-full cursor-pointer items-center gap-[12px] rounded-[16px] bg-background-200 px-[16px] py-[14px] hover:bg-background-250/60 lg:gap-[16px] lg:rounded-[20px] lg:px-[24px] lg:py-[18px] text-left transition-colors active:bg-background-250"
     >
-      <span className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-background-100 text-main-500">
+      <span className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-background-100 lg:h-[44px] lg:w-[44px] lg:rounded-[14px] text-main-500">
         <MegaphoneIcon className="h-[18px] w-[18px]" />
       </span>
 
