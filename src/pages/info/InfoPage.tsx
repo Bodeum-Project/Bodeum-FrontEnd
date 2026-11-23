@@ -8,7 +8,7 @@ import InfoItem from "@/pages/info/components/InfoItem";
 import CountButton from "./components/button/CountButton";
 import LocationButton from "./components/button/LocationButton";
 import { Select } from "@/components/Select";
-import LocationModal from "./components/modal/LocationModal";
+import RegionPickerModal from "@/components/region/RegionPickerModal";
 import CategoryModal from "./components/modal/CategoryModal";
 import { useInfoList } from "@/hooks/useInfoList";
 import { useMyProfileQuery } from "@/hooks/useMyProfile";
@@ -316,10 +316,13 @@ export default function InfoPage() {
       )}
 
       {locationOpen && (
-        <LocationModal
-          location={location}
+        <RegionPickerModal
+          initialSido={regionLevel1}
+          initialDistrict={regionLevel2}
           onClose={() => setLocationOpen(false)}
-          onComplete={({ regionLevel1, regionLevel2 }) => {
+          onSelect={({ sido, district }) => {
+            const regionLevel1 = sido || null;
+            const regionLevel2 = sido ? district || null : null;
             setRegionLevel1(regionLevel1 ?? "");
             setRegionLevel2(regionLevel2 ?? "");
 

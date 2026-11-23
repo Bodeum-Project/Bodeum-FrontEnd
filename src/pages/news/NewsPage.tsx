@@ -3,7 +3,8 @@ import RecommendedNewsTopSection from "./components/RecommendedNewsTopSection";
 import NewsTabs from "./components/NewsTabs";
 import NewsToolbar, { ALL_CATEGORIES_VALUE } from "./components/NewsToolbar";
 import NewsListSection from "./components/NewsListSection";
-import RegionOnboardingBox from "./components/RegionOnboardingBox";
+import { ALL_REGIONS_VALUE } from "./components/RegionOnboardingBox";
+import RegionPickerModal from "@/components/region/RegionPickerModal";
 import { useNews, useNewsSearch } from "@/hooks/useNews";
 import type { NewsListParams } from "@/types/news";
 import { useNewsFilters } from "./hooks/useNewsFilters";
@@ -76,9 +77,13 @@ export default function NewsPage() {
         </div>
       </div>
       {region.showRegionOnboarding && (
-        <RegionOnboardingBox
+        <RegionPickerModal
+          initialSido={region.regionLevel1 === ALL_REGIONS_VALUE ? "" : region.regionLevel1}
+          initialDistrict={region.regionLevel2}
           onClose={region.closeRegionOnboarding}
-          onComplete={region.completeRegionOnboarding}
+          onSelect={({ sido, district }) =>
+            void region.completeRegionOnboarding({ sido: sido || ALL_REGIONS_VALUE, district })
+          }
         />
       )}
     </main>

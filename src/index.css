@@ -200,6 +200,7 @@ fieldset {
   transition: filter 0.15s ease, transform 0.1s ease;
   &:hover { filter: brightness(1.04); }
   &:active { filter: brightness(0.95); }
+  &:disabled { filter: none; }
 }
 
 @utility btn-dark {
@@ -211,6 +212,8 @@ fieldset {
   transition: filter 0.15s ease, transform 0.1s ease;
   &:hover { filter: brightness(1.12); }
   &:active { filter: brightness(0.92); }
+  /* 비활성일 때 hover로 밝아져 하얗게 뜨지 않도록 */
+  &:disabled { filter: none; }
 }
 
 /* 홈 히어로의 흐릿한 원: 중앙 #28BDC0 radial + blur, 경계가 거의 안 보이도록 */
