@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { ParentCategory } from "@/types/info";
 import { infoCategoryMap } from "@/constants/infoCategory";
 import { useInfoItemCounts } from "@/hooks/useHome";
+import mascotWave from "@/assets/images/mascot-wave.png";
 
 const categories: ParentCategory[] = [
   "INSTITUTION",
@@ -86,6 +87,15 @@ export default function RequiredInfoSection() {
         ref={glowRef}
         aria-hidden="true"
         className="hero-blob pointer-events-none absolute left-0 top-0 -z-10 hidden h-[360px] w-[360px] opacity-0 transition-opacity duration-700 lg:block"
+      />
+
+      {/* 임시 마스코트: 넓은 PC 화면에서만 우측에 살짝 기울여 배치 (카테고리 아이콘과 겹치지 않도록 xl 이상) */}
+      <img
+        src={mascotWave}
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="pointer-events-none absolute -bottom-[52px] right-[56px] -z-10 hidden w-[300px] rotate-[-8deg] select-none opacity-80 [mask-image:linear-gradient(180deg,#000_62%,transparent)] xl:block"
       />
 
       <p className="text-[14px] font-medium text-background-400">우리 아이를 위한 정보</p>
