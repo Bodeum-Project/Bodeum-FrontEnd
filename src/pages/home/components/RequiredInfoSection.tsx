@@ -17,6 +17,26 @@ export default function RequiredInfoSection() {
   const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLSpanElement>(null);
+  const mascotRef = useRef<HTMLImageElement>(null);
+
+  // 히어로 폭이 줄어들수록 캐릭터가 서서히 투명해지도록 (갑자기 사라지지 않게)
+  useEffect(() => {
+    const section = sectionRef.current;
+    const mascot = mascotRef.current;
+    if (!section || !mascot) return;
+
+    const update = () => {
+      const width = section.clientWidth;
+      const opacity = Math.min(Math.max((width - 760) / 220, 0), 1) * 0.85;
+      mascot.style.opacity = String(opacity);
+      mascot.style.visibility = opacity === 0 ? "hidden" : "visible";
+    };
+
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
   const { data: counts } = useInfoItemCounts();
 
   const countMap: Record<ParentCategory, number> = {
@@ -89,16 +109,18 @@ export default function RequiredInfoSection() {
         className="hero-blob pointer-events-none absolute left-0 top-0 -z-10 hidden h-[360px] w-[360px] opacity-0 transition-opacity duration-700 lg:block"
       />
 
-      {/* 임시 마스코트: 넓은 PC 화면에서만 우측에 살짝 기울여 배치 (카테고리 아이콘과 겹치지 않도록 xl 이상) */}
+      {/* 임시 마스코트: PC에서만 우측 하단에 살짝 기울여 배치, 몸통 아래는 카드 밖으로 잘림 */}
       <img
+        ref={mascotRef}
         src={mascotWave}
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="pointer-events-none absolute -bottom-[52px] right-[56px] -z-10 hidden w-[300px] rotate-[-8deg] select-none opacity-80 [mask-image:linear-gradient(180deg,#000_62%,transparent)] xl:block"
+        className="pointer-events-none absolute -bottom-[64px] right-[4%] -z-10 hidden w-[340px] rotate-[-6deg] select-none [mask-image:linear-gradient(180deg,#000_55%,rgb(0_0_0_/_0.35)_88%)] lg:block"
+        style={{ opacity: 0 }}
       />
 
-      <p className="text-[14px] font-medium text-background-400">우리 아이를 위한 정보</p>
+      <p className="text-[14px] font-medium text-background-400">바로 찾는 필수 정보</p>
       <h1 className="mt-[8px] text-[24px] font-bold leading-[34px] tracking-[-0.02em] text-background-600 lg:text-[28px] lg:leading-[40px]">
         필요한 정보를
         <br />
