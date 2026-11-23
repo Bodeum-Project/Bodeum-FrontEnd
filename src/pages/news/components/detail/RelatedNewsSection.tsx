@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { useNavigate } from "react-router-dom";
 import PostListItem from "@/components/PostListItem";
 import PostSection from "@/components/PostSection";
@@ -25,9 +26,7 @@ export default function RelatedNewsSection({
   return (
     <PostSection title={title} onMoreClick={onMoreClick}>
       {isPending && (
-        <p className="py-[20px] text-center text-h6-list text-background-500">
-          관련 소식을 불러오는 중입니다...
-        </p>
+        <RowsSkeleton count={3} label="관련 소식을 불러오는 중입니다." />
       )}
       {isError && (
         <p className="py-[20px] text-center text-h6-list text-background-500">

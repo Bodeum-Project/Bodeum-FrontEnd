@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import BadgeIcon from "@/assets/icons/Badge.svg?react";
 import BadgeHelpIcon from "@/assets/icons/BadgeHelp.svg?react";
 import type { UserPointActivity } from "@/types/mypage";
@@ -29,9 +30,7 @@ export default function ActivityPointCard({
 
         <div className="mt-[8px] flex flex-col gap-[8px]">
           {isLoading && (
-            <p className="py-[12px] text-center text-h4-list text-background-500">
-              포인트 내역을 불러오는 중입니다.
-            </p>
+            <RowsSkeleton count={3} label="포인트 내역을 불러오는 중입니다." />
           )}
 
           {errorMessage && (

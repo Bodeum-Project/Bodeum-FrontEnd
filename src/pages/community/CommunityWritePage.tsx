@@ -32,7 +32,7 @@ export default function CommunityWritePage() {
   }
 
   if (editor.status === "loading") {
-    return <AsyncState type="loading" />;
+    return <AsyncState type="loading" skeleton="detail" />;
   }
 
   if (editor.status === "error") {

@@ -23,6 +23,7 @@ export default function MyPage() {
       <AsyncState
         type="loading"
         variant="section"
+        skeleton="mypage"
         loadingText="마이페이지 정보를 불러오는 중입니다."
         className="flex min-h-[calc(100vh-72px)] items-center justify-center bg-background-200 text-h3-onboard text-background-500"
         textClassName=""

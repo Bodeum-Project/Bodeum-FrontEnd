@@ -19,6 +19,7 @@ export default function MyPageProfileProvider({ children }: { children: ReactNod
       <AsyncState
         type="loading"
         variant="section"
+        skeleton="mypage"
         loadingText="프로필 정보를 불러오는 중입니다."
         className="flex min-h-full items-center justify-center bg-background-200 text-h3-onboard text-background-500"
         textClassName=""

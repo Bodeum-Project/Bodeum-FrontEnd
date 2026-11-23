@@ -1,3 +1,4 @@
+import { Bone } from "@/components/skeleton/Skeleton";
 import { useNavigate } from "react-router-dom";
 import { useUserBrief } from "@/hooks/useUser";
 import ProfileIcon from "@/assets/icons/Profile.svg?react";
@@ -7,7 +8,7 @@ export default function HeaderAccountButton() {
   const navigate = useNavigate();
   const { data: brief, isError, isPending } = useUserBrief();
 
-  if (isPending && !isError) return <div className="h-[44px] w-[132px]" aria-hidden="true" />;
+  if (isPending && !isError) return <Bone className="h-[44px] w-[132px] rounded-[12px]" />;
 
   const isLoggedIn = !isError && brief?.isLoggedIn === true;
   const base =

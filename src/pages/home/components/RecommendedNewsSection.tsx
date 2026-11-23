@@ -31,6 +31,7 @@ export default function RecommendedNewsSection() {
         <AsyncState
           type="loading"
           variant="section"
+          skeleton="cards"
           loadingText="불러오는 중입니다..."
           className="flex h-[180px] items-center justify-center text-background-400"
           textClassName=""

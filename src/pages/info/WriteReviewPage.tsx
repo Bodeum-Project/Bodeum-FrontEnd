@@ -1,3 +1,4 @@
+import { DetailPageSkeleton } from "@/components/skeleton/Skeleton";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -97,7 +98,7 @@ export default function WriteReviewPage() {
   };
 
   if (isPending) {
-    return <div>로딩중...</div>;
+    return <DetailPageSkeleton label="리뷰 작성 화면을 불러오는 중입니다." />;
   }
 
   if (isError || !detail) {

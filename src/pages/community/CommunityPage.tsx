@@ -155,7 +155,7 @@ export default function CommunityPage() {
   };
 
   if (isPending) {
-    return <AsyncState type="loading" />;
+    return <AsyncState type="loading" skeleton="posts" />;
   }
 
   if (isError) {

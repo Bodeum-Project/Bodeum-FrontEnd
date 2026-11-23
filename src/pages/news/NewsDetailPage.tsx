@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { hasStoredAuthSession } from "@/apis/authApi";
 import { useBreadcrumb } from "@/contexts/BreadcrumbContext";
+import { DetailPageSkeleton } from "@/components/skeleton/Skeleton";
 import AIChatButton from "@/components/button/AIChatButton";
 import { useNews, useNewsDetail, useToggleNewsScrap } from "@/hooks/useNews";
 import type { NewsType } from "@/types/news";
@@ -58,13 +59,15 @@ export default function NewsDetailPage() {
     return () => setBreadcrumb([]);
   }, [breadcrumbLabel, setBreadcrumb]);
 
-  if (newsId === undefined || isPending || isError || !news) {
+  if (newsId !== undefined && isPending) {
+    return <DetailPageSkeleton label="소식 정보를 불러오는 중입니다." />;
+  }
+
+  if (newsId === undefined || isError || !news) {
     return (
       <div className="flex min-h-full items-center justify-center px-[32px] py-[20px]">
         <div className="text-center text-h5 text-background-500">
-          {newsId !== undefined && isPending
-            ? "소식 정보를 불러오는 중입니다..."
-            : "소식 정보를 불러오지 못했습니다."}
+          소식 정보를 불러오지 못했습니다.
         </div>
       </div>
     );

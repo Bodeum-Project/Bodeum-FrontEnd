@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { useCallback, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { isUnauthorizedError } from "@/apis/apiError";
@@ -58,7 +59,7 @@ export default function CommunityDetailPage() {
   }
 
   if (isAuthPending) {
-    return <AsyncState type="loading" />;
+    return <AsyncState type="loading" skeleton="detail" />;
   }
 
   if (!hasDetailAccess || isUnauthorizedError(postError)) {
@@ -66,7 +67,7 @@ export default function CommunityDetailPage() {
   }
 
   if (isPending) {
-    return <AsyncState type="loading" />;
+    return <AsyncState type="loading" skeleton="detail" />;
   }
 
   if (isError || !post || !category) {
@@ -133,7 +134,7 @@ function CommunityRelatedPostsSection({
       </p>
 
       {isPending ? (
-        <p className="py-6 text-center text-background-500">게시글을 불러오는 중입니다.</p>
+        <RowsSkeleton count={3} label="게시글을 불러오는 중입니다." />
       ) : isError ? (
         <p className="py-6 text-center text-background-500">게시글을 불러오지 못했습니다.</p>
       ) : relatedPosts.length === 0 ? (

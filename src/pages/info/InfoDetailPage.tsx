@@ -52,7 +52,7 @@ export default function InfoDetailPage() {
   }, [category, detail?.name, infoCategory, navigate, setBreadcrumb]);
   
   if (isPending) {
-    return <AsyncState type="loading" />;
+    return <AsyncState type="loading" skeleton="detail" />;
   }
 
   if (isError || !detail) {

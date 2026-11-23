@@ -53,7 +53,7 @@
 
   --color-background-600: #2A3546;
   --color-background-500: #566173;
-  --color-background-400: #8792A4;
+  --color-background-400: #6B7689;
   --color-background-300: #B3BBC8;
   --color-background-250: #EAEDF2;
   --color-background-200: #F5F7FA;
@@ -251,7 +251,22 @@ fieldset {
   color: transparent;
 }
 
+/* 스켈레톤: 연한 쿨그레이 위로 흰 빛이 천천히 지나감 */
+.skeleton {
+  background-color: #EEF1F5;
+  background-image: linear-gradient(90deg, rgb(255 255 255 / 0) 0%, rgb(255 255 255 / 0.7) 50%, rgb(255 255 255 / 0) 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 150% 0; }
+  100% { background-position: -50% 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ai-gradient-icon,
   .ai-gradient-text { animation: none; }
+  .skeleton { animation: none; background-image: none; }
 }

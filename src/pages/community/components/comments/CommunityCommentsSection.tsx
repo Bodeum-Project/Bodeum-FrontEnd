@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { useCommunityComments } from "@/hooks/useCommunity";
 import { useCommunityCommentActions } from "../../hooks/useCommunityCommentActions";
 import CommentEmptyState from "./CommentEmptyState";
@@ -33,7 +34,7 @@ export default function CommunityCommentsSection({
       <CommunityCommentForm isSubmitting={isCreatePending} onSubmit={submitComment} />
 
       {isPending ? (
-        <div className="py-10 text-center text-background-500">댓글을 불러오는 중입니다.</div>
+        <RowsSkeleton count={3} avatar label="댓글을 불러오는 중입니다." />
       ) : isError ? (
         <p className="py-10 text-center text-background-500">댓글을 불러오지 못했습니다.</p>
       ) : comments.length === 0 ? (

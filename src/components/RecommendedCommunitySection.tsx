@@ -1,3 +1,4 @@
+import { CardRowSkeleton } from "@/components/skeleton/Skeleton";
 import CommunityCard from "@/components/CommunityCard";
 import { useDragScroll } from "@/hooks/useDragScroll";
 import { useRecommendedCommunityPosts } from "@/hooks/useHome";
@@ -26,9 +27,7 @@ export default function RecommendedCommunitySection({
 
   if (isPending) {
     return (
-      <p className="py-6 text-center text-background-500">
-        게시글을 불러오는 중입니다.
-      </p>
+      <CardRowSkeleton count={4} label="게시글을 불러오는 중입니다." />
     );
   }
 

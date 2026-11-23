@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { getApiErrorMessage } from "@/apis/apiError";
 import DeleteConfirmModal from "@/components/DeleteConfirmModal";
 import Pagination from "@/components/pagination/Pagination";
@@ -37,11 +38,8 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
 
       <div className="flex flex-col gap-[8px] lg:col-start-1 lg:row-start-2">
         {activity.isPending && (
-          <div
-            role="status"
-            className="flex h-[144px] items-center justify-center rounded-[10px] border border-background-250 bg-background-100 text-[13px] text-background-500"
-          >
-            {pendingMessage[activity.activeTab]}
+          <div className="rounded-[10px] border border-background-250 bg-background-100 px-[16px] py-[14px]">
+            <RowsSkeleton count={3} label={pendingMessage[activity.activeTab]} />
           </div>
         )}
 
