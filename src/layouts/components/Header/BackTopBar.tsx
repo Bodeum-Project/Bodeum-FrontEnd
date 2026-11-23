@@ -7,7 +7,7 @@ export default function BackTopBar() {
   const { breadcrumb } = useBreadcrumb();
   
   return (
-    <header className="flex h-[56px] shrink-0 items-center border-b border-background-250/70 bg-background-100/70 px-[16px] backdrop-blur-[16px] backdrop-saturate-150 lg:border-background-250 lg:bg-background-100 lg:backdrop-blur-none py-[10px] lg:h-[72px] lg:px-[48px] lg:py-[12px]">
+    <header className="flex h-[56px] shrink-0 items-center border-b border-background-250/70 bg-background-100/70 px-[16px] backdrop-blur-[16px] backdrop-saturate-150 py-[10px] lg:h-[72px] lg:px-[48px] lg:py-[12px]">
       <DetailBackButton />
 
       <div className="ml-[12px] flex min-w-0 items-center overflow-hidden whitespace-nowrap lg:ml-[20px]">
