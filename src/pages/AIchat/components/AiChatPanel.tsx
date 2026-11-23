@@ -62,7 +62,7 @@ export default function AiChatPanel({
 
   return (
     <section
-      className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden bg-background-100 sm:rounded-[10px] sm:shadow-[1px_1px_10px_rgba(0,0,0,0.1)] sm:ring-1 sm:ring-inset sm:ring-background-250"
+      className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden bg-background-100"
     >
       <header className="flex h-[60px] w-full shrink-0 items-center justify-center gap-[10px] border-b border-background-250 bg-background-100 px-[14px] py-[10px] sm:h-[70px] sm:gap-[12px] sm:border-b-0 sm:px-[20px] sm:py-[16px]">
         <AIMsgIcon aria-hidden="true" className="size-[32px] shrink-0" />

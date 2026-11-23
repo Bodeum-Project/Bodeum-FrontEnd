@@ -77,7 +77,7 @@ export default function RequiredInfoSection() {
       onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative isolate -mx-[16px] -mt-[16px] overflow-hidden bg-[linear-gradient(180deg,#F0FCFC_72%,#FFFFFF)] px-[20px] lg:bg-none lg:bg-[#F0FCFC] pb-[28px] pt-[32px] md:-mx-[24px] md:px-[28px] lg:mx-0 lg:mt-0 lg:rounded-[28px] lg:px-[40px] lg:pb-[40px] lg:pt-[44px]"
+      className="relative isolate -mx-[16px] -mt-[72px] overflow-hidden bg-[linear-gradient(180deg,#F0FCFC_72%,#FFFFFF)] px-[20px] lg:bg-none lg:bg-[#F0FCFC] pb-[28px] pt-[88px] md:-mx-[24px] md:px-[28px] lg:mx-0 lg:mt-0 lg:rounded-[28px] lg:px-[40px] lg:pb-[40px] lg:pt-[44px]"
     >
       {/* 은은한 블러 원: 무게가 좌측 상단에 실리도록 두 원 모두 좌상단 모서리 쪽에 둔다 */}
       <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[110px] -top-[130px] -z-10 h-[320px] w-[320px]" />

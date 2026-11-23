@@ -81,16 +81,19 @@ export default function MainLayout() {
           <SideBar />
         </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-          {header === "back" ? (
-            <BackTopBar />
-          ) : (
-            <SearchTopBar onMenuClick={() => setIsDrawerOpen(true)} />
-          )}
+        <div className="relative flex min-h-0 min-w-0 flex-1 flex-col">
+          {/* 모바일: 상단바가 스크롤 영역 위에 떠 있어 뒤 콘텐츠가 블러로 비침 */}
+          <div className="absolute inset-x-0 top-0 z-30 lg:static">
+            {header === "back" ? (
+              <BackTopBar />
+            ) : (
+              <SearchTopBar onMenuClick={() => setIsDrawerOpen(true)} />
+            )}
+          </div>
 
           <main
             ref={mainRef}
-            className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pb-[calc(64px+env(safe-area-inset-bottom))] lg:pb-0"
+            className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pt-[56px] pb-[calc(74px+env(safe-area-inset-bottom))] lg:pt-0 lg:pb-0"
           >
             <div className="mx-auto w-full">
               <Outlet />

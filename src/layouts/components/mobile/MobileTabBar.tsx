@@ -44,7 +44,7 @@ export default function MobileTabBar() {
   return (
     <nav
       aria-label="주요 메뉴"
-      className="fixed inset-x-0 bottom-0 z-40 rounded-t-[20px] bg-background-100/95 shadow-[0_-4px_20px_rgb(20_23_31_/_0.06)] pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 rounded-t-[20px] bg-background-100/95 shadow-[0_-4px_20px_rgb(20_23_31_/_0.06)] pb-[calc(10px+env(safe-area-inset-bottom))] backdrop-blur lg:hidden"
     >
       <ul className="mx-auto flex h-[64px] max-w-[640px] items-stretch">
         {tabs.map(({ label, to, icon: Icon, isActive }) => {
