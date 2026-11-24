@@ -10,6 +10,7 @@ import ButtonOutline from "@/components/button/ButtonOutline";
 import InfoItem from "./components/InfoItem";
 import RatingInput from "./ReviewWrite/RatingInput";
 import ReviewTextArea from "./ReviewWrite/ReviewTextArea";
+import ReceiptVerifyCard from "./ReviewWrite/ReceiptVerifyCard";
 import ImageUploader from "@/components/ImageUploader";
 import ButtonFill from "@/components/button/ButtonFill";
 import ReviewCancelModal from "./components/modal/ReviewCancelModal";
@@ -129,6 +130,8 @@ export default function WriteReviewPage() {
             value={rating}
             onChange={setRating}
           />
+
+          <ReceiptVerifyCard />
 
           <ReviewTextArea
             value={content}

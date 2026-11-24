@@ -3,6 +3,7 @@ import { memo, useEffect, useRef, useState } from "react";
 import ButtonFill from "@/components/button/ButtonFill";
 import ButtonOutline from "@/components/button/ButtonOutline";
 import HeartStat from "@/components/post-stat/HeartStat";
+import ModerationMenu from "@/components/moderation/ModerationMenu";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { showToast } from "@/components/Toast";
 import type { CommunityComment } from "@/types/community";
@@ -159,6 +160,10 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                 </div>
               )}
             </div>
+          )}
+
+          {!isDeleted && !comment.isMine && (
+            <ModerationMenu target="comment" className="-my-[5px]" />
           )}
         </div>
 

@@ -279,3 +279,24 @@ fieldset {
   .ai-gradient-text { animation: none; }
   .skeleton { animation: none; background-image: none; }
 }
+
+/* 신고·차단 모달: 모바일 바텀시트는 아래에서, PC 중앙 모달은 살짝 떠오르며 등장 */
+@keyframes moderation-sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes moderation-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.moderation-sheet {
+  animation: moderation-sheet-up 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 40rem) {
+  .moderation-sheet {
+    animation: moderation-pop 0.18s ease-out;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .moderation-sheet { animation: none; }
+}

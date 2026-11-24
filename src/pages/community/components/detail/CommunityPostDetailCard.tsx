@@ -13,6 +13,7 @@ import {
   useDeleteCommunityPost,
 } from "@/hooks/useCommunity";
 import DeleteConfirmModal from "@/components/DeleteConfirmModal";
+import ModerationMenu from "@/components/moderation/ModerationMenu";
 import type { CommunityPostDetail } from "@/types/community";
 import ShareButton from "@/components/button/ShareButton";
 import DetailActionButton from "@/components/button/DetailActionButton";
@@ -113,9 +114,12 @@ export default function CommunityPostDetailCard({
             ))}
           </div>
         </div>
-        <time className="shrink-0 text-body-sub text-background-400">
-          {formatDate(post.createdAt)}
-        </time>
+        <div className="flex shrink-0 items-center gap-[4px]">
+          <time className="text-body-sub text-background-400">
+            {formatDate(post.createdAt)}
+          </time>
+          {!post.isMine && <ModerationMenu target="post" className="-my-[4px] -mr-[6px]" />}
+        </div>
       </header>
 
       <div className="pb-[20px] pt-[12px]">
