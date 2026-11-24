@@ -1,7 +1,7 @@
-import LocationPinIcon from "@/assets/icons/LocationPin.svg?react";
-import ChevronLeft from "@/assets/icons/ChevronLeft.svg?react";
 import Input from "@/components/Input";
-import { Select, type SelectOption } from "@/components/Select";
+import type { SelectOption } from "@/components/Select";
+import CategoryButton from "@/components/button/CategoryButton";
+import { ChipRow, FilterPill, ResultBar, SortSelect } from "@/components/list-toolbar/ListToolbar";
 import type { NewsTabValue } from "./NewsTabs";
 import type { NewsCategory, NewsSort } from "@/types/news";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
@@ -22,6 +22,7 @@ interface NewsToolbarProps {
   category: NewsCategoryFilter;
   onCategoryChange: (value: NewsCategoryFilter) => void;
   onSearch: (keyword: string) => void;
+  count?: number;
 }
 
 const sortOptions = [
@@ -54,12 +55,11 @@ export default function NewsToolbar({
   category,
   onCategoryChange,
   onSearch,
+  count,
 }: NewsToolbarProps) {
   const categoryOptions = categoryOptionsByTab[tab];
   const selectedRegionLabel = selectedRegion || ALL_REGIONS_LABEL;
-  const selectedRegionButtonStateClass = selectedRegion
-    ? "bg-main-150 text-main-500"
-    : "bg-background-200 text-background-500 hover:bg-[#EDF0F4]";
+  const selectedCategory = category === "" ? ALL_CATEGORIES_VALUE : category;
 
   const normalizedKeyword = keyword.trim();
   const debouncedKeyword = useDebouncedValue(normalizedKeyword, 300);
@@ -70,7 +70,7 @@ export default function NewsToolbar({
     (normalizedKeyword !== debouncedKeyword || areSuggestionsPending);
 
   return (
-    <div className="flex flex-wrap items-center gap-[8px] sm:gap-[12px]">
+    <div className="flex flex-col gap-[12px]">
       <Input
         search
         searchType="news"
@@ -85,36 +85,40 @@ export default function NewsToolbar({
         }}
         onEnter={onSearch}
         placeholder="소식을 검색해보세요"
-        className="w-full max-w-[640px]"
+        className="w-full"
       />
 
-      <button
-        type="button"
-        onClick={onSelectedRegionClick}
-        aria-label={`지역 선택: ${selectedRegionLabel}`}
-        className={`flex h-[40px] min-w-0 flex-[1.2] cursor-pointer sm:w-[147px] sm:flex-none items-center justify-between gap-3 rounded-[12px] py-2 pr-[10px] pl-[14px] text-left text-[14px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background-600 ${selectedRegionButtonStateClass}`}
-      >
-        <span className="flex min-w-0 items-center gap-0.5">
-          <LocationPinIcon className="h-[16px] w-[16px] shrink-0 text-main-400" />
-          <span className="min-w-0 truncate">{selectedRegionLabel}</span>
-        </span>
-        <ChevronLeft className="shrink-0 -rotate-90 text-background-500" aria-hidden />
-      </button>
-      <Select
-        options={sortOptions}
-        value={sort}
-        onChange={(value) => onSortChange(value as NewsSort)}
-        placeholder="조회순"
-        ariaLabel="정렬 선택"
-        className="min-w-0 flex-1 sm:w-[138px] sm:flex-none"
-      />
-      <Select
-        options={categoryOptions}
-        value={category}
-        onChange={(value) => onCategoryChange(value as NewsCategoryFilter)}
-        placeholder="카테고리"
-        ariaLabel="카테고리 선택"
-        className="min-w-0 flex-1 sm:w-[138px] sm:flex-none"
+      <ChipRow label="카테고리">
+        {categoryOptions.map((option) => (
+          <CategoryButton
+            key={option.value}
+            label={option.label}
+            selected={selectedCategory === option.value}
+            onClick={() => onCategoryChange(option.value as NewsCategoryFilter)}
+          />
+        ))}
+      </ChipRow>
+
+      <ResultBar
+        count={count}
+        filters={
+          <FilterPill
+            icon
+            active={selectedRegionLabel !== ALL_REGIONS_LABEL}
+            onClick={onSelectedRegionClick}
+            ariaLabel={`지역 선택: ${selectedRegionLabel}`}
+          >
+            {selectedRegionLabel}
+          </FilterPill>
+        }
+        sort={
+          <SortSelect
+            options={sortOptions}
+            value={sort}
+            onChange={(value) => onSortChange(value as NewsSort)}
+            placeholder="조회순"
+          />
+        }
       />
     </div>
   );

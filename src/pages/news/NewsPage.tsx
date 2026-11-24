@@ -63,6 +63,7 @@ export default function NewsPage() {
             onSortChange={filters.setSort}
             category={filters.category}
             onCategoryChange={filters.setCategory}
+            count={data?.totalElements}
           />
           <NewsListSection items={data?.items ?? []} isError={isError} />
           {(data?.totalPages ?? 0) > 0 && (

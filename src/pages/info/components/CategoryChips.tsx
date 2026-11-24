@@ -5,6 +5,7 @@ import {
 } from "@/constants/infoCategory";
 import type { ParentCategory } from "@/types/info";
 import AwardIcon from "@/assets/icons/Award.svg?react";
+import { ChipRow } from "@/components/list-toolbar/ListToolbar";
 
 interface CategoryChipsProps {
   parentCategory: ParentCategory;
@@ -27,7 +28,7 @@ export default function CategoryChips({
   );
 
   return (
-    <div className="no-scrollbar -mx-[16px] flex gap-[8px] overflow-x-auto px-[16px] sm:mx-0 sm:flex-wrap sm:px-0">
+    <ChipRow label="세부 분류">
       {visibleCategories
         .filter((item) => item.value.endsWith("_ETC"))
         .map((item) => (
@@ -59,6 +60,6 @@ export default function CategoryChips({
             onClick={() => onChange(item.id)}
           />
         ))}
-    </div>
+    </ChipRow>
   );
 }

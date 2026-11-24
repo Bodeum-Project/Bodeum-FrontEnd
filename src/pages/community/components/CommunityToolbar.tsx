@@ -1,5 +1,6 @@
 import Input, { type InputSuggestion } from "@/components/Input";
-import { Select } from "@/components/Select";
+import type { ReactNode } from "react";
+import { ChipRow, ResultBar, SortSelect } from "@/components/list-toolbar/ListToolbar";
 import type { CommunityPostSearchSuggestion, CommunityPostSort } from "@/types/community";
 
 const sortOptions = [
@@ -29,6 +30,9 @@ interface CommunityToolbarProps {
   onKeywordChange: (keyword: string) => void;
   onSearch: (keyword: string) => void;
   onSortChange: (sort: CommunityPostSort) => void;
+  /** 카테고리 칩들 */
+  categories: ReactNode;
+  count?: number;
 }
 
 export default function CommunityToolbar({
@@ -40,9 +44,11 @@ export default function CommunityToolbar({
   onKeywordChange,
   onSearch,
   onSortChange,
+  categories,
+  count,
 }: CommunityToolbarProps) {
   return (
-    <div className="flex items-center justify-between gap-3 sm:gap-6">
+    <div className="flex flex-col gap-[12px]">
       <Input
         search
         searchType="community"
@@ -57,17 +63,23 @@ export default function CommunityToolbar({
           onSearch(nextKeyword);
         }}
         placeholder="게시글을 검색해보세요"
-        className="h-[44px] w-full min-w-0 max-w-[640px] flex-1"
+        className="w-full"
       />
 
-      <Select
-        options={sortOptions}
-        value={sort}
-        onChange={(value) => onSortChange(value as CommunityPostSort)}
-        placeholder={isLoggedIn ? "최신순" : "조회순"}
-        variant="S"
-        ariaLabel="게시글 정렬"
-        className="w-[104px] shrink-0 sm:w-[120px]"
+      <ChipRow label="카테고리">{categories}</ChipRow>
+
+      <ResultBar
+        count={count}
+        unit="개"
+        sort={
+          <SortSelect
+            options={sortOptions}
+            value={sort}
+            onChange={(value) => onSortChange(value as CommunityPostSort)}
+            placeholder={isLoggedIn ? "최신순" : "조회순"}
+            ariaLabel="게시글 정렬"
+          />
+        }
       />
     </div>
   );

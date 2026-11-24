@@ -5,9 +5,8 @@ import { infoCategoryMap, infoSubCategoryMap } from "@/constants/infoCategory";
 import CategoryChips from "./components/CategoryChips";
 import Pagination from "@/components/pagination/Pagination";
 import InfoItem from "@/pages/info/components/InfoItem";
-import CountButton from "./components/button/CountButton";
-import LocationButton from "./components/button/LocationButton";
-import { Select } from "@/components/Select";
+import { FilterPill, ResultBar, SortSelect } from "@/components/list-toolbar/ListToolbar";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 import RegionPickerModal from "@/components/region/RegionPickerModal";
 import CategoryModal from "./components/modal/CategoryModal";
 import { useInfoList } from "@/hooks/useInfoList";
@@ -255,42 +254,53 @@ export default function InfoPage() {
         을 모았어요
       </h1>
 
-      <div className="flex items-center gap-[8px]">
-        <LocationButton
-          value={location}
-          onClick={() => setLocationOpen(true)}
+      {/* 소식·커뮤니티와 같은 순서: (검색) → 카테고리 칩 → 필터·정렬 줄. 정보 탭 검색창은 API 합의 전까지 없음 */}
+      <div className="flex flex-col gap-[12px]">
+        <CategoryChips
+          parentCategory={parentCategory}
+          subCategory={subCategory}
+          onChange={moveToSubCategory}
         />
-        <CountButton
-          category={parentCategory}
-          count={count}
-          onClick={() => setCategoryOpen(true)}
-        />
-        <div className="ml-auto" />
-        <Select
-          options={sortOptions}
-          value={sort}
-          onChange={(value) => {
-            setSort(value);
-            updatePage(1);
 
-            const params = new URLSearchParams(searchParams);
-            params.set("page", "1");
-            params.set("sort", value);
+        <ResultBar
+          filters={
+            <>
+              <FilterPill
+                onClick={() => setCategoryOpen(true)}
+                ariaLabel={`분류 선택: ${infoCategoryMap[parentCategory].label}`}
+              >
+                {infoCategoryMap[parentCategory].label}
+              </FilterPill>
+              <FilterPill
+                icon
+                active={Boolean(regionLevel1)}
+                onClick={() => setLocationOpen(true)}
+                ariaLabel={`지역 선택: ${regionLevel1 ? formatRegionDisplayLabel(location) : "지역 전체"}`}
+              >
+                {regionLevel1 ? formatRegionDisplayLabel(location) : "지역 전체"}
+              </FilterPill>
+            </>
+          }
+          sort={
+            <SortSelect
+              options={sortOptions}
+              value={sort}
+              onChange={(value) => {
+                setSort(value);
+                updatePage(1);
 
-            updateUrl(params);
-          }}
-          placeholder="조회순"
-          variant="S"
-          className="w-[104px] shrink-0"
+                const params = new URLSearchParams(searchParams);
+                params.set("page", "1");
+                params.set("sort", value);
+
+                updateUrl(params);
+              }}
+              placeholder="조회순"
+            />
+          }
         />
       </div>
 
-      <CategoryChips
-        parentCategory={parentCategory}
-        subCategory={subCategory}
-        onChange={moveToSubCategory}
-      />
-      
       {shouldShowEmptyMessage ? (
         <div className="flex h-[200px] items-center justify-center text-background-500">
           {emptyMessage}

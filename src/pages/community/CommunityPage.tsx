@@ -168,18 +168,6 @@ export default function CommunityPage() {
         <CommunitySection onWriteClick={handleWriteClick} onPostClick={handlePostClick} />
 
         <div className="mt-[18px] flex flex-col gap-[16px]">
-          <div className="no-scrollbar -mx-[16px] flex gap-[8px] overflow-x-auto px-[16px] md:mx-0 md:flex-wrap md:gap-[16px] md:px-0 [&>*]:shrink-0">
-            {categories.map((item) => (
-              <CategoryButton
-                key={item.value}
-                label={item.label}
-                category="HOSPITAL"
-                selected={category === item.value}
-                onClick={() => selectCategory(item.value)}
-              />
-            ))}
-          </div>
-
           <CommunityToolbar
             keyword={inputKeyword}
             suggestions={suggestions}
@@ -189,6 +177,15 @@ export default function CommunityPage() {
             onKeywordChange={setInputKeyword}
             onSearch={handleSearch}
             onSortChange={updateSort}
+            count={data?.totalElements}
+            categories={categories.map((item) => (
+              <CategoryButton
+                key={item.value}
+                label={item.label}
+                selected={category === item.value}
+                onClick={() => selectCategory(item.value)}
+              />
+            ))}
           />
 
           {visiblePosts.length === 0 ? (
