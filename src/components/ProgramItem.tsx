@@ -2,6 +2,7 @@ import Chip, { type ChipVariant } from "@/components/Chips";
 import ViewStat from "@/components/post-stat/ViewStat";
 import ScrapStat from "@/components/post-stat/ScrapStat";
 import BaseInfoCard from "./BaseInfoCard";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 
 import InfoItemNewsIcon from "@/assets/icons/InfoItem-news.svg?react";
 
@@ -53,27 +54,25 @@ export default function ProgramItem({
       }
       left={
         <div className="flex min-w-0 flex-col py-[2px]">
-          {/* 토스처럼 딱지를 제목 위로: 카테고리(민트) + 지역(연한 그레이) */}
-          <div className={`flex min-w-0 items-center gap-[6px] ${rightLabel ? "sm:pr-[96px]" : ""}`}>
-            <span
-              className={`shrink-0 rounded-[6px] ${newsCategoryStyle.bgColor} px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${newsCategoryStyle.textColor}`}
-            >
-              {categoryLabel}
-            </span>
-            {address && (
-              <span className="min-w-0 truncate rounded-[6px] bg-background-200 px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
-                {address}
-              </span>
-            )}
-          </div>
-
-          <h3 className="mt-[10px] truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600">
+          {/* 정보·소식 공통 3줄: 제목 → 기관명 → 딱지(카테고리·지역), 통계는 우측 하단 */}
+          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 ${rightLabel ? "sm:pr-[88px]" : ""}`}>
             {name}
           </h3>
 
           {serviceText && (
-            <p className="mt-[6px] truncate pr-[84px] text-[13px] leading-[19px] text-background-400 sm:pr-[110px]">{serviceText}</p>
+            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-background-500">{serviceText}</p>
           )}
+
+          <div className="mt-[8px] flex min-w-0 items-center gap-[6px] pr-[84px] sm:pr-[110px]">
+            <span className={`shrink-0 ${newsCategoryStyle.bgColor} rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${newsCategoryStyle.textColor}`}>
+              {categoryLabel}
+            </span>
+            {address && (
+              <span className="min-w-0 truncate bg-background-200 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
+                {formatRegionDisplayLabel(address)}
+              </span>
+            )}
+          </div>
         </div>
       }
       right={

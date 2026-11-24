@@ -3,6 +3,7 @@ import ViewStat from "@/components/post-stat/ViewStat";
 import ScrapStat from "@/components/post-stat/ScrapStat";
 import { infoCategoryMap } from "@/constants/infoCategory";
 import BaseInfoCard from "../../../components/BaseInfoCard";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 
 import InfoItemInstitutionIcon from "@/assets/icons/InfoItem-institution.svg?react";
 import InfoItemHospitalIcon from "@/assets/icons/InfoItem-hospital.svg?react";
@@ -30,6 +31,8 @@ interface InfoItemProps {
   mainCategory: ParentCategory;
   name: string;
   address: string;
+  sido?: string;
+  sigungu?: string;
   phone?: string;
   subCategoryKo: string;
   viewCount: number;
@@ -44,6 +47,8 @@ export default function InfoItem({
   mainCategory,
   name,
   address,
+  sido,
+  sigungu,
   phone,
   subCategoryKo,
   viewCount,
@@ -55,6 +60,10 @@ export default function InfoItem({
 }: InfoItemProps) {
   const Icon = infoItemIconMap[mainCategory];
   const { bgColor, textColor } = infoCategoryMap[mainCategory];
+  const region = [sido, sigungu].filter(Boolean).join(" ");
+  const regionLabel = region ? formatRegionDisplayLabel(region) : "";
+  // 지역은 딱지로 보여주므로 주소 앞의 시/도·시/군/구는 떼고 도로명부터
+  const streetAddress = region && address.startsWith(region) ? address.slice(region.length).trim() : address;
 
   return (
     <BaseInfoCard
@@ -65,19 +74,24 @@ export default function InfoItem({
         </div>
       }
       left={
-        <div className="min-w-0 py-[2px]">
-          {/* 카테고리는 한 번에 하나만 보이므로 제목 앞 딱지는 생략 */}
+        <div className="flex min-w-0 flex-col py-[2px]">
+          {/* 정보·소식 공통 3줄: 제목 → 주소 → 딱지(세부 분류·지역), 통계는 우측 하단 */}
           <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 ${phone ? "sm:pr-[120px]" : ""}`}>
             {name}
           </h3>
 
-          <p className="mt-[6px] truncate text-[13px] leading-[19px] text-background-500">
-            {address}
-          </p>
+          {streetAddress && (
+            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-background-500">{streetAddress}</p>
+          )}
 
-          <p className="mt-[4px] truncate pr-[84px] text-[12px] leading-[17px] text-background-400 sm:pr-[110px]">
-            {subCategoryKo}
-          </p>
+          <div className="mt-[8px] flex min-w-0 items-center gap-[6px] pr-[84px] sm:pr-[110px]">
+            <span className={`shrink-0 ${bgColor} rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${textColor}`}>{subCategoryKo}</span>
+            {regionLabel && (
+              <span className="min-w-0 truncate bg-background-200 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
+                {regionLabel}
+              </span>
+            )}
+          </div>
         </div>
       }
       right={
