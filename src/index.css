@@ -5,78 +5,219 @@
 
 @import "tailwindcss";
 
+/* ============================================================
+   디자인 토큰 (docs/design-tokens.md 참고)
+   1. 원시값(palette)  :root 의 --palette-*  → 컴포넌트에서 직접 쓰지 않음 (Tailwind 클래스도 안 생김)
+   2. 의미 토큰        @theme 의 역할 이름   → 컴포넌트는 여기만 씀 (text-primary, bg-surface, border-default, bg-brand …)
+   3. 컴포넌트 토큰    아래 @utility (btn-*, toast-surface, modal-backdrop …)
+   예전 이름(main-*, background-*, accent-*, sub-*)은 맨 아래 '별칭'에 남아 있음. 새 코드에서는 쓰지 말 것
+   ============================================================ */
+
+/* 1. 원시값 */
+:root {
+  --palette-mint-50: #F0FCFC;
+  --palette-mint-100: #E9F7F8;
+  --palette-mint-200: #DDF3F4;
+  --palette-mint-300: #8FDCDF;
+  --palette-mint-500: #1BB8BC;
+  --palette-mint-700: #0E9198;
+
+  --palette-gray-0: #FFFFFF;
+  --palette-gray-50: #F5F7FA;
+  --palette-gray-75: #EEF1F5;
+  --palette-gray-100: #EAEDF2;
+  --palette-gray-150: #DFE3EA;
+  --palette-gray-200: #D6DBE3;
+  --palette-gray-300: #B3BBC8;
+  --palette-gray-400: #A4AEBC;
+  --palette-gray-500: #6B7689;
+  --palette-gray-600: #566173;
+  --palette-gray-800: #3B475B;
+  --palette-gray-900: #2A3546;
+
+  --palette-blue-50: #E8F3FF;
+  --palette-blue-500: #3182F6;
+  --palette-emerald-50: #E4F8EE;
+  --palette-emerald-500: #23A97B;
+  --palette-green-50: #F0FFF6;
+  --palette-green-500: #0EA345;
+  --palette-pink-50: #FFEFF1;
+  --palette-pink-500: #F4707E;
+  --palette-red-50: #FFEEF0;
+  --palette-red-500: #F04452;
+  --palette-purple-50: #F1EEFF;
+  --palette-purple-500: #7B61FF;
+  --palette-orange-50: #FFF1E6;
+  --palette-orange-500: #FF7A1A;
+  --palette-yellow-50: #FFF7E4;
+  --palette-yellow-500: #F2B31D;
+  --palette-amber-500: #F5A524;
+}
+
 @theme {
-  /* Font */
+  /* Font: Pretendard(CDN, index.html) → 없으면 Noto Sans KR(패키지) */
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Noto Sans KR", sans-serif;
 
-  /* Main Colors (mint) */
+  /* 2. 의미 토큰: 색 ------------------------------------------------ */
 
-  --color-main-500: #0E9198;
-  --color-main-400: #1BB8BC;
-  --color-main-300: #8FDCDF;
-  --color-main-200: #DDF3F4;
-  --color-main-150: #E9F7F8;
-  --color-main-100: #F5F7FA;
+  /* 브랜드 (민트) — bg-brand, text-brand-strong, bg-brand-soft … */
+  --color-brand: var(--palette-mint-500);
+  --color-brand-strong: var(--palette-mint-700);
+  --color-brand-muted: var(--palette-mint-300);
+  --color-brand-tint: var(--palette-mint-200);
+  --color-brand-soft: var(--palette-mint-100);
 
-  /* Accent (dark, for primary CTAs / selected states) */
+  /* 다크 CTA (검정 버튼, 선택된 칩·탭) */
+  --color-cta: var(--palette-gray-900);
+  --color-cta-hover: var(--palette-gray-800);
 
-  --color-accent-900: #2A3546;
-  --color-accent-800: #3B475B;
+  /* 글자색 — text-primary, text-secondary, text-tertiary, text-disabled, text-inverse */
+  --text-color-primary: var(--palette-gray-900);
+  --text-color-secondary: var(--palette-gray-600);
+  --text-color-tertiary: var(--palette-gray-500);
+  --text-color-disabled: var(--palette-gray-400);
+  --text-color-inverse: var(--palette-gray-0);
 
-  /* Sub Colors */
+  /* 배경 — bg-surface, bg-surface-subtle, bg-surface-hero, bg-surface-inverse, bg-skeleton */
+  --background-color-surface: var(--palette-gray-0);
+  --background-color-surface-subtle: var(--palette-gray-50);
+  --background-color-surface-hero: var(--palette-mint-50);
+  --background-color-surface-inverse: var(--palette-gray-900);
+  --background-color-skeleton: var(--palette-gray-75);
 
-  --color-sub-yellow: #F2B31D;
-  --color-sub-yellow-2: #FFF7E4;
+  /* 상태 배경 (회색 버튼·칩의 호버·눌림) — bg-state-hover, bg-state-pressed */
+  --background-color-state-hover: var(--palette-gray-150);
+  --background-color-state-pressed: var(--palette-gray-200);
 
-  --color-sub-red: #F04452;
-  --color-sub-red-2: #FFEEF0;
+  /* 테두리·구분선 — border-default, border-strong */
+  --border-color-default: var(--palette-gray-100);
+  --border-color-strong: var(--palette-gray-300);
 
-  --color-sub-green: #0EA345;
-  --color-sub-green-2: #F0FFF6;
+  /* 상태 */
+  --color-danger: var(--palette-red-500);
+  --color-danger-soft: var(--palette-red-50);
+  --color-like: var(--palette-red-500);
+  --color-warning: var(--palette-amber-500);
 
-  --color-sub-purple: #7B61FF;
-  --color-sub-purple-2: #F1EEFF;
+  /* 정보 카테고리 — text-category-agency, bg-category-agency-soft … */
+  --color-category-agency: var(--palette-blue-500);
+  --color-category-agency-soft: var(--palette-blue-50);
+  --color-category-hospital: var(--palette-emerald-500);
+  --color-category-hospital-soft: var(--palette-emerald-50);
+  --color-category-welfare: var(--palette-pink-500);
+  --color-category-welfare-soft: var(--palette-pink-50);
+  --color-category-job: var(--palette-purple-500);
+  --color-category-job-soft: var(--palette-purple-50);
+  --color-category-edu: var(--palette-orange-500);
+  --color-category-edu-soft: var(--palette-orange-50);
 
-  --color-sub-blue: #3182F6;
-  --color-sub-blue-2: #E8F3FF;
+  /* 딱지 */
+  --color-tag-recruit: var(--palette-green-500);
+  --color-tag-recruit-soft: var(--palette-green-50);
 
-  --color-sub-mint: #23A97B;
-  --color-sub-mint-2: #E4F8EE;
+  /* 2. 의미 토큰: 라운드 (Tailwind 기본값을 덮어씀. rounded-md = 10px) ---- */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
 
-  --color-sub-pink: #F4707E;
-  --color-sub-pink-2: #FFEFF1;
+  /* 2. 의미 토큰: 그림자 (호버 그림자는 쓰지 않음) ----------------------- */
+  --shadow-soft: 0 8px 100px rgb(180 207 207 / 0.2);
+  --shadow-float: 0 8px 24px rgb(30 40 60 / 0.14);
+  --shadow-toast: 0 10px 30px rgb(42 53 70 / 0.18);
+  --shadow-bar: 0 -4px 20px rgb(20 23 31 / 0.06);
 
-  --color-sub-orange: #FF7A1A;
-  --color-sub-orange-2: #FFF1E6;
+  /* 2. 의미 토큰: 레이어 (z-index) — z-header, z-modal … ---------------- */
+  --z-index-header: 30;
+  --z-index-tabbar: 40;
+  --z-index-overlay: 50;   /* 검색 결과·드롭다운, 모바일 메뉴, 시트 */
+  --z-index-modal: 60;
+  --z-index-modal-nested: 70;
+  --z-index-modal-top: 80;
+  --z-index-picker: 90;    /* 지역·카테고리 선택 시트 */
+  --z-index-toast: 9999;
 
-  /* Background (cool gray) */
+  /* 2. 의미 토큰: 모션 — ease-out-soft, ease-standard ------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --color-background-600: #2A3546;
-  --color-background-500: #566173;
-  --color-background-400: #6B7689;
-  --color-background-300: #B3BBC8;
-  --color-background-250: #EAEDF2;
-  --color-background-200: #F5F7FA;
-  --color-background-100: #FFFFFF;
+  /* 2. 의미 토큰: 타이포 (새 화면은 이것만. 예전 h1~body-* 는 아래 별칭) ---- */
+  --text-display: 28px;
+  --text-display--line-height: 38px;
+  --text-display--font-weight: 700;
+  --text-title-1: 22px;
+  --text-title-1--line-height: 30px;
+  --text-title-1--font-weight: 700;
+  --text-title-2: 20px;
+  --text-title-2--line-height: 28px;
+  --text-title-2--font-weight: 700;
+  --text-title-3: 18px;
+  --text-title-3--line-height: 26px;
+  --text-title-3--font-weight: 600;
+  --text-heading: 16px;
+  --text-heading--line-height: 24px;
+  --text-heading--font-weight: 600;
+  --text-body-1: 15px;
+  --text-body-1--line-height: 22px;
+  --text-body-1--font-weight: 500;
+  --text-body-2: 14px;
+  --text-body-2--line-height: 21px;
+  --text-body-2--font-weight: 400;
+  --text-body-3: 13px;
+  --text-body-3--line-height: 19px;
+  --text-body-3--font-weight: 400;
+  --text-caption: 12px;
+  --text-caption--line-height: 18px;
+  --text-caption--font-weight: 400;
+  --text-micro: 11px;
+  --text-micro--line-height: 16px;
+  --text-micro--font-weight: 500;
 
-  /* Radius */
-
-  --radius-card: 20px;
-  --radius-pill: 999px;
-  --radius-sheet: 24px;
-
-  /* Effects */
-
-  --shadow-button: 1px 2px 15px rgb(0 0 0 / 0.15);
-  --shadow-card: 0 2px 12px rgb(20 23 31 / 0.06);
-
-  /* Gradients */
-
-  --gradient-hero: radial-gradient(90% 70% at 100% 0%, rgb(49 130 246 / 0.16) 0%, rgb(49 130 246 / 0) 70%), linear-gradient(180deg, #D7F3F5 0%, #EEF9FA 55%, #FFFFFF 100%);
-  --gradient-brand: radial-gradient(80% 100% at 100% 0%, rgb(255 255 255 / 0.22) 0%, rgb(255 255 255 / 0) 60%), linear-gradient(135deg, #1BB8BC 0%, #3A9CEB 100%);
+  /* 그라데이션 */
   --gradient-accent-soft: linear-gradient(135deg, #E3F6F7 0%, #E8F1FF 100%);
 
-  /* Typography */
+  /* ------------------------------------------------------------
+     별칭 (예전 이름). 값은 위 토큰을 가리킴. 새 코드에서 쓰지 말 것.
+     개발자 코드와 합친 뒤 scripts/migrate-tokens.mjs 를 돌리고 지움
+     ------------------------------------------------------------ */
+  --color-main-500: var(--color-brand-strong);
+  --color-main-400: var(--color-brand);
+  --color-main-300: var(--color-brand-muted);
+  --color-main-200: var(--color-brand-tint);
+  --color-main-150: var(--color-brand-soft);
+  --color-main-100: var(--palette-gray-50);
+
+  --color-accent-900: var(--color-cta);
+  --color-accent-800: var(--color-cta-hover);
+
+  --color-sub-yellow: var(--palette-yellow-500);
+  --color-sub-yellow-2: var(--palette-yellow-50);
+  --color-sub-red: var(--palette-red-500);
+  --color-sub-red-2: var(--palette-red-50);
+  --color-sub-green: var(--palette-green-500);
+  --color-sub-green-2: var(--palette-green-50);
+  --color-sub-purple: var(--palette-purple-500);
+  --color-sub-purple-2: var(--palette-purple-50);
+  --color-sub-blue: var(--palette-blue-500);
+  --color-sub-blue-2: var(--palette-blue-50);
+  --color-sub-mint: var(--palette-emerald-500);
+  --color-sub-mint-2: var(--palette-emerald-50);
+  --color-sub-pink: var(--palette-pink-500);
+  --color-sub-pink-2: var(--palette-pink-50);
+  --color-sub-orange: var(--palette-orange-500);
+  --color-sub-orange-2: var(--palette-orange-50);
+
+  --color-background-600: var(--palette-gray-900);
+  --color-background-500: var(--palette-gray-600);
+  --color-background-400: var(--palette-gray-500);
+  --color-background-300: var(--palette-gray-300);
+  --color-background-250: var(--palette-gray-100);
+  --color-background-200: var(--palette-gray-50);
+  --color-background-100: var(--palette-gray-0);
+
+  /* 별칭: 예전 타이포 (페이지 이름이 붙은 것). 새 화면은 위 display~micro 를 씀. 정리는 4단계 */
 
   --text-h1: 18px;
   --text-h1--line-height: 27px;
