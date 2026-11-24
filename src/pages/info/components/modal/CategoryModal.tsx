@@ -47,7 +47,7 @@ export default function CategoryModal({ category, onClose, onSelect }: CategoryM
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[90] flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:p-[24px]"
+      className="fixed inset-0 z-picker flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:p-[24px]"
       onClick={onClose}
     >
       <div
@@ -55,17 +55,17 @@ export default function CategoryModal({ category, onClose, onSelect }: CategoryM
         aria-modal="true"
         aria-labelledby={titleId}
         onClick={(event) => event.stopPropagation()}
-        className="motion-sheet flex w-full flex-col overflow-hidden rounded-t-[24px] bg-background-100 pb-[calc(12px+env(safe-area-inset-bottom))] sm:max-w-[440px] sm:rounded-[24px] sm:pb-[12px]"
+        className="motion-sheet flex w-full flex-col overflow-hidden rounded-t-[24px] bg-surface pb-[calc(12px+env(safe-area-inset-bottom))] sm:max-w-[440px] sm:rounded-[24px] sm:pb-[12px]"
       >
         <div className="flex shrink-0 items-center justify-between px-[20px] pb-[10px] pt-[20px] sm:px-[24px] sm:pt-[24px]">
-          <h2 id={titleId} className="text-[18px] font-bold text-background-600">
+          <h2 id={titleId} className="text-[18px] font-bold text-primary">
             어떤 정보를 찾아볼까요?
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="닫기"
-            className="-mr-[8px] flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-[10px] text-background-500 hover:bg-background-200"
+            className="-mr-[8px] flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md text-secondary hover:bg-surface-subtle"
           >
             <CloseIcon className="bodeum-icon-color h-[18px] w-[18px]" aria-hidden="true" />
           </button>
@@ -83,31 +83,31 @@ export default function CategoryModal({ category, onClose, onSelect }: CategoryM
                   type="button"
                   aria-pressed={isCurrent}
                   onClick={() => (isCurrent ? onClose() : onSelect(type))}
-                  className={`flex w-full cursor-pointer items-center gap-[14px] rounded-[14px] px-[12px] py-[10px] text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-main-400 ${
-                    isCurrent ? "bg-background-200" : "hover:bg-background-200"
+                  className={`flex w-full cursor-pointer items-center gap-[14px] rounded-[14px] px-[12px] py-[10px] text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand ${
+                    isCurrent ? "bg-surface-subtle" : "hover:bg-surface-subtle"
                   }`}
                 >
                   <span
-                    className={`flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[12px] ${bgColor} ${textColor}`}
+                    className={`flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-lg ${bgColor} ${textColor}`}
                   >
                     <Icon className="h-[24px] w-[24px]" aria-hidden="true" />
                   </span>
                   <span className="flex min-w-0 flex-1 flex-col">
                     <span
                       className={`text-[16px] leading-[22px] ${
-                        isCurrent ? "font-bold text-background-600" : "font-semibold text-background-600"
+                        isCurrent ? "font-bold text-primary" : "font-semibold text-primary"
                       }`}
                     >
                       {label}
                     </span>
                     {count !== undefined && (
-                      <span className="text-[13px] leading-[18px] text-background-400">
+                      <span className="text-[13px] leading-[18px] text-tertiary">
                         {count.toLocaleString()}곳
                       </span>
                     )}
                   </span>
                   {isCurrent && (
-                    <svg viewBox="0 0 16 16" className="h-[18px] w-[18px] shrink-0 text-main-500" aria-label="선택됨">
+                    <svg viewBox="0 0 16 16" className="h-[18px] w-[18px] shrink-0 text-brand-strong" aria-label="선택됨">
                       <path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   )}

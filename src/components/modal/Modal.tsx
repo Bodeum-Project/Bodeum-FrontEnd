@@ -41,7 +41,7 @@ export default function Modal({
   return (
     <div
       data-closing={isClosing}
-      className={`fixed inset-0 z-[60] flex items-center justify-center px-[20px] modal-backdrop motion-backdrop ${
+      className={`fixed inset-0 z-modal flex items-center justify-center px-[20px] modal-backdrop motion-backdrop ${
         isClosing ? "pointer-events-none" : ""
       }`}
       onMouseDown={(e) => {

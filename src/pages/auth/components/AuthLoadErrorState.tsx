@@ -14,16 +14,16 @@ export default function AuthLoadErrorState({
     <section
       role="alert"
       aria-live="assertive"
-      className="flex w-full max-w-[536px] flex-col items-center rounded-[10px] bg-background-100 px-[32px] py-[40px] text-center shadow-[0_0_15px_rgb(0_0_0_/_0.12)] max-sm:px-[20px] max-sm:py-[32px]"
+      className="flex w-full max-w-[536px] flex-col items-center rounded-md bg-surface px-[32px] py-[40px] text-center shadow-[0_0_15px_rgb(0_0_0_/_0.12)] max-sm:px-[20px] max-sm:py-[32px]"
     >
       <BrandLogo className="h-[34px]" />
-      <h1 className="mt-[28px] text-h1 text-background-600">
+      <h1 className="mt-[28px] text-h1 text-primary">
         진행 정보를 불러오지 못했습니다
       </h1>
-      <p className="mt-[12px] break-words text-h3-onboard text-background-500">
+      <p className="mt-[12px] break-words text-h3-onboard text-secondary">
         {message}
       </p>
-      <p className="mt-[8px] text-body-sub text-background-400">
+      <p className="mt-[8px] text-body-sub text-tertiary">
         저장된 로그인 및 온보딩 정보는 삭제되지 않습니다.
       </p>
       <ButtonFill

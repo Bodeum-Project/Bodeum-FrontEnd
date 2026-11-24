@@ -54,7 +54,7 @@ export default function ProfileSummaryCard({
   const displayNickname = dashboard.nickname;
 
   return (
-    <section className="relative isolate w-full overflow-hidden rounded-[24px] bg-[#F0FCFC] px-[20px] py-[22px] sm:px-[32px] sm:py-[28px]">
+    <section className="relative isolate w-full overflow-hidden rounded-[24px] bg-surface-hero px-[20px] py-[22px] sm:px-[32px] sm:py-[28px]">
       <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[120px] -top-[160px] -z-10 h-[360px] w-[360px]" />
 
       <div className="flex items-center gap-[14px] sm:gap-[18px]">
@@ -69,10 +69,10 @@ export default function ProfileSummaryCard({
         )}
 
         <div className="min-w-0 flex-1">
-          <h1 className="truncate text-[20px] font-bold leading-[28px] tracking-[-0.02em] text-background-600 sm:text-[22px]">
+          <h1 className="truncate text-[20px] font-bold leading-[28px] tracking-[-0.02em] text-primary sm:text-[22px]">
             {displayNickname}
           </h1>
-          <p className="mt-[4px] break-keep text-[13px] leading-[19px] text-background-500">
+          <p className="mt-[4px] break-keep text-[13px] leading-[19px] text-secondary">
             LEVEL {dashboard.level} · {diagnosisLabel} ·{" "}
             {childAge === null ? "연령 미등록" : `${childAge}세 아이`} · {region || "지역 미등록"}
           </p>
@@ -82,7 +82,7 @@ export default function ProfileSummaryCard({
           label="설정"
           icon={SettingIcon}
           onClick={onSettingsClick}
-          className="shrink-0 !bg-background-100/80 hover:!bg-background-100"
+          className="shrink-0 !bg-surface/80 hover:!bg-surface"
         />
       </div>
 
@@ -90,12 +90,12 @@ export default function ProfileSummaryCard({
         {myPageTabs.map((tab) => (
           <div
             key={tab.key}
-            className="rounded-[16px] bg-background-100/80 px-[8px] py-[14px] text-center shadow-[0_8px_40px_rgb(180_207_207_/_0.2)]"
+            className="rounded-xl bg-surface/80 px-[8px] py-[14px] text-center shadow-[0_8px_40px_rgb(180_207_207_/_0.2)]"
           >
-            <strong className="block text-[20px] font-bold leading-[26px] text-background-600">
+            <strong className="block text-[20px] font-bold leading-[26px] text-primary">
               {counts[tab.key]}
             </strong>
-            <span className="mt-[2px] block text-[12px] text-background-500 sm:text-[13px]">{tab.label}</span>
+            <span className="mt-[2px] block text-[12px] text-secondary sm:text-[13px]">{tab.label}</span>
           </div>
         ))}
       </div>

@@ -72,8 +72,8 @@ export default function CommunityWriteForm({
 
   return (
     <form onSubmit={submitPost} className="mx-auto w-full max-w-[1240px]">
-      <div className="rounded-[10px] border border-background-250 bg-background-100 px-[16px] pt-[16px] pb-[28px] sm:pt-[20px] sm:px-[20px] sm:pb-[40px]">
-        <p className="text-h1-onboard text-background-600">
+      <div className="rounded-md border border-default bg-surface px-[16px] pt-[16px] pb-[28px] sm:pt-[20px] sm:px-[20px] sm:pb-[40px]">
+        <p className="text-h1-onboard text-primary">
           {initialValues ? "게시글 수정하기" : "게시글 작성하기"}
         </p>
 

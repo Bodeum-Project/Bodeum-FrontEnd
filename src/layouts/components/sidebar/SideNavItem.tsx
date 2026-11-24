@@ -30,14 +30,14 @@ export default function SideNavItem({
         onClick={onClick}
         disabled={disabled}
         className={`
-          flex w-full items-center justify-between rounded-[10px] px-[15px] py-[9.5px] transition-colors text-h3-category-sub cursor-pointer
+          flex w-full items-center justify-between rounded-md px-[15px] py-[9.5px] transition-colors text-h3-category-sub cursor-pointer
           ${active
-            ? "bg-main-150 text-main-400"
+            ? "bg-brand-soft text-brand"
             : `
-              text-background-500
-              hover:bg-background-200
-              hover:text-background-600
-              active:bg-background-250
+              text-secondary
+              hover:bg-surface-subtle
+              hover:text-primary
+              active:bg-surface-muted
             `
           }
         `}

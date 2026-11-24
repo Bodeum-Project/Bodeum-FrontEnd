@@ -28,7 +28,7 @@ export default function CommunityWritePage() {
   }, [editor.isEditMode, navigate, setBreadcrumb]);
 
   if (editor.status === "checking-access" || editor.status === "redirecting") {
-    return <div className="min-h-full bg-background-100" />;
+    return <div className="min-h-full bg-surface" />;
   }
 
   if (editor.status === "loading") {
@@ -40,7 +40,7 @@ export default function CommunityWritePage() {
   }
 
   return (
-    <div className="min-h-full bg-background-100 px-[16px] py-[16px] md:px-[24px]">
+    <div className="min-h-full bg-surface px-[16px] py-[16px] md:px-[24px]">
       <CommunityWriteForm
         key={editor.post?.postId ?? "create"}
         onCancel={navigation.requestCancel}
@@ -51,7 +51,7 @@ export default function CommunityWritePage() {
       />
 
       {navigation.isCancelModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto px-[20px] py-[40px]">
+        <div className="fixed inset-0 z-modal flex items-center justify-center overflow-y-auto px-[20px] py-[40px]">
           <OnboardCancelBox
             title={
               editor.isEditMode
@@ -65,7 +65,7 @@ export default function CommunityWritePage() {
             }
             leftButtonText="계속하기"
             rightButtonText="중단하기"
-            className="z-[70]!"
+            className="z-modal-nested!"
             onLeftButtonClick={navigation.continueEditing}
             onRightButtonClick={navigation.cancelEditing}
           />

@@ -16,13 +16,13 @@ interface ToggleStatProps {
 
 const TOGGLE_STAT_COLOR_CLASS_NAME = {
   heart: {
-    default: "text-background-500",
-    enabled: "text-sub-red",
-    pressed: "text-sub-red-2",
+    default: "text-secondary",
+    enabled: "text-like",
+    pressed: "text-like-soft",
   },
   scrap: {
-    default: "text-background-500",
-    enabled: "text-background-600",
+    default: "text-secondary",
+    enabled: "text-primary",
   },
 } as const;
 

@@ -25,7 +25,7 @@ export default function MobileDrawer({ open, onClose, children }: MobileDrawerPr
 
   return (
     <div
-      className={`fixed inset-0 z-50 lg:hidden ${open ? "" : "pointer-events-none"}`}
+      className={`fixed inset-0 z-overlay lg:hidden ${open ? "" : "pointer-events-none"}`}
       aria-hidden={!open}
     >
       <div

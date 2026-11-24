@@ -26,7 +26,7 @@ export default function AsyncState({
   loadingText = "불러오는 중입니다",
   errorText = "오류가 발생했습니다.",
   className = "",
-  textClassName = "text-h2-list text-background-400",
+  textClassName = "text-h2-list text-tertiary",
 }: AsyncStateProps) {
   if (type === "loading") {
     const kind = skeleton ?? (variant === "page" ? "list" : "rows");

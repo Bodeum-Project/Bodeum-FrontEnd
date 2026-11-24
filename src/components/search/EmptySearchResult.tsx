@@ -7,7 +7,7 @@ export default function EmptySearchResult() {
       <p className="text-h3-category-sub text-background-700">
         검색결과가 없어요
       </p>
-      <p className="text-h6 text-background-400">
+      <p className="text-h6 text-tertiary">
         검색어를 변경해보세요
       </p>
     </div>

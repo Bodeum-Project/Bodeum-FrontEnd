@@ -65,25 +65,25 @@ export default function InfoItem({
     <BaseInfoCard
       onClick={clickable ? onClick : undefined}
       icon={
-        <div className={`mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-[18px] sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-[20px] ${bgColor} ${textColor}`}>
+        <div className={`mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-[18px] sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-2xl ${bgColor} ${textColor}`}>
           <Icon className="h-[32px] w-[32px] sm:h-[38px] sm:w-[38px]" />
         </div>
       }
       left={
         <div className="flex min-w-0 flex-col py-[2px]">
           {/* 정보·소식 공통 3줄: 제목 → 주소 → 딱지(세부 분류·지역). 조회·스크랩 수는 상세에서만 */}
-          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 ${phone ? "sm:pr-[120px]" : ""}`}>
+          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-primary ${phone ? "sm:pr-[120px]" : ""}`}>
             {name}
           </h3>
 
           {streetAddress && (
-            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-background-500">{streetAddress}</p>
+            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-secondary">{streetAddress}</p>
           )}
 
           <div className="mt-[8px] flex min-w-0 items-center gap-[6px]">
-            <span className={`shrink-0 ${bgColor} rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${textColor}`}>{subCategoryKo}</span>
+            <span className={`shrink-0 ${bgColor} rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${textColor}`}>{subCategoryKo}</span>
             {regionLabel && (
-              <span className="min-w-0 truncate bg-background-200 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
+              <span className="min-w-0 truncate bg-surface-subtle rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-secondary">
                 {regionLabel}
               </span>
             )}

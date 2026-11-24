@@ -250,7 +250,7 @@ export default function AIChatPage() {
   });
 
   return (
-    <div className="flex h-[calc(100dvh-130px-env(safe-area-inset-bottom))] min-h-0 justify-center overflow-hidden bg-background-100 lg:h-[calc(100vh-72px)]">
+    <div className="flex h-[calc(100dvh-130px-env(safe-area-inset-bottom))] min-h-0 justify-center overflow-hidden bg-surface lg:h-[calc(100vh-72px)]">
       <div className="flex h-full min-h-0 w-full flex-col items-center">
         <AiChatPanel
           inputValue={inputValue}

@@ -97,13 +97,13 @@ export default function AiChatMessageList({
           role="alert"
           className="flex h-full min-h-full w-full flex-1 flex-col items-center justify-center gap-[12px] text-center"
         >
-          <p className="text-h3-onboard text-background-600">
+          <p className="text-h3-onboard text-primary">
             대화를 불러오지 못했습니다.
           </p>
           <button
             type="button"
             onClick={onRetry}
-            className="cursor-pointer rounded-[10px] btn-primary px-[16px] py-[8px] text-h4-list focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
+            className="cursor-pointer rounded-md btn-primary px-[16px] py-[8px] text-h4-list focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           >
             다시 시도
           </button>

@@ -18,10 +18,10 @@ export default function RatingInput({
   return (
     <div>
       <div className="mb-[12px] flex items-center">
-        <span className="text-h3-onboard text-background-500">
+        <span className="text-h3-onboard text-secondary">
           별점을 남겨주세요
         </span>
-        <span className="text-main-400">*</span>
+        <span className="text-brand">*</span>
       </div>
 
       <div
@@ -47,7 +47,7 @@ export default function RatingInput({
           })}
         </div>
 
-        <span className="ml-[12px] text-h2-onboard text-main-400">
+        <span className="ml-[12px] text-h2-onboard text-brand">
           {current}
         </span>
       </div>

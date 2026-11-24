@@ -343,7 +343,7 @@ const guardianRoleOptions = [
   "[지혜 조력자] : 나만의 노하우를 적극적으로 나누고 싶은 단계",
 ];
 
-const formLabelClassName = "text-h3-onboard text-background-500";
+const formLabelClassName = "text-h3-onboard text-secondary";
 
 function FormGroup({
   label,
@@ -382,7 +382,7 @@ function StepProgress({ activeStep }: { activeStep: OnboardingStep }) {
           key={index}
           className={[
             "h-[5px] w-[160px] rounded-[4px]",
-            index < activeStep ? "bg-main-400" : "bg-background-300",
+            index < activeStep ? "bg-brand" : "bg-background-300",
           ].join(" ")}
         />
       ))}
@@ -405,12 +405,12 @@ function StepHeader({
 }) {
   return (
     <div className="flex flex-col gap-[8px]">
-      <h1 id={titleId} className="text-h1-onboard text-background-600">
+      <h1 id={titleId} className="text-h1-onboard text-primary">
         {titleBefore}
-        <span className="text-main-500">{highlight}</span>
+        <span className="text-brand-strong">{highlight}</span>
         {titleAfter}
       </h1>
-      <p className="w-full max-w-[536px] text-h2-onboard text-background-500">
+      <p className="w-full max-w-[536px] text-h2-onboard text-secondary">
         {description}
       </p>
     </div>
@@ -429,7 +429,7 @@ function SkipButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="flex cursor-pointer items-center gap-[4px] text-h3-onboard text-background-500 disabled:cursor-not-allowed disabled:opacity-60"
+      className="flex cursor-pointer items-center gap-[4px] text-h3-onboard text-secondary disabled:cursor-not-allowed disabled:opacity-60"
     >
       <span>건너뛰기</span>
       <span aria-hidden="true">&gt;</span>
@@ -457,7 +457,7 @@ function LimitedTextInput({
         placeholder={placeholder}
         className="w-full"
       />
-      <span className="self-end text-h6-list text-background-400">
+      <span className="self-end text-h6-list text-tertiary">
         {length}/{maxLength}
       </span>
     </div>

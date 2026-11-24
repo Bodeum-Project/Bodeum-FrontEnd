@@ -36,7 +36,7 @@ export function CommunityTextarea({
 }: CommunityTextareaProps) {
   return (
     <div
-      className={`flex w-full max-w-full min-w-0 flex-col rounded-[10px] border border-background-300 bg-background-200 transition-colors duration-150 focus-within:border-main-400 focus-within:bg-background-100 ${
+      className={`flex w-full max-w-full min-w-0 flex-col rounded-md border border-strong bg-surface-subtle transition-colors duration-150 focus-within:border-brand focus-within:bg-surface ${
         compact ? "h-[96px]" : "h-[158px]"
       }`}
     >
@@ -62,10 +62,10 @@ export function CommunityTextarea({
           maxLength={maxLength}
           placeholder={placeholder}
           aria-label={ariaLabel}
-          className={`h-full w-full resize-none bg-transparent px-[20px] pt-[12px] pb-[5px] text-h2-onboard text-background-600 outline-none placeholder:text-background-400 ${placeholderClassName}`}
+          className={`h-full w-full resize-none bg-transparent px-[20px] pt-[12px] pb-[5px] text-h2-onboard text-primary outline-none placeholder:text-tertiary ${placeholderClassName}`}
         />
         {showGuideline && !value && (
-          <p className="pointer-events-none absolute left-[20px] right-[20px] top-[40px] whitespace-normal break-words text-h2-onboard text-background-400">
+          <p className="pointer-events-none absolute left-[20px] right-[20px] top-[40px] whitespace-normal break-words text-h2-onboard text-tertiary">
             이웃 부모에게 상처를 주는 욕설, 비방, 광고 등 부적절한 내용은 무통보 삭제되며,
             누적 시 서비스 이용이 제한될 수 있습니다.
           </p>
@@ -73,7 +73,7 @@ export function CommunityTextarea({
       </div>
       {maxLength !== undefined && (
         <div className="shrink-0 px-[20px] pb-[12px] text-right">
-          <span aria-live="polite" className="text-h2-onboard text-background-400">
+          <span aria-live="polite" className="text-h2-onboard text-tertiary">
             ({value.length}/{maxLength})
           </span>
         </div>
@@ -92,7 +92,7 @@ export default function CommunityContentFields({
   return (
     <fieldset className={showLegend ? "mt-[11px]" : ""}>
       {showLegend && (
-        <legend className="text-h3-onboard text-background-500">본문 작성</legend>
+        <legend className="text-h3-onboard text-secondary">본문 작성</legend>
       )}
       <label htmlFor="community-title" className="sr-only">
         게시글 제목
@@ -103,11 +103,11 @@ export default function CommunityContentFields({
           value={title}
           onChange={(event) => onTitleChange(event.target.value.slice(0, MAX_TITLE_LENGTH))}
           placeholder="제목을 입력해 주세요*"
-          className="h-[48px] w-full [&>div]:!border [&>div]:!border-background-300 [&>div:focus-within]:!border-main-400 [&_input]:pr-[72px]"
+          className="h-[48px] w-full [&>div]:!border [&>div]:!border-strong [&>div:focus-within]:!border-brand [&_input]:pr-[72px]"
         />
         <span
           aria-live="polite"
-          className="pointer-events-none absolute right-[20px] top-1/2 -translate-y-1/2 text-h2-onboard text-background-400"
+          className="pointer-events-none absolute right-[20px] top-1/2 -translate-y-1/2 text-h2-onboard text-tertiary"
         >
           ({title.length}/{MAX_TITLE_LENGTH})
         </span>

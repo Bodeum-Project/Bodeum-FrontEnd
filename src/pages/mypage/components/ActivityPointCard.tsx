@@ -24,25 +24,25 @@ export default function ActivityPointCard({
 }: ActivityPointCardProps) {
   return (
     <aside>
-      <section className="rounded-[20px] border border-background-250 bg-background-100 px-[20px] py-[20px]">
-        <h2 className="text-[14px] font-semibold text-background-500">나의 활동 포인트</h2>
-        <p className="mt-[4px] text-[24px] font-bold leading-[32px] tracking-[-0.02em] text-main-500">
+      <section className="rounded-2xl border border-default bg-surface px-[20px] py-[20px]">
+        <h2 className="text-[14px] font-semibold text-secondary">나의 활동 포인트</h2>
+        <p className="mt-[4px] text-[24px] font-bold leading-[32px] tracking-[-0.02em] text-brand-strong">
           {totalPoint.toLocaleString()}
           <span className="ml-[2px] text-[16px] font-semibold">pt</span>
         </p>
 
-        <div className="mt-[14px] flex flex-col divide-y divide-background-250 border-t border-background-250">
+        <div className="mt-[14px] flex flex-col divide-y divide-default border-t border-default">
           {isLoading && (
             <RowsSkeleton count={3} label="포인트 내역을 불러오는 중입니다." />
           )}
 
           {errorMessage && (
-            <div className="flex flex-col items-center gap-[8px] py-[12px] text-h4-list text-background-500">
+            <div className="flex flex-col items-center gap-[8px] py-[12px] text-h4-list text-secondary">
               <p>{errorMessage}</p>
               <button
                 type="button"
                 onClick={onRetry}
-                className="cursor-pointer text-main-400 underline"
+                className="cursor-pointer text-brand underline"
               >
                 다시 시도
               </button>
@@ -54,13 +54,13 @@ export default function ActivityPointCard({
               key={activity.pointType}
               className="flex items-center justify-between py-[12px]"
             >
-              <span className="text-[13px] text-background-500">
+              <span className="text-[13px] text-secondary">
                 {activity.label}
-                <span className="ml-[4px] text-background-400">+{activity.pointPerAction}pt</span>
+                <span className="ml-[4px] text-tertiary">+{activity.pointPerAction}pt</span>
               </span>
-              <span className="text-[14px] font-semibold text-background-600">
+              <span className="text-[14px] font-semibold text-primary">
                 {activity.earnedPoint}pt
-                <span className="ml-[6px] text-[12px] font-medium text-background-400">{activity.activityCount}회</span>
+                <span className="ml-[6px] text-[12px] font-medium text-tertiary">{activity.activityCount}회</span>
               </span>
             </div>
           ))}
@@ -71,7 +71,7 @@ export default function ActivityPointCard({
         <button
           type="button"
           onClick={onOpenBadgeGrade}
-          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-[16px] bg-main-150 text-[13px] font-semibold text-background-600 transition-colors hover:bg-main-200"
+          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-xl bg-brand-soft text-[13px] font-semibold text-primary transition-colors hover:bg-brand-tint"
         >
           <BadgeIcon className="h-[20px] w-[20px]" aria-hidden="true" />
           보듬 뱃지 등급 안내
@@ -79,7 +79,7 @@ export default function ActivityPointCard({
         <button
           type="button"
           onClick={onOpenBadgeHelp}
-          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-[16px] bg-main-150 text-[13px] font-semibold text-background-600 transition-colors hover:bg-main-200"
+          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-xl bg-brand-soft text-[13px] font-semibold text-primary transition-colors hover:bg-brand-tint"
         >
           <BadgeHelpIcon className="h-[24px] w-[24px]" aria-hidden="true" />
           보듬 뱃지란?

@@ -31,15 +31,15 @@ export default function PostListItem({
   return (
     <button
       onClick={onClick}
-      className="press group flex w-full cursor-pointer items-center gap-[12px] border-b border-background-250 py-[14px] text-left last:border-b-0 active:opacity-70"
+      className="press group flex w-full cursor-pointer items-center gap-[12px] border-b border-default py-[14px] text-left last:border-b-0 active:opacity-70"
     >
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[15px] font-medium tracking-[-0.02em] text-background-600 transition-colors group-hover:text-main-500">{title}</p>
-        <div className="mt-[6px] flex min-w-0 items-center gap-[6px] text-[12px] text-background-400">
+        <p className="truncate text-[15px] font-medium tracking-[-0.02em] text-primary transition-colors group-hover:text-brand-strong">{title}</p>
+        <div className="mt-[6px] flex min-w-0 items-center gap-[6px] text-[12px] text-tertiary">
           {tag && (
             <span
-              className={`shrink-0 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${
-                tagTone === "mint" ? "bg-main-150 text-main-500" : "bg-background-200 text-background-500"
+              className={`shrink-0 rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${
+                tagTone === "mint" ? "bg-brand-soft text-brand-strong" : "bg-surface-subtle text-secondary"
               }`}
             >
               {tag}

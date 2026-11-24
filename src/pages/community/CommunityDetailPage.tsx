@@ -63,7 +63,7 @@ export default function CommunityDetailPage() {
   }
 
   if (!hasDetailAccess || isUnauthorizedError(postError)) {
-    return <div className="min-h-[calc(100vh-72px)] bg-background-200" />;
+    return <div className="min-h-[calc(100vh-72px)] bg-surface-subtle" />;
   }
 
   if (isPending) {
@@ -75,7 +75,7 @@ export default function CommunityDetailPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-72px)] bg-background-200 px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
+    <div className="min-h-[calc(100vh-72px)] bg-surface-subtle px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
       <div
         className="motion-fade mx-auto flex w-full flex-col gap-[18px]"
       >
@@ -128,17 +128,17 @@ function CommunityRelatedPostsSection({
   ).slice(0, 5);
 
   return (
-    <section className="flex flex-col gap-[14px] rounded-[10px] border border-background-250 bg-background-100 px-[16px] py-[18px] sm:px-[24px] sm:py-[20px]">
-      <p className="text-h2-list text-background-600">
+    <section className="flex flex-col gap-[14px] rounded-md border border-default bg-surface px-[16px] py-[18px] sm:px-[24px] sm:py-[20px]">
+      <p className="text-h2-list text-primary">
         {communityCategoryMap[category]} 게시판의 다른 글
       </p>
 
       {isPending ? (
         <RowsSkeleton count={3} label="게시글을 불러오는 중입니다." />
       ) : isError ? (
-        <p className="py-6 text-center text-background-500">게시글을 불러오지 못했습니다.</p>
+        <p className="py-6 text-center text-secondary">게시글을 불러오지 못했습니다.</p>
       ) : relatedPosts.length === 0 ? (
-        <p className="py-6 text-center text-background-500">같은 게시판의 다른 글이 없습니다.</p>
+        <p className="py-6 text-center text-secondary">같은 게시판의 다른 글이 없습니다.</p>
       ) : (
         <div className="space-y-[8px]">
           {relatedPosts.map((item) => (

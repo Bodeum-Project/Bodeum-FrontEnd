@@ -30,12 +30,12 @@ export default function RelatedNewsSection({
         <RowsSkeleton count={3} label="관련 소식을 불러오는 중입니다." />
       )}
       {isError && (
-        <p className="py-[20px] text-center text-h6-list text-background-500">
+        <p className="py-[20px] text-center text-h6-list text-secondary">
           관련 소식을 불러오지 못했습니다.
         </p>
       )}
       {!isPending && !isError && items.length === 0 && (
-        <p className="py-[20px] text-center text-h6-list text-background-500">
+        <p className="py-[20px] text-center text-h6-list text-secondary">
           같은 지역에서 모집 중인 소식이 없습니다.
         </p>
       )}

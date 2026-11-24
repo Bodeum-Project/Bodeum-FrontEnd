@@ -8,8 +8,8 @@ import { formatRegionDisplayLabel } from "@/constants/regions";
 import InfoItemNewsIcon from "@/assets/icons/InfoItem-news.svg?react";
 
 const newsCategoryStyle = {
-  bgColor: "bg-main-150",
-  textColor: "text-main-500",
+  bgColor: "bg-brand-soft",
+  textColor: "text-brand-strong",
 } as const;
 
 interface ProgramItemProps {
@@ -51,10 +51,10 @@ export default function ProgramItem({
 
   return (
     <BaseInfoCard
-      pressedBorderColor="peer-active:border-main-400"
+      pressedBorderColor="peer-active:border-brand"
       onClick={onClick}
       icon={
-        <div className="mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-[18px] bg-main-200 text-main-500 sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-[20px]">
+        <div className="mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-[18px] bg-brand-tint text-brand-strong sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-2xl">
           {showThumbnail ? (
             // 포스터는 제목이 위쪽에 있는 경우가 많아 윗부분 기준으로 자름
             <img
@@ -72,20 +72,20 @@ export default function ProgramItem({
       left={
         <div className="flex min-w-0 flex-col py-[2px]">
           {/* 정보·소식 공통 3줄: 제목 → 기관명 → 딱지(카테고리·지역), 통계는 우측 하단 */}
-          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 ${rightLabel ? "sm:pr-[88px]" : ""}`}>
+          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-primary ${rightLabel ? "sm:pr-[88px]" : ""}`}>
             {name}
           </h3>
 
           {serviceText && (
-            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-background-500">{serviceText}</p>
+            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-secondary">{serviceText}</p>
           )}
 
           <div className="mt-[8px] flex min-w-0 items-center gap-[6px] pr-[84px] sm:pr-[110px]">
-            <span className={`shrink-0 ${newsCategoryStyle.bgColor} rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${newsCategoryStyle.textColor}`}>
+            <span className={`shrink-0 ${newsCategoryStyle.bgColor} rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${newsCategoryStyle.textColor}`}>
               {categoryLabel}
             </span>
             {address && (
-              <span className="min-w-0 truncate bg-background-200 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
+              <span className="min-w-0 truncate bg-surface-subtle rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-secondary">
                 {formatRegionDisplayLabel(address)}
               </span>
             )}

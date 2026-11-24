@@ -14,9 +14,9 @@ interface DetailActionButtonProps {
 }
 
 const VARIANT_CLASS: Record<Variant, string> = {
-  dark: "btn-dark disabled:bg-background-250 disabled:bg-none disabled:text-background-400 disabled:filter-none",
-  soft: "bg-background-200 text-background-600 hover:bg-[#DFE3EA] active:bg-[#D6DBE3]",
-  primarySoft: "bg-main-150 text-main-500 hover:bg-main-200",
+  dark: "btn-dark disabled:bg-surface-muted disabled:bg-none disabled:text-tertiary disabled:filter-none",
+  soft: "bg-surface-subtle text-primary hover:bg-state-hover active:bg-state-pressed",
+  primarySoft: "bg-brand-soft text-brand-strong hover:bg-brand-tint",
   dangerSoft: "bg-[#FFEFF1] text-[#E5495B] hover:bg-[#FFE2E6]",
 };
 
@@ -52,7 +52,7 @@ export default function DetailActionButton({
       onClick={onClick}
       disabled={disabled}
       aria-pressed={pressed}
-      className={`inline-flex h-[40px] cursor-pointer items-center justify-center gap-[6px] rounded-[12px] px-[16px] text-[14px] font-semibold press disabled:cursor-not-allowed disabled:opacity-70 ${VARIANT_CLASS[variant]} ${className}`}
+      className={`inline-flex h-[40px] cursor-pointer items-center justify-center gap-[6px] rounded-lg px-[16px] text-[14px] font-semibold press disabled:cursor-not-allowed disabled:opacity-70 ${VARIANT_CLASS[variant]} ${className}`}
     >
       {iconPosition === "left" && icon}
       {label}

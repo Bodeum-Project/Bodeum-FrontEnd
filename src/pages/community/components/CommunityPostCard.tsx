@@ -40,22 +40,22 @@ export default function CommunityPostCard({
           onClick?.();
         }
       }}
-      className="press group relative flex min-h-[112px] w-full min-w-0 cursor-pointer flex-col rounded-[16px] border border-background-250 bg-background-100 px-[18px] py-[16px] transition-colors hover:bg-background-200 active:bg-background-250 sm:px-[22px] sm:py-[18px]"
+      className="press group relative flex min-h-[112px] w-full min-w-0 cursor-pointer flex-col rounded-xl border border-default bg-surface px-[18px] py-[16px] transition-colors hover:bg-surface-subtle active:bg-surface-muted sm:px-[22px] sm:py-[18px]"
     >
       <div className="flex min-w-0 items-center gap-[6px] pr-[80px]">
-        <span className="shrink-0 rounded-[6px] bg-main-150 px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-main-500">
+        <span className="shrink-0 rounded-xs bg-brand-soft px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-brand-strong">
           {categoryLabel}
         </span>
       </div>
-      <span className="absolute right-[18px] top-[18px] text-[12px] leading-[14px] text-background-400 sm:right-[22px] sm:top-[20px]">
+      <span className="absolute right-[18px] top-[18px] text-[12px] leading-[14px] text-tertiary sm:right-[22px] sm:top-[20px]">
         {createdAt}
       </span>
 
-      <p className="mt-[10px] line-clamp-1 text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 transition-colors group-hover:text-main-500">
+      <p className="mt-[10px] line-clamp-1 text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-primary transition-colors group-hover:text-brand-strong">
         {title}
       </p>
       {/* 본문이 길면 통계와 겹치기 전에 말줄임 */}
-      <p className="mt-[6px] truncate pr-[150px] text-[13px] leading-[19px] text-background-500">{content}</p>
+      <p className="mt-[6px] truncate pr-[150px] text-[13px] leading-[19px] text-secondary">{content}</p>
 
       <div className="absolute bottom-[16px] right-[18px] flex items-center gap-[10px] sm:bottom-[18px] sm:right-[22px]">
         <HeartStat count={likes} isActive={initialIsLiked} />

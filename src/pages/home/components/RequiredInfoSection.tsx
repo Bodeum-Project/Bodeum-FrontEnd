@@ -94,7 +94,7 @@ export default function RequiredInfoSection() {
       onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative isolate -mx-[16px] -mt-[72px] overflow-hidden bg-[linear-gradient(180deg,#F0FCFC_72%,#FFFFFF)] px-[20px] lg:bg-none lg:bg-[#F0FCFC] pb-[28px] pt-[88px] md:-mx-[24px] md:px-[28px] lg:mx-0 lg:mt-0 lg:rounded-[28px] lg:px-[40px] lg:pb-[40px] lg:pt-[44px]"
+      className="relative isolate -mx-[16px] -mt-[72px] overflow-hidden bg-[linear-gradient(180deg,#F0FCFC_72%,#FFFFFF)] px-[20px] lg:bg-none lg:bg-surface-hero pb-[28px] pt-[88px] md:-mx-[24px] md:px-[28px] lg:mx-0 lg:mt-0 lg:rounded-[28px] lg:px-[40px] lg:pb-[40px] lg:pt-[44px]"
     >
       {/* 은은한 블러 원: 무게가 좌측 상단에 실리도록 두 원 모두 좌상단 모서리 쪽에 둔다 */}
       <span aria-hidden="true" className="hero-blob pointer-events-none absolute -left-[110px] -top-[130px] -z-10 h-[320px] w-[320px]" />
@@ -111,8 +111,8 @@ export default function RequiredInfoSection() {
       />
 
       {/* 누구를 위한 어떤 서비스인지 첫 화면에서 바로 알 수 있게 */}
-      <p className="text-[14px] font-semibold text-main-500">발달이 느린 아이 가족을 위한 정보 플랫폼</p>
-      <h1 className="mt-[8px] text-[24px] font-bold leading-[34px] tracking-[-0.02em] text-background-600 lg:text-[28px] lg:leading-[40px]">
+      <p className="text-[14px] font-semibold text-brand-strong">발달이 느린 아이 가족을 위한 정보 플랫폼</p>
+      <h1 className="mt-[8px] text-[24px] font-bold leading-[34px] tracking-[-0.02em] text-primary lg:text-[28px] lg:leading-[40px]">
         흩어진 기관·병원·복지 정보,
         <br />
         보듬보듬에서 한 번에 찾아요
@@ -130,13 +130,13 @@ export default function RequiredInfoSection() {
               className="press-sm group flex min-w-0 cursor-pointer flex-col items-center gap-[10px] sm:w-[76px]"
             >
               <span
-                className={`flex aspect-square w-full max-w-[64px] items-center justify-center rounded-[18px] bg-background-100/80 shadow-[0_8px_100px_rgb(180_207_207_/_0.2)] transition-[transform,background-color] group-hover:bg-background-100 group-active:scale-95 ${textColor}`}
+                className={`flex aspect-square w-full max-w-[64px] items-center justify-center rounded-[18px] bg-surface/80 shadow-soft transition-[transform,background-color] group-hover:bg-surface group-active:scale-95 ${textColor}`}
               >
                 <Icon className="h-[30px] w-[30px]" />
               </span>
               <span className="flex flex-col items-center leading-none">
-                <span className="text-[14px] font-medium text-background-600">{label}</span>
-                <span className="mt-[5px] text-[11px] text-background-400">
+                <span className="text-[14px] font-medium text-primary">{label}</span>
+                <span className="mt-[5px] text-[11px] text-tertiary">
                   {countMap[type].toLocaleString()}곳
                 </span>
               </span>

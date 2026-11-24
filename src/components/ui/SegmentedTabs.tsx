@@ -19,12 +19,12 @@ export default function SegmentedTabs<T extends string>({
   return (
     <div
       role="tablist"
-      className={`relative flex rounded-full bg-background-200 p-[4px] ${className}`}
+      className={`relative flex rounded-full bg-surface-subtle p-[4px] ${className}`}
     >
       {/* 흰 선택 배경이 고른 탭으로 미끄러지듯 이동 */}
       <span
         aria-hidden="true"
-        className="motion-slide-indicator pointer-events-none absolute inset-y-[4px] left-[4px] rounded-full bg-background-100 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="motion-slide-indicator pointer-events-none absolute inset-y-[4px] left-[4px] rounded-full bg-surface transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{
           width: `calc((100% - 8px) / ${options.length})`,
           transform: `translateX(${selectedIndex * 100}%)`,
@@ -42,8 +42,8 @@ export default function SegmentedTabs<T extends string>({
             onClick={() => onChange(option.value)}
             className={`relative h-[36px] flex-1 cursor-pointer rounded-full text-[14px] transition-colors duration-200 ${
               selected
-                ? "font-semibold text-background-600"
-                : "font-medium text-background-400 hover:text-background-500"
+                ? "font-semibold text-primary"
+                : "font-medium text-tertiary hover:text-secondary"
             }`}
           >
             {option.label}

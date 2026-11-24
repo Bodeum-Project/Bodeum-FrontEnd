@@ -25,7 +25,7 @@ export default function MyPage() {
         variant="section"
         skeleton="mypage"
         loadingText="마이페이지 정보를 불러오는 중입니다."
-        className="flex min-h-[calc(100vh-72px)] items-center justify-center bg-background-200 text-h3-onboard text-background-500"
+        className="flex min-h-[calc(100vh-72px)] items-center justify-center bg-surface-subtle text-h3-onboard text-secondary"
         textClassName=""
       />
     );
@@ -40,7 +40,7 @@ export default function MyPage() {
           dashboardQuery.error,
           "마이페이지 정보를 불러오지 못했습니다.",
         )}
-        className="flex min-h-[calc(100vh-72px)] flex-col items-center justify-center gap-[16px] bg-background-200 text-h3-onboard text-background-500"
+        className="flex min-h-[calc(100vh-72px)] flex-col items-center justify-center gap-[16px] bg-surface-subtle text-h3-onboard text-secondary"
         textClassName=""
       />
     );
@@ -54,7 +54,7 @@ export default function MyPage() {
   };
 
   return (
-    <div className="min-h-full bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
+    <div className="min-h-full bg-surface px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
       <div className="mx-auto w-full max-w-[896px]">
         <ProfileSummaryCard
           dashboard={dashboard}

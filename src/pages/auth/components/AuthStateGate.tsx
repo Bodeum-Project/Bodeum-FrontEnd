@@ -188,7 +188,7 @@ export default function AuthStateGate({ children }: AuthStateGateProps) {
 
   if (isChecking) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-main-150 px-[20px] py-[40px]">
+      <main className="flex min-h-screen items-center justify-center bg-brand-soft px-[20px] py-[40px]">
         <AuthLoadingState message="로그인 상태를 확인하고 있습니다." />
       </main>
     );
@@ -196,7 +196,7 @@ export default function AuthStateGate({ children }: AuthStateGateProps) {
 
   if (errorMessage) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-main-150 px-[20px] py-[40px]">
+      <main className="flex min-h-screen items-center justify-center bg-brand-soft px-[20px] py-[40px]">
         <AuthLoadErrorState
           message={errorMessage}
           onRetry={() => setRetry((current) => current + 1)}

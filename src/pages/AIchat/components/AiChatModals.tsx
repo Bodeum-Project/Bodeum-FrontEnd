@@ -68,13 +68,13 @@ export function AiChatEntryModal({
                   checked={consentChecked}
                   onChange={(event) => onConsentChange(event.target.checked)}
                   label="(선택) AI 챗봇 이용 동의 방침"
-                  className="gap-[4px] text-h2-onboard text-background-500"
+                  className="gap-[4px] text-h2-onboard text-secondary"
                 />
                 <a
                   href={legalLinks.aiChatTerms}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-pointer text-h3-onboard text-background-500 underline underline-offset-2"
+                  className="cursor-pointer text-h3-onboard text-secondary underline underline-offset-2"
                 >
                   전문보기
                 </a>
@@ -109,7 +109,7 @@ export function AiChatEntryModal({
               checked={noticeChecked}
               onChange={(event) => onNoticeChange(event.target.checked)}
               label="네, 확인했습니다"
-              className="gap-[4px] text-h2-onboard text-background-500"
+              className="gap-[4px] text-h2-onboard text-secondary"
             />
           </div>
         }
@@ -152,7 +152,7 @@ export function AiFeedbackModal({
                 checked={selectedReasons.includes(reason.value)}
                 onChange={() => onToggleReason(reason.value)}
                 label={reason.label}
-                className="gap-[4px] text-h2-onboard text-background-500"
+                className="gap-[4px] text-h2-onboard text-secondary"
               />
             ))}
           </div>

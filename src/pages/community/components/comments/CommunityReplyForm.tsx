@@ -29,12 +29,12 @@ export default function CommunityReplyForm({
   };
 
   return (
-    <div className="relative border-y border-background-250 bg-background-200 py-[16px] pr-[16px] pl-[52px] sm:py-[20px] sm:px-[80px]">
+    <div className="relative border-y border-default bg-surface-subtle py-[16px] pr-[16px] pl-[52px] sm:py-[20px] sm:px-[80px]">
       <span
         aria-hidden="true"
         className="absolute top-[16px] left-[8px] sm:top-[20px] sm:left-[17px] flex h-[40px] w-[40px] items-center justify-center"
       >
-        <span className="h-[24px] w-[24px] border-b border-l border-background-300" />
+        <span className="h-[24px] w-[24px] border-b border-l border-strong" />
       </span>
       <textarea
         value={reply}
@@ -49,7 +49,7 @@ export default function CommunityReplyForm({
           }
         }}
         placeholder={`${targetAuthor}에게 답글 쓰기`}
-        className="h-[100px] w-full resize-none rounded-[9px] border border-background-300 bg-background-100 px-[16px] py-[14px] text-h6-list text-background-600 outline-none placeholder:text-background-500 focus:border-main-400 disabled:cursor-not-allowed disabled:opacity-50"
+        className="h-[100px] w-full resize-none rounded-[9px] border border-strong bg-surface px-[16px] py-[14px] text-h6-list text-primary outline-none placeholder:text-secondary focus:border-brand disabled:cursor-not-allowed disabled:opacity-50"
       />
       <div className="mt-[10px] flex justify-end gap-[8px]">
         <MainButton size="S" stroke disabled={isSubmitting} onClick={cancelReply}>

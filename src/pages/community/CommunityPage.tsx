@@ -163,7 +163,7 @@ export default function CommunityPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-72px)] bg-background-100">
+    <div className="min-h-[calc(100vh-72px)] bg-surface">
       <div className="mx-auto flex flex-col px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
         <CommunitySection onWriteClick={handleWriteClick} onPostClick={handlePostClick} />
 
@@ -189,7 +189,7 @@ export default function CommunityPage() {
           />
 
           {visiblePosts.length === 0 ? (
-            <div className="py-16 text-center text-background-500">검색 결과가 없습니다.</div>
+            <div className="py-16 text-center text-secondary">검색 결과가 없습니다.</div>
           ) : (
             <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
               {visiblePosts.map((post) => {

@@ -115,9 +115,9 @@ export default function SideBar({ variant = "desktop" }: SideBarProps) {
     .join(" · ");
 
   return (
-    <aside className={`flex h-screen flex-col bg-white ${variant === "desktop" ? "w-[232px]" : "w-[260px]"}`}>
+    <aside className={`flex h-screen flex-col bg-surface ${variant === "desktop" ? "w-[232px]" : "w-[260px]"}`}>
       <div
-        className={`flex shrink-0 items-center border-b border-background-250 ${variant === "desktop" ? "h-[72px] px-[30px]" : "h-[60px] px-[20px]"}`}
+        className={`flex shrink-0 items-center border-b border-default ${variant === "desktop" ? "h-[72px] px-[30px]" : "h-[60px] px-[20px]"}`}
       >
         <button
           type="button"
@@ -134,10 +134,10 @@ export default function SideBar({ variant = "desktop" }: SideBarProps) {
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col border-r border-background-250">
+      <div className="flex flex-1 flex-col border-r border-default">
         <div className={variant === "desktop" ? "px-[16px] pt-[24px]" : "px-4 pt-[20px]"}>
           {variant === "desktop" ? null : brief === null ? (
-            <div className="h-[142px] w-[181px] animate-pulse rounded-[8px] border border-background-250 bg-background-150" />
+            <div className="h-[142px] w-[181px] animate-pulse rounded-sm border border-default bg-background-150" />
           ) : (
             <UserSection
               type={userSectionType}
@@ -167,8 +167,8 @@ export default function SideBar({ variant = "desktop" }: SideBarProps) {
           </div>
         </div>
 
-        <div className="mt-auto border-t border-background-250 px-[16px]">
-          <div className="mb-[16px] pt-[12px] flex text-body-sub text-background-500">
+        <div className="mt-auto border-t border-default px-[16px]">
+          <div className="mb-[16px] pt-[12px] flex text-body-sub text-secondary">
             <a
               href={legalLinks.privacyPolicy}
               target="_blank"
@@ -199,7 +199,7 @@ export default function SideBar({ variant = "desktop" }: SideBarProps) {
             <button
               type="button"
               onClick={handleLogout}
-              className="flex items-center gap-2 pb-[23px] text-h6 text-background-500 cursor-pointer"
+              className="flex items-center gap-2 pb-[23px] text-h6 text-secondary cursor-pointer"
             >
               <ExportIcon />
               로그아웃

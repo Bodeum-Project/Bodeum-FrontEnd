@@ -88,7 +88,7 @@ export default function MainLayout() {
           {/* 상단바가 스크롤 영역 위에 떠 있어 뒤 콘텐츠가 블러로 비침 */}
           <div
             data-scrolled={isScrolled}
-            className="group/header absolute inset-x-0 top-0 z-30"
+            className="group/header absolute inset-x-0 top-0 z-header"
           >
             {header === "back" ? (
               <BackTopBar />

@@ -14,7 +14,7 @@ export default function OnboardButton({
   disabled = false,
 }: OnboardButtonProps) {
   const baseStyle =
-    "w-full py-[8px] rounded-[10px] text-[12px] font-semibold transition-colors duration-200 cursor-pointer";
+    "w-full py-[8px] rounded-md text-[12px] font-semibold transition-colors duration-200 cursor-pointer";
 
   const variantStyle =
     variant === "primary"
@@ -23,12 +23,12 @@ export default function OnboardButton({
       `
       : variant === "secondary"
         ? `
-        border-1 border-background-250 bg-background-100 text-background-500
-        hover:bg-background-200
+        border-1 border-default bg-surface text-secondary
+        hover:bg-surface-subtle
       `
         : `
-            bg-main-150 text-main-500
-            hover:bg-main-200
+            bg-brand-soft text-brand-strong
+            hover:bg-brand-tint
           `;
 
   return (

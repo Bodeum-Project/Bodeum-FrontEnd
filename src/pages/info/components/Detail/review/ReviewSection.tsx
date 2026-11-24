@@ -44,10 +44,10 @@ export default function ReviewSection({
       icon={<MessageIcon />}
       title={
         <>
-          <span className="text-h2-list text-background-600">후기 </span>
-          <span className="text-h2-list text-main-400">
+          <span className="text-h2-list text-primary">후기 </span>
+          <span className="text-h2-list text-brand">
             {reviews.length}
-            <span className="text-h2-list text-background-600">개</span>
+            <span className="text-h2-list text-primary">개</span>
           </span>
         </>
       }

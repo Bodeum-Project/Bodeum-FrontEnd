@@ -33,7 +33,7 @@ export default function RecommendedNewsSection() {
           variant="section"
           skeleton="cards"
           loadingText="불러오는 중입니다..."
-          className="flex h-[180px] items-center justify-center text-background-400"
+          className="flex h-[180px] items-center justify-center text-tertiary"
           textClassName=""
         />
       ) : isError ? (
@@ -41,7 +41,7 @@ export default function RecommendedNewsSection() {
           type="error"
           variant="section"
           errorText="추천 소식을 불러오지 못했습니다."
-          className="flex h-[180px] items-center justify-center text-background-400"
+          className="flex h-[180px] items-center justify-center text-tertiary"
           textClassName=""
         />
       ) : (
@@ -75,7 +75,7 @@ export default function RecommendedNewsSection() {
         <button
           type="button"
           onClick={() => navigate(`/news?newsType=${tab}`)}
-          className="mt-[4px] h-[44px] w-full cursor-pointer rounded-[12px] bg-background-200 text-[14px] font-medium text-background-500 active:bg-background-250"
+          className="mt-[4px] h-[44px] w-full cursor-pointer rounded-lg bg-surface-subtle text-[14px] font-medium text-secondary active:bg-surface-muted"
         >
           {tab === "ACTIVITY" ? "활동소식" : "지역소식"} 더보기
         </button>

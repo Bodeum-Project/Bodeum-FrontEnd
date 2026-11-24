@@ -60,7 +60,7 @@ export default function LocationModal({
           />
         </div>
 
-        <span className="text-h3-onboard text-background-500 pb-[12px]">어느 지역을 찾아보시겠어요?</span>
+        <span className="text-h3-onboard text-secondary pb-[12px]">어느 지역을 찾아보시겠어요?</span>
         <div className="flex flex-col gap-3 pb-[160px] sm:flex-row sm:gap-5 sm:pb-[192px]">
           <Select
             options={regionOptions}

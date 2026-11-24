@@ -71,7 +71,7 @@ export default function ReviewCard({ infoItemId, review }: Props) {
   };
 
   return (
-    <div className="flex gap-[6px] pt-[16px] pb-[10px] border-b border-background-250">
+    <div className="flex gap-[6px] pt-[16px] pb-[10px] border-b border-default">
       <ProfileIcon />
 
       <div className="flex-1">
@@ -79,16 +79,16 @@ export default function ReviewCard({ infoItemId, review }: Props) {
           <div className="flex min-w-0 flex-wrap items-center gap-y-[2px]">
             <StarIcon />
 
-            <span className="text-h5-list text-main-500 ml-[4px] mr-[7px]">
+            <span className="text-h5-list text-brand-strong ml-[4px] mr-[7px]">
               {review.rating}
             </span>
 
-            <span className="text-h6 text-background-600 mr-[8px]">
+            <span className="text-h6 text-primary mr-[8px]">
               {review.userNickname}
             </span>
 
             {review.isReceiptVerified && (
-              <span className="mr-[8px] inline-flex items-center gap-[2px] rounded-[6px] bg-main-150 px-[6px] py-[1px] text-[11px] font-bold leading-[16px] text-main-500">
+              <span className="mr-[8px] inline-flex items-center gap-[2px] rounded-xs bg-brand-soft px-[6px] py-[1px] text-[11px] font-bold leading-[16px] text-brand-strong">
                 <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
                   <path d="M2.5 6.2l2.2 2.2 4.8-4.8" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -96,7 +96,7 @@ export default function ReviewCard({ infoItemId, review }: Props) {
               </span>
             )}
 
-            <span className="text-body-sub text-background-500">
+            <span className="text-body-sub text-secondary">
               {formatDate(review.createdAt)}
             </span>
           </div>
@@ -104,7 +104,7 @@ export default function ReviewCard({ infoItemId, review }: Props) {
           {!isMine && <ModerationMenu target="review" className="-my-[4px]" />}
         </div>
 
-        <p className="my-[7px] whitespace-pre-wrap text-h6-list text-background-600">
+        <p className="my-[7px] whitespace-pre-wrap text-h6-list text-primary">
           {review.content}
         </p>
 

@@ -27,8 +27,8 @@ export default function CommunityCommentsSection({
 
   return (
     <section className="pt-[16px]">
-      <p className="text-h2-list text-background-600">
-        댓글 <span className="ml-[8px] text-main-400">{data?.totalCount ?? 0}</span>
+      <p className="text-h2-list text-primary">
+        댓글 <span className="ml-[8px] text-brand">{data?.totalCount ?? 0}</span>
       </p>
 
       <CommunityCommentForm isSubmitting={isCreatePending} onSubmit={submitComment} />
@@ -36,7 +36,7 @@ export default function CommunityCommentsSection({
       {isPending ? (
         <RowsSkeleton count={3} avatar label="댓글을 불러오는 중입니다." />
       ) : isError ? (
-        <p className="py-10 text-center text-background-500">댓글을 불러오지 못했습니다.</p>
+        <p className="py-10 text-center text-secondary">댓글을 불러오지 못했습니다.</p>
       ) : comments.length === 0 ? (
         <CommentEmptyState />
       ) : (

@@ -33,7 +33,7 @@ export default function RecommendedCommunitySection({
 
   if (isError) {
     return (
-      <p className="py-6 text-center text-background-500">
+      <p className="py-6 text-center text-secondary">
         게시글을 불러오지 못했습니다.
       </p>
     );
@@ -41,7 +41,7 @@ export default function RecommendedCommunitySection({
 
   if (posts.length === 0) {
     return (
-      <p className="py-6 text-center text-background-500">
+      <p className="py-6 text-center text-secondary">
         추천 게시글이 없습니다.
       </p>
     );

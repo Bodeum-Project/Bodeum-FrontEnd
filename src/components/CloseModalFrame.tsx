@@ -45,7 +45,7 @@ export default function CloseModalFrame({
   return (
     <div
       data-closing={isClosing}
-      className={`fixed inset-0 z-50 flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:px-[20px] ${overlayClassName ?? ""}`}
+      className={`fixed inset-0 z-overlay flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:px-[20px] ${overlayClassName ?? ""}`}
       onMouseDown={(event) => {
         // 시트 바깥(배경)을 누르면 닫기
         if (event.target === event.currentTarget) close();
@@ -55,14 +55,14 @@ export default function CloseModalFrame({
         role="dialog"
         aria-modal="true"
         data-closing={isClosing}
-        className={`motion-sheet relative flex max-h-[90dvh] w-full max-w-[624px] flex-col overflow-y-auto rounded-t-[20px] bg-background-100 px-[20px] pt-[36px] pb-[calc(24px+env(safe-area-inset-bottom))] sm:rounded-[20px] sm:px-[44px] sm:py-[44px] ${className ?? ""}`}
+        className={`motion-sheet relative flex max-h-[90dvh] w-full max-w-[624px] flex-col overflow-y-auto rounded-t-2xl bg-surface px-[20px] pt-[36px] pb-[calc(24px+env(safe-area-inset-bottom))] sm:rounded-2xl sm:px-[44px] sm:py-[44px] ${className ?? ""}`}
       >
         {showCloseButton && (
           <button
             type="button"
             onClick={close}
             aria-label="닫기"
-            className="absolute top-[20px] right-[20px] z-10 flex h-[36px] w-[36px] cursor-pointer items-center justify-center rounded-[10px] text-background-500 hover:bg-background-200"
+            className="absolute top-[20px] right-[20px] z-10 flex h-[36px] w-[36px] cursor-pointer items-center justify-center rounded-md text-secondary hover:bg-surface-subtle"
           >
             <CloseIcon />
           </button>
@@ -74,7 +74,7 @@ export default function CloseModalFrame({
           <div className="mt-[28px] flex gap-[10px] sm:mt-[40px] sm:gap-[16px]">
             <MainButton
               size="L"
-              className="flex-1 bg-none! filter-none! bg-background-250! text-background-500! hover:bg-[#DFE3EA]! active:bg-[#D6DBE3]!"
+              className="flex-1 bg-none! filter-none! bg-surface-muted! text-secondary! hover:bg-state-hover! active:bg-state-pressed!"
               onClick={onLeftButtonClick}
             >
               {leftButtonText}

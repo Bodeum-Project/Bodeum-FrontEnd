@@ -19,11 +19,11 @@ export default function SectionHeader({
   return (
     <div className="mb-[14px] flex items-end justify-between gap-[12px]">
       <div className="min-w-0">
-        <h2 className="text-[20px] font-bold leading-[28px] tracking-[-0.02em] text-background-600">
+        <h2 className="text-[20px] font-bold leading-[28px] tracking-[-0.02em] text-primary">
           {title}
         </h2>
         {description && (
-          <p className="mt-[2px] text-[13px] leading-[19px] text-background-400">{description}</p>
+          <p className="mt-[2px] text-[13px] leading-[19px] text-tertiary">{description}</p>
         )}
       </div>
 
@@ -32,7 +32,7 @@ export default function SectionHeader({
           <button
             type="button"
             onClick={onMoreClick}
-            className="flex shrink-0 cursor-pointer items-center gap-[2px] text-[13px] font-medium text-background-400 active:text-background-500"
+            className="flex shrink-0 cursor-pointer items-center gap-[2px] text-[13px] font-medium text-tertiary active:text-secondary"
           >
             {moreLabel}
             <RightIcon className="ml-[2px] h-[10px] w-[7px]" />

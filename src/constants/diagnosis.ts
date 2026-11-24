@@ -25,7 +25,7 @@ export const diagnosisMap: Record<
   },
   DEVELOPMENTAL_DELAY: {
     label: "발달지연",
-    className: "bg-sub-purple-2 text-sub-purple",
+    className: "bg-category-job-soft text-category-job",
   },
   LANGUAGE_DISORDER: {
     label: "언어장애",
@@ -33,6 +33,6 @@ export const diagnosisMap: Record<
   },
   ETC: {
     label: "기타",
-    className: "bg-background-200 text-background-600",
+    className: "bg-surface-subtle text-primary",
   },
 };

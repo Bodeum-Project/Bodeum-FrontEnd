@@ -62,17 +62,17 @@ export default function AiChatPanel({
 
   return (
     <section
-      className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden bg-background-100"
+      className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden bg-surface"
     >
-      <header className="flex h-[60px] w-full shrink-0 items-center justify-center gap-[10px] border-b border-background-250 bg-background-100 px-[14px] py-[10px] sm:h-[70px] sm:gap-[12px] sm:border-b-0 sm:px-[20px] sm:py-[16px]">
+      <header className="flex h-[60px] w-full shrink-0 items-center justify-center gap-[10px] border-b border-default bg-surface px-[14px] py-[10px] sm:h-[70px] sm:gap-[12px] sm:border-b-0 sm:px-[20px] sm:py-[16px]">
         <AIMsgIcon aria-hidden="true" className="size-[32px] shrink-0" />
 
         <div className="flex min-w-0 flex-1 items-center justify-between">
           <div className="flex min-w-0 flex-1 flex-col items-start leading-[1.5]">
-            <h1 className="w-full text-h2-list text-background-600">
+            <h1 className="w-full text-h2-list text-primary">
               보듬보듬 AI 챗봇
             </h1>
-            <p className="w-full text-body-sub text-background-500">
+            <p className="w-full text-body-sub text-secondary">
               복지·기관·바우처 정보를 쉽게 안내해드립니다 · 실시간 응답
             </p>
           </div>
@@ -81,7 +81,7 @@ export default function AiChatPanel({
             <button
               type="button"
               onClick={onHistoryClick}
-              className="ml-[8px] inline-flex shrink-0 cursor-pointer items-center justify-center gap-[4px] rounded-[10px] border border-background-300 bg-background-100 px-[10px] py-[6px] sm:ml-[12px] sm:px-[16px] sm:py-[8px] text-h4-list text-background-500 transition-colors hover:bg-background-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
+              className="ml-[8px] inline-flex shrink-0 cursor-pointer items-center justify-center gap-[4px] rounded-md border border-strong bg-surface px-[10px] py-[6px] sm:ml-[12px] sm:px-[16px] sm:py-[8px] text-h4-list text-secondary transition-colors hover:bg-surface-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               <ChevronLeftIcon aria-hidden="true" className="size-[14px]" />
               이전 대화 보기
@@ -93,7 +93,7 @@ export default function AiChatPanel({
       {isNoticeOpen && (
         <div
           role="status"
-          className="absolute left-[12px] right-[12px] top-[68px] sm:left-[26px] sm:right-[26px] sm:top-[78px] z-10 flex items-start gap-[12px] rounded-[8px] border border-main-300 bg-main-200 px-[14px] py-[10px] text-body-sub text-main-500 shadow-[1px_2px_8px_rgba(0,0,0,0.12)]"
+          className="absolute left-[12px] right-[12px] top-[68px] sm:left-[26px] sm:right-[26px] sm:top-[78px] z-10 flex items-start gap-[12px] rounded-sm border border-brand-muted bg-brand-tint px-[14px] py-[10px] text-body-sub text-brand-strong shadow-[1px_2px_8px_rgba(0,0,0,0.12)]"
         >
           <p className="min-w-0 flex-1">
             AI 답변의 특성상 최신 변경된 제도와 일부 다를 수 있습니다. 정확한
@@ -104,7 +104,7 @@ export default function AiChatPanel({
             type="button"
             aria-label="AI 안내 닫기"
             onClick={() => setIsNoticeOpen(false)}
-            className="mt-[1px] flex size-[18px] shrink-0 cursor-pointer items-center justify-center rounded-[3px] text-main-500 transition-colors hover:bg-main-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
+            className="mt-[1px] flex size-[18px] shrink-0 cursor-pointer items-center justify-center rounded-[3px] text-brand-strong transition-colors hover:bg-brand-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           >
             <ToastCloseIcon aria-hidden="true" className="size-[13px]" />
           </button>
@@ -113,7 +113,7 @@ export default function AiChatPanel({
 
       <div
         ref={messagesRef}
-        className="min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto bg-background-200 px-[14px] sm:px-[26px] [scrollbar-color:#C1C6D1_transparent] [scrollbar-width:thin]"
+        className="min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto bg-surface-subtle px-[14px] sm:px-[26px] [scrollbar-color:#C1C6D1_transparent] [scrollbar-width:thin]"
       >
         <div className="flex min-h-full w-full flex-col items-start">
           {children}
@@ -142,17 +142,17 @@ export default function AiChatPanel({
             aria-label="메시지 전송"
             disabled={!canSend}
             onClick={onSend}
-            className={`flex size-[44px] shrink-0 items-center justify-center rounded-[10px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${
+            className={`flex size-[44px] shrink-0 items-center justify-center rounded-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
               canSend
                 ? "cursor-pointer btn-primary"
-                : "cursor-not-allowed bg-background-250 text-background-400"
+                : "cursor-not-allowed bg-surface-muted text-tertiary"
             }`}
           >
             <SendIcon />
           </button>
         </div>
 
-        <p className="w-full text-center text-body-sub-2 text-background-400">
+        <p className="w-full text-center text-body-sub-2 text-tertiary">
           AI 답변은 참고용이며, 공식 기관에서 최종 확인을 권장합니다
         </p>
       </footer>

@@ -33,10 +33,10 @@ export default function CategoryButton({
       className={joinClassNames(
         "press-sm inline-flex h-[37px] shrink-0 items-center justify-center whitespace-nowrap rounded-[100px] px-[12px] py-[8px]",
         "text-h3-category-sub transition-[background-color,color,box-shadow,--tw-ring-color] duration-150 ease-out",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
         selected
-          ? "bg-accent-900 text-background-100"
-          : "bg-background-200 text-background-500 active:bg-background-250",
+          ? "bg-cta text-inverse"
+          : "bg-surface-subtle text-secondary active:bg-surface-muted",
         "cursor-pointer",
         className,
       )}

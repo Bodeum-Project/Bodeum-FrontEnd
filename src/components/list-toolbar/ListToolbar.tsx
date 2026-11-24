@@ -37,8 +37,8 @@ export function ResultBar({
     <div className="flex min-h-[36px] items-center gap-[8px]">
       <div className="flex min-w-0 flex-1 items-center gap-[8px]">
         {count !== undefined && (
-          <p className="shrink-0 text-[14px] font-medium text-background-500">
-            총 <span className="font-bold text-background-600">{count.toLocaleString()}</span>
+          <p className="shrink-0 text-[14px] font-medium text-secondary">
+            총 <span className="font-bold text-primary">{count.toLocaleString()}</span>
             {unit}
           </p>
         )}
@@ -70,13 +70,13 @@ export function FilterPill({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`press-sm flex h-[34px] min-w-0 cursor-pointer items-center gap-[4px] rounded-full border pl-[12px] pr-[10px] text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${
+      className={`press-sm flex h-[34px] min-w-0 cursor-pointer items-center gap-[4px] rounded-full border pl-[12px] pr-[10px] text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
         active
-          ? "border-transparent bg-main-150 text-main-500"
-          : "border-background-250 bg-background-100 text-background-600 hover:bg-background-200"
+          ? "border-transparent bg-brand-soft text-brand-strong"
+          : "border-default bg-surface text-primary hover:bg-surface-subtle"
       } ${className}`}
     >
-      {icon && <LocationPinIcon className="h-[14px] w-[14px] shrink-0 text-main-400" aria-hidden="true" />}
+      {icon && <LocationPinIcon className="h-[14px] w-[14px] shrink-0 text-brand" aria-hidden="true" />}
       <span className="min-w-0 truncate">{children}</span>
       <ChevronDownIcon className="h-[14px] w-[14px] shrink-0 opacity-70" aria-hidden="true" />
     </button>
@@ -106,7 +106,7 @@ export function SortSelect({
       ariaLabel={ariaLabel}
       variant="S"
       className="block"
-      triggerClassName="h-[34px]! gap-[2px]! rounded-[10px]! border-transparent! bg-transparent! pl-[8px]! pr-[4px]! text-[13px]! text-background-500! hover:bg-background-200! [&>svg]:h-[14px] [&>svg]:w-[14px]"
+      triggerClassName="h-[34px]! gap-[2px]! rounded-md! border-transparent! bg-transparent! pl-[8px]! pr-[4px]! text-[13px]! text-secondary! hover:bg-surface-subtle! [&>svg]:h-[14px] [&>svg]:w-[14px]"
       dropdownClassName="right-0 w-[120px]!"
     />
   );
@@ -130,7 +130,7 @@ export function InlineDropdown({
       onClick={onClick}
       aria-label={ariaLabel}
       aria-haspopup="dialog"
-      className={`group -mx-[4px] inline-flex cursor-pointer items-center gap-[1px] rounded-[10px] px-[4px] transition-colors hover:bg-background-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${className}`}
+      className={`group -mx-[4px] inline-flex cursor-pointer items-center gap-[1px] rounded-md px-[4px] transition-colors hover:bg-surface-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${className}`}
     >
       <span className="underline decoration-current/25 decoration-2 underline-offset-[6px]">{children}</span>
       <ChevronDownIcon

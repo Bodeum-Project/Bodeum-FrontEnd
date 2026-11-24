@@ -75,7 +75,7 @@ export default function CommunitySection() {
         <button
           type="button"
           onClick={() => navigate(`/community?sort=${tab === "popular" ? "view" : "latest"}`)}
-          className="mt-[4px] h-[44px] w-full cursor-pointer rounded-[12px] bg-background-200 text-[14px] font-medium text-background-500 active:bg-background-250"
+          className="mt-[4px] h-[44px] w-full cursor-pointer rounded-lg bg-surface-subtle text-[14px] font-medium text-secondary active:bg-surface-muted"
         >
           커뮤니티 전체보기
         </button>

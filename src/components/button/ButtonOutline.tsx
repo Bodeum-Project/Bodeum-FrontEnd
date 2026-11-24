@@ -39,9 +39,9 @@ const joinClassNames = (...classNames: Array<string | false | undefined>) =>
 
 const enabledToneClasses: Record<ButtonOutlineTone, string> = {
   primary:
-    "border-main-400 bg-background-100 text-main-400 hover:bg-background-200 active:border-main-500 active:bg-background-100 active:text-main-500",
+    "border-brand bg-surface text-brand hover:bg-surface-subtle active:border-brand-strong active:bg-surface active:text-brand-strong",
   black:
-    "border-background-500 bg-background-100 text-background-600 hover:border-background-600 hover:bg-background-200 active:border-background-600 active:bg-background-600 active:text-background-100",
+    "border-background-500 bg-surface text-primary hover:border-cta hover:bg-surface-subtle active:border-cta active:bg-cta active:text-inverse",
 };
 
 export default function ButtonOutline({
@@ -82,12 +82,12 @@ export default function ButtonOutline({
       data-state={disabled ? "disabled" : "기본"}
       data-icon-position={IconComponent ? iconPosition : undefined}
       className={joinClassNames(
-        "inline-flex h-[38px] shrink-0 items-center justify-center rounded-[10px] border px-[16px] py-[10px]",
+        "inline-flex h-[38px] shrink-0 items-center justify-center rounded-md border px-[16px] py-[10px]",
         "text-h4-list transition-[background-color,border-color,color,box-shadow] duration-150 ease-out",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
         size === "L" ? "w-full max-w-[632px] gap-[6px]" : "gap-[4px]",
         disabled
-          ? "cursor-not-allowed border-background-400 bg-background-100 text-background-400"
+          ? "cursor-not-allowed border-background-400 bg-surface text-tertiary"
           : joinClassNames("cursor-pointer", enabledToneClasses[tone]),
         className,
       )}

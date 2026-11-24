@@ -44,7 +44,7 @@ export default function MobileTabBar() {
   return (
     <nav
       aria-label="주요 메뉴"
-      className="fixed inset-x-0 bottom-0 z-40 rounded-t-[20px] bg-background-100/95 shadow-[0_-4px_20px_rgb(20_23_31_/_0.06)] pb-[calc(10px+env(safe-area-inset-bottom))] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-tabbar rounded-t-2xl bg-surface/95 shadow-bar pb-[calc(10px+env(safe-area-inset-bottom))] backdrop-blur lg:hidden"
     >
       <ul className="mx-auto flex h-[64px] max-w-[640px] items-stretch">
         {tabs.map(({ label, to, icon: Icon, isActive }) => {
@@ -57,7 +57,7 @@ export default function MobileTabBar() {
                 aria-current={active ? "page" : undefined}
                 onClick={() => navigate(to)}
                 className={`press-sm flex h-full w-full cursor-pointer flex-col items-center justify-center gap-[3px] text-body-label ${
-                  active ? "font-semibold text-background-600" : "text-background-300 active:text-background-400"
+                  active ? "font-semibold text-primary" : "text-background-300 active:text-tertiary"
                 }`}
               >
                 {/* 새로 고른 탭 아이콘만 한 번 살짝 커졌다 돌아옴 */}

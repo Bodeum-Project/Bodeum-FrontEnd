@@ -52,7 +52,7 @@ const PersonGlyph = () => (
 function ToastLeading({ color, action }: { color: ToastColor; action?: ToastAction }) {
   if (action === "login") {
     return (
-      <span className="flex size-[22px] shrink-0 items-center justify-center rounded-full bg-background-500 text-background-100">
+      <span className="flex size-[22px] shrink-0 items-center justify-center rounded-full bg-background-500 text-inverse">
         <PersonGlyph />
       </span>
     );
@@ -64,13 +64,13 @@ function ToastLeading({ color, action }: { color: ToastColor; action?: ToastActi
   }
 
   const dotClass: Record<Exclude<ToastColor, "blue">, string> = {
-    green: "bg-main-400",
-    red: "bg-sub-pink",
-    yellow: "bg-[#F5A524]",
+    green: "bg-brand",
+    red: "bg-category-welfare",
+    yellow: "bg-warning",
   };
 
   return (
-    <span className={`flex size-[22px] shrink-0 items-center justify-center rounded-full text-background-100 ${dotClass[color]}`}>
+    <span className={`flex size-[22px] shrink-0 items-center justify-center rounded-full text-inverse ${dotClass[color]}`}>
       {color === "green" ? <CheckGlyph /> : <BangGlyph />}
     </span>
   );
@@ -186,7 +186,7 @@ function ToastViewport({
   onClose: (id: number) => void;
 }) {
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(80px+env(safe-area-inset-bottom))] z-[9999] flex flex-col-reverse items-center gap-[8px] px-[16px] lg:bottom-[40px]">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(80px+env(safe-area-inset-bottom))] z-toast flex flex-col-reverse items-center gap-[8px] px-[16px] lg:bottom-[40px]">
       {toasts.map((toast) => (
         <ToastCard
           key={toast.id}
@@ -230,7 +230,7 @@ function ToastCard({
       data-color={color}
       onClick={action ? undefined : onClose}
       className={joinClassNames(
-        "pointer-events-auto flex max-w-[min(480px,100%)] items-center gap-[10px] rounded-[16px] bg-[rgb(42_53_70_/_0.94)] py-[12px] pl-[14px] text-background-100 shadow-[0_10px_30px_rgb(42_53_70_/_0.18)] backdrop-blur-[12px]",
+        "pointer-events-auto flex max-w-[min(480px,100%)] items-center gap-[10px] rounded-xl bg-surface-inverse/94 py-[12px] pl-[14px] text-inverse shadow-toast backdrop-blur-[12px]",
         actionLabel ? "pr-[8px]" : "cursor-pointer pr-[18px]",
         "transition-[opacity,translate,scale] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:translate-y-0 motion-reduce:scale-100",
         status === "visible"
@@ -253,7 +253,7 @@ function ToastCard({
             onClose();
             runAction(action);
           }}
-          className="ml-[2px] shrink-0 cursor-pointer rounded-[10px] px-[10px] py-[6px] text-[14px] font-bold text-main-300 transition-colors hover:bg-background-100/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-main-300"
+          className="ml-[2px] shrink-0 cursor-pointer rounded-md px-[10px] py-[6px] text-[14px] font-bold text-brand-muted transition-colors hover:bg-surface/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-muted"
         >
           {actionLabel}
         </button>

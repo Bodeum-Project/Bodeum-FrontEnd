@@ -10,8 +10,8 @@ export default function ReceiptVerifyCard() {
   return (
     <div className="mt-[20px]">
       <div className="mb-[12px] flex items-center gap-[4px]">
-        <span className="text-h3-onboard text-background-500">방문 인증</span>
-        <span className="text-h3-onboard text-background-400">(선택)</span>
+        <span className="text-h3-onboard text-secondary">방문 인증</span>
+        <span className="text-h3-onboard text-tertiary">(선택)</span>
       </div>
 
       <button
@@ -19,25 +19,25 @@ export default function ReceiptVerifyCard() {
         onClick={() =>
           showToast("blue", "영수증 방문 인증은 준비 중이에요. 조금만 기다려 주세요!")
         }
-        className="group flex w-full cursor-pointer items-center gap-[12px] rounded-[14px] border border-dashed border-main-400/50 bg-[#F6FDFD] px-[14px] py-[14px] text-left transition-colors hover:bg-main-150 sm:px-[18px]"
+        className="group flex w-full cursor-pointer items-center gap-[12px] rounded-[14px] border border-dashed border-brand/50 bg-[#F6FDFD] px-[14px] py-[14px] text-left transition-colors hover:bg-brand-soft sm:px-[18px]"
       >
-        <span className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[12px] bg-main-150 text-main-400 group-hover:bg-background-100">
+        <span className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-lg bg-brand-soft text-brand group-hover:bg-surface">
           <ReceiptIcon />
         </span>
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-center gap-[6px]">
-            <span className="text-[15px] font-bold leading-[22px] text-background-600">
+            <span className="text-[15px] font-bold leading-[22px] text-primary">
               영수증으로 방문 인증하기
             </span>
-            <span className="rounded-[6px] bg-background-250 px-[6px] py-[1px] text-[11px] font-bold leading-[16px] text-background-500">
+            <span className="rounded-xs bg-surface-muted px-[6px] py-[1px] text-[11px] font-bold leading-[16px] text-secondary">
               준비 중
             </span>
           </span>
-          <span className="mt-[2px] block text-body-sub text-background-500">
+          <span className="mt-[2px] block text-body-sub text-secondary">
             인증하면 후기에 '방문 인증' 표시가 붙어요
           </span>
         </span>
-        <ChevronRightIcon aria-hidden="true" className="h-[13px] w-[9px] shrink-0 text-main-400" />
+        <ChevronRightIcon aria-hidden="true" className="h-[13px] w-[9px] shrink-0 text-brand" />
       </button>
     </div>
   );

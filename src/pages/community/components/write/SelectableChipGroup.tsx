@@ -24,9 +24,9 @@ export default function SelectableChipGroup<T extends string>({
 }: SelectableChipGroupProps<T>) {
   return (
     <fieldset className={className}>
-      <legend className="text-h3-onboard text-background-500">
+      <legend className="text-h3-onboard text-secondary">
         {legend}
-        {required && <span className="text-main-400">*</span>}
+        {required && <span className="text-brand">*</span>}
       </legend>
       <div className="mt-[12px] flex flex-wrap gap-[8px]">
         {options.map((option) => {

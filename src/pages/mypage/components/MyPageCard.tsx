@@ -24,13 +24,13 @@ export default function MyPageCard({ item, onDelete, deleteDisabled = false }: M
   const targetPath = isScrap && item.targetPath ? item.targetPath : `/community/${item.postId}`;
 
   return (
-    <article className="press relative flex w-full items-center rounded-[16px] border border-background-250 bg-background-100 px-[14px] py-[14px] transition-colors hover:bg-background-200 has-[a:active]:bg-background-250 sm:px-[18px]">
+    <article className="press relative flex w-full items-center rounded-xl border border-default bg-surface px-[14px] py-[14px] transition-colors hover:bg-surface-subtle has-[a:active]:bg-surface-muted sm:px-[18px]">
       <Link
         to={targetPath}
-        className="flex min-w-0 flex-1 items-center self-stretch before:pointer-events-none before:absolute before:inset-0 before:rounded-[16px] focus-visible:outline-none focus-visible:before:outline focus-visible:before:outline-2 focus-visible:before:outline-offset-2"
+        className="flex min-w-0 flex-1 items-center self-stretch before:pointer-events-none before:absolute before:inset-0 before:rounded-xl focus-visible:outline-none focus-visible:before:outline focus-visible:before:outline-2 focus-visible:before:outline-offset-2"
         aria-label={`${content} 상세 보기`}
       >
-        <div className="bodeum-icon-color flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[14px] bg-main-150 text-main-500">
+        <div className="bodeum-icon-color flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[14px] bg-brand-soft text-brand-strong">
           {isComment ? (
             <CommentIcon
               className="h-[15px] w-[16px]"
@@ -44,8 +44,8 @@ export default function MyPageCard({ item, onDelete, deleteDisabled = false }: M
         </div>
 
         <div className="ml-[12px] min-w-0">
-          <h3 className="truncate text-[15px] font-semibold leading-[22px] text-background-600">{content}</h3>
-          <p className="mt-[2px] text-[12px] text-background-400">{meta}</p>
+          <h3 className="truncate text-[15px] font-semibold leading-[22px] text-primary">{content}</h3>
+          <p className="mt-[2px] text-[12px] text-tertiary">{meta}</p>
         </div>
 
         {isScrap && item.dDay && (
@@ -60,7 +60,7 @@ export default function MyPageCard({ item, onDelete, deleteDisabled = false }: M
           label="삭제"
           onClick={onDelete}
           disabled={deleteDisabled}
-          className="ml-[12px] !h-[34px] shrink-0 !rounded-[10px] !px-[12px] !text-[13px] !font-medium !text-background-500"
+          className="ml-[12px] !h-[34px] shrink-0 !rounded-md !px-[12px] !text-[13px] !font-medium !text-secondary"
         />
       )}
     </article>

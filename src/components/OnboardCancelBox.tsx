@@ -47,11 +47,11 @@ export default function OnboardCancelBox({
       <div className="flex w-full max-w-[500px] min-w-0 shrink-0 flex-col items-start gap-[20px]">
         <h2
           id={titleId}
-          className="w-full break-words text-h1-onboard text-background-600"
+          className="w-full break-words text-h1-onboard text-primary"
         >
           {title}
         </h2>
-        <div className="w-full whitespace-pre-line break-words text-h2-onboard text-background-500">
+        <div className="w-full whitespace-pre-line break-words text-h2-onboard text-secondary">
           {description}
         </div>
       </div>

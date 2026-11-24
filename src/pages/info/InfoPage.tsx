@@ -245,17 +245,17 @@ export default function InfoPage() {
   }
   
   return (
-    <div className="flex min-h-screen flex-col gap-[14px] bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
+    <div className="flex min-h-screen flex-col gap-[14px] bg-surface px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
       
       {/* PM 설계 문장 유지: "보호자님, (지역) (분류)의 정보를 모았어요" — 지역·분류는 문장 속 텍스트 드롭다운 */}
-      <h1 className="pt-[4px] text-[22px] font-bold leading-[34px] tracking-[-0.03em] text-background-600 lg:text-[24px] lg:leading-[38px]">
+      <h1 className="pt-[4px] text-[22px] font-bold leading-[34px] tracking-[-0.03em] text-primary lg:text-[24px] lg:leading-[38px]">
         {profile?.nickname || "보호자"}님,
         <br />
         <span className="inline-flex flex-wrap items-center gap-x-[6px]">
           <InlineDropdown
             onClick={() => setLocationOpen(true)}
             ariaLabel={`지역 선택: ${regionLabel}`}
-            className="text-main-500"
+            className="text-brand-strong"
           >
             {regionLabel}
           </InlineDropdown>
@@ -305,7 +305,7 @@ export default function InfoPage() {
       </div>
 
       {shouldShowEmptyMessage ? (
-        <div className="flex h-[200px] items-center justify-center text-background-500">
+        <div className="flex h-[200px] items-center justify-center text-secondary">
           {emptyMessage}
         </div>
       ) : (

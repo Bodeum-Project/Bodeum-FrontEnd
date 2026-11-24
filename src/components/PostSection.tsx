@@ -16,11 +16,11 @@ export default function PostSection({
   return (
     <section className="w-full">
       <div className="mb-[4px] flex items-center justify-between">
-        <h2 className="text-[16px] font-bold text-background-600">{title}</h2>
+        <h2 className="text-[16px] font-bold text-primary">{title}</h2>
 
         <button
           onClick={onMoreClick}
-          className="flex cursor-pointer items-center gap-[4px] text-[13px] text-background-400"
+          className="flex cursor-pointer items-center gap-[4px] text-[13px] text-tertiary"
         >
           더보기
           <RightIcon className="h-[10px] w-[7px]" />

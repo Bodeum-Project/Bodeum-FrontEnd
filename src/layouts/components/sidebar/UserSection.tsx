@@ -34,7 +34,7 @@ export default function UserSection({
     .join(" · ");
 
   return (
-    <div className="rounded-[14px] border border-background-250 bg-background-100">
+    <div className="rounded-[14px] border border-default bg-surface">
       <div className="flex w-[181px] px-[8px] py-[12px]">
         {profileImageUrl ? (
           <img
@@ -47,12 +47,12 @@ export default function UserSection({
         )}
 
         <div className="mr-[4px] flex min-w-0 flex-1 flex-col">
-          <h3 className="truncate text-h4-list text-background-600">
+          <h3 className="truncate text-h4-list text-primary">
             {isGuest ? "환영합니다!" : `${name ?? "___"}님`}
           </h3>
 
           {isGuest ? (
-            <p className="mt-2 text-body-sub text-background-500">
+            <p className="mt-2 text-body-sub text-secondary">
               회원가입을 통해 더 많은
               <br />
               기능을 확인할 수 있어요
@@ -60,13 +60,13 @@ export default function UserSection({
           ) : !isEmpty ? (
             <>
               <p
-                className="mt-2 truncate text-body-sub text-background-500"
+                className="mt-2 truncate text-body-sub text-secondary"
                 title={disability}
               >
                 {disability ?? "-"}
               </p>
 
-              <p className="text-body-sub text-background-500">
+              <p className="text-body-sub text-secondary">
                 {childSummary || "자녀 정보 미등록"}
               </p>
             </>

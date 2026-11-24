@@ -10,7 +10,7 @@ export default function ProfileSettingsPage() {
   const [isWithdrawalModalOpen, setIsWithdrawalModalOpen] = useState(false);
 
   return (
-    <div className="min-h-full bg-background-200 px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
+    <div className="min-h-full bg-surface-subtle px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
       <div className="flex flex-col items-start gap-[12px] lg:grid lg:grid-cols-1 lg:gap-0">
         <DetailBackButton className="lg:sticky lg:top-[20px] lg:z-10 lg:col-start-1 lg:row-start-1 lg:ml-[24px] lg:justify-self-start" />
 

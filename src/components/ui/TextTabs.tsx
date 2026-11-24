@@ -33,7 +33,7 @@ export default function TextTabs<T extends string>({
     <div
       role="tablist"
       aria-label={ariaLabel}
-      className={`relative flex items-end gap-[20px] border-b border-background-250 ${className}`}
+      className={`relative flex items-end gap-[20px] border-b border-default ${className}`}
     >
       {options.map((tab) => {
         const selected = tab.value === value;
@@ -48,10 +48,10 @@ export default function TextTabs<T extends string>({
             role="tab"
             aria-selected={selected}
             onClick={() => onChange(tab.value)}
-            className={`relative -mb-px cursor-pointer pb-[10px] text-[18px] leading-[26px] tracking-[-0.02em] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${
+            className={`relative -mb-px cursor-pointer pb-[10px] text-[18px] leading-[26px] tracking-[-0.02em] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
               selected
-                ? "font-bold text-background-600"
-                : "font-semibold text-background-400 hover:text-background-500"
+                ? "font-bold text-primary"
+                : "font-semibold text-tertiary hover:text-secondary"
             }`}
           >
             {tab.label}
@@ -61,7 +61,7 @@ export default function TextTabs<T extends string>({
       {indicator && (
         <span
           aria-hidden="true"
-          className="motion-slide-indicator pointer-events-none absolute -bottom-px left-0 h-[2px] rounded-full bg-background-600 transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          className="motion-slide-indicator pointer-events-none absolute -bottom-px left-0 h-[2px] rounded-full bg-cta transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{ width: indicator.width, transform: `translateX(${indicator.left}px)` }}
         />
       )}

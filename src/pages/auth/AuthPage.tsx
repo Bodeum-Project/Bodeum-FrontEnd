@@ -716,7 +716,7 @@ export default function AuthPage() {
         flow === "onboarding"
           ? "h-dvh overflow-hidden"
           : "min-h-screen overflow-x-hidden overflow-y-auto",
-        flow === "onboarding" ? "bg-background-500" : "bg-main-150",
+        flow === "onboarding" ? "bg-background-500" : "bg-brand-soft",
       ].join(" ")}
     >
       {isInitializing && !keepOnboardingVisible && (

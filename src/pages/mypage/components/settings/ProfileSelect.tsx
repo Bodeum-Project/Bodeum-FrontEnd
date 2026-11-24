@@ -13,12 +13,12 @@ export default function ProfileSelect({
   ...props
 }: ProfileSelectProps) {
   const stateClassName = disabled
-    ? "!border-background-250 !bg-background-200 !text-background-500"
+    ? "!border-default !bg-surface-subtle !text-secondary"
     : changed
-      ? "!border-main-400 !bg-background-100 !text-background-500"
+      ? "!border-brand !bg-surface !text-secondary"
       : selected
         ? ""
-        : "!border-background-250 !bg-background-200 !text-background-500 aria-expanded:!border-main-400 aria-expanded:!bg-background-100 aria-expanded:!text-background-500";
+        : "!border-default !bg-surface-subtle !text-secondary aria-expanded:!border-brand aria-expanded:!bg-surface aria-expanded:!text-secondary";
 
   return (
     <Select

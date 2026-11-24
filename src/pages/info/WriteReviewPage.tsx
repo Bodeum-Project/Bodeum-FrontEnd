@@ -121,8 +121,8 @@ export default function WriteReviewPage() {
           clickable={false}
         />
 
-        <section className="rounded-[10px] border border-background-250 bg-background-100 p-[16px] sm:p-[20px]">
-          <h2 className="mb-[16px] text-h1-onboard text-background-600">
+        <section className="rounded-md border border-default bg-surface p-[16px] sm:p-[20px]">
+          <h2 className="mb-[16px] text-h1-onboard text-primary">
             후기 작성하기
           </h2>
 

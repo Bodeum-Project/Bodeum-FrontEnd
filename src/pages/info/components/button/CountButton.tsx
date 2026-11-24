@@ -26,9 +26,9 @@ export default function CountButton({
   if (variant === "display") {
     return (
       <div
-        className="inline-flex h-[44px] items-center rounded-[10px] bg-main-100 px-[12px]"
+        className="inline-flex h-[44px] items-center rounded-md bg-surface-subtle px-[12px]"
       >
-        <span className="text-h2-list text-background-500">
+        <span className="text-h2-list text-secondary">
           {label} +{count}
         </span>
       </div>

@@ -39,11 +39,11 @@ function ImageThumb({ src, alt, className }: ImageThumbProps) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-[10px] bg-background-150${className ? ` ${className}` : ""}`}
+      className={`relative overflow-hidden rounded-md bg-background-150${className ? ` ${className}` : ""}`}
     >
       {status === "error" ? (
         <div
-          className="flex h-full w-full flex-col items-center justify-center gap-2 text-body-sub text-background-400"
+          className="flex h-full w-full flex-col items-center justify-center gap-2 text-body-sub text-tertiary"
           role="img"
           aria-label={alt}
         >
@@ -99,13 +99,13 @@ export default function CommunityPostDetailCard({
       ].filter((item): item is string => item !== null);
 
   return (
-    <article className="rounded-[20px] border border-background-250 bg-background-100 px-[20px] py-[22px] sm:min-h-[574px] sm:px-[28px] sm:py-[26px]">
-      <header className="flex items-center justify-between border-b border-background-250 pb-[20px]">
+    <article className="rounded-2xl border border-default bg-surface px-[20px] py-[22px] sm:min-h-[574px] sm:px-[28px] sm:py-[26px]">
+      <header className="flex items-center justify-between border-b border-default pb-[20px]">
         <div className="flex min-w-0 items-center gap-[10px]">
-          <span className="inline-block shrink-0 rounded-[6px] bg-main-150 px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-main-500">
+          <span className="inline-block shrink-0 rounded-xs bg-brand-soft px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-brand-strong">
             {communityCategoryMap[category]}
           </span>
-          <div className="flex min-w-0 items-center gap-[2px] truncate text-body-sub text-background-500">
+          <div className="flex min-w-0 items-center gap-[2px] truncate text-body-sub text-secondary">
             {nameLineItems.map((item, index) => (
               <span key={index} className="flex items-center gap-[2px]">
                 {index > 0 && <span aria-hidden="true">·</span>}
@@ -115,7 +115,7 @@ export default function CommunityPostDetailCard({
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-[4px]">
-          <time className="text-body-sub text-background-400">
+          <time className="text-body-sub text-tertiary">
             {formatDate(post.createdAt)}
           </time>
           {!post.isMine && <ModerationMenu target="post" className="-my-[4px] -mr-[6px]" />}
@@ -123,8 +123,8 @@ export default function CommunityPostDetailCard({
       </header>
 
       <div className="pb-[20px] pt-[12px]">
-        <h1 className="break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-background-600">{post.title}</h1>
-        <p className="mt-[12px] whitespace-pre-wrap text-h3-onboard text-background-600">
+        <h1 className="break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-primary">{post.title}</h1>
+        <p className="mt-[12px] whitespace-pre-wrap text-h3-onboard text-primary">
           {post.content}
         </p>
 
@@ -142,7 +142,7 @@ export default function CommunityPostDetailCard({
         )}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-y-[10px] border-b border-background-250 py-[16px]">
+      <div className="flex flex-wrap items-center justify-between gap-y-[10px] border-b border-default py-[16px]">
         <div className="flex items-center gap-[10px]">
           <DetailActionButton
             icon={post.isLiked ? HeartIcon : HeartDisabledIcon}

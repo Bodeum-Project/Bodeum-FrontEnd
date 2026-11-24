@@ -53,7 +53,7 @@ export default function ModerationMenu({ target, className = "" }: ModerationMen
   };
 
   const itemClass =
-    "flex w-full cursor-pointer items-center gap-[8px] px-[14px] py-[10px] text-left text-[14px] leading-[20px] hover:bg-background-200 focus:bg-background-200 focus:outline-none";
+    "flex w-full cursor-pointer items-center gap-[8px] px-[14px] py-[10px] text-left text-[14px] leading-[20px] hover:bg-surface-subtle focus:bg-surface-subtle focus:outline-none";
 
   return (
     <div ref={containerRef} className="relative shrink-0">
@@ -64,8 +64,8 @@ export default function ModerationMenu({ target, className = "" }: ModerationMen
         aria-haspopup="menu"
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((current) => !current)}
-        className={`flex h-[28px] w-[28px] cursor-pointer items-center justify-center rounded-[8px] text-background-500 hover:bg-background-200 ${
-          isMenuOpen ? "bg-background-200" : ""
+        className={`flex h-[28px] w-[28px] cursor-pointer items-center justify-center rounded-sm text-secondary hover:bg-surface-subtle ${
+          isMenuOpen ? "bg-surface-subtle" : ""
         } ${className}`}
       >
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -79,14 +79,14 @@ export default function ModerationMenu({ target, className = "" }: ModerationMen
         <div
           role="menu"
           aria-label={`${targetLabel} 메뉴`}
-          className="motion-drop absolute right-0 top-[34px] z-20 min-w-[156px] overflow-hidden rounded-[12px] border border-background-250 bg-background-100 py-[4px] shadow-[0_8px_24px_rgb(30_40_60_/_0.14)]"
+          className="motion-drop absolute right-0 top-[34px] z-20 min-w-[156px] overflow-hidden rounded-lg border border-default bg-surface py-[4px] shadow-float"
         >
-          <button role="menuitem" type="button" onClick={() => openModal("report")} className={`${itemClass} text-sub-red`}>
+          <button role="menuitem" type="button" onClick={() => openModal("report")} className={`${itemClass} text-danger`}>
             <ReportIcon />
             {target === "post" ? "게시글 신고" : "신고하기"}
           </button>
-          <button role="menuitem" type="button" onClick={() => openModal("block")} className={`${itemClass} text-background-600`}>
-            <BlockIcon className="text-background-500" />
+          <button role="menuitem" type="button" onClick={() => openModal("block")} className={`${itemClass} text-primary`}>
+            <BlockIcon className="text-secondary" />
             {target === "post" ? "작성자 차단" : "이 사용자 차단"}
           </button>
         </div>

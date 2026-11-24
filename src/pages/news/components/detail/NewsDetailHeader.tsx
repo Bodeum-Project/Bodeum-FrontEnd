@@ -15,12 +15,12 @@ interface NewsDetailHeaderProps {
 }
 
 const STATUS_CHIP_CLASS: Record<NewsStatusPresentation["variant"], string> = {
-  default: "bg-background-200 text-background-500",
+  default: "bg-surface-subtle text-secondary",
   dday: "bg-[#FFEFF1] text-[#E5495B]",
   recruit: "bg-sub-mint-2 text-sub-mint",
 };
 
-const chipBase = "inline-block rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px]";
+const chipBase = "inline-block rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px]";
 
 // 정보 상세(SummaryCard)와 같은 구조: 칩 → 제목 → 요약 → 액션 버튼, 통계는 우측 상단 고정
 export default function NewsDetailHeader({
@@ -30,7 +30,7 @@ export default function NewsDetailHeader({
   onToggleScrap,
 }: NewsDetailHeaderProps) {
   return (
-    <article className="relative overflow-hidden rounded-[20px] border border-background-250 bg-background-100">
+    <article className="relative overflow-hidden rounded-2xl border border-default bg-surface">
       <div className="px-[20px] py-[22px] sm:px-[28px] sm:py-[26px]">
         <div className="absolute right-[20px] top-[22px] flex items-center gap-[10px] sm:right-[28px] sm:top-[26px]">
           <ViewStat count={news.viewCount} />
@@ -38,20 +38,20 @@ export default function NewsDetailHeader({
         </div>
 
         <div className="flex flex-wrap items-center gap-[6px] pr-[110px]">
-          <span className={`${chipBase} bg-main-150 text-main-500`}>{news.categoryLabel}</span>
+          <span className={`${chipBase} bg-brand-soft text-brand-strong`}>{news.categoryLabel}</span>
           {status && (
             <span className={`${chipBase} ${STATUS_CHIP_CLASS[status.variant]}`}>{status.label}</span>
           )}
         </div>
 
-        <h1 className="mt-[10px] break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-background-600">
+        <h1 className="mt-[10px] break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-primary">
           {news.title}
         </h1>
         {news.summary && (
-          <p className="mt-[8px] break-keep text-[14px] leading-[22px] text-background-500">{news.summary}</p>
+          <p className="mt-[8px] break-keep text-[14px] leading-[22px] text-secondary">{news.summary}</p>
         )}
         {news.publishedAt && (
-          <p className="mt-[10px] text-[12px] text-background-400">게시일 {news.publishedAt}</p>
+          <p className="mt-[10px] text-[12px] text-tertiary">게시일 {news.publishedAt}</p>
         )}
 
         <div className="mt-[18px] flex flex-wrap gap-[8px]">

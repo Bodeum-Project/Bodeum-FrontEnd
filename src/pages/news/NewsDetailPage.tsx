@@ -66,7 +66,7 @@ export default function NewsDetailPage() {
   if (newsId === undefined || isError || !news) {
     return (
       <div className="flex min-h-full items-center justify-center px-[32px] py-[20px]">
-        <div className="text-center text-h5 text-background-500">
+        <div className="text-center text-h5 text-secondary">
           소식 정보를 불러오지 못했습니다.
         </div>
       </div>

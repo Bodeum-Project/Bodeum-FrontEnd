@@ -35,8 +35,8 @@ function InfoRow({ label, value }: InfoRowProps) {
 
   return (
     <div className="flex items-start gap-[12px] py-[10px]">
-      <div className="w-[64px] shrink-0 text-[13px] leading-[20px] text-background-400">{label}</div>
-      <div className="min-w-0 flex-1 break-keep text-[14px] leading-[20px] text-background-600">{value}</div>
+      <div className="w-[64px] shrink-0 text-[13px] leading-[20px] text-tertiary">{label}</div>
+      <div className="min-w-0 flex-1 break-keep text-[14px] leading-[20px] text-primary">{value}</div>
     </div>
   );
 }
@@ -98,7 +98,7 @@ export default function SummaryCard({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-[20px] border border-background-250 bg-background-100">
+    <div className="relative overflow-hidden rounded-2xl border border-default bg-surface">
       <div className="px-[20px] py-[22px] sm:px-[28px] sm:py-[26px]">
         {/* 조회·스크랩·리뷰는 레이아웃과 상관없이 우측 상단에 고정 */}
         <div className="absolute right-[20px] top-[22px] flex items-center gap-[10px] sm:right-[28px] sm:top-[26px]">
@@ -107,11 +107,11 @@ export default function SummaryCard({
           <CommentStat count={reviewCount} />
         </div>
 
-        <span className="inline-block rounded-[6px] bg-background-200 px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
+        <span className="inline-block rounded-xs bg-surface-subtle px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-secondary">
           {subCategory}
         </span>
 
-        <h1 className="mt-[10px] break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-background-600">
+        <h1 className="mt-[10px] break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-primary">
           {name}
         </h1>
 
@@ -136,8 +136,8 @@ export default function SummaryCard({
           <DetailActionButton label="공유" icon={ShareIcon} onClick={handleShare} />
         </div>
 
-        <div className="mt-[28px] border-t border-background-250 pt-[18px]">
-          <h2 className="text-[16px] font-semibold text-background-600">기본 정보</h2>
+        <div className="mt-[28px] border-t border-default pt-[18px]">
+          <h2 className="text-[16px] font-semibold text-primary">기본 정보</h2>
           <div className="mt-[6px]">
             <InfoRow label="주소" value={address} />
             <InfoRow label="지역" value={`${sido ?? ""} ${sigungu ?? ""}`.trim()} />

@@ -27,7 +27,7 @@ function AgreementCheckboxIcon({ checked }: { checked: boolean }) {
   return (
     <Icon
       aria-hidden="true"
-      className="size-[24px] shrink-0 text-background-500"
+      className="size-[24px] shrink-0 text-secondary"
     />
   );
 }
@@ -41,7 +41,7 @@ function AgreementRow({
 }: AgreementRowProps) {
   return (
     <div className="flex w-full items-center justify-between">
-      <label className="flex cursor-pointer items-center gap-[9px] text-h2-onboard text-background-500">
+      <label className="flex cursor-pointer items-center gap-[9px] text-h2-onboard text-secondary">
         <input
           type="checkbox"
           checked={checked}
@@ -51,7 +51,7 @@ function AgreementRow({
         <AgreementCheckboxIcon checked={checked} />
         <span>
           {required ? (
-            <span className="text-main-400">(필수) </span>
+            <span className="text-brand">(필수) </span>
           ) : (
             <span>(선택) </span>
           )}
@@ -63,7 +63,7 @@ function AgreementRow({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${label} 전문보기`}
-        className="cursor-pointer text-h3-onboard text-background-500 underline"
+        className="cursor-pointer text-h3-onboard text-secondary underline"
       >
         더보기
       </a>
@@ -111,12 +111,12 @@ export default function AuthAgreementCard({
       >
         <div className="flex w-full flex-col gap-[44px]">
           <div className="flex w-full flex-col gap-[24px]">
-            <h1 id={titleId} className="text-h1-onboard text-background-600">
+            <h1 id={titleId} className="text-h1-onboard text-primary">
               약관동의
             </h1>
 
             <div className="flex w-full flex-col gap-[20px]">
-              <label className="flex w-full cursor-pointer items-center justify-center rounded-[10px] border border-main-100 bg-main-100 p-[20px]">
+              <label className="flex w-full cursor-pointer items-center justify-center rounded-md border border-main-100 bg-surface-subtle p-[20px]">
                 <input
                   type="checkbox"
                   checked={allChecked}
@@ -124,11 +124,11 @@ export default function AuthAgreementCard({
                   className="sr-only"
                 />
                 <span className="flex min-w-0 flex-1 flex-col gap-[10px]">
-                  <span className="flex items-center gap-[9px] text-h2-onboard text-background-600">
+                  <span className="flex items-center gap-[9px] text-h2-onboard text-primary">
                     <AgreementCheckboxIcon checked={allChecked} />
                     <span>모두 동의합니다.</span>
                   </span>
-                  <span className="text-h3-onboard text-background-500">
+                  <span className="text-h3-onboard text-secondary">
                     이용약관, 개인정보처리방침, AI 챗봇 이용 동의 방침에 대해
                     모두 동의합니다.
                     <br />

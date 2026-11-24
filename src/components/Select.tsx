@@ -28,37 +28,37 @@ export interface SelectProps {
 }
 
 const triggerBaseClass =
-  "flex w-full items-center justify-between gap-[6px] border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background-600";
+  "flex w-full items-center justify-between gap-[6px] border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta";
 
 const triggerVariantClass: Record<SelectVariant, string> = {
-  L: "h-[48px] rounded-[10px] p-3 text-h2-onboard",
-  S: "h-[40px] rounded-[12px] py-2 pr-[10px] pl-[14px] text-[14px] font-medium",
+  L: "h-[48px] rounded-md p-3 text-h2-onboard",
+  S: "h-[40px] rounded-lg py-2 pr-[10px] pl-[14px] text-[14px] font-medium",
 };
 
 const triggerHoverClass: Record<SelectVariant, string> = {
-  L: "hover:bg-background-200 hover:border-background-400 hover:text-background-500",
+  L: "hover:bg-surface-subtle hover:border-background-400 hover:text-secondary",
   S: "hover:bg-[#EDF0F4]",
 };
 
 const triggerPlaceholderClass: Record<SelectVariant, Record<"true" | "false", string>> = {
   L: {
-    true: "border-background-250 bg-background-200 text-background-500",
-    false: "border-main-400 bg-background-100 text-background-600",
+    true: "border-default bg-surface-subtle text-secondary",
+    false: "border-brand bg-surface text-primary",
   },
   S: {
-    true: "border-transparent bg-background-200 text-background-500",
-    false: "border-transparent bg-background-200 text-background-600",
+    true: "border-transparent bg-surface-subtle text-secondary",
+    false: "border-transparent bg-surface-subtle text-primary",
   },
 };
 
 const triggerOpenClass: Record<SelectVariant, string> = {
-  L: "border-main-400 bg-background-100 text-background-500",
-  S: "border-main-400 bg-background-100 text-background-600",
+  L: "border-brand bg-surface text-secondary",
+  S: "border-brand bg-surface text-primary",
 };
 
 const dropdownVariantClass: Record<SelectVariant, string> = {
-  L: "rounded-[10px]",
-  S: "rounded-[12px]",
+  L: "rounded-md",
+  S: "rounded-lg",
 };
 
 const dropdownMaxHeight: Record<SelectVariant, number> = {
@@ -78,12 +78,12 @@ const optionVariantClass: Record<SelectVariant, string> = {
 };
 
 const optionHoverClass =
-  "hover:bg-background-200 hover:text-background-600";
+  "hover:bg-surface-subtle hover:text-primary";
 
-const optionPressedClass = "active:bg-main-100 active:text-background-600";
+const optionPressedClass = "active:bg-surface-subtle active:text-primary";
 
 const optionFocusClass =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-background-600";
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-cta";
 
 export function Select({
   options,
@@ -376,7 +376,7 @@ export function Select({
   }, [activeIndex, cancelPendingCenterScroll, isOpen, options.length]);
 
   const chevronClassName = [
-    "shrink-0 text-background-500! transition-transform duration-200 motion-reduce:transition-none",
+    "shrink-0 text-secondary! transition-transform duration-200 motion-reduce:transition-none",
     isOpen ? "rotate-90" : "-rotate-90",
   ].join(" ");
   const triggerClassName = [
@@ -430,7 +430,7 @@ export function Select({
           id={listboxId}
           role="listbox"
           style={{ maxHeight }}
-          className={`motion-drop absolute z-10 w-full overflow-x-hidden overflow-y-auto overscroll-contain border-[0.8px] border-background-250 bg-background-100 py-2 ${dropdownPositionClass} ${dropdownVariantClass[variant]} ${dropdownClassName ?? ""}`}
+          className={`motion-drop absolute z-10 w-full overflow-x-hidden overflow-y-auto overscroll-contain border-[0.8px] border-default bg-surface py-2 ${dropdownPositionClass} ${dropdownVariantClass[variant]} ${dropdownClassName ?? ""}`}
         >
           {options.map((opt, index) => (
             <li
@@ -444,7 +444,7 @@ export function Select({
               onClick={() => selectOption(opt.value)}
               onMouseEnter={() => setActiveIndex(index)}
               onKeyDown={(e) => handleOptionKeyDown(e, opt.value, index)}
-              className={`${optionBaseClass} ${optionVariantClass[variant]} ${optionHoverClass} ${optionPressedClass} ${optionFocusClass} cursor-pointer text-background-500`}
+              className={`${optionBaseClass} ${optionVariantClass[variant]} ${optionHoverClass} ${optionPressedClass} ${optionFocusClass} cursor-pointer text-secondary`}
             >
               {opt.label}
             </li>

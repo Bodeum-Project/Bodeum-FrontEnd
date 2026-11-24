@@ -13,24 +13,24 @@ export default function NoticeBanner() {
     <button
       type="button"
       onClick={() => navigate(`/news/${banner.newsId}`)}
-      className="press flex w-full cursor-pointer items-center gap-[12px] rounded-[16px] bg-background-200 px-[16px] py-[14px] hover:bg-background-250/60 lg:gap-[16px] lg:rounded-[20px] lg:px-[24px] lg:py-[18px] text-left transition-colors active:bg-background-250"
+      className="press flex w-full cursor-pointer items-center gap-[12px] rounded-xl bg-surface-subtle px-[16px] py-[14px] hover:bg-surface-muted/60 lg:gap-[16px] lg:rounded-2xl lg:px-[24px] lg:py-[18px] text-left transition-colors active:bg-surface-muted"
     >
-      <span className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-background-100 lg:h-[44px] lg:w-[44px] lg:rounded-[14px] text-main-500">
+      <span className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-surface lg:h-[44px] lg:w-[44px] lg:rounded-[14px] text-brand-strong">
         <MegaphoneIcon className="h-[18px] w-[18px]" />
       </span>
 
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-[6px]">
-          <span className="truncate text-[14px] font-semibold text-background-600">
+          <span className="truncate text-[14px] font-semibold text-primary">
             {banner.title}
           </span>
           {banner.dDay != null && (
-            <span className="shrink-0 rounded-[6px] bg-main-200 px-[6px] py-[2px] text-[11px] font-semibold text-main-500">
+            <span className="shrink-0 rounded-xs bg-brand-tint px-[6px] py-[2px] text-[11px] font-semibold text-brand-strong">
               D-{banner.dDay}
             </span>
           )}
         </span>
-        <span className="mt-[2px] block truncate text-[12px] text-background-400">
+        <span className="mt-[2px] block truncate text-[12px] text-tertiary">
           {banner.summary ?? "공지사항을 확인해 주세요."}
         </span>
       </span>

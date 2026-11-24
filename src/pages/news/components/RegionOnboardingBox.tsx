@@ -9,7 +9,7 @@ type RegionOnboardingBoxProps = {
   onComplete: (region: { sido: string; district: string }) => void;
 };
 
-const selectClassName = "z-[80] min-w-0 flex-1";
+const selectClassName = "z-modal-top min-w-0 flex-1";
 export const ALL_REGIONS_VALUE = "ALL";
 export const ALL_REGIONS_LABEL = "지역 전체";
 const REGION_OPTIONS_ALL_VALUE = regionOptions[0].value;
@@ -26,7 +26,7 @@ export default function RegionOnboardingBox({ onClose, onComplete }: RegionOnboa
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto modal-backdrop motion-backdrop"
+      className="fixed inset-0 z-modal flex items-center justify-center overflow-y-auto modal-backdrop motion-backdrop"
       onClick={onClose}
     >
       <div className="motion-pop" onClick={(event) => event.stopPropagation()}>
@@ -46,7 +46,7 @@ export default function RegionOnboardingBox({ onClose, onComplete }: RegionOnboa
           }
         >
           <div className="flex min-h-0 w-full flex-1 flex-col gap-[12px]">
-            <h2 id={titleId} className="mt-[1.5px] text-h3-onboard text-background-500">
+            <h2 id={titleId} className="mt-[1.5px] text-h3-onboard text-secondary">
               어느 지역을 찾아보시겠어요?
             </h2>
             <div className="flex w-full gap-[12px]">

@@ -8,11 +8,11 @@ export default function HeaderAccountButton() {
   const navigate = useNavigate();
   const { data: brief, isError, isPending } = useUserBrief();
 
-  if (isPending && !isError) return <Bone className="h-[44px] w-[132px] rounded-[12px]" />;
+  if (isPending && !isError) return <Bone className="h-[44px] w-[132px] rounded-lg" />;
 
   const isLoggedIn = !isError && brief?.isLoggedIn === true;
   const base =
-    "flex h-[44px] shrink-0 cursor-pointer items-center gap-[8px] rounded-[12px] border border-[#DCE1E8] bg-background-100 px-[18px] text-[15px] font-semibold text-background-600 transition-colors hover:bg-background-200";
+    "flex h-[44px] shrink-0 cursor-pointer items-center gap-[8px] rounded-lg border border-[#DCE1E8] bg-surface px-[18px] text-[15px] font-semibold text-primary transition-colors hover:bg-surface-subtle";
 
   if (!isLoggedIn) {
     return (

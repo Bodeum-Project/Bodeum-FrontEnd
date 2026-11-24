@@ -83,6 +83,7 @@
   --background-color-surface-subtle: var(--palette-gray-50);
   --background-color-surface-hero: var(--palette-mint-50);
   --background-color-surface-inverse: var(--palette-gray-900);
+  --background-color-surface-muted: var(--palette-gray-100); /* 회색 버튼·입력 바탕 */
   --background-color-skeleton: var(--palette-gray-75);
 
   /* 상태 배경 (회색 버튼·칩의 호버·눌림) — bg-state-hover, bg-state-pressed */
@@ -97,6 +98,7 @@
   --color-danger: var(--palette-red-500);
   --color-danger-soft: var(--palette-red-50);
   --color-like: var(--palette-red-500);
+  --color-like-soft: var(--palette-red-50);
   --color-warning: var(--palette-amber-500);
 
   /* 정보 카테고리 — text-category-agency, bg-category-agency-soft … */
@@ -114,6 +116,8 @@
   /* 딱지 */
   --color-tag-recruit: var(--palette-green-500);
   --color-tag-recruit-soft: var(--palette-green-50);
+  --color-tag-dday: var(--palette-red-500);
+  --color-tag-dday-soft: var(--palette-red-50);
 
   /* 2. 의미 토큰: 라운드 (Tailwind 기본값을 덮어씀. rounded-md = 10px) ---- */
   --radius-xs: 6px;

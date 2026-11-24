@@ -15,7 +15,7 @@ export default function RecommendedNewsTopSection() {
         variant="section"
         skeleton="cards"
         loadingText="추천 소식을 불러오는 중입니다..."
-        className="flex h-[220px] items-center justify-center text-h6 text-background-500"
+        className="flex h-[220px] items-center justify-center text-h6 text-secondary"
         textClassName=""
       />
     )
@@ -27,7 +27,7 @@ export default function RecommendedNewsTopSection() {
         type="error"
         variant="section"
         errorText="추천 소식을 불러오지 못했습니다."
-        className="flex h-[220px] items-center justify-center text-h6 text-background-500"
+        className="flex h-[220px] items-center justify-center text-h6 text-secondary"
         textClassName=""
       />
     );

@@ -21,11 +21,11 @@ export default function IntroSection({
       title="소개"
       icon={<IntroIcon className="h-[16px] w-[16px] text-gray-700" />}
     >
-      <span className="text-h3-onboard text-background-600">
+      <span className="text-h3-onboard text-primary">
         {introduction}
       </span>
       <div className="mt-[14px]">
-        <h4 className="mb-[8px] text-h6 text-background-500">
+        <h4 className="mb-[8px] text-h6 text-secondary">
           전문 분야
         </h4>
         <div className="flex flex-wrap gap-[10px]">

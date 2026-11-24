@@ -18,7 +18,7 @@ export default function NewsListSection({ items, isError }: NewsListSectionProps
         type="error"
         variant="section"
         errorText="소식을 불러오지 못했습니다."
-        className="flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-background-500"
+        className="flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-secondary"
         textClassName=""
       />
     );
@@ -27,7 +27,7 @@ export default function NewsListSection({ items, isError }: NewsListSectionProps
   return (
     <section className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
       {items.length === 0 && (
-        <div className="col-span-full flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-background-500">
+        <div className="col-span-full flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-secondary">
           조건에 맞는 뉴스가 없습니다.
         </div>
       )}

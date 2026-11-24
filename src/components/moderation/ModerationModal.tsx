@@ -122,7 +122,7 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
   return (
     <div
       data-closing={isClosing}
-      className="fixed inset-0 z-[80] flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:px-[20px]"
+      className="fixed inset-0 z-modal-top flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:px-[20px]"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -135,15 +135,15 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
         aria-describedby={descId}
         tabIndex={-1}
         data-closing={isClosing}
-        className="motion-sheet max-h-[88dvh] w-full overflow-y-auto rounded-t-[22px] bg-background-100 px-[20px] pb-[calc(20px+env(safe-area-inset-bottom))] pt-[10px] outline-none sm:max-w-[440px] sm:rounded-[20px] sm:px-[24px] sm:pb-[24px] sm:pt-[24px]"
+        className="motion-sheet max-h-[88dvh] w-full overflow-y-auto rounded-t-[22px] bg-surface px-[20px] pb-[calc(20px+env(safe-area-inset-bottom))] pt-[10px] outline-none sm:max-w-[440px] sm:rounded-2xl sm:px-[24px] sm:pb-[24px] sm:pt-[24px]"
       >
         {step === "select" ? (
           <>
             <div aria-hidden="true" className="mx-auto mb-[16px] h-[4px] w-[40px] rounded-full bg-background-300 sm:hidden" />
-            <h2 id={titleId} className="text-[18px] font-bold leading-[26px] text-background-600">
+            <h2 id={titleId} className="text-[18px] font-bold leading-[26px] text-primary">
               {isReport ? `${targetLabel} 신고 사유를 선택해 주세요` : "차단 사유를 선택해 주세요"}
             </h2>
-            <p id={descId} className="mt-[4px] text-body-sub text-background-500">
+            <p id={descId} className="mt-[4px] text-body-sub text-secondary">
               {isReport
                 ? "신고 내용은 운영 정책에 따라 검토돼요. 해당하는 사유를 모두 선택해 주세요."
                 : "차단하면 이 사용자의 글과 댓글이 더 이상 보이지 않아요. 해당하는 사유를 모두 선택해 주세요."}
@@ -156,10 +156,10 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
                 return (
                   <label
                     key={item.value}
-                    className={`flex cursor-pointer items-center gap-[10px] rounded-[12px] border px-[14px] py-[12px] text-[14px] leading-[20px] transition-colors ${
+                    className={`flex cursor-pointer items-center gap-[10px] rounded-lg border px-[14px] py-[12px] text-[14px] leading-[20px] transition-colors ${
                       selected
-                        ? "border-main-400 bg-main-150 font-bold text-background-600"
-                        : "border-background-250 text-background-600 hover:bg-background-200"
+                        ? "border-brand bg-brand-soft font-bold text-primary"
+                        : "border-default text-primary hover:bg-surface-subtle"
                     }`}
                   >
                     <input
@@ -174,8 +174,8 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
                       aria-hidden="true"
                       className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border-2 transition-colors ${
                         selected
-                          ? "border-main-400 bg-main-400 text-background-100"
-                          : "border-background-300 bg-transparent text-transparent"
+                          ? "border-brand bg-brand text-inverse"
+                          : "border-strong bg-transparent text-transparent"
                       }`}
                     >
                       <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
@@ -204,9 +204,9 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
                   placeholder={`${actionLabel} 사유를 입력해 주세요`}
                   aria-label={`기타 ${actionLabel} 사유`}
                   rows={3}
-                  className="w-full resize-none rounded-[12px] border border-background-250 px-[14px] py-[12px] text-[14px] leading-[20px] text-background-600 outline-none placeholder:text-background-400 focus:border-main-400"
+                  className="w-full resize-none rounded-lg border border-default px-[14px] py-[12px] text-[14px] leading-[20px] text-primary outline-none placeholder:text-tertiary focus:border-brand"
                 />
-                <p className="mt-[2px] text-right text-body-sub text-background-400">
+                <p className="mt-[2px] text-right text-body-sub text-tertiary">
                   {etcText.length}/{ETC_MAX_LENGTH}
                 </p>
               </div>
@@ -216,7 +216,7 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
               <button
                 type="button"
                 onClick={onClose}
-                className="h-[48px] flex-1 cursor-pointer rounded-[12px] bg-background-250 text-[15px] font-bold text-background-500 hover:bg-background-300"
+                className="h-[48px] flex-1 cursor-pointer rounded-lg bg-surface-muted text-[15px] font-bold text-secondary hover:bg-background-300"
               >
                 취소
               </button>
@@ -224,9 +224,9 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
                 type="button"
                 disabled={!canSubmit}
                 onClick={() => setStep("comingSoon")}
-                className={`h-[48px] flex-1 rounded-[12px] text-[15px] font-bold text-background-100 transition-[filter] disabled:cursor-not-allowed disabled:bg-background-300 disabled:bg-none ${
+                className={`h-[48px] flex-1 rounded-lg text-[15px] font-bold text-inverse transition-[filter] disabled:cursor-not-allowed disabled:bg-background-300 disabled:bg-none ${
                   isReport
-                    ? "cursor-pointer bg-sub-red hover:brightness-105"
+                    ? "cursor-pointer bg-danger hover:brightness-105"
                     : "btn-dark cursor-pointer"
                 }`}
               >
@@ -236,13 +236,13 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
           </>
         ) : (
           <div className="flex flex-col items-center pt-[14px] text-center sm:pt-0">
-            <div className="flex h-[56px] w-[56px] items-center justify-center rounded-[18px] bg-main-150 text-main-400">
+            <div className="flex h-[56px] w-[56px] items-center justify-center rounded-[18px] bg-brand-soft text-brand">
               <ComingSoonIcon />
             </div>
-            <h2 id={titleId} className="mt-[14px] text-[18px] font-bold leading-[26px] text-background-600">
+            <h2 id={titleId} className="mt-[14px] text-[18px] font-bold leading-[26px] text-primary">
               {actionLabel} 기능은 준비 중이에요
             </h2>
-            <p id={descId} className="mt-[8px] text-[14px] leading-[22px] text-background-500">
+            <p id={descId} className="mt-[8px] text-[14px] leading-[22px] text-secondary">
               더 안전한 커뮤니티를 위해 열심히 만들고 있어요.
               <br />
               조금만 기다려 주세요!
@@ -250,7 +250,7 @@ function ModerationModalContent({ action, target, onClose: closeNow }: Moderatio
             <button
               type="button"
               onClick={onClose}
-              className="btn-dark mt-[22px] h-[48px] w-full cursor-pointer rounded-[12px] text-[15px] font-bold"
+              className="btn-dark mt-[22px] h-[48px] w-full cursor-pointer rounded-lg text-[15px] font-bold"
             >
               확인
             </button>

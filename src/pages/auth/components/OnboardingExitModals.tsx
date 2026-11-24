@@ -24,7 +24,7 @@ export default function OnboardingExitModals({
   const isCancel = modal === "cancel";
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto px-[20px] py-[40px]">
+    <div className="fixed inset-0 z-modal flex items-center justify-center overflow-y-auto px-[20px] py-[40px]">
       <OnboardCancelBox
         title={
           isProfileOnboarding
@@ -46,7 +46,7 @@ export default function OnboardingExitModals({
               ? "중단하기"
               : "건너뛰기"
         }
-        className="z-[70]!"
+        className="z-modal-nested!"
         leftButtonDisabled={isSubmitting}
         rightButtonDisabled={isSubmitting}
         onLeftButtonClick={onClose}

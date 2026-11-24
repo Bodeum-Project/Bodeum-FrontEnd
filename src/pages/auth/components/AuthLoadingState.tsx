@@ -23,14 +23,14 @@ export default function AuthLoadingState({
         className={[
           "size-[32px] animate-spin rounded-full border-[3px]",
           isInverse
-            ? "border-background-300 border-t-main-400"
-            : "border-main-200 border-t-main-500",
+            ? "border-strong border-t-brand"
+            : "border-brand-tint border-t-brand-strong",
         ].join(" ")}
       />
       <p
         className={[
           "text-center text-h2-onboard",
-          isInverse ? "text-background-100" : "text-background-500",
+          isInverse ? "text-inverse" : "text-secondary",
         ].join(" ")}
       >
         {message}
