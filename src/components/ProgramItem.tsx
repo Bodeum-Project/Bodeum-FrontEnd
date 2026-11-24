@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Chip, { type ChipVariant } from "@/components/Chips";
 import ViewStat from "@/components/post-stat/ViewStat";
 import ScrapStat from "@/components/post-stat/ScrapStat";
@@ -24,6 +25,8 @@ interface ProgramItemProps {
   isScrapped?: boolean;
   onClick?: () => void;
   onScrapClick?: () => void;
+  /** 소식 포스터 썸네일. 없거나 불러오지 못하면 아이콘으로 대체 */
+  thumbnailUrl?: string | null;
 }
 
 export default function ProgramItem({
@@ -39,7 +42,10 @@ export default function ProgramItem({
   isScrapped = false,
   onClick,
   onScrapClick,
+  thumbnailUrl,
 }: ProgramItemProps) {
+  const [thumbnailFailed, setThumbnailFailed] = useState(false);
+  const showThumbnail = Boolean(thumbnailUrl) && !thumbnailFailed;
   const serviceText = services?.filter(Boolean).join(", ");
   const rightLabel = chipText || contact;
 
@@ -48,8 +54,19 @@ export default function ProgramItem({
       pressedBorderColor="peer-active:border-main-400"
       onClick={onClick}
       icon={
-        <div className="mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-[18px] bg-main-200 text-main-500 sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-[20px]">
-          <InfoItemNewsIcon className="h-[32px] w-[32px] sm:h-[38px] sm:w-[38px]" />
+        <div className="mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-[18px] bg-main-200 text-main-500 sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-[20px]">
+          {showThumbnail ? (
+            // 포스터는 제목이 위쪽에 있는 경우가 많아 윗부분 기준으로 자름
+            <img
+              src={thumbnailUrl ?? undefined}
+              alt=""
+              loading="lazy"
+              onError={() => setThumbnailFailed(true)}
+              className="h-full w-full object-cover object-top"
+            />
+          ) : (
+            <InfoItemNewsIcon className="h-[32px] w-[32px] sm:h-[38px] sm:w-[38px]" />
+          )}
         </div>
       }
       left={

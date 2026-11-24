@@ -111,7 +111,7 @@ export default function RequiredInfoSection() {
       />
 
       {/* 누구를 위한 어떤 서비스인지 첫 화면에서 바로 알 수 있게 */}
-      <p className="text-[14px] font-semibold text-main-500">발달이 느린 아이를 키우는 보호자를 위한</p>
+      <p className="text-[14px] font-semibold text-main-500">발달이 느린 아이 가족을 위한 정보 플랫폼</p>
       <h1 className="mt-[8px] text-[24px] font-bold leading-[34px] tracking-[-0.02em] text-background-600 lg:text-[28px] lg:leading-[40px]">
         흩어진 기관·병원·복지 정보,
         <br />
