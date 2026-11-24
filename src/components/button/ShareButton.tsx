@@ -18,9 +18,9 @@ export default function ShareButton({ url, className, appearance = "outline" }: 
       }
 
       await navigator.clipboard.writeText(url);
-      showToast("green", "링크가 성공적으로 복사되었습니다.");
+      showToast("green", "링크를 복사했어요");
     } catch {
-      showToast("red", "링크를 복사하지 못했습니다.");
+      showToast("red", "링크를 복사하지 못했어요");
     }
   };
 

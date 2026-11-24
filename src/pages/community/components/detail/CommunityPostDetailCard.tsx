@@ -197,7 +197,7 @@ export default function CommunityPostDetailCard({
                 onConfirm={() =>
                   deletePost(post.postId, {
                     onSuccess: () => {
-                      showToast("green", "게시물이 삭제되었습니다.");
+                      showToast("green", "게시글을 삭제했어요");
                       navigate("/community");
                     },
                     onError: (error) =>

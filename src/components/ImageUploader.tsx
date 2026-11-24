@@ -66,7 +66,7 @@ export default function ImageUploader({
     if (unsupportedFiles.length > 0) {
       showToast(
         "red",
-        `이미지 업로드 실패. ${allowedFormatLabel} 형식의 이미지만 업로드할 수 있습니다.`,
+        `${allowedFormatLabel} 형식의 이미지만 올릴 수 있어요`,
       );
     }
 
@@ -79,7 +79,7 @@ export default function ImageUploader({
     }
 
     if (validFiles.length > remainingSlots) {
-      showToast("red", `이미지 업로드 실패. 이미지는 최대 ${MAX_IMAGE}장까지 첨부할 수 있습니다.`);
+      showToast("red", `이미지는 최대 ${MAX_IMAGE}장까지 올릴 수 있어요`);
     }
 
     const next = [...images, ...validFiles.slice(0, remainingSlots)];

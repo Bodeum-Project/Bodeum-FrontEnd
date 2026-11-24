@@ -120,7 +120,7 @@ export default function NewsDetailPage() {
     }
 
     if (!hasStoredAuthSession()) {
-      showToast("blue", "로그인/회원가입 후 만나보세요");
+      showToast("blue", "로그인하면 스크랩할 수 있어요", { action: "login" });
       return;
     }
 
@@ -128,16 +128,16 @@ export default function NewsDetailPage() {
       onSuccess: (result) => {
         showToast(
           "green",
-          result.scrapped ? "소식을 스크랩했습니다." : "소식 스크랩을 취소했습니다.",
+          result.scrapped ? "스크랩했어요" : "스크랩을 취소했어요",
         );
       },
       onError: (error) => {
         if (isUnauthorizedError(error)) {
-          showToast("blue", "로그인/회원가입 후 만나보세요");
+          showToast("blue", "로그인하면 스크랩할 수 있어요", { action: "login" });
           return;
         }
 
-        showToast("red", getApiErrorMessage(error, "스크랩 상태를 변경하지 못했습니다."));
+        showToast("red", getApiErrorMessage(error, "스크랩하지 못했어요. 잠시 후 다시 시도해 주세요"));
       },
     });
   };

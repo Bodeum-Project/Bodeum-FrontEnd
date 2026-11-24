@@ -1,14 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import type { ComponentType, SVGProps } from "react";
 import type { Root } from "react-dom/client";
 
-import ToastBlueIcon from "@/assets/icons/ToastBlue.svg?react";
-import ToastCheckIcon from "@/assets/icons/ToastCheck.svg?react";
-import ToastCloseIcon from "@/assets/icons/ToastClose.svg?react";
-import ToastErrorIcon from "@/assets/icons/ToastError.svg?react";
-import ToastWarningIcon from "@/assets/icons/ToastWarning.svg?react";
 
 export type ToastColor = "blue" | "green" | "red" | "yellow";
 
@@ -17,7 +11,12 @@ type ToastProps = {
   message: string;
 };
 
-type StatusIconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+/** 토스트 오른쪽 글자 버튼. login은 로그인 화면으로 이동 */
+export type ToastAction = "login" | { label: string; onClick: () => void };
+
+export type ToastOptions = {
+  action?: ToastAction;
+};
 
 type ToastAnimationStatus = "entering" | "visible" | "closing";
 
@@ -25,47 +24,64 @@ type ToastItem = {
   id: number;
   color: ToastColor;
   message: string;
+  action?: ToastAction;
   status: ToastAnimationStatus;
 };
 
-type ToastStyle = {
-  borderClassName: string;
-  textClassName: string;
-  iconBgClassName?: string;
-  Icon: StatusIconComponent;
-};
+const MASCOT_SRC = `${import.meta.env.BASE_URL}favicon-mascot.png`;
 
-const toastStyleMap: Record<ToastColor, ToastStyle> = {
-  blue: {
-    borderClassName: "border-main-400",
-    textClassName: "text-main-400",
-    Icon: ToastBlueIcon,
-  },
-  green: {
-    borderClassName: "border-sub-green",
-    textClassName: "text-sub-green",
-    iconBgClassName: "bg-sub-green",
-    Icon: ToastCheckIcon,
-  },
-  red: {
-    borderClassName: "border-sub-red",
-    textClassName: "text-sub-red",
-    iconBgClassName: "bg-sub-red",
-    Icon: ToastErrorIcon,
-  },
-  yellow: {
-    borderClassName: "border-sub-yellow",
-    textClassName: "text-sub-yellow",
-    iconBgClassName: "bg-sub-yellow",
-    Icon: ToastWarningIcon,
-  },
-};
+const CheckGlyph = () => (
+  <svg viewBox="0 0 16 16" className="h-[12px] w-[12px]" aria-hidden="true">
+    <path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const BangGlyph = () => (
+  <svg viewBox="0 0 16 16" className="h-[11px] w-[11px]" aria-hidden="true">
+    <path d="M8 3v6M8 12.6v.4" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+  </svg>
+);
+
+const PersonGlyph = () => (
+  <svg viewBox="0 0 16 16" className="h-[12px] w-[12px]" aria-hidden="true">
+    <circle cx="8" cy="5.8" r="3" fill="currentColor" />
+    <path d="M2.5 14c.8-2.6 3-4 5.5-4s4.7 1.4 5.5 4" fill="currentColor" />
+  </svg>
+);
+
+function ToastLeading({ color, action }: { color: ToastColor; action?: ToastAction }) {
+  if (action === "login") {
+    return (
+      <span className="flex size-[22px] shrink-0 items-center justify-center rounded-full bg-background-500 text-background-100">
+        <PersonGlyph />
+      </span>
+    );
+  }
+
+  if (color === "blue") {
+    // 축하·환영 등 좋은 소식: 마스코트
+    return <img src={MASCOT_SRC} alt="" aria-hidden="true" className="-my-[3px] size-[28px] shrink-0" />;
+  }
+
+  const dotClass: Record<Exclude<ToastColor, "blue">, string> = {
+    green: "bg-main-400",
+    red: "bg-sub-pink",
+    yellow: "bg-[#F5A524]",
+  };
+
+  return (
+    <span className={`flex size-[22px] shrink-0 items-center justify-center rounded-full text-background-100 ${dotClass[color]}`}>
+      {color === "green" ? <CheckGlyph /> : <BangGlyph />}
+    </span>
+  );
+}
 
 const joinClassNames = (...classNames: Array<string | false | undefined>) =>
   classNames.filter(Boolean).join(" ");
 
 const MAX_TOAST_COUNT = 5;
-const TOAST_DURATION_MS = 2000;
+const TOAST_DURATION_MS = 2400;
+const TOAST_WITH_ACTION_DURATION_MS = 4000;
 const TOAST_EXIT_MS = 220;
 
 let nextToastId = 0;
@@ -125,7 +141,7 @@ function closeToast(id: number) {
   toastTimers.set(id, [removeTimer]);
 }
 
-export function showToast(color: ToastColor, message: string) {
+export function showToast(color: ToastColor, message: string, options: ToastOptions = {}) {
   const id = nextToastId + 1;
   nextToastId = id;
 
@@ -140,6 +156,7 @@ export function showToast(color: ToastColor, message: string) {
       id,
       color,
       message,
+      action: options.action,
       status: "entering",
     },
   ];
@@ -154,7 +171,7 @@ export function showToast(color: ToastColor, message: string) {
 
   const durationTimer = window.setTimeout(() => {
     closeToast(id);
-  }, TOAST_DURATION_MS);
+  }, options.action ? TOAST_WITH_ACTION_DURATION_MS : TOAST_DURATION_MS);
 
   toastTimers.set(id, [enterTimer, durationTimer]);
 
@@ -169,12 +186,13 @@ function ToastViewport({
   onClose: (id: number) => void;
 }) {
   return (
-    <div className="pointer-events-none fixed bottom-[40px] left-1/2 z-[9999] flex -translate-x-1/2 flex-col-reverse items-center gap-[12px]">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(80px+env(safe-area-inset-bottom))] z-[9999] flex flex-col-reverse items-center gap-[8px] px-[16px] lg:bottom-[40px]">
       {toasts.map((toast) => (
         <ToastCard
           key={toast.id}
           color={toast.color}
           message={toast.message}
+          action={toast.action}
           status={toast.status}
           onClose={() => onClose(toast.id)}
         />
@@ -183,72 +201,59 @@ function ToastViewport({
   );
 }
 
+function runAction(action: ToastAction) {
+  if (action === "login") {
+    window.location.assign(`${import.meta.env.BASE_URL.replace(/\/$/, "")}/auth`);
+    return;
+  }
+
+  action.onClick();
+}
+
+// 다크 플로팅 토스트: 글자 길이만큼만 차는 남색 캡슐, 닫기 버튼 없이 자동으로 사라짐
 function ToastCard({
   color,
   message,
+  action,
   onClose,
   status,
 }: ToastProps & {
+  action?: ToastAction;
   status: ToastAnimationStatus;
   onClose: () => void;
 }) {
-  const { borderClassName, textClassName, iconBgClassName, Icon } =
-    toastStyleMap[color];
+  const actionLabel = action === "login" ? "로그인" : action?.label;
 
   return (
     <div
-      role="status"
+      role={color === "red" ? "alert" : "status"}
       data-color={color}
+      onClick={action ? undefined : onClose}
       className={joinClassNames(
-        "pointer-events-auto flex min-h-[51.2px] w-[640px] max-w-[calc(100vw-40px)] shrink-0 items-center overflow-hidden rounded-[10px] border bg-background-100 px-[16px] py-[9.6px] shadow-button",
+        "pointer-events-auto flex max-w-[min(480px,100%)] items-center gap-[10px] rounded-[16px] bg-[rgb(42_53_70_/_0.94)] py-[12px] pl-[14px] text-background-100 shadow-[0_10px_30px_rgb(42_53_70_/_0.18)] backdrop-blur-[12px]",
+        actionLabel ? "pr-[8px]" : "cursor-pointer pr-[18px]",
         "transform transition-[opacity,transform] duration-200 ease-out will-change-transform",
-        status === "visible"
-          ? "translate-y-0 opacity-100"
-          : "translate-y-[16px] opacity-0",
-        borderClassName,
+        status === "visible" ? "translate-y-0 opacity-100" : "translate-y-[12px] opacity-0",
       )}
     >
-      <div className="flex min-w-0 flex-1 items-center gap-[10px]">
-        {iconBgClassName ? (
-          <span
-            className={joinClassNames(
-              "flex size-[27.2px] shrink-0 items-center justify-center rounded-full",
-              iconBgClassName,
-            )}
-          >
-            <Icon
-              aria-hidden="true"
-              className="size-[25.5px] shrink-0 text-background-100"
-            />
-          </span>
-        ) : (
-          <Icon
-            aria-hidden="true"
-            className="size-[32px] shrink-0"
-          />
-        )}
+      <ToastLeading color={color} action={action} />
 
-        <p
-          className={joinClassNames(
-            "min-w-0 flex-1 break-words text-h3-category",
-            textClassName,
-          )}
+      <p className="min-w-0 break-keep text-[14px] font-semibold leading-[20px] tracking-[-0.01em] sm:text-[15px]">
+        {message}
+      </p>
+
+      {action && actionLabel && (
+        <button
+          type="button"
+          onClick={() => {
+            onClose();
+            runAction(action);
+          }}
+          className="ml-[2px] shrink-0 cursor-pointer rounded-[10px] px-[10px] py-[6px] text-[14px] font-bold text-main-300 transition-colors hover:bg-background-100/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-main-300"
         >
-          {message}
-        </p>
-      </div>
-
-      <button
-        type="button"
-        aria-label="토스트 닫기"
-        onClick={onClose}
-        className="flex size-[28px] shrink-0 cursor-pointer items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400"
-      >
-        <ToastCloseIcon
-          aria-hidden="true"
-          className="size-[23.8px] shrink-0 text-background-500"
-        />
-      </button>
+          {actionLabel}
+        </button>
+      )}
     </div>
   );
 }

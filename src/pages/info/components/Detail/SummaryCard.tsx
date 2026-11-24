@@ -64,9 +64,9 @@ export default function SummaryCard({
 
       await navigator.clipboard.writeText(shareUrl);
 
-      showToast("green", "공유 링크가 복사되었습니다.");
+      showToast("green", "링크를 복사했어요");
     } catch {
-      showToast("red", "공유 링크를 가져오지 못했습니다.");
+      showToast("red", "링크를 복사하지 못했어요");
     }
   };
 
@@ -75,7 +75,7 @@ export default function SummaryCard({
     const refreshToken = localStorage.getItem("refreshToken");
 
     if (!accessToken && !refreshToken) {
-      showToast("blue", "로그인/회원가입 후 만나보세요");
+      showToast("blue", "로그인하면 스크랩할 수 있어요", { action: "login" });
       return;
     }
 
@@ -90,12 +90,10 @@ export default function SummaryCard({
 
       showToast(
         "green",
-        result.isScrapped
-          ? "스크랩되었습니다."
-          : "스크랩이 취소되었습니다.",
+        result.isScrapped ? "스크랩했어요" : "스크랩을 취소했어요",
       );
     } catch {
-      showToast("red", "스크랩에 실패했습니다.");
+      showToast("red", "스크랩하지 못했어요. 잠시 후 다시 시도해 주세요");
     }
   };
 

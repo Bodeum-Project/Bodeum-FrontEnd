@@ -36,8 +36,8 @@ function showPendingLoginToast() {
   showToast(
     "blue",
     pendingToast.nickname
-      ? `${pendingToast.nickname}님, 환영합니다! 보듬이 보호자님의 곁에서 함께하겠습니다`
-      : "로그인되었습니다. 보듬에 오신 것을 환영합니다!",
+      ? `${pendingToast.nickname}님, 반가워요! 보듬이 곁에서 함께할게요`
+      : "로그인했어요. 다시 만나서 반가워요!",
   );
 }
 
@@ -122,7 +122,7 @@ export default function AuthStateGate({ children }: AuthStateGateProps) {
           if (!cancelled) {
             showToast(
               "blue",
-              "가입이 완료되었습니다. 보듬에 오신 것을 환영합니다!",
+              "가입을 마쳤어요. 보듬에 오신 걸 환영해요!",
             );
             setIsChecking(false);
             navigate("/", { replace: true });

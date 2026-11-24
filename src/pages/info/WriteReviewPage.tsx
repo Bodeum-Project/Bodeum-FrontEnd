@@ -82,17 +82,17 @@ export default function WriteReviewPage() {
         },
         {
           onSuccess: () => {
-            showToast("green", "후기가 성공적으로 등록 되었습니다!");
+            showToast("blue", "후기를 등록했어요. 고마워요!");
             navigate(-1);
           },
           onError: () => {
-            showToast("red", "후기 등록에 실패했습니다.");
+            showToast("red", "후기를 등록하지 못했어요. 잠시 후 다시 시도해 주세요");
           },
         },
       );
     } catch (error) {
       console.error(error);
-      showToast("red", "이미지 업로드에 실패했습니다.");
+      showToast("red", "이미지를 올리지 못했어요");
     } finally {
       setIsUploading(false);
     }

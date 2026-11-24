@@ -65,7 +65,7 @@ export default function ReviewCard({ infoItemId, review }: Props) {
           error.response?.data?.message ?? "도움돼요 등록에 실패했습니다."
         );
       } else {
-        showToast("red", "도움돼요 등록에 실패했습니다.");
+        showToast("red", "도움돼요를 남기지 못했어요");
       }
     }
   };

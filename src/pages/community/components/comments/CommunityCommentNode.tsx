@@ -220,7 +220,7 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                     event?.stopPropagation();
 
                     if (comment.isMine && !comment.isAccepted) {
-                      showToast("red", "본인이 작성한 댓글 혹은 답글은 채택할 수 없습니다.");
+                      showToast("red", "내가 쓴 댓글은 채택할 수 없어요");
                       return;
                     }
 

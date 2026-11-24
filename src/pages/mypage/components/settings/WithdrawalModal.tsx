@@ -86,7 +86,7 @@ export default function WithdrawalModal({
 
     onConfirm();
     navigate("/", { replace: true, flushSync: true });
-    showToast("green", "회원 탈퇴가 완료되었습니다.");
+    showToast("green", "탈퇴를 마쳤어요. 그동안 함께해 주셔서 고마워요");
   };
 
   return (
