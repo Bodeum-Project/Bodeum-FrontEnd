@@ -111,15 +111,12 @@ export default function RequiredInfoSection() {
       />
 
       {/* 누구를 위한 어떤 서비스인지 첫 화면에서 바로 알 수 있게 */}
-      <p className="text-[14px] font-semibold text-main-500">발달장애 아이를 키우는 보호자를 위한</p>
+      <p className="text-[14px] font-semibold text-main-500">발달이 느린 아이를 키우는 보호자를 위한</p>
       <h1 className="mt-[8px] text-[24px] font-bold leading-[34px] tracking-[-0.02em] text-background-600 lg:text-[28px] lg:leading-[40px]">
         흩어진 기관·병원·복지 정보,
         <br />
         보듬보듬에서 한 번에 찾아요
       </h1>
-      <p className="mt-[8px] break-keep text-[14px] leading-[21px] text-background-500">
-        지역 소식과 부모님들의 경험, AI 상담까지 함께 볼 수 있어요
-      </p>
 
       <div className="mt-[28px] grid grid-cols-5 gap-[8px] sm:flex sm:gap-[14px]">
         {categories.map((type) => {
