@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
+import { useDelayedClose } from "@/hooks/usePresence";
 import { createPortal } from "react-dom";
 
 import { ComingSoonIcon } from "./ModerationIcons";
@@ -39,7 +40,9 @@ export default function ModerationModal(props: ModerationModalProps) {
   return createPortal(<ModerationModalContent {...props} />, document.body);
 }
 
-function ModerationModalContent({ action, target, onClose }: ModerationModalProps) {
+function ModerationModalContent({ action, target, onClose: closeNow }: ModerationModalProps) {
+  // 닫을 때 시트가 내려가는 모션을 보여준 뒤 닫음
+  const { isClosing, close: onClose } = useDelayedClose(closeNow, 200);
   const [step, setStep] = useState<"select" | "comingSoon">("select");
   const [selectedReasons, setSelectedReasons] = useState<string[]>([]);
   const [etcText, setEtcText] = useState("");
@@ -118,7 +121,8 @@ function ModerationModalContent({ action, target, onClose }: ModerationModalProp
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-end justify-center modal-backdrop sm:items-center sm:px-[20px]"
+      data-closing={isClosing}
+      className="fixed inset-0 z-[80] flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:px-[20px]"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -130,7 +134,8 @@ function ModerationModalContent({ action, target, onClose }: ModerationModalProp
         aria-labelledby={titleId}
         aria-describedby={descId}
         tabIndex={-1}
-        className="moderation-sheet max-h-[88dvh] w-full overflow-y-auto rounded-t-[22px] bg-background-100 px-[20px] pb-[calc(20px+env(safe-area-inset-bottom))] pt-[10px] outline-none sm:max-w-[440px] sm:rounded-[20px] sm:px-[24px] sm:pb-[24px] sm:pt-[24px]"
+        data-closing={isClosing}
+        className="motion-sheet max-h-[88dvh] w-full overflow-y-auto rounded-t-[22px] bg-background-100 px-[20px] pb-[calc(20px+env(safe-area-inset-bottom))] pt-[10px] outline-none sm:max-w-[440px] sm:rounded-[20px] sm:px-[24px] sm:pb-[24px] sm:pt-[24px]"
       >
         {step === "select" ? (
           <>

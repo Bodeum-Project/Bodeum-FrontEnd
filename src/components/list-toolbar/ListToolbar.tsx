@@ -70,7 +70,7 @@ export function FilterPill({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`flex h-[34px] min-w-0 cursor-pointer items-center gap-[4px] rounded-full border pl-[12px] pr-[10px] text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${
+      className={`press-sm flex h-[34px] min-w-0 cursor-pointer items-center gap-[4px] rounded-full border pl-[12px] pr-[10px] text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${
         active
           ? "border-transparent bg-main-150 text-main-500"
           : "border-background-250 bg-background-100 text-background-600 hover:bg-background-200"

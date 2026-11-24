@@ -376,7 +376,7 @@ export function Select({
   }, [activeIndex, cancelPendingCenterScroll, isOpen, options.length]);
 
   const chevronClassName = [
-    "shrink-0 text-background-500!",
+    "shrink-0 text-background-500! transition-transform duration-200 motion-reduce:transition-none",
     isOpen ? "rotate-90" : "-rotate-90",
   ].join(" ");
   const triggerClassName = [
@@ -430,7 +430,7 @@ export function Select({
           id={listboxId}
           role="listbox"
           style={{ maxHeight }}
-          className={`absolute z-10 w-full overflow-x-hidden overflow-y-auto overscroll-contain border-[0.8px] border-background-250 bg-background-100 py-2 ${dropdownPositionClass} ${dropdownVariantClass[variant]} ${dropdownClassName ?? ""}`}
+          className={`motion-drop absolute z-10 w-full overflow-x-hidden overflow-y-auto overscroll-contain border-[0.8px] border-background-250 bg-background-100 py-2 ${dropdownPositionClass} ${dropdownVariantClass[variant]} ${dropdownClassName ?? ""}`}
         >
           {options.map((opt, index) => (
             <li

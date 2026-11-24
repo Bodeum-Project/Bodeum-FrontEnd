@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { usePresence } from "@/hooks/usePresence";
 
 interface ModalProps {
   open: boolean;
@@ -33,11 +34,16 @@ export default function Modal({
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  const { isMounted, isClosing } = usePresence(open, 160);
+
+  if (!isMounted) return null;
 
   return (
     <div
-      className={"fixed inset-0 z-[60] flex items-center justify-center px-[20px] modal-backdrop"}
+      data-closing={isClosing}
+      className={`fixed inset-0 z-[60] flex items-center justify-center px-[20px] modal-backdrop motion-backdrop ${
+        isClosing ? "pointer-events-none" : ""
+      }`}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -48,7 +54,8 @@ export default function Modal({
         ref={modalRef}
         role="dialog"
         aria-modal="true"
-        className={className}
+        data-closing={isClosing}
+        className={`motion-pop ${className}`}
       >
         {children}
       </div>

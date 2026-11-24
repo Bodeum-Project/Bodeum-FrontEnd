@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from "react";
+import { usePresence } from "@/hooks/usePresence";
 
 interface MobileDrawerProps {
   open: boolean;
@@ -8,6 +9,9 @@ interface MobileDrawerProps {
 
 // 모바일에서 사이드바(프로필·약관 링크·로그아웃)를 왼쪽에서 여는 서랍
 export default function MobileDrawer({ open, onClose, children }: MobileDrawerProps) {
+  // 닫히는 동안에도 내용을 유지해 빈 판이 미끄러져 나가지 않도록
+  const { isMounted } = usePresence(open, 240);
+
   useEffect(() => {
     if (!open) return;
 
@@ -26,7 +30,7 @@ export default function MobileDrawer({ open, onClose, children }: MobileDrawerPr
     >
       <div
         onClick={onClose}
-        className={`absolute inset-0 modal-backdrop transition-opacity duration-200 ${
+        className={`absolute inset-0 modal-backdrop transition-opacity duration-[240ms] ${
           open ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -35,11 +39,11 @@ export default function MobileDrawer({ open, onClose, children }: MobileDrawerPr
         role="dialog"
         aria-modal="true"
         aria-label="메뉴"
-        className={`absolute inset-y-0 left-0 flex shadow-xl transition-transform duration-200 ease-out ${
+        className={`absolute inset-y-0 left-0 flex shadow-xl transition-transform duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {open && children}
+        {isMounted && children}
       </div>
     </div>
   );

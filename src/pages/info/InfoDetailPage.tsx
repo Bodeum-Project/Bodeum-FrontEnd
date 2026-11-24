@@ -60,7 +60,7 @@ export default function InfoDetailPage() {
   }
 
   return (
-    <div className="flex justify-center px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
+    <div className="motion-fade flex justify-center px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
       <main className="w-full max-w-[760px] space-y-[12px]">
         <SummaryCard
           infoItemId={detail.infoItemId}

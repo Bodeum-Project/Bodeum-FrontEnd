@@ -29,7 +29,7 @@ export default function NewsCard({
   return (
     <button
       onClick={() => navigate(`/news/${newsId}`)}
-      className="group flex w-[200px] shrink-0 cursor-pointer flex-col self-start text-left sm:w-[220px]"
+      className="press group flex w-[200px] shrink-0 cursor-pointer flex-col self-start text-left sm:w-[220px]"
     >
       <div className="relative h-[128px] overflow-hidden rounded-[16px] bg-background-200">
         {thumbnailUrl ? (

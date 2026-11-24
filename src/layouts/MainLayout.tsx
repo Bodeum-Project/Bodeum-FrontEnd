@@ -17,6 +17,8 @@ export default function MainLayout() {
   const mainRef = useRef<HTMLElement>(null);
   const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // 스크롤을 내리면 상단바 경계선·그림자가 서서히 나타남
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // 페이지 이동 시 모바일 메뉴 닫기
   useEffect(() => {
@@ -30,6 +32,7 @@ export default function MainLayout() {
     if (!main) return;
 
     const handleScroll = () => {
+      setIsScrolled(main.scrollTop > 4);
       sessionStorage.setItem(
         `scroll:${location.pathname}`,
         String(main.scrollTop),
@@ -83,7 +86,10 @@ export default function MainLayout() {
 
         <div className="relative flex min-h-0 min-w-0 flex-1 flex-col">
           {/* 상단바가 스크롤 영역 위에 떠 있어 뒤 콘텐츠가 블러로 비침 */}
-          <div className="absolute inset-x-0 top-0 z-30">
+          <div
+            data-scrolled={isScrolled}
+            className="group/header absolute inset-x-0 top-0 z-30"
+          >
             {header === "back" ? (
               <BackTopBar />
             ) : (
@@ -95,7 +101,11 @@ export default function MainLayout() {
             ref={mainRef}
             className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pt-[56px] pb-[calc(74px+env(safe-area-inset-bottom))] lg:pt-[72px] lg:pb-0"
           >
-            <div className="mx-auto w-full">
+            {/* 페이지 이동 시 본문만 살짝 떠오르며 등장 (뒤로가기는 페이드만) */}
+            <div
+              key={location.pathname}
+              className={`mx-auto w-full ${navigationType === "POP" ? "motion-fade" : "motion-page"}`}
+            >
               <Outlet />
             </div>
           </main>

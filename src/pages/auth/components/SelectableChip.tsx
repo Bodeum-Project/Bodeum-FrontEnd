@@ -24,7 +24,7 @@ export default function SelectableChip({
       aria-pressed={selected}
       onClick={onClick}
       className={joinClassNames(
-        "max-w-full shrink-0 cursor-pointer rounded-[120px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
+        "press-sm max-w-full shrink-0 cursor-pointer rounded-[120px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
         buttonClassName,
       )}
     >

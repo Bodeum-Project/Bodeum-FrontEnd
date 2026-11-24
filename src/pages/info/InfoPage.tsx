@@ -310,7 +310,7 @@ export default function InfoPage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
+          <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
             {items.map((item) => (
               <InfoItem
                 key={item.infoItemId}

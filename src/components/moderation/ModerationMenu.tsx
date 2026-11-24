@@ -79,7 +79,7 @@ export default function ModerationMenu({ target, className = "" }: ModerationMen
         <div
           role="menu"
           aria-label={`${targetLabel} 메뉴`}
-          className="absolute right-0 top-[34px] z-20 min-w-[156px] overflow-hidden rounded-[12px] border border-background-250 bg-background-100 py-[4px] shadow-[0_8px_24px_rgb(30_40_60_/_0.14)]"
+          className="motion-drop absolute right-0 top-[34px] z-20 min-w-[156px] overflow-hidden rounded-[12px] border border-background-250 bg-background-100 py-[4px] shadow-[0_8px_24px_rgb(30_40_60_/_0.14)]"
         >
           <button role="menuitem" type="button" onClick={() => openModal("report")} className={`${itemClass} text-sub-red`}>
             <ReportIcon />

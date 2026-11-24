@@ -47,7 +47,7 @@ export default function CategoryModal({ category, onClose, onSelect }: CategoryM
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[90] flex items-end justify-center modal-backdrop sm:items-center sm:p-[24px]"
+      className="fixed inset-0 z-[90] flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:p-[24px]"
       onClick={onClose}
     >
       <div
@@ -55,7 +55,7 @@ export default function CategoryModal({ category, onClose, onSelect }: CategoryM
         aria-modal="true"
         aria-labelledby={titleId}
         onClick={(event) => event.stopPropagation()}
-        className="flex w-full flex-col overflow-hidden rounded-t-[24px] bg-background-100 pb-[calc(12px+env(safe-area-inset-bottom))] sm:max-w-[440px] sm:rounded-[24px] sm:pb-[12px]"
+        className="motion-sheet flex w-full flex-col overflow-hidden rounded-t-[24px] bg-background-100 pb-[calc(12px+env(safe-area-inset-bottom))] sm:max-w-[440px] sm:rounded-[24px] sm:pb-[12px]"
       >
         <div className="flex shrink-0 items-center justify-between px-[20px] pb-[10px] pt-[20px] sm:px-[24px] sm:pt-[24px]">
           <h2 id={titleId} className="text-[18px] font-bold text-background-600">

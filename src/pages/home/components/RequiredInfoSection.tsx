@@ -126,7 +126,7 @@ export default function RequiredInfoSection() {
               key={type}
               type="button"
               onClick={() => navigate(`/info?category=${type}`)}
-              className="group flex min-w-0 cursor-pointer flex-col items-center gap-[10px] sm:w-[76px]"
+              className="press-sm group flex min-w-0 cursor-pointer flex-col items-center gap-[10px] sm:w-[76px]"
             >
               <span
                 className={`flex aspect-square w-full max-w-[64px] items-center justify-center rounded-[18px] bg-background-100/80 shadow-[0_8px_100px_rgb(180_207_207_/_0.2)] transition-[transform,background-color] group-hover:bg-background-100 group-active:scale-95 ${textColor}`}

@@ -28,7 +28,7 @@ export default function PostListItem({
   return (
     <button
       onClick={onClick}
-      className="group flex w-full cursor-pointer items-center gap-[12px] border-b border-background-250 py-[14px] text-left last:border-b-0 active:opacity-70"
+      className="press group flex w-full cursor-pointer items-center gap-[12px] border-b border-background-250 py-[14px] text-left last:border-b-0 active:opacity-70"
     >
       <div className="min-w-0 flex-1">
         <p className="truncate text-[15px] font-medium tracking-[-0.02em] text-background-600 transition-colors group-hover:text-main-500">{title}</p>

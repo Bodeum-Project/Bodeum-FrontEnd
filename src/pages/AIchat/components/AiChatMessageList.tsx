@@ -145,7 +145,8 @@ export default function AiChatMessageList({
             </div>
           ))}
 
-        {messages.map(renderMessage)}
+        {/* 새 메시지(내 질문·답변)가 아래에서 살짝 떠오르며 등장 */}
+        <div className="motion-chat">{messages.map(renderMessage)}</div>
       </div>
     </>
   );

@@ -60,7 +60,7 @@ function ToastLeading({ color, action }: { color: ToastColor; action?: ToastActi
 
   if (color === "blue") {
     // 축하·환영 등 좋은 소식: 마스코트
-    return <img src={MASCOT_SRC} alt="" aria-hidden="true" className="-my-[3px] size-[28px] shrink-0" />;
+    return <img src={MASCOT_SRC} alt="" aria-hidden="true" className="motion-mascot-hop -my-[3px] size-[28px] shrink-0" />;
   }
 
   const dotClass: Record<Exclude<ToastColor, "blue">, string> = {
@@ -232,8 +232,12 @@ function ToastCard({
       className={joinClassNames(
         "pointer-events-auto flex max-w-[min(480px,100%)] items-center gap-[10px] rounded-[16px] bg-[rgb(42_53_70_/_0.94)] py-[12px] pl-[14px] text-background-100 shadow-[0_10px_30px_rgb(42_53_70_/_0.18)] backdrop-blur-[12px]",
         actionLabel ? "pr-[8px]" : "cursor-pointer pr-[18px]",
-        "transform transition-[opacity,transform] duration-200 ease-out will-change-transform",
-        status === "visible" ? "translate-y-0 opacity-100" : "translate-y-[12px] opacity-0",
+        "transition-[opacity,translate,scale] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:translate-y-0 motion-reduce:scale-100",
+        status === "visible"
+          ? "translate-y-0 scale-100 opacity-100"
+          : status === "closing"
+            ? "translate-y-[8px] scale-[0.98] opacity-0"
+            : "translate-y-[12px] scale-[0.96] opacity-0",
       )}
     >
       <ToastLeading color={color} action={action} />

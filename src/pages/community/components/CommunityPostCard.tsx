@@ -40,7 +40,7 @@ export default function CommunityPostCard({
           onClick?.();
         }
       }}
-      className="group relative flex min-h-[112px] w-full min-w-0 cursor-pointer flex-col rounded-[16px] border border-background-250 bg-background-100 px-[18px] py-[16px] transition-colors hover:bg-background-200 active:bg-background-250 sm:px-[22px] sm:py-[18px]"
+      className="press group relative flex min-h-[112px] w-full min-w-0 cursor-pointer flex-col rounded-[16px] border border-background-250 bg-background-100 px-[18px] py-[16px] transition-colors hover:bg-background-200 active:bg-background-250 sm:px-[22px] sm:py-[18px]"
     >
       <div className="flex min-w-0 items-center gap-[6px] pr-[80px]">
         <span className="shrink-0 rounded-[6px] bg-main-150 px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-main-500">

@@ -35,7 +35,7 @@ export default function CommunityCard({
   return (
     <button
       onClick={() => (onClick ? onClick() : navigate(`/community/${postId}`))}
-      className="group flex w-[272px] shrink-0 cursor-pointer flex-col rounded-[18px] border border-background-250 bg-background-100 p-[16px] text-left transition-colors hover:bg-background-200 active:bg-background-250 sm:w-[320px]"
+      className="press group flex w-[272px] shrink-0 cursor-pointer flex-col rounded-[18px] border border-background-250 bg-background-100 p-[16px] text-left transition-colors hover:bg-background-200 active:bg-background-250 sm:w-[320px]"
     >
       <div className="mb-[8px] flex w-full justify-between ">
         <div className="flex w-full items-center gap-2">

@@ -136,7 +136,7 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                 <div
                   role="menu"
                   aria-label={`${isRoot ? "댓글" : "답글"} 메뉴`}
-                  className="absolute right-0 top-[32px] z-20 min-w-[140px] overflow-hidden rounded-[10px] border border-background-300 bg-background-100 py-1 shadow-md"
+                  className="motion-drop absolute right-0 top-[32px] z-20 min-w-[140px] overflow-hidden rounded-[10px] border border-background-300 bg-background-100 py-1 shadow-md"
                 >
                   <button
                     role="menuitem"
@@ -248,12 +248,14 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
   );
 
   const replyForm = isReplyFormOpen && (
-    <CommunityReplyForm
-      targetAuthor={authorName}
-      isSubmitting={isReplyPending}
-      onCancel={onCancelReply}
-      onSubmit={(content) => onSubmitReply(comment.commentId, content)}
-    />
+    <div className="motion-drop">
+      <CommunityReplyForm
+        targetAuthor={authorName}
+        isSubmitting={isReplyPending}
+        onCancel={onCancelReply}
+        onSubmit={(content) => onSubmitReply(comment.commentId, content)}
+      />
+    </div>
   );
 
   const replies = comment.replies?.map((reply) => (

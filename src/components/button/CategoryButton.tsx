@@ -31,7 +31,7 @@ export default function CategoryButton({
       data-state={selected ? "selected" : "default"}
       data-category={category}
       className={joinClassNames(
-        "inline-flex h-[37px] shrink-0 items-center justify-center whitespace-nowrap rounded-[100px] px-[12px] py-[8px]",
+        "press-sm inline-flex h-[37px] shrink-0 items-center justify-center whitespace-nowrap rounded-[100px] px-[12px] py-[8px]",
         "text-h3-category-sub transition-[background-color,color,box-shadow,--tw-ring-color] duration-150 ease-out",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
         selected

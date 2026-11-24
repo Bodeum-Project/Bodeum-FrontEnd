@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import CloseIcon from "@/assets/icons/Close.svg?react";
+import { useDelayedClose } from "@/hooks/usePresence";
 import { districtNamesByRegion, sidoDisplayNameByRegion, sidoNames } from "@/constants/regions";
 
 export interface RegionPickerValue {
@@ -41,14 +42,17 @@ export default function RegionPickerModal({
   const currentDistrict = startSido ? (initialDistrict ?? "") : "";
   const districts = activeSido ? (districtNamesByRegion[activeSido] ?? []) : [];
 
+  // 닫기(X·배경·Esc)는 시트가 내려가는 모션 뒤에 닫음
+  const { isClosing, close } = useDelayedClose(onClose, 200);
+
   // Esc로 닫기 + 배경 스크롤 막기
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") close();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [close]);
 
   // 처음 열 때 선택된 항목이 보이도록 스크롤
   useEffect(() => {
@@ -73,15 +77,17 @@ export default function RegionPickerModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[90] flex items-end justify-center modal-backdrop sm:items-center sm:p-[24px]"
-      onClick={onClose}
+      data-closing={isClosing}
+      className="fixed inset-0 z-[90] flex items-end justify-center modal-backdrop motion-backdrop sm:items-center sm:p-[24px]"
+      onClick={close}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         onClick={(event) => event.stopPropagation()}
-        className="flex h-[82dvh] w-full flex-col overflow-hidden rounded-t-[24px] bg-background-100 pb-[env(safe-area-inset-bottom)] sm:h-[min(620px,86vh)] sm:max-w-[520px] sm:rounded-[24px] sm:pb-0"
+        data-closing={isClosing}
+        className="motion-sheet flex h-[82dvh] w-full flex-col overflow-hidden rounded-t-[24px] bg-background-100 pb-[env(safe-area-inset-bottom)] sm:h-[min(620px,86vh)] sm:max-w-[520px] sm:rounded-[24px] sm:pb-0"
       >
         <div className="flex shrink-0 items-center justify-between px-[20px] pb-[14px] pt-[20px] sm:px-[24px] sm:pt-[24px]">
           <h2 id={titleId} className="text-[18px] font-bold text-background-600">
@@ -89,7 +95,7 @@ export default function RegionPickerModal({
           </h2>
           <button
             type="button"
-            onClick={onClose}
+            onClick={close}
             aria-label="닫기"
             className="-mr-[8px] flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-[10px] text-background-500 hover:bg-background-200"
           >

@@ -56,7 +56,7 @@ export default function AiMessageBot({
       </div>
 
       {suggestions.length > 0 && (
-        <div className="no-scrollbar flex w-full flex-nowrap items-center gap-[8px] overflow-x-auto pl-[42px] sm:gap-[10px] [&>*]:shrink-0">
+        <div className="motion-stagger no-scrollbar flex w-full flex-nowrap items-center gap-[8px] overflow-x-auto pl-[42px] sm:gap-[10px] [&>*]:shrink-0">
           {suggestions.map((suggestion) => (
             <AiSuggestChip
               key={suggestion}

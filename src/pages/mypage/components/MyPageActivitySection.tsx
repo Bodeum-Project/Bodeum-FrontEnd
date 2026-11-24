@@ -36,7 +36,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
         />
       </section>
 
-      <div className="flex flex-col gap-[8px] lg:col-start-1 lg:row-start-2">
+      <div className="motion-stagger flex flex-col gap-[8px] lg:col-start-1 lg:row-start-2">
         {activity.isPending && (
           <div className="rounded-[16px] border border-background-250 bg-background-100 px-[16px] py-[14px]">
             <RowsSkeleton count={3} label={pendingMessage[activity.activeTab]} />

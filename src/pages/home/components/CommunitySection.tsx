@@ -58,7 +58,7 @@ export default function CommunitySection() {
             { value: "latest", label: "최신글" },
           ]}
         />
-        <div className="mt-[6px]">
+        <div className="motion-stagger mt-[6px]">
           {list.map((post) => (
             <PostListItem
               key={post.postId}

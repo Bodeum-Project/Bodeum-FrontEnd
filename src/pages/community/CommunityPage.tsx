@@ -191,7 +191,7 @@ export default function CommunityPage() {
           {visiblePosts.length === 0 ? (
             <div className="py-16 text-center text-background-500">검색 결과가 없습니다.</div>
           ) : (
-            <div className="grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
+            <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
               {visiblePosts.map((post) => {
                 const postCategory = getCommunityCategoryByCode(post.boardType);
 

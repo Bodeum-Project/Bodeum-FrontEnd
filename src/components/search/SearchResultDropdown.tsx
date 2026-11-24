@@ -30,14 +30,14 @@ export default function SearchResultDropdown({
 
   if (flatResults.length === 0) {
     return (
-      <div className="absolute left-0 right-0 top-[48px] z-50 max-h-[400px] overflow-y-auto rounded-[10px] border border-background-200 bg-white px-1 py-2 shadow-[1px_2px_15px_0px_#00000026]">
+      <div className="motion-drop absolute left-0 right-0 top-[48px] z-50 max-h-[400px] overflow-y-auto rounded-[10px] border border-background-200 bg-white px-1 py-2 shadow-[1px_2px_15px_0px_#00000026]">
         <EmptySearchResult />
       </div>
     );
   }
 
   return (
-    <div className="absolute left-0 right-0 top-[48px] z-50 max-h-[400px] overflow-y-auto rounded-[10px] border border-background-200 bg-white px-1 py-2 shadow-[1px_2px_15px_0px_#00000026]">
+    <div className="motion-drop absolute left-0 right-0 top-[48px] z-50 max-h-[400px] overflow-y-auto rounded-[10px] border border-background-200 bg-white px-1 py-2 shadow-[1px_2px_15px_0px_#00000026]">
       {Object.entries(grouped).map(([category, items]) => (
         <div key={category}>
           <div className="p-2 text-h3-category-sub text-background-400">

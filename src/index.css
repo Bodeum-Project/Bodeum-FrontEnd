@@ -204,10 +204,10 @@ fieldset {
     linear-gradient(90deg, rgb(255 255 255 / 0.22) 0%, rgb(255 255 255 / 0) 16%, rgb(255 255 255 / 0) 84%, rgb(255 255 255 / 0.22) 100%),
     linear-gradient(180deg, rgb(255 255 255 / 0.08) 0%, rgb(255 255 255 / 0) 100%);
   color: var(--color-background-100);
-  transition: filter 0.15s ease, transform 0.1s ease;
+  transition: filter 0.15s ease, transform 0.1s ease, scale 0.12s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover { filter: brightness(1.04); }
-  &:active { filter: brightness(0.95); }
-  &:disabled { filter: none; }
+  &:active { filter: brightness(0.95); scale: 0.98; }
+  &:disabled { filter: none; scale: none; }
 }
 
 @utility btn-dark {
@@ -216,11 +216,11 @@ fieldset {
     linear-gradient(90deg, rgb(255 255 255 / 0.12) 0%, rgb(255 255 255 / 0) 18%, rgb(255 255 255 / 0) 82%, rgb(255 255 255 / 0.12) 100%),
     linear-gradient(180deg, rgb(255 255 255 / 0.06) 0%, rgb(255 255 255 / 0) 100%);
   color: var(--color-background-100);
-  transition: filter 0.15s ease, transform 0.1s ease;
+  transition: filter 0.15s ease, transform 0.1s ease, scale 0.12s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover { filter: brightness(1.12); }
-  &:active { filter: brightness(0.92); }
+  &:active { filter: brightness(0.92); scale: 0.98; }
   /* 비활성일 때 hover로 밝아져 하얗게 뜨지 않도록 */
-  &:disabled { filter: none; }
+  &:disabled { filter: none; scale: none; }
 }
 
 /* 홈 히어로의 흐릿한 원: 중앙 #28BDC0 radial + blur, 경계가 거의 안 보이도록 */
@@ -287,23 +287,156 @@ fieldset {
   .skeleton { animation: none; background-image: none; }
 }
 
-/* 신고·차단 모달: 모바일 바텀시트는 아래에서, PC 중앙 모달은 살짝 떠오르며 등장 */
-@keyframes moderation-sheet-up {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+/* ============================================================
+   모션 (토스식: 짧고 부드럽게). 모든 등장·전환은 여기 클래스로만.
+   prefers-reduced-motion 이면 이동·크기 변화 없이 짧은 페이드만 남김
+   ============================================================ */
+:root {
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 280ms;
 }
-@keyframes moderation-pop {
+
+@keyframes motion-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes motion-fade-out { from { opacity: 1; } to { opacity: 0; } }
+/* 배경은 opacity 대신 색·블러만 바꿔야 안의 모달까지 투명해지지 않음 */
+@keyframes motion-backdrop-in {
+  from { background-color: transparent; backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); }
+}
+@keyframes motion-backdrop-out {
+  to { background-color: transparent; backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); }
+}
+@keyframes motion-pop-in {
   from { opacity: 0; transform: translateY(8px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 1; transform: none; }
 }
-.moderation-sheet {
-  animation: moderation-sheet-up 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+@keyframes motion-pop-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(4px) scale(0.98); }
 }
+@keyframes motion-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes motion-sheet-out { from { transform: none; } to { transform: translateY(100%); } }
+@keyframes motion-rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes motion-rise-page {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes motion-drop-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes motion-bump {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+@keyframes motion-tab-bump {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes motion-count-up {
+  from { opacity: 0; transform: translateY(60%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes motion-mascot-hop {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-4px); }
+}
+
+/* 모달·시트 배경 */
+.motion-backdrop { animation: motion-backdrop-in var(--motion-base) ease-out both; }
+.motion-backdrop[data-closing="true"] { animation: motion-backdrop-out 160ms ease-in both; }
+
+/* 가운데 모달: 살짝 떠오르며 등장 */
+.motion-pop { animation: motion-pop-in var(--motion-base) var(--ease-out-soft) both; }
+.motion-pop[data-closing="true"] { animation: motion-pop-out 140ms ease-in both; }
+
+/* 바텀시트: 모바일은 아래에서, sm 이상은 가운데 모달처럼 */
+.motion-sheet { animation: motion-sheet-in var(--motion-slow) var(--ease-out-soft) both; }
+.motion-sheet[data-closing="true"] { animation: motion-sheet-out 200ms ease-in both; }
 @media (min-width: 40rem) {
-  .moderation-sheet {
-    animation: moderation-pop 0.18s ease-out;
-  }
+  .motion-sheet { animation: motion-pop-in var(--motion-base) var(--ease-out-soft) both; }
+  .motion-sheet[data-closing="true"] { animation: motion-pop-out 140ms ease-in both; }
 }
+
+/* 목록 카드 등장: style="--i: n" 으로 40ms씩 순차 (8번째부터는 같이) */
+.motion-rise {
+  animation: motion-rise-in 240ms var(--ease-out-soft) both;
+  animation-delay: calc(min(var(--i, 0), 7) * 40ms);
+}
+/* 목록 컨테이너에 붙이면 새로 들어온 카드만 순차로 떠오름 (이미 있던 카드는 그대로) */
+.motion-stagger > * {
+  animation: motion-rise-in 240ms var(--ease-out-soft) both;
+}
+.motion-stagger > :nth-child(2) { animation-delay: 40ms; }
+.motion-stagger > :nth-child(3) { animation-delay: 80ms; }
+.motion-stagger > :nth-child(4) { animation-delay: 120ms; }
+.motion-stagger > :nth-child(5) { animation-delay: 160ms; }
+.motion-stagger > :nth-child(6) { animation-delay: 200ms; }
+.motion-stagger > :nth-child(7) { animation-delay: 240ms; }
+.motion-stagger > :nth-child(n + 8) { animation-delay: 280ms; }
+/* AI 챗: 새 메시지가 떠오름 */
+.motion-chat > * { animation: motion-rise-in 240ms var(--ease-out-soft) both; }
+
+/* 페이지 본문 등장 */
+.motion-page { animation: motion-rise-page 200ms var(--ease-out-soft) both; }
+.motion-fade { animation: motion-fade-in var(--motion-base) ease-out both; }
+.motion-drop { animation: motion-drop-in 160ms var(--ease-out-soft) both; }
+.motion-bump { animation: motion-bump 240ms var(--ease-out-soft); }
+.motion-tab-bump { animation: motion-tab-bump 180ms var(--ease-out-soft); }
+.motion-count { display: inline-block; animation: motion-count-up 200ms var(--ease-out-soft); }
+.motion-mascot-hop { animation: motion-mascot-hop 320ms var(--ease-out-soft) 120ms; }
+
+/* 눌림 피드백 (scale 속성이라 기존 transform·translate 와 겹치지 않음) */
+.press,
+.press-sm {
+  transition-property: scale, background-color, border-color, color, filter, opacity;
+  transition-duration: var(--motion-fast), 150ms, 150ms, 150ms, 150ms, 150ms;
+  transition-timing-function: var(--ease-standard);
+}
+.press:active { scale: 0.98; }
+.press-sm:active { scale: 0.96; }
+
+/* 높이 펼침: grid-template-rows 0fr → 1fr, 안쪽 자식은 overflow-hidden */
+.motion-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-base) var(--ease-standard), opacity var(--motion-base) ease;
+  opacity: 0;
+}
+.motion-collapse[data-open="true"] { grid-template-rows: 1fr; opacity: 1; }
+.motion-collapse > * { min-height: 0; overflow: hidden; }
+
 @media (prefers-reduced-motion: reduce) {
-  .moderation-sheet { animation: none; }
+  .motion-pop,
+  .motion-sheet,
+  .motion-rise,
+  .motion-stagger > *,
+  .motion-chat > *,
+  .motion-page,
+  .motion-drop,
+  .motion-fade {
+    animation: motion-fade-in 120ms ease-out both !important;
+    animation-delay: 0ms !important;
+  }
+  .motion-pop[data-closing="true"],
+  .motion-sheet[data-closing="true"] {
+    animation: motion-fade-out 120ms ease-out both !important;
+  }
+  .motion-bump,
+  .motion-tab-bump,
+  .motion-count,
+  .motion-mascot-hop { animation: none; }
+  .press:active,
+  .press-sm:active,
+  .btn-primary:active,
+  .btn-dark:active { scale: none; }
+  .motion-collapse { transition: none; }
+  .motion-slide-indicator { transition: none !important; }
 }

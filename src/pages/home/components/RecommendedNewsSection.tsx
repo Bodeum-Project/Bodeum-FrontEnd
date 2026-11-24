@@ -45,7 +45,7 @@ export default function RecommendedNewsSection() {
           textClassName=""
         />
       ) : (
-        <div ref={wheelRef} className="no-scrollbar -mx-[16px] flex items-start gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
+        <div ref={wheelRef} className="motion-stagger no-scrollbar -mx-[16px] flex items-start gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
           {news.map((item) => (
             <NewsCard key={item.newsId} {...item} />
           ))}
@@ -61,7 +61,7 @@ export default function RecommendedNewsSection() {
             { value: "LOCAL", label: "지역소식" },
           ]}
         />
-        <div className="mt-[6px]">
+        <div className="motion-stagger mt-[6px]">
           {list.map((item) => (
             <PostListItem
               key={item.newsId}

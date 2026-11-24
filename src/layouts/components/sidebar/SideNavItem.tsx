@@ -47,10 +47,21 @@ export default function SideNavItem({
           <span className={labelClassName}>{label}</span>
         </div>
 
-        {children && <ChevronRightIcon />}
+        {children && (
+          <ChevronRightIcon
+            className={`transition-transform duration-200 motion-reduce:transition-none ${expanded ? "rotate-90" : ""}`}
+          />
+        )}
       </button>
 
-      {expanded && <div className="mt-4 ml-12">{children}</div>}
+      {children && (
+        // 하위 메뉴가 높이째 부드럽게 펼쳐짐
+        <div className="motion-collapse" data-open={expanded} inert={!expanded}>
+          <div>
+            <div className="mt-4 ml-12">{children}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

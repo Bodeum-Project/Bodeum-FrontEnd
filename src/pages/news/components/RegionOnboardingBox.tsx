@@ -26,10 +26,10 @@ export default function RegionOnboardingBox({ onClose, onComplete }: RegionOnboa
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto modal-backdrop"
+      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto modal-backdrop motion-backdrop"
       onClick={onClose}
     >
-      <div onClick={(event) => event.stopPropagation()}>
+      <div className="motion-pop" onClick={(event) => event.stopPropagation()}>
         <OnboardBoxFrame
           buttonCount={2}
           leftButtonText="나가기"

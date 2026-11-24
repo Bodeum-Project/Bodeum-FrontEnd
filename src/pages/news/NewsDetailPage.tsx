@@ -143,7 +143,7 @@ export default function NewsDetailPage() {
   };
 
   return (
-    <div className="min-h-full px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
+    <div className="motion-fade min-h-full px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
       <div className="mx-auto flex w-full max-w-[760px] flex-col gap-[18px]">
         <div className="flex flex-col gap-[10px]">
           <NewsDetailHeader

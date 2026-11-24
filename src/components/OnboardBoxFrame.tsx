@@ -139,6 +139,7 @@ export default function OnboardBoxFrame(props: OnboardBoxFrameProps) {
       className={joinClassNames(
         'relative flex w-[581px] max-w-[calc(100vw-40px)] flex-col items-start gap-[28px] rounded-[20px] bg-background-100 px-[24px] py-[32px] sm:gap-[44px] sm:px-[40px] sm:py-[44px]',
         'z-50',
+        showOverlay && 'motion-pop',
         props.className,
       )}
     >
@@ -182,7 +183,7 @@ export default function OnboardBoxFrame(props: OnboardBoxFrameProps) {
       {showOverlay && (
         <div
           className={joinClassNames(
-            'fixed inset-0 z-40 modal-backdrop',
+            'fixed inset-0 z-40 modal-backdrop motion-backdrop',
             props.overlayClassName,
           )}
         />

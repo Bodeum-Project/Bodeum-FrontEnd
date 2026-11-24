@@ -56,11 +56,14 @@ export default function MobileTabBar() {
                 type="button"
                 aria-current={active ? "page" : undefined}
                 onClick={() => navigate(to)}
-                className={`flex h-full w-full cursor-pointer flex-col items-center justify-center gap-[3px] text-body-label transition-colors ${
+                className={`press-sm flex h-full w-full cursor-pointer flex-col items-center justify-center gap-[3px] text-body-label ${
                   active ? "font-semibold text-background-600" : "text-background-300 active:text-background-400"
                 }`}
               >
-                <Icon aria-hidden="true" className="h-[24px] w-[24px]" />
+                {/* 새로 고른 탭 아이콘만 한 번 살짝 커졌다 돌아옴 */}
+                <span key={active ? "on" : "off"} className={active ? "motion-tab-bump" : undefined}>
+                  <Icon aria-hidden="true" className="block h-[24px] w-[24px]" />
+                </span>
                 <span>{label}</span>
               </button>
             </li>
