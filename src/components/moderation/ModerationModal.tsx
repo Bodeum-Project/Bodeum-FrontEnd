@@ -41,7 +41,7 @@ export default function ModerationModal(props: ModerationModalProps) {
 
 function ModerationModalContent({ action, target, onClose }: ModerationModalProps) {
   const [step, setStep] = useState<"select" | "comingSoon">("select");
-  const [reason, setReason] = useState<string | null>(null);
+  const [selectedReasons, setSelectedReasons] = useState<string[]>([]);
   const [etcText, setEtcText] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -52,8 +52,16 @@ function ModerationModalContent({ action, target, onClose }: ModerationModalProp
   const reasons = isReport ? reportReasons : blockReasons;
   const actionLabel = isReport ? "신고" : "차단";
   const targetLabel = moderationTargetLabel[target];
-  const isEtc = reason === ETC_REASON;
-  const canSubmit = reason !== null && (!isEtc || etcText.trim().length > 0);
+  const isEtc = selectedReasons.includes(ETC_REASON);
+  const canSubmit = selectedReasons.length > 0 && (!isEtc || etcText.trim().length > 0);
+
+  const toggleReason = (value: string) => {
+    setSelectedReasons((current) =>
+      current.includes(value)
+        ? current.filter((item) => item !== value)
+        : [...current, value],
+    );
+  };
 
   useEffect(() => {
     onCloseRef.current = onClose;
@@ -132,14 +140,14 @@ function ModerationModalContent({ action, target, onClose }: ModerationModalProp
             </h2>
             <p id={descId} className="mt-[4px] text-body-sub text-background-500">
               {isReport
-                ? "신고 내용은 운영 정책에 따라 검토돼요."
-                : "차단하면 이 사용자의 글과 댓글이 더 이상 보이지 않아요."}
+                ? "신고 내용은 운영 정책에 따라 검토돼요. 해당하는 사유를 모두 선택해 주세요."
+                : "차단하면 이 사용자의 글과 댓글이 더 이상 보이지 않아요. 해당하는 사유를 모두 선택해 주세요."}
             </p>
 
             <fieldset className="mt-[16px] flex flex-col gap-[8px]">
               <legend className="sr-only">{actionLabel} 사유</legend>
               {reasons.map((item) => {
-                const selected = reason === item.value;
+                const selected = selectedReasons.includes(item.value);
                 return (
                   <label
                     key={item.value}
@@ -150,19 +158,32 @@ function ModerationModalContent({ action, target, onClose }: ModerationModalProp
                     }`}
                   >
                     <input
-                      type="radio"
+                      type="checkbox"
                       name={`moderation-reason-${titleId}`}
                       value={item.value}
                       checked={selected}
-                      onChange={() => setReason(item.value)}
+                      onChange={() => toggleReason(item.value)}
                       className="sr-only"
                     />
                     <span
                       aria-hidden="true"
-                      className={`h-[18px] w-[18px] shrink-0 rounded-full border-2 transition-[border-width,border-color] ${
-                        selected ? "border-[5px] border-main-400" : "border-background-300"
+                      className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border-2 transition-colors ${
+                        selected
+                          ? "border-main-400 bg-main-400 text-background-100"
+                          : "border-background-300 bg-transparent text-transparent"
                       }`}
-                    />
+                    >
+                      <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+                        <path
+                          d="M2.5 6.2l2.2 2.2 4.8-4.8"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
                     {item.label}
                   </label>
                 );
