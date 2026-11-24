@@ -26,7 +26,7 @@ const infoItemIconMap = {
 interface InfoItemProps {
   mainCategory: ParentCategory;
   name: string;
-  address: string;
+  address: string | null;
   sido?: string;
   sigungu?: string;
   phone?: string;
@@ -56,7 +56,10 @@ export default function InfoItem({
   const region = [sido, sigungu].filter(Boolean).join(" ");
   const regionLabel = region ? formatRegionDisplayLabel(region) : "";
   // 지역은 딱지로 보여주므로 주소 앞의 시/도·시/군/구는 떼고 도로명부터
-  const streetAddress = region && address.startsWith(region) ? address.slice(region.length).trim() : address;
+  // 주소가 비어 있는(null) 항목이 있음 (예: 복지)
+  const fullAddress = address ?? "";
+  const streetAddress =
+    region && fullAddress.startsWith(region) ? fullAddress.slice(region.length).trim() : fullAddress;
 
   return (
     <BaseInfoCard
