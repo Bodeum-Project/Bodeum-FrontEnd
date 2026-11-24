@@ -4,8 +4,9 @@ import NewsCard from "./NewsCard";
 import PostListItem from "@/components/PostListItem";
 import AsyncState from "@/components/AsyncState";
 import SectionHeader from "@/components/ui/SectionHeader";
-import SegmentedTabs from "@/components/ui/SegmentedTabs";
+import TextTabs from "@/components/ui/TextTabs";
 import { useHomeNewsPreview, useRecommendedNews } from "@/hooks/useHome";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 import { useHorizontalWheel } from "@/components/ui/useHorizontalWheel";
 
 type NewsTab = "ACTIVITY" | "LOCAL";
@@ -24,7 +25,6 @@ export default function RecommendedNewsSection() {
       <SectionHeader
         title="추천 소식 TOP 5"
         description="지역·활동별로 골라봤어요"
-        onMoreClick={() => navigate("/news")}
       />
 
       {isPending ? (
@@ -53,7 +53,7 @@ export default function RecommendedNewsSection() {
       )}
 
       <div className="mt-[28px]">
-        <SegmentedTabs
+        <TextTabs
           value={tab}
           onChange={setTab}
           options={[
@@ -61,12 +61,12 @@ export default function RecommendedNewsSection() {
             { value: "LOCAL", label: "지역소식" },
           ]}
         />
-        <div className="motion-stagger mt-[6px]">
+        <div className="motion-stagger mt-[2px]">
           {list.map((item) => (
             <PostListItem
               key={item.newsId}
               title={item.title}
-              region={`${item.regionLevel1} ${item.regionLevel2}`.trim()}
+              tag={formatRegionDisplayLabel(`${item.regionLevel1} ${item.regionLevel2}`.trim()) || "전국"}
               views={item.viewCount}
               onClick={() => navigate(`/news/${item.newsId}`)}
             />

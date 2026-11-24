@@ -1,3 +1,4 @@
+import { formatRegionDisplayLabel } from "@/constants/regions";
 import MegaphoneIcon from "@/assets/icons/Megaphone.svg?react";
 import { useNavigate } from "react-router-dom";
 
@@ -59,7 +60,7 @@ export default function NewsCard({
         {title}
       </p>
       <p className="mt-[4px] truncate text-[12px] text-background-400">
-        {[regionLevel1, regionLevel2].filter(Boolean).join(" ") || "전국"} · 조회 {viewCount.toLocaleString()}
+        {formatRegionDisplayLabel([regionLevel1, regionLevel2].filter(Boolean).join(" ")) || "전국"} · 조회 {viewCount.toLocaleString()}
       </p>
     </button>
   );

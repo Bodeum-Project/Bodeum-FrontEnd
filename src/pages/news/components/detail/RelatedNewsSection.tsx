@@ -1,6 +1,7 @@
 import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { useNavigate } from "react-router-dom";
 import PostListItem from "@/components/PostListItem";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 import PostSection from "@/components/PostSection";
 import ScrapStat from "@/components/post-stat/ScrapStat";
 import ViewStat from "@/components/post-stat/ViewStat";
@@ -43,7 +44,7 @@ export default function RelatedNewsSection({
         items.map((item) => (
           <PostListItem
             key={item.newsId}
-            region={item.region}
+            tag={formatRegionDisplayLabel(item.region)}
             title={item.title}
             rightSlot={
               <span className="inline-flex items-center gap-[8px]">

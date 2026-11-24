@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostListItem from "@/components/PostListItem";
 import SectionHeader from "@/components/ui/SectionHeader";
-import SegmentedTabs from "@/components/ui/SegmentedTabs";
+import TextTabs from "@/components/ui/TextTabs";
 import { useHomePostPreview } from "@/hooks/useHome";
 import { hasStoredAuthSession } from "@/apis/authStorage";
 import RecommendedCommunitySection from "@/components/RecommendedCommunitySection";
@@ -50,7 +50,7 @@ export default function CommunitySection() {
       </div>
 
       <div className="mt-[28px]">
-        <SegmentedTabs
+        <TextTabs
           value={tab}
           onChange={setTab}
           options={[
@@ -58,12 +58,13 @@ export default function CommunitySection() {
             { value: "latest", label: "최신글" },
           ]}
         />
-        <div className="motion-stagger mt-[6px]">
+        <div className="motion-stagger mt-[2px]">
           {list.map((post) => (
             <PostListItem
               key={post.postId}
               title={post.title}
-              region={post.categoryName}
+              tag={post.categoryName}
+              tagTone="mint"
               likes={post.likeCount}
               talks={post.commentCount}
               views={post.viewCount}

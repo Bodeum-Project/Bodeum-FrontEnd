@@ -2,7 +2,9 @@ import type { ReactNode } from "react";
 
 interface PostListItemProps {
   title: string;
-  region: string;
+  /** 지역(회색) 또는 카테고리(민트) 칩 */
+  tag: string;
+  tagTone?: "gray" | "mint";
   likes?: number;
   talks?: number;
   views?: number;
@@ -12,7 +14,8 @@ interface PostListItemProps {
 
 export default function PostListItem({
   title,
-  region,
+  tag,
+  tagTone = "gray",
   likes,
   talks,
   views,
@@ -32,10 +35,18 @@ export default function PostListItem({
     >
       <div className="min-w-0 flex-1">
         <p className="truncate text-[15px] font-medium tracking-[-0.02em] text-background-600 transition-colors group-hover:text-main-500">{title}</p>
-        <p className="mt-[4px] truncate text-[12px] text-background-400">
-          <span className="font-medium text-main-500">{region}</span>
-          {stats.length > 0 && <span> · {stats.join(" · ")}</span>}
-        </p>
+        <div className="mt-[6px] flex min-w-0 items-center gap-[6px] text-[12px] text-background-400">
+          {tag && (
+            <span
+              className={`shrink-0 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${
+                tagTone === "mint" ? "bg-main-150 text-main-500" : "bg-background-200 text-background-500"
+              }`}
+            >
+              {tag}
+            </span>
+          )}
+          {stats.length > 0 && <span className="truncate">{stats.join(" · ")}</span>}
+        </div>
       </div>
       {rightSlot}
     </button>
