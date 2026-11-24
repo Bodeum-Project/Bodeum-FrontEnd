@@ -46,7 +46,6 @@ export default function NewsListSection({ items, isError }: NewsListSectionProps
             contact={item.contact}
             viewCount={item.viewCount}
             scrapCount={item.scrapCount}
-            thumbnailUrl={item.thumbnailUrl}
             onClick={() => navigate(`/news/${item.newsId}`)}
           />
         );
