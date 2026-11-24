@@ -1,6 +1,4 @@
 import Chip from "@/components/Chips";
-import ViewStat from "@/components/post-stat/ViewStat";
-import ScrapStat from "@/components/post-stat/ScrapStat";
 import { infoCategoryMap } from "@/constants/infoCategory";
 import BaseInfoCard from "../../../components/BaseInfoCard";
 import { formatRegionDisplayLabel } from "@/constants/regions";
@@ -13,8 +11,6 @@ import InfoItemEducationIcon from "@/assets/icons/Infoitem-education.svg?react";
 
 import type { ParentCategory } from "@/types/info";
 import type { ComponentType, SVGProps } from "react";
-
-const noop = () => {};
 
 const infoItemIconMap = {
   INSTITUTION: InfoItemInstitutionIcon,
@@ -35,8 +31,9 @@ interface InfoItemProps {
   sigungu?: string;
   phone?: string;
   subCategoryKo: string;
-  viewCount: number;
-  scrapCount: number;
+  /** 목록 카드에서는 보여주지 않음(상세에서 확인). 호출부 호환용으로만 남김 */
+  viewCount?: number;
+  scrapCount?: number;
   isScrapped?: boolean;
   onClick?: () => void;
   onScrapClick?: () => void;
@@ -51,11 +48,7 @@ export default function InfoItem({
   sigungu,
   phone,
   subCategoryKo,
-  viewCount,
-  scrapCount,
-  isScrapped = false,
   onClick,
-  onScrapClick,
   clickable = true,
 }: InfoItemProps) {
   const Icon = infoItemIconMap[mainCategory];
@@ -75,7 +68,7 @@ export default function InfoItem({
       }
       left={
         <div className="flex min-w-0 flex-col py-[2px]">
-          {/* 정보·소식 공통 3줄: 제목 → 주소 → 딱지(세부 분류·지역), 통계는 우측 하단 */}
+          {/* 정보·소식 공통 3줄: 제목 → 주소 → 딱지(세부 분류·지역). 조회·스크랩 수는 상세에서만 */}
           <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-background-600 ${phone ? "sm:pr-[120px]" : ""}`}>
             {name}
           </h3>
@@ -84,7 +77,7 @@ export default function InfoItem({
             <p className="mt-[4px] truncate text-[13px] leading-[19px] text-background-500">{streetAddress}</p>
           )}
 
-          <div className="mt-[8px] flex min-w-0 items-center gap-[6px] pr-[84px] sm:pr-[110px]">
+          <div className="mt-[8px] flex min-w-0 items-center gap-[6px]">
             <span className={`shrink-0 ${bgColor} rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${textColor}`}>{subCategoryKo}</span>
             {regionLabel && (
               <span className="min-w-0 truncate bg-background-200 rounded-[6px] px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-background-500">
@@ -95,25 +88,13 @@ export default function InfoItem({
         </div>
       }
       right={
-        <>
-          {phone && (
+        phone ? (
             <div className="absolute right-[16px] top-[16px] hidden sm:block sm:right-[24px] sm:top-[18px]">
               <Chip variant="default" className="min-w-[100px]">
                 {phone}
               </Chip>
             </div>
-          )}
-          <div className="absolute bottom-[14px] right-[16px] flex items-center gap-[8px] sm:bottom-[18px] sm:right-[24px]">
-            <ViewStat count={viewCount} />
-            <span className="relative z-20 inline-flex h-5 items-center">
-              <ScrapStat
-                count={scrapCount}
-                isActive={isScrapped}
-                onClick={onScrapClick ?? noop}
-              />
-            </span>
-          </div>
-        </>
+        ) : null
       }
     />
   );
