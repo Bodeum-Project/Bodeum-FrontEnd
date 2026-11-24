@@ -24,7 +24,7 @@ export default function SegmentedTabs<T extends string>({
       {/* 흰 선택 배경이 고른 탭으로 미끄러지듯 이동 */}
       <span
         aria-hidden="true"
-        className="motion-slide-indicator pointer-events-none absolute inset-y-[4px] left-[4px] rounded-full bg-background-100 shadow-[0_1px_4px_rgb(42_53_70_/_0.08)] transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="motion-slide-indicator pointer-events-none absolute inset-y-[4px] left-[4px] rounded-full bg-background-100 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{
           width: `calc((100% - 8px) / ${options.length})`,
           transform: `translateX(${selectedIndex * 100}%)`,
