@@ -26,7 +26,7 @@ export default function MobileDrawer({ open, onClose, children }: MobileDrawerPr
     >
       <div
         onClick={onClose}
-        className={`absolute inset-0 bg-background-600/40 transition-opacity duration-200 ${
+        className={`absolute inset-0 modal-backdrop transition-opacity duration-200 ${
           open ? "opacity-100" : "opacity-0"
         }`}
       />

@@ -191,6 +191,13 @@ fieldset {
   -webkit-user-drag: none;
 }
 /* Toss-style primary buttons: solid fill with a soft light gradient on the edges */
+/* 모든 모달·시트 공통 배경: 은은한 네이비 + 뒤 화면 블러 */
+@utility modal-backdrop {
+  background-color: rgb(42 53 70 / 0.28);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
 @utility btn-primary {
   background-color: var(--color-main-400);
   background-image:

@@ -73,7 +73,7 @@ export default function RegionPickerModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[90] flex items-end justify-center bg-[rgb(42_53_70_/_0.28)] backdrop-blur-[4px] sm:items-center sm:p-[24px]"
+      className="fixed inset-0 z-[90] flex items-end justify-center modal-backdrop sm:items-center sm:p-[24px]"
       onClick={onClose}
     >
       <div

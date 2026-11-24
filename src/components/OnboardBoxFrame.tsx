@@ -182,7 +182,7 @@ export default function OnboardBoxFrame(props: OnboardBoxFrameProps) {
       {showOverlay && (
         <div
           className={joinClassNames(
-            'fixed inset-0 z-40 bg-[rgba(0,0,0,0.5)]',
+            'fixed inset-0 z-40 modal-backdrop',
             props.overlayClassName,
           )}
         />

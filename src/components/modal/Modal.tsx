@@ -5,7 +5,7 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   className?: string;
-  /** 배경 처리: dim(기본) 또는 blur(뒤 화면을 흐리게 보여줌) */
+  /** @deprecated 모든 모달이 같은 배경(modal-backdrop)을 씀. 호출부 호환용 */
   backdrop?: "dim" | "blur";
 }
 
@@ -14,7 +14,6 @@ export default function Modal({
   onClose,
   children,
   className = "",
-  backdrop = "dim",
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -38,9 +37,7 @@ export default function Modal({
 
   return (
     <div
-      className={`fixed inset-0 z-[60] flex items-center justify-center px-[20px] ${
-        backdrop === "blur" ? "bg-[rgb(42_53_70_/_0.18)] backdrop-blur-[6px]" : "bg-black/40"
-      }`}
+      className={"fixed inset-0 z-[60] flex items-center justify-center px-[20px] modal-backdrop"}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
           onClose();

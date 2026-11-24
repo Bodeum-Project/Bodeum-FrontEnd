@@ -5,7 +5,7 @@ import { infoCategoryMap, infoSubCategoryMap } from "@/constants/infoCategory";
 import CategoryChips from "./components/CategoryChips";
 import Pagination from "@/components/pagination/Pagination";
 import InfoItem from "@/pages/info/components/InfoItem";
-import { FilterPill, ResultBar, SortSelect } from "@/components/list-toolbar/ListToolbar";
+import { InlineDropdown, ResultBar, SortSelect } from "@/components/list-toolbar/ListToolbar";
 import { formatRegionDisplayLabel } from "@/constants/regions";
 import RegionPickerModal from "@/components/region/RegionPickerModal";
 import CategoryModal from "./components/modal/CategoryModal";
@@ -234,6 +234,8 @@ export default function InfoPage() {
           ? "마이페이지 > 설정에서 활동 지역을 변경하면, 다른 지역의 추천 목록을 확인하실 수 있어요!"
           : "조건에 맞는 정보가 없습니다.";
 
+  const regionLabel = regionLevel1 ? formatRegionDisplayLabel(location) : "전체 지역";
+
   if (isPending) {
     return <AsyncState type="loading" />;
   }
@@ -245,16 +247,33 @@ export default function InfoPage() {
   return (
     <div className="flex min-h-screen flex-col gap-[14px] bg-background-100 px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
       
-      <h1 className="pt-[4px] text-[22px] font-bold leading-[31px] tracking-[-0.03em] text-background-600">
-        {profile?.nickname || "보호자"}님을 위한
+      {/* PM 설계 문장 유지: "보호자님, (지역) (분류)의 정보를 모았어요" — 지역·분류는 문장 속 텍스트 드롭다운 */}
+      <h1 className="pt-[4px] text-[22px] font-bold leading-[34px] tracking-[-0.03em] text-background-600 lg:text-[24px] lg:leading-[38px]">
+        {profile?.nickname || "보호자"}님,
         <br />
-        <span className={infoCategoryMap[parentCategory].textColor}>
-          {infoCategoryMap[parentCategory].label} 정보 {count.toLocaleString()}곳
+        <span className="inline-flex flex-wrap items-center gap-x-[6px]">
+          <InlineDropdown
+            onClick={() => setLocationOpen(true)}
+            ariaLabel={`지역 선택: ${regionLabel}`}
+            className="text-main-500"
+          >
+            {regionLabel}
+          </InlineDropdown>
+          <span className="inline-flex items-center whitespace-nowrap">
+            <InlineDropdown
+              onClick={() => setCategoryOpen(true)}
+              ariaLabel={`분류 선택: ${infoCategoryMap[parentCategory].label}`}
+              className={infoCategoryMap[parentCategory].textColor}
+            >
+              {infoCategoryMap[parentCategory].label}
+            </InlineDropdown>
+            <span>의</span>
+          </span>
+          <span>정보를 모았어요</span>
         </span>
-        을 모았어요
       </h1>
 
-      {/* 소식·커뮤니티와 같은 순서: (검색) → 카테고리 칩 → 필터·정렬 줄. 정보 탭 검색창은 API 합의 전까지 없음 */}
+      {/* 소식·커뮤니티와 같은 순서: (검색) → 카테고리 칩 → 결과 줄. 정보 탭 검색창은 API 합의 전까지 없음 */}
       <div className="flex flex-col gap-[12px]">
         <CategoryChips
           parentCategory={parentCategory}
@@ -263,24 +282,8 @@ export default function InfoPage() {
         />
 
         <ResultBar
-          filters={
-            <>
-              <FilterPill
-                onClick={() => setCategoryOpen(true)}
-                ariaLabel={`분류 선택: ${infoCategoryMap[parentCategory].label}`}
-              >
-                {infoCategoryMap[parentCategory].label}
-              </FilterPill>
-              <FilterPill
-                icon
-                active={Boolean(regionLevel1)}
-                onClick={() => setLocationOpen(true)}
-                ariaLabel={`지역 선택: ${regionLevel1 ? formatRegionDisplayLabel(location) : "지역 전체"}`}
-              >
-                {regionLevel1 ? formatRegionDisplayLabel(location) : "지역 전체"}
-              </FilterPill>
-            </>
-          }
+          count={count}
+          unit="곳"
           sort={
             <SortSelect
               options={sortOptions}

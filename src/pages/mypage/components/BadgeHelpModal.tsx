@@ -12,7 +12,6 @@ export default function BadgeHelpModal({ onClose }: BadgeHelpModalProps) {
       showFooter={false}
       onClose={onClose}
       className="!h-fit !w-fit max-w-[calc(100vw-40px)] !py-[48px]"
-      overlayClassName="!bg-black/50"
     >
       <section aria-label="보듬 뱃지란?" className="relative">
         <h2 className="text-h1-onboard text-background-600">보듬 뱃지가 뭔가요?</h2>

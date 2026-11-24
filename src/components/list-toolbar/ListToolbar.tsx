@@ -111,3 +111,32 @@ export function SortSelect({
     />
   );
 }
+
+/** 제목 문장 속 텍스트 드롭다운 (굿닥식). 예: "보호자님, [서울시 강동구 ▾] [기관 ▾]의 정보를 모았어요" */
+export function InlineDropdown({
+  children,
+  onClick,
+  ariaLabel,
+  className = "",
+}: {
+  children: ReactNode;
+  onClick?: () => void;
+  ariaLabel?: string;
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={ariaLabel}
+      aria-haspopup="dialog"
+      className={`group -mx-[4px] inline-flex cursor-pointer items-center gap-[1px] rounded-[10px] px-[4px] transition-colors hover:bg-background-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400 ${className}`}
+    >
+      <span className="underline decoration-current/25 decoration-2 underline-offset-[6px]">{children}</span>
+      <ChevronDownIcon
+        className="h-[18px] w-[18px] shrink-0 opacity-60 transition-transform group-hover:translate-y-[1px]"
+        aria-hidden="true"
+      />
+    </button>
+  );
+}

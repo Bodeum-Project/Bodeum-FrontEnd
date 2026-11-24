@@ -118,7 +118,7 @@ function ModerationModalContent({ action, target, onClose }: ModerationModalProp
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-end justify-center bg-[rgb(20_26_36_/_0.48)] sm:items-center sm:px-[20px]"
+      className="fixed inset-0 z-[80] flex items-end justify-center modal-backdrop sm:items-center sm:px-[20px]"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}

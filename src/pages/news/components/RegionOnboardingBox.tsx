@@ -26,7 +26,7 @@ export default function RegionOnboardingBox({ onClose, onComplete }: RegionOnboa
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-[rgba(0,0,0,0.5)]"
+      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto modal-backdrop"
       onClick={onClose}
     >
       <div onClick={(event) => event.stopPropagation()}>

@@ -32,7 +32,6 @@ export default function BadgeGradeModal({ onClose }: BadgeGradeModalProps) {
       showFooter={false}
       onClose={onClose}
       className="!h-fit !w-fit max-w-[calc(100vw-40px)] !py-[48px]"
-      overlayClassName="!bg-black/50"
     >
       <section aria-labelledby="badge-grade-title" className="flex flex-col gap-[20px]">
         <h2 id="badge-grade-title" className="text-h1-onboard text-background-600">
