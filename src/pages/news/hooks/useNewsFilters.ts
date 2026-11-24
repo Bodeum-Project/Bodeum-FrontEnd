@@ -12,6 +12,7 @@ import {
   getQueryStatus,
   getQueryPage,
   parseInitialRegion,
+  saveNewsRegion,
 } from "../newsQueryParams";
 import { useRegionFilter } from "./useRegionFilter";
 
@@ -95,6 +96,7 @@ export function useNewsFilters() {
     initialRegionLevel2,
     hasAuthSession,
     onCommit: ({ regionLevel1, regionLevel2 }) => {
+      saveNewsRegion(regionLevel1, regionLevel2);
       setPage(1);
       updateNewsSearchParams({
         nextRegionLevel1: regionLevel1,
