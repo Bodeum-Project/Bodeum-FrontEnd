@@ -4,6 +4,8 @@
 @import "@fontsource/noto-sans-kr/700.css";
 
 @import "tailwindcss";
+/* 토큰 치환 스크립트 안의 예전 클래스 이름이 CSS로 생성되지 않도록 */
+@source not "../scripts";
 
 /* ============================================================
    디자인 토큰 (docs/design-tokens.md 참고)
@@ -97,6 +99,7 @@
   /* 상태 */
   --color-danger: var(--palette-red-500);
   --color-danger-soft: var(--palette-red-50);
+  --color-danger-muted: var(--palette-pink-500); /* 부드러운 경고 (토스트 점) */
   --color-like: var(--palette-red-500);
   --color-like-soft: var(--palette-red-50);
   --color-warning: var(--palette-amber-500);
@@ -294,7 +297,7 @@
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-background-600);
+  color: var(--text-color-primary);
   letter-spacing: -0.01em;
   -webkit-tap-highlight-color: transparent;
 }
@@ -335,20 +338,32 @@ fieldset {
 .drag-scroll img {
   -webkit-user-drag: none;
 }
-/* Toss-style primary buttons: solid fill with a soft light gradient on the edges */
+/* 3. 컴포넌트 토큰 ------------------------------------------------- */
+
 /* 모든 모달·시트 공통 배경: 은은한 네이비 + 뒤 화면 블러 */
 @utility modal-backdrop {
-  background-color: rgb(42 53 70 / 0.28);
+  background-color: rgb(42 53 70 / 0.28); /* = palette-gray-900, 28% */
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
+/* 다크 토스트 바탕: 네이비 94% + 블러 + 그림자 */
+@utility toast-surface {
+  background-color: rgb(42 53 70 / 0.94); /* = palette-gray-900, 94% */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-toast);
+  border-radius: var(--radius-xl);
+  color: var(--text-color-inverse);
+}
+
+/* 토스식 버튼: 단색 + 가장자리에 은은한 흰 광택. 크기·라운드는 쓰는 곳에서 */
 @utility btn-primary {
-  background-color: var(--color-main-400);
+  background-color: var(--color-brand);
   background-image:
     linear-gradient(90deg, rgb(255 255 255 / 0.22) 0%, rgb(255 255 255 / 0) 16%, rgb(255 255 255 / 0) 84%, rgb(255 255 255 / 0.22) 100%),
     linear-gradient(180deg, rgb(255 255 255 / 0.08) 0%, rgb(255 255 255 / 0) 100%);
-  color: var(--color-background-100);
+  color: var(--text-color-inverse);
   transition: filter 0.15s ease, transform 0.1s ease, scale 0.12s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover { filter: brightness(1.04); }
   &:active { filter: brightness(0.95); scale: 0.98; }
@@ -356,11 +371,11 @@ fieldset {
 }
 
 @utility btn-dark {
-  background-color: var(--color-accent-900);
+  background-color: var(--color-cta);
   background-image:
     linear-gradient(90deg, rgb(255 255 255 / 0.12) 0%, rgb(255 255 255 / 0) 18%, rgb(255 255 255 / 0) 82%, rgb(255 255 255 / 0.12) 100%),
     linear-gradient(180deg, rgb(255 255 255 / 0.06) 0%, rgb(255 255 255 / 0) 100%);
-  color: var(--color-background-100);
+  color: var(--text-color-inverse);
   transition: filter 0.15s ease, transform 0.1s ease, scale 0.12s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover { filter: brightness(1.12); }
   &:active { filter: brightness(0.92); scale: 0.98; }
@@ -414,7 +429,7 @@ fieldset {
 
 /* 스켈레톤: 연한 쿨그레이 위로 흰 빛이 천천히 지나감 */
 .skeleton {
-  background-color: #EEF1F5;
+  background-color: var(--background-color-skeleton);
   background-image: linear-gradient(90deg, rgb(255 255 255 / 0) 0%, rgb(255 255 255 / 0.7) 50%, rgb(255 255 255 / 0) 100%);
   background-size: 200% 100%;
   background-repeat: no-repeat;

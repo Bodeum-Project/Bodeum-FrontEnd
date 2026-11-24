@@ -4,6 +4,10 @@ import { createRoot } from "react-dom/client";
 import type { Root } from "react-dom/client";
 
 
+/**
+ * 토스트 종류. 이름은 예전 색 이름 그대로 두고(호출하는 곳이 많아서) 의미는 아래와 같음
+ * blue = 축하·환영(마스코트), green = 성공(민트 체크), red = 오류·실패(핑크 느낌표), yellow = 주의(주황 느낌표)
+ */
 export type ToastColor = "blue" | "green" | "red" | "yellow";
 
 type ToastProps = {
@@ -65,7 +69,7 @@ function ToastLeading({ color, action }: { color: ToastColor; action?: ToastActi
 
   const dotClass: Record<Exclude<ToastColor, "blue">, string> = {
     green: "bg-brand",
-    red: "bg-category-welfare",
+    red: "bg-danger-muted",
     yellow: "bg-warning",
   };
 
@@ -230,7 +234,7 @@ function ToastCard({
       data-color={color}
       onClick={action ? undefined : onClose}
       className={joinClassNames(
-        "pointer-events-auto flex max-w-[min(480px,100%)] items-center gap-[10px] rounded-xl bg-surface-inverse/94 py-[12px] pl-[14px] text-inverse shadow-toast backdrop-blur-[12px]",
+        "toast-surface pointer-events-auto flex max-w-[min(480px,100%)] items-center gap-[10px] py-[12px] pl-[14px]",
         actionLabel ? "pr-[8px]" : "cursor-pointer pr-[18px]",
         "transition-[opacity,translate,scale] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:translate-y-0 motion-reduce:scale-100",
         status === "visible"
