@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import type { ParentCategory } from "@/types/info";
 import { infoCategoryMap } from "@/constants/infoCategory";
 import { useInfoItemCounts } from "@/hooks/useHome";
-import mascotWave from "@/assets/images/mascot-wave.png";
 
 const categories: ParentCategory[] = [
   "INSTITUTION",
@@ -18,26 +17,7 @@ export default function RequiredInfoSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLSpanElement>(null);
   const smallGlowRef = useRef<HTMLSpanElement>(null);
-  const mascotRef = useRef<HTMLImageElement>(null);
 
-  // 히어로 폭이 줄어들수록 캐릭터가 서서히 투명해지도록 (갑자기 사라지지 않게)
-  useEffect(() => {
-    const section = sectionRef.current;
-    const mascot = mascotRef.current;
-    if (!section || !mascot) return;
-
-    const update = () => {
-      const width = section.clientWidth;
-      const opacity = Math.min(Math.max((width - 760) / 220, 0), 1) * 0.85;
-      mascot.style.opacity = String(opacity);
-      mascot.style.visibility = opacity === 0 ? "hidden" : "visible";
-    };
-
-    update();
-    const observer = new ResizeObserver(update);
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
   const { data: counts } = useInfoItemCounts();
 
   const countMap: Record<ParentCategory, number> = {
@@ -128,17 +108,6 @@ export default function RequiredInfoSection() {
         ref={smallGlowRef}
         aria-hidden="true"
         className="hero-blob hero-blob-strong pointer-events-none absolute left-0 top-0 -z-10 hidden h-[170px] w-[170px] opacity-0 transition-opacity duration-500 lg:block"
-      />
-
-      {/* 임시 마스코트: PC에서만 우측 하단에 살짝 기울여 배치, 몸통 아래는 카드 밖으로 잘림 */}
-      <img
-        ref={mascotRef}
-        src={mascotWave}
-        alt=""
-        aria-hidden="true"
-        draggable={false}
-        className="pointer-events-none absolute -bottom-[64px] right-[4%] -z-10 hidden w-[340px] rotate-[-6deg] select-none [mask-image:linear-gradient(180deg,#000_55%,rgb(0_0_0_/_0.35)_88%)] lg:block"
-        style={{ opacity: 0 }}
       />
 
       <p className="text-[14px] font-medium text-background-400">바로 찾는 필수 정보</p>
