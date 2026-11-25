@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { commitments, features, founderChapters, guides, legalLinks, reviewAsset } from './content';
+import { commitments, features, guides, legalLinks, reviewAsset } from './content';
 import { ProductPreview } from './ProductPreview';
 import logo from './logo-bodeum.png';
 import { LandingActions, LandingHeader } from './LandingHeader';
@@ -73,10 +73,9 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
           <h2 id="beginning-title">그래서 보듬보듬을 만들었어요</h2>
           <p>모든 고민에 답할 수는 없지만, 필요한 정보를 찾는 일은 더 쉬워질 수 있다고 생각했습니다</p>
           <p>복잡한 제도는 쉽게 풀고 흩어진 소식은 한곳에 모았습니다<br />비슷한 고민을 나눌 수 있는 공간도 마련했습니다</p>
-          <a className="founder-link" href="#/founder">보듬보듬을 만든 이야기</a>
           <div className="name-story">
             <p>아이를 보듬는 마음과,<br />그 마음을 보듬는 마음</p>
-            <strong aria-label="보듬보듬"><span data-reveal>보듬</span><span data-reveal>보듬</span></strong>
+            <img className="name-story-logo" src={logo} alt="보듬보듬" data-reveal />
           </div>
         </div>
       </section>
@@ -169,7 +168,6 @@ function App() {
   const dialog = useRef<HTMLDialogElement>(null);
   const [hash, setHash] = useState(location.hash);
   const guide = guides.find(item => hash === `#/guide/${item.id}`);
-  const founder = hash === '#/founder';
   const openSignup = () => dialog.current?.showModal();
 
   useEffect(() => {
@@ -179,14 +177,14 @@ function App() {
   }, []);
 
   useLayoutEffect(() => {
-    document.title = founder ? '파운더 스토리 | 보듬보듬' : guide ? `${guide.label} 이용 안내 | 보듬보듬` : '보듬보듬 | 아이를 위한 고민이 하나쯤은 줄어들도록';
-    if (guide || founder) {
+    document.title = guide ? `${guide.label} 이용 안내 | 보듬보듬` : '보듬보듬 | 아이를 위한 고민이 하나쯤은 줄어들도록';
+    if (guide) {
       window.scrollTo({ top: 0, behavior: 'instant' });
       document.getElementById('content')?.focus({ preventScroll: true });
     } else {
       document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
     }
-  }, [guide, founder]);
+  }, [guide]);
 
   return <>
     <a className="skip" href="#content" onClick={event => {
@@ -194,7 +192,7 @@ function App() {
       document.getElementById('content')?.focus();
     }}>본문으로 건너뛰기</a>
     <LandingHeader onSubscribe={openSignup} />
-    {founder ? <FounderPage onSubscribe={openSignup} /> : guide ? <GuidePage guide={guide} onSubscribe={openSignup} /> : <LandingPage onSubscribe={openSignup} />}
+    {guide ? <GuidePage guide={guide} onSubscribe={openSignup} /> : <LandingPage onSubscribe={openSignup} />}
     <footer className="subtle">
       <div className="wrap footer-row">
         <a className="brand" href="#top"><img src={logo} alt="보듬보듬" /></a>
@@ -206,26 +204,6 @@ function App() {
     </footer>
     <LaunchDialog dialog={dialog} />
   </>;
-}
-
-function FounderPage({ onSubscribe }: { onSubscribe: () => void }) {
-  return <main id="content" tabIndex={-1}>
-    <section className="guide-hero">
-      <div className="wrap">
-        <a className="guide-back" href="#story">우리의 이야기</a>
-        <p className="label">파운더 스토리</p>
-        <h1>한 편의 웹툰에서 작은 질문이 시작됐습니다</h1>
-        <p>정보를 찾는 시간이 조금 덜 막막해지기를 바랐습니다</p>
-      </div>
-    </section>
-    <div className="section wrap founder-story">
-      {founderChapters.map(chapter => <section className="founder-chapter" key={chapter.title}>
-        <h2>{chapter.title}</h2>
-        {chapter.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-      </section>)}
-      <LandingActions onSubscribe={onSubscribe} />
-    </div>
-  </main>;
 }
 
 createRoot(document.getElementById('root')!).render(<App />);

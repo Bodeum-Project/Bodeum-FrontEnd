@@ -41,7 +41,7 @@ export function LandingHeader({ onSubscribe }: { onSubscribe: () => void }) {
     <div className="wrap header-row">
       <a href="#top" className="brand" aria-label="보듬보듬 처음으로"><img src={logo} alt="보듬보듬" /></a>
       <nav aria-label="주 메뉴">
-        <NavGroup id="story" title="우리의 이야기" links={[{ href: '#/founder', label: '파운더 스토리' }]} />
+        <a className="story-nav-link" href="#story">우리의 이야기</a>
         <NavGroup id="service" title="서비스 소개" links={guides.map(guide => ({ href: `#/guide/${guide.id}`, label: guide.label }))} />
       </nav>
       <LandingActions compact onSubscribe={onSubscribe} />
