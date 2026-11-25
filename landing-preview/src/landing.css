@@ -38,7 +38,7 @@ a, button, summary, select { cursor: pointer; }
 .secondary { background: var(--background-color-surface-muted); }
 .secondary:hover { background: var(--background-color-state-hover); }
 
-h1, h2, h3 { font-weight: 600; letter-spacing: -.05em; }
+h1, h2, h3 { font-weight: 600; letter-spacing: inherit; }
 h1 { font-size: clamp(2.125rem, 4.55vw, 4.5rem); line-height: 1.15; }
 h2 { font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.2; }
 h3 { font-size: clamp(1.125rem, 2vw, 1.625rem); line-height: 1.35; }
@@ -72,11 +72,22 @@ main .label { margin: 0 0 16px; font-size: .9375rem; font-weight: 600; color: va
 .story-row:nth-child(even) .media-slot, .feature:nth-child(even) .product { grid-column: 1; grid-row: 1; }
 .story-close { margin-top: 56px; text-align: center; font-weight: 600; }
 .name-story { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--color-cta-hover); }
-.name-story strong, .closing-brand { display: block; margin-top: 16px; font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 600; letter-spacing: -.06em; }
+.name-story strong, .closing-brand { display: block; margin-top: 16px; font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 600; letter-spacing: inherit; }
 .name-story strong span { display: inline-block; }
 .name-story strong span + span { animation-delay: .18s; color: var(--color-brand-muted); }
 
 .overview-screen { max-width: 900px; margin: 44px auto 0; }
+.landing-photo { display: block; width: 100%; aspect-ratio: 1.32; object-fit: cover; border-radius: var(--radius-2xl); }
+.hero-photo { animation: enter 1.15s var(--ease-out-soft) both; }
+.closing-photo { aspect-ratio: 1.7; }
+.story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr)); gap: 16px; margin-top: 28px; }
+.story-card { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; min-height: 244px; padding: 24px; border-radius: var(--radius-2xl); background: var(--color-brand-soft); }
+.story-card:nth-child(2) { background: #e8f3ff; }
+.story-card:nth-child(3) { background: #ffeef0; }
+.story-card svg { display: block; align-self: center; width: 110px; height: 92px; }
+.story-card p { margin-top: 6px; font-size: 1rem; }
+.product-capture { display: block; width: 100%; height: auto; }
+.product-details summary { padding: 12px 20px; min-height: 44px; }
 .features { display: grid; gap: clamp(64px, 10vw, 144px); }
 .product { min-width: 0; background: var(--background-color-surface); border: 1px solid var(--border-color-default); border-radius: var(--radius-2xl); box-shadow: var(--shadow-soft); }
 .product figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 12px 20px; border-bottom: 1px solid var(--border-color-default); font-weight: 600; }

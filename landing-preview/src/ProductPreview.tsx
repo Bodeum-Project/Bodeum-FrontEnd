@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { features } from './content';
+import { features, reviewAsset, serviceUrl } from './content';
 
 type Screen = 'home' | typeof features[number]['id'];
 
@@ -56,9 +56,7 @@ export function ProductPreview({ screen }: { screen: Screen }) {
     community: [['정보 · 질문 광장', '첫 기관 방문 전에 무엇을 준비하셨나요?', '익명 예시'], ['치료 · 성장 기록', '오늘은 아이가 먼저 산책을 제안했어요', '익명 예시']],
   };
   const title = { home: '우리 아이에게 필요한 정보', info: '정보 탐색', ai: 'AI 복지 안내', news: '지역 및 복지 소식', community: '보호자 커뮤니티' };
-  return <figure className={`product product-${screen}`}>
-    <figcaption><span>보듬보듬</span><span>V2 기반 화면 예시</span></figcaption>
-    <div className="screen-body">
+  const body = <div className="screen-body">
       <h3>{title[screen]}</h3>
       {screen === 'home' && <>
         <div className="home-tiles">{features.map(feature =>
@@ -69,12 +67,16 @@ export function ProductPreview({ screen }: { screen: Screen }) {
         </div>
       </>}
       {screen === 'info' && <InfoPreview />}
-      {screen === 'ai' && <ChatPreview />}
+      {screen === 'ai' && <><ChatPreview /><a className="source-card" href={new URL('aichat', serviceUrl).href}>데모에서 AI 챗봇 열기</a></>}
       {(screen === 'news' || screen === 'community') && <div className="screen-list">
         {rows[screen].map(([category, name, description]) => <div key={name}>
           <small>{category}</small><strong>{name}</strong><small>{description}</small>
         </div>)}
       </div>}
-    </div>
+    </div>;
+  return <figure className={`product product-${screen}`}>
+    <figcaption><span>보듬보듬</span><span>{screen === 'ai' ? '대화 흐름 예시' : 'V2 데모 화면'}</span></figcaption>
+    {screen !== 'ai' && <img className="product-capture" src={reviewAsset(`demo-${screen}.webp`)} alt={`보듬보듬 데모의 ${title[screen]} 화면`} loading="lazy" />}
+    {screen === 'info' ? <details className="product-details"><summary>정보 필터 체험하기</summary>{body}</details> : body}
   </figure>;
 }
