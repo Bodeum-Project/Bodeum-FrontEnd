@@ -155,7 +155,7 @@ export default function CommunityPage() {
   };
 
   if (isPending) {
-    return <AsyncState type="loading" />;
+    return <AsyncState type="loading" skeleton="posts" />;
   }
 
   if (isError) {
@@ -163,23 +163,11 @@ export default function CommunityPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-60px)] bg-background-100">
-      <div className="mx-auto flex flex-col px-[32px] py-[20px]">
+    <div className="min-h-[calc(100vh-72px)] bg-surface">
+      <div className="mx-auto flex flex-col px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
         <CommunitySection onWriteClick={handleWriteClick} onPostClick={handlePostClick} />
 
         <div className="mt-[18px] flex flex-col gap-[16px]">
-          <div className="flex flex-wrap gap-[16px]">
-            {categories.map((item) => (
-              <CategoryButton
-                key={item.value}
-                label={item.label}
-                category="HOSPITAL"
-                selected={category === item.value}
-                onClick={() => selectCategory(item.value)}
-              />
-            ))}
-          </div>
-
           <CommunityToolbar
             keyword={inputKeyword}
             suggestions={suggestions}
@@ -189,12 +177,21 @@ export default function CommunityPage() {
             onKeywordChange={setInputKeyword}
             onSearch={handleSearch}
             onSortChange={updateSort}
+            count={data?.totalElements}
+            categories={categories.map((item) => (
+              <CategoryButton
+                key={item.value}
+                label={item.label}
+                selected={category === item.value}
+                onClick={() => selectCategory(item.value)}
+              />
+            ))}
           />
 
           {visiblePosts.length === 0 ? (
-            <div className="py-16 text-center text-background-500">검색 결과가 없습니다.</div>
+            <div className="py-16 text-center text-secondary">검색 결과가 없습니다.</div>
           ) : (
-            <div className="grid grid-cols-2 gap-x-[20px] gap-y-[12px]">
+            <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
               {visiblePosts.map((post) => {
                 const postCategory = getCommunityCategoryByCode(post.boardType);
 

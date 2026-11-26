@@ -3,7 +3,8 @@ import RecommendedNewsTopSection from "./components/RecommendedNewsTopSection";
 import NewsTabs from "./components/NewsTabs";
 import NewsToolbar, { ALL_CATEGORIES_VALUE } from "./components/NewsToolbar";
 import NewsListSection from "./components/NewsListSection";
-import RegionOnboardingBox from "./components/RegionOnboardingBox";
+import { ALL_REGIONS_VALUE } from "./components/RegionOnboardingBox";
+import RegionPickerModal from "@/components/region/RegionPickerModal";
 import { useNews, useNewsSearch } from "@/hooks/useNews";
 import type { NewsListParams } from "@/types/news";
 import { useNewsFilters } from "./hooks/useNewsFilters";
@@ -45,8 +46,8 @@ export default function NewsPage() {
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background-100">
-      <div className="flex flex-col gap-[18px] px-[32px] py-[20px]">
+    <main className="min-h-screen overflow-x-hidden bg-surface">
+      <div className="flex flex-col gap-[16px] px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
         <RecommendedNewsTopSection />
 
         <div className="flex flex-col gap-[16px]">
@@ -62,6 +63,7 @@ export default function NewsPage() {
             onSortChange={filters.setSort}
             category={filters.category}
             onCategoryChange={filters.setCategory}
+            count={data?.totalElements}
           />
           <NewsListSection items={data?.items ?? []} isError={isError} />
           {(data?.totalPages ?? 0) > 0 && (
@@ -76,9 +78,13 @@ export default function NewsPage() {
         </div>
       </div>
       {region.showRegionOnboarding && (
-        <RegionOnboardingBox
+        <RegionPickerModal
+          initialSido={region.regionLevel1 === ALL_REGIONS_VALUE ? "" : region.regionLevel1}
+          initialDistrict={region.regionLevel2}
           onClose={region.closeRegionOnboarding}
-          onComplete={region.completeRegionOnboarding}
+          onSelect={({ sido, district }) =>
+            void region.completeRegionOnboarding({ sido: sido || ALL_REGIONS_VALUE, district })
+          }
         />
       )}
     </main>

@@ -16,8 +16,8 @@ export default function SideSubNavItem({
         w-full text-left transition-colors
         ${
           selected
-            ? "text-h6 text-background-600"
-            : "text-h6-list text-background-500"
+            ? "text-h6 text-primary"
+            : "text-h6-list text-secondary"
         }
       `}
     >

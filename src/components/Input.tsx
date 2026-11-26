@@ -39,7 +39,7 @@ function renderHighlightedText(text: string, keyword: string) {
   return (
     <>
       {text.slice(0, matchIndex)}
-      <span className="font-bold text-background-600">
+      <span className="font-bold text-primary">
         {text.slice(matchIndex, matchIndex + keyword.length)}
       </span>
       {text.slice(matchIndex + keyword.length)}
@@ -75,11 +75,11 @@ export default function Input({
 
   const wrapperStyle = search
     ? isFilled
-      ? "border border-background-250 bg-main-100"
-      : "border border-background-200 bg-background-200"
+      ? "border border-default bg-surface-subtle"
+      : "border border-background-200 bg-surface-subtle"
     : isFilled
-      ? "border-0 bg-background-200 focus-within:border focus-within:border-main-400"
-      : "border border-background-300 bg-background-200";
+      ? "border-0 bg-surface-subtle focus-within:border focus-within:border-brand"
+      : "border border-strong bg-surface-subtle";
 
   const filteredSuggestions = suggestions.filter((item) => {
     if (searchType === "news") return item.type === "NEWS_TITLE";
@@ -181,13 +181,13 @@ export default function Input({
     <div className={`relative ${className}`}>
       <div
         className={`
-          flex ${search ? "h-[40px]" : "h-[48px]"} items-center rounded-[10px] px-[20px] transition-all ${wrapperStyle}
-          focus-within:border-main-400
-          focus-within:bg-background-100
+          flex ${search ? "h-[40px]" : "h-[48px]"} items-center rounded-lg px-[16px] transition-all ${wrapperStyle}
+          focus-within:border-brand
+          focus-within:bg-surface
         `}
       >
         {search && (
-          <SearchIcon className="text-background-500 mr-[15px] h-[18px] w-[18px] shrink-0" />
+          <SearchIcon className="text-tertiary mr-[10px] h-[18px] w-[18px] shrink-0" />
         )}
 
         <input
@@ -212,10 +212,10 @@ export default function Input({
           }}
           onKeyDown={handleKeyDown}
           className={`
-            flex-1 bg-transparent
+            min-w-0 flex-1 bg-transparent
             ${search ? "text-h3-category-sub" : "text-h2-onboard"}
-            text-background-600 outline-none
-            ${search ? "placeholder:text-background-500" : "placeholder:text-background-400"}
+            text-primary outline-none
+            placeholder:text-disabled
           `}
         />
 
@@ -242,17 +242,17 @@ export default function Input({
         <div
           className="
             absolute left-0 right-0 top-[40px]
-            z-50 mt-2
+            z-overlay mt-2
             max-h-[300px] overflow-y-auto overscroll-contain
-            rounded-[10px]
+            rounded-md
             border border-background-200
-            bg-background-100
+            bg-surface
             shadow-[1px_2px_15px_0px_#00000026]
             px-1 py-2
           "
         >
           {suggestionsLoading ? (
-            <div className="py-8 text-center text-h3-category-sub text-background-500">
+            <div className="py-8 text-center text-h3-category-sub text-secondary">
               검색어 추천 리스트를 불러오는 중입니다.
             </div>
           ) : filteredSuggestions.length === 0 ? (
@@ -285,29 +285,29 @@ export default function Input({
                     flex w-full items-center
                     p-3
                     text-h3-category
-                    rounded-[10px]
+                    rounded-md
                     text-left outline-none
                     ${
                       isActive
-                        ? "bg-background-200"
+                        ? "bg-surface-subtle"
                         : !isKeyboardNavigation
-                          ? "hover:bg-background-200"
+                          ? "hover:bg-surface-subtle"
                           : ""
                     }
-                    active:bg-background-200
+                    active:bg-surface-subtle
                   `}
                 >
-                  <SuggestionIcon className="mr-2 shrink-0 text-background-400" />
+                  <SuggestionIcon className="mr-2 shrink-0 text-tertiary" />
                   {item.description !== undefined ? (
                     <span className="min-w-0 flex-1">
                       <span
-                        className="block truncate text-h3-category text-background-500"
+                        className="block truncate text-h3-category text-secondary"
                         title={item.text}
                       >
                         {renderHighlightedText(item.text, value)}
                       </span>
                       <span
-                        className="block truncate text-h3-category-sub text-background-400"
+                        className="block truncate text-h3-category-sub text-tertiary"
                         title={item.description}
                       >
                         {renderHighlightedText(item.description, value)}
@@ -316,7 +316,7 @@ export default function Input({
                   ) : matchIndex === -1 ? (
                     <span>{item.text}</span>
                   ) : (
-                    <span className="text-background-500">
+                    <span className="text-secondary">
                       {renderHighlightedText(item.text, value)}
                     </span>
                   )}

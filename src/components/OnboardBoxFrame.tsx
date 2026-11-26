@@ -58,7 +58,7 @@ const joinClassNames = (...classNames: Array<string | false | undefined>) =>
   classNames.filter(Boolean).join(' ');
 
 const leftButtonClassName =
-  'w-full! bg-background-250! text-background-500! hover:bg-background-250! active:bg-background-250! active:text-background-500!';
+  'w-full! bg-none! filter-none! bg-background-250! text-background-500! hover:bg-[#DFE3EA]! active:bg-[#D6DBE3]! active:text-background-500!';
 
 const rightButtonColorClassNames: Record<OnboardBoxFrameButtonColor, string> = {
   'main-500':
@@ -137,8 +137,9 @@ export default function OnboardBoxFrame(props: OnboardBoxFrameProps) {
       aria-modal
       aria-labelledby={props.ariaLabelledby}
       className={joinClassNames(
-        'relative flex w-[581px] max-w-[calc(100vw-40px)] flex-col items-start gap-[44px] rounded-[20px] bg-background-100 px-[40px] py-[44px]',
+        'relative flex w-[581px] max-w-[calc(100vw-40px)] flex-col items-start gap-[28px] rounded-[20px] bg-background-100 px-[24px] py-[32px] sm:gap-[44px] sm:px-[40px] sm:py-[44px]',
         'z-50',
+        showOverlay && 'motion-pop',
         props.className,
       )}
     >
@@ -182,7 +183,7 @@ export default function OnboardBoxFrame(props: OnboardBoxFrameProps) {
       {showOverlay && (
         <div
           className={joinClassNames(
-            'fixed inset-0 z-40 bg-[rgba(0,0,0,0.5)]',
+            'fixed inset-0 z-40 modal-backdrop motion-backdrop',
             props.overlayClassName,
           )}
         />

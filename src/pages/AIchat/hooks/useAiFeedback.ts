@@ -58,7 +58,7 @@ export function useAiFeedback({
       });
       if (!isCurrentSession(sessionGeneration)) return;
 
-      showToast("green", "소중한 의견 감사합니다!");
+      showToast("green", "소중한 의견 고마워요!");
     } catch (error: unknown) {
       if (!isCurrentSession(sessionGeneration)) return;
 
@@ -129,7 +129,7 @@ export function useAiFeedback({
       setFeedbackOpen(false);
       showToast(
         "green",
-        "소중한 의견 감사합니다! 더 정확한 정보로 보답하겠습니다",
+        "소중한 의견 고마워요! 더 정확한 정보로 보답할게요",
       );
     } catch (error: unknown) {
       if (!isCurrentSession(sessionGeneration)) return;

@@ -17,13 +17,13 @@ export default function Section({
 }: SectionProps) {
   return (
     <section
-      className={`w-[680px] rounded-[10px] border border-background-250 bg-background-100 px-[24px] py-[20px] ${className}`}
+      className={`w-full rounded-2xl border border-default bg-surface px-[20px] py-[20px] sm:px-[28px] sm:py-[24px] ${className}`}
     >
       {headerTop && <div className="mb-[14px]">{headerTop}</div>}
       <div className="mb-[14px] flex items-center gap-[8px]">
         {icon}
         {typeof title === "string" ? (
-          <h2 className="text-h2-list text-background-600">{title}</h2>
+          <h2 className="text-[16px] font-semibold text-primary">{title}</h2>
         ) : (
           title
         )}

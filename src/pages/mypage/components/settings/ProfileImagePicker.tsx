@@ -83,7 +83,7 @@ export default function ProfileImagePicker({
           absolute bottom-0 right-0
           flex h-[28px] w-[28px]
           items-center justify-center
-          rounded-full bg-main-400 cursor-pointer
+          rounded-full bg-brand cursor-pointer
           disabled:cursor-default
         "
         >

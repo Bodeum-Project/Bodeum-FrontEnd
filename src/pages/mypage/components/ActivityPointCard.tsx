@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import BadgeIcon from "@/assets/icons/Badge.svg?react";
 import BadgeHelpIcon from "@/assets/icons/BadgeHelp.svg?react";
 import type { UserPointActivity } from "@/types/mypage";
@@ -23,24 +24,25 @@ export default function ActivityPointCard({
 }: ActivityPointCardProps) {
   return (
     <aside>
-      <section className="rounded-[8px] bg-white px-[16px] py-[12px]">
-        <h2 className="text-h3-category-sub text-background-600">나의 활동(포인트)</h2>
-        <p className="mt-[4px] text-h4-list text-main-400">총 {totalPoint}pt</p>
+      <section className="rounded-2xl border border-default bg-surface px-[20px] py-[20px]">
+        <h2 className="text-[14px] font-semibold text-secondary">나의 활동 포인트</h2>
+        <p className="mt-[4px] text-[24px] font-bold leading-[32px] tracking-[-0.02em] text-brand-strong">
+          {totalPoint.toLocaleString()}
+          <span className="ml-[2px] text-[16px] font-semibold">pt</span>
+        </p>
 
-        <div className="mt-[8px] flex flex-col gap-[8px]">
+        <div className="mt-[14px] flex flex-col divide-y divide-default border-t border-default">
           {isLoading && (
-            <p className="py-[12px] text-center text-h4-list text-background-500">
-              포인트 내역을 불러오는 중입니다.
-            </p>
+            <RowsSkeleton count={3} label="포인트 내역을 불러오는 중입니다." />
           )}
 
           {errorMessage && (
-            <div className="flex flex-col items-center gap-[8px] py-[12px] text-h4-list text-background-500">
+            <div className="flex flex-col items-center gap-[8px] py-[12px] text-h4-list text-secondary">
               <p>{errorMessage}</p>
               <button
                 type="button"
                 onClick={onRetry}
-                className="cursor-pointer text-main-400 underline"
+                className="cursor-pointer text-brand underline"
               >
                 다시 시도
               </button>
@@ -50,27 +52,26 @@ export default function ActivityPointCard({
           {!isLoading && !errorMessage && activities.map((activity) => (
             <div
               key={activity.pointType}
-              className="flex h-[32px] w-[260px] items-center justify-between"
+              className="flex items-center justify-between py-[12px]"
             >
-              <span className="text-h4-list text-background-500">
-                {activity.label} (+{activity.pointPerAction}pt)
+              <span className="text-[13px] text-secondary">
+                {activity.label}
+                <span className="ml-[4px] text-tertiary">+{activity.pointPerAction}pt</span>
               </span>
-              <span className="flex h-[32px] w-[137px] items-center rounded-[8px] bg-background-200 px-3 py-2 text-h4-list text-main-400">
-                {activity.earnedPoint}
-                <span className="text-background-600">pt · </span>
-                {activity.activityCount}
-                <span className="text-background-600">회</span>
+              <span className="text-[14px] font-semibold text-primary">
+                {activity.earnedPoint}pt
+                <span className="ml-[6px] text-[12px] font-medium text-tertiary">{activity.activityCount}회</span>
               </span>
             </div>
           ))}
         </div>
       </section>
 
-      <div className="mt-[13px] grid grid-cols-2 gap-[11px]">
+      <div className="mt-[12px] grid grid-cols-2 gap-[10px]">
         <button
           type="button"
           onClick={onOpenBadgeGrade}
-          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-shadow hover:shadow-button"
+          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-xl bg-brand-soft text-[13px] font-semibold text-primary transition-colors hover:bg-brand-tint"
         >
           <BadgeIcon className="h-[20px] w-[20px]" aria-hidden="true" />
           보듬 뱃지 등급 안내
@@ -78,7 +79,7 @@ export default function ActivityPointCard({
         <button
           type="button"
           onClick={onOpenBadgeHelp}
-          className="flex h-[72px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-[8px] bg-main-200 text-h3-category-sub text-background-600 transition-shadow hover:shadow-button"
+          className="flex h-[76px] cursor-pointer flex-col items-center justify-center gap-[6px] rounded-xl bg-brand-soft text-[13px] font-semibold text-primary transition-colors hover:bg-brand-tint"
         >
           <BadgeHelpIcon className="h-[24px] w-[24px]" aria-hidden="true" />
           보듬 뱃지란?

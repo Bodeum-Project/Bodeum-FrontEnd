@@ -36,7 +36,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
 
     hasShownLoginRequiredToast.current = true;
-    showToast("blue", "로그인/회원가입 후 만나보세요");
+    showToast("blue", "로그인하면 이용할 수 있어요", { action: "login" });
   }, [isLoggedIn]);
 
   if (!isLoggedIn) {

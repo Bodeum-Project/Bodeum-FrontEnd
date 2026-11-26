@@ -138,12 +138,12 @@ export default function ProfileManagementCard({
     isEditing && selectedFieldsRef.current.has(field);
 
   return (
-    <section className="w-[634px] rounded-[20px] bg-background-100 p-[20px]">
-      <h1 className="border-b border-background-300 py-[8px] text-h2-list text-background-600">
+    <section className="w-full max-w-[634px] rounded-2xl bg-surface p-[20px]">
+      <h1 className="border-b border-strong py-[8px] text-h2-list text-primary">
         프로필 관리
       </h1>
 
-      <div className="mt-[24px] flex items-center">
+      <div className="mt-[24px] flex flex-wrap items-center gap-y-[12px]">
         <ProfileImagePicker
           imageUrl={form.profileImageUrl}
           imageFile={form.profileImageFile}
@@ -151,9 +151,9 @@ export default function ProfileManagementCard({
           disabled={isApplying}
           onChange={(profileImageFile) => updateField("profileImageFile", profileImageFile)}
         />
-        <div className="ml-[20px]">
-          <h2 className="min-h-[24px] text-h2-list text-background-600">{form.parentNickname}</h2>
-          <p className="mt-[4px] text-h4-list text-background-500">
+        <div className="ml-[14px] min-w-0 sm:ml-[20px]">
+          <h2 className="min-h-[24px] text-h2-list text-primary">{form.parentNickname}</h2>
+          <p className="mt-[4px] text-h4-list text-secondary">
             가입일 {formatDateWithDots(joinedAt)}
             {profileLabels && ` · ${profileLabels}`}
           </p>
@@ -185,7 +185,7 @@ export default function ProfileManagementCard({
       <div className="mt-[24px]">
         <label
           htmlFor="parent-nickname"
-          className="mb-[12px] block text-h3-onboard text-background-500"
+          className="mb-[12px] block text-h3-onboard text-secondary"
         >
           보호자 닉네임*
         </label>
@@ -194,11 +194,11 @@ export default function ProfileManagementCard({
           value={form.parentNickname}
           disabled={!isEditing || isApplying}
           onChange={(event) => updateField("parentNickname", event.target.value.slice(0, 20))}
-          className="h-[48px] w-full [&>div]:!border [&>div]:!border-background-250 [&_input:disabled]:!text-background-500 [&_input:disabled]:opacity-100"
+          className="h-[48px] w-full [&>div]:!border [&>div]:!border-default [&_input:disabled]:!text-secondary [&_input:disabled]:opacity-100"
         />
       </div>
       <fieldset className="mt-[24px]">
-        <legend className="mb-[12px] text-h3-onboard text-background-500">
+        <legend className="mb-[12px] text-h3-onboard text-secondary">
           가장 큰 관심사* (최대 2개 선택)
         </legend>
         <div className="flex flex-wrap gap-[8px]">
@@ -219,7 +219,7 @@ export default function ProfileManagementCard({
         </div>
       </fieldset>
       <div className="mt-[24px]">
-        <span className="mb-[12px] block text-h3-onboard text-background-500">주 활동 지역*</span>
+        <span className="mb-[12px] block text-h3-onboard text-secondary">주 활동 지역*</span>
         <div className="grid grid-cols-2 gap-[12px]">
           <ProfileSelect
             variant="L"
@@ -262,14 +262,14 @@ export default function ProfileManagementCard({
         </div>
       </div>
 
-      <h2 className="mt-[24px] border-b border-background-300 py-[8px] text-h2-list text-background-600">
+      <h2 className="mt-[24px] border-b border-strong py-[8px] text-h2-list text-primary">
         자녀 프로필
       </h2>
 
       <div className="mt-[24px]">
         <label
           htmlFor="child-nickname"
-          className="mb-[12px] block text-h3-onboard text-background-500"
+          className="mb-[12px] block text-h3-onboard text-secondary"
         >
           자녀 이름 또는 별명 (선택)
         </label>
@@ -278,12 +278,12 @@ export default function ProfileManagementCard({
           value={form.childNickname}
           disabled={!isEditing || isApplying}
           onChange={(event) => updateField("childNickname", event.target.value.slice(0, 20))}
-          className="h-[48px] w-full [&>div]:!border [&>div]:!border-background-250 [&_input:disabled]:!text-background-500 [&_input:disabled]:opacity-100"
+          className="h-[48px] w-full [&>div]:!border [&>div]:!border-default [&_input:disabled]:!text-secondary [&_input:disabled]:opacity-100"
         />
       </div>
 
       <div className="mt-[26px]">
-        <span className="mb-[12px] block text-h3-onboard text-background-500">자녀 생년월*</span>
+        <span className="mb-[12px] block text-h3-onboard text-secondary">자녀 생년월*</span>
         <div className="grid grid-cols-2 gap-[14px]">
           <ProfileSelect
             variant="L"
@@ -320,7 +320,7 @@ export default function ProfileManagementCard({
       </div>
 
       <fieldset className="mt-[24px]">
-        <legend className="mb-[12px] text-h3-onboard text-background-500">
+        <legend className="mb-[12px] text-h3-onboard text-secondary">
           집중 케어 영역* (복수 선택 가능)
         </legend>
         <div className="flex flex-wrap gap-[8px]">

@@ -15,19 +15,19 @@ export default function PostSection({
 }: PostSectionProps) {
   return (
     <section className="w-full">
-      <div className="mb-[16px] flex items-center justify-between border-b border-background-300 pb-[8px]">
-        <h2 className="text-h6 text-background-600">{title}</h2>
+      <div className="mb-[4px] flex items-center justify-between">
+        <h2 className="text-[16px] font-bold text-primary">{title}</h2>
 
         <button
           onClick={onMoreClick}
-          className="text-h6-list text-background-500 flex items-center gap-[4.66px] cursor-pointer"
+          className="flex cursor-pointer items-center gap-[4px] text-[13px] text-tertiary"
         >
           더보기
-          <RightIcon className="text-background-500" />
+          <RightIcon className="h-[10px] w-[7px]" />
         </button>
       </div>
 
-      <div className="flex flex-col gap-[8px]">{children}</div>
+      <div className="flex flex-col">{children}</div>
     </section>
   );
 }

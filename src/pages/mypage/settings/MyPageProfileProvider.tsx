@@ -19,8 +19,9 @@ export default function MyPageProfileProvider({ children }: { children: ReactNod
       <AsyncState
         type="loading"
         variant="section"
+        skeleton="mypage"
         loadingText="프로필 정보를 불러오는 중입니다."
-        className="flex min-h-full items-center justify-center bg-background-200 text-h3-onboard text-background-500"
+        className="flex min-h-full items-center justify-center bg-surface-subtle text-h3-onboard text-secondary"
         textClassName=""
       />
     );
@@ -35,7 +36,7 @@ export default function MyPageProfileProvider({ children }: { children: ReactNod
           profileQuery.error,
           "프로필을 불러오지 못했습니다.",
         )}
-        className="flex min-h-full flex-col items-center justify-center gap-[16px] bg-background-200 text-h3-onboard text-background-500"
+        className="flex min-h-full flex-col items-center justify-center gap-[16px] bg-surface-subtle text-h3-onboard text-secondary"
         textClassName=""
       />
     );

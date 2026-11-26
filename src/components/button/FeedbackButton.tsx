@@ -98,7 +98,7 @@ export default function FeedbackButton({
                         ? "w-5 h-5"
                         : "h-5 gap-1 border-b border-transparent pb-0.5 text-h4-list enabled:hover:border-current"
                 }
-                ${selected ? "text-main-400" : "text-background-500"}
+                ${selected ? "text-brand" : "text-secondary"}
                 ${className ?? ""}
             `}
         >

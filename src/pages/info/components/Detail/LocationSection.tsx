@@ -91,7 +91,7 @@ export default function LocationSection({ infoItemId, address }: Props) {
           setPlaceLocation({ lat, lng })
         }
       />
-      <div className="flex flex-row items-center text-h6-list text-background-500 mt-[13px]">
+      <div className="flex flex-row items-center text-h6-list text-secondary mt-[13px]">
         <LocationIcon className="h-[12px] w-[12px]" />
         <p className="ml-1">
           {distance !== null
@@ -104,13 +104,13 @@ export default function LocationSection({ infoItemId, address }: Props) {
         href={kakaoMap?.kakaoMapUrl ?? "#"}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-4 flex h-[36px] w-[133px] items-center rounded-[10px] border border-background-300 bg-background-100 px-[16px]"
+        className="mt-4 flex h-[36px] w-[133px] items-center rounded-md border border-strong bg-surface px-[16px]"
       >
-        <ChevronLeftIcon className="mr-[4px] h-[14px] w-[14px] text-background-500" />
+        <ChevronLeftIcon className="mr-[4px] h-[14px] w-[14px] text-secondary" />
 
         <KAKAOMapLogo />
 
-        <span className="ml-[3px] text-h4-list text-background-500 leading-none">
+        <span className="ml-[3px] text-h4-list text-secondary leading-none">
           카카오 지도
         </span>
       </a>

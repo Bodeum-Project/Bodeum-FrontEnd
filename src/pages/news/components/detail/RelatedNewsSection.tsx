@@ -1,5 +1,7 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { useNavigate } from "react-router-dom";
 import PostListItem from "@/components/PostListItem";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 import PostSection from "@/components/PostSection";
 import ScrapStat from "@/components/post-stat/ScrapStat";
 import ViewStat from "@/components/post-stat/ViewStat";
@@ -25,17 +27,15 @@ export default function RelatedNewsSection({
   return (
     <PostSection title={title} onMoreClick={onMoreClick}>
       {isPending && (
-        <p className="py-[20px] text-center text-h6-list text-background-500">
-          관련 소식을 불러오는 중입니다...
-        </p>
+        <RowsSkeleton count={3} label="관련 소식을 불러오는 중입니다." />
       )}
       {isError && (
-        <p className="py-[20px] text-center text-h6-list text-background-500">
+        <p className="py-[20px] text-center text-h6-list text-secondary">
           관련 소식을 불러오지 못했습니다.
         </p>
       )}
       {!isPending && !isError && items.length === 0 && (
-        <p className="py-[20px] text-center text-h6-list text-background-500">
+        <p className="py-[20px] text-center text-h6-list text-secondary">
           같은 지역에서 모집 중인 소식이 없습니다.
         </p>
       )}
@@ -44,7 +44,7 @@ export default function RelatedNewsSection({
         items.map((item) => (
           <PostListItem
             key={item.newsId}
-            region={item.region}
+            tag={formatRegionDisplayLabel(item.region)}
             title={item.title}
             rightSlot={
               <span className="inline-flex items-center gap-[8px]">

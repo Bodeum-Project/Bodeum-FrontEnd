@@ -71,9 +71,9 @@ export default function CommunityWriteForm({
   };
 
   return (
-    <form onSubmit={submitPost} className="mx-auto w-[1240px]">
-      <div className="rounded-[10px] border border-background-250 bg-background-100 pt-[20px] px-[20px] pb-[40px]">
-        <p className="text-h1-onboard text-background-600">
+    <form onSubmit={submitPost} className="mx-auto w-full max-w-[1240px]">
+      <div className="rounded-md border border-default bg-surface px-[16px] pt-[16px] pb-[28px] sm:pt-[20px] sm:px-[20px] sm:pb-[40px]">
+        <p className="text-h1-onboard text-primary">
           {initialValues ? "게시글 수정하기" : "게시글 작성하기"}
         </p>
 
@@ -113,13 +113,13 @@ export default function CommunityWriteForm({
           label="취소하기"
           tone="black"
           onClick={onCancel}
-          className="!h-[44px] !w-[200px]"
+          className="!h-[44px] flex-1 sm:!w-[200px] sm:flex-none"
         />
         <ButtonFill
           type="submit"
           label={isSubmitting ? "처리 중..." : (submitLabel ?? "게시하기")}
           disabled={!isSubmittable || isSubmitting}
-          className="!h-[44px] !w-[200px]"
+          className="!h-[44px] flex-1 sm:!w-[200px] sm:flex-none"
         />
       </div>
     </form>

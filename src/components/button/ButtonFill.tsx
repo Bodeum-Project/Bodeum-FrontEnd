@@ -49,13 +49,13 @@ export default function ButtonFill({
       data-state={disabled ? "disabled" : "기본"}
       data-icon={Icon ? "true" : "false"}
       className={joinClassNames(
-        "inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-[10px] px-[16px] py-[10px]",
+        "inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-md px-[16px] py-[10px]",
         Icon ? "gap-[4px]" : "gap-[6px]",
         "border-0 text-h4-list transition-[background-color,color,box-shadow] duration-150 ease-out",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
         disabled
-          ? "cursor-not-allowed bg-background-250 text-background-500"
-          : "cursor-pointer bg-main-400 text-background-100 hover:bg-main-400 hover:shadow-button active:bg-main-500 active:shadow-none",
+          ? "cursor-not-allowed bg-surface-muted text-secondary"
+          : "cursor-pointer btn-dark",
         className,
       )}
       {...buttonProps}

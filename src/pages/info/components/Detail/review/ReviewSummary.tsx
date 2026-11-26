@@ -13,19 +13,19 @@ export default function ReviewSummary({
   onWriteReview,
 }: Props) {
   return (
-    <div className="flex items-center justify-between rounded-[10px] bg-main-100 px-[25px] py-[16px]">
+    <div className="flex items-center justify-between rounded-md bg-surface-subtle px-[16px] py-[14px] sm:px-[25px] sm:py-[16px]">
       <div>
         <div className="flex items-center">
           <StarIcon />
           <span className="text-h5-list ml-[4px] mr-[5px]">
             {averageRating} / 5.0
           </span>
-          <span className="text-h4-list text-background-600">
+          <span className="text-h4-list text-primary">
             · {totalReviewCount}개의 후기
           </span>
         </div>
 
-        <p className="mt-[4px] text-h6-list text-background-500">
+        <p className="mt-[4px] text-h6-list text-secondary">
           다른 이웃을 위해 후기를 작성해주세요
         </p>
       </div>

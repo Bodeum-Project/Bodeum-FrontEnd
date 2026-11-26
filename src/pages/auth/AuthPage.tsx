@@ -352,7 +352,7 @@ export default function AuthPage() {
             if (!cancelled) {
               showToast(
                 "blue",
-                "가입이 완료되었습니다. 보듬에 오신 것을 환영합니다!",
+                "가입을 마쳤어요. 보듬에 오신 걸 환영해요!",
               );
               navigate("/", { replace: true });
             }
@@ -420,7 +420,7 @@ export default function AuthPage() {
       } catch (error: unknown) {
         if (isUnauthorizedError(error)) {
           if (!cancelled) {
-            showToast("red", "로그인이 만료되었습니다. 다시 로그인해주세요.");
+            showToast("red", "로그인이 만료됐어요. 다시 로그인해 주세요");
             setIsInitializing(false);
             setOnboardingLoadError(null);
             setSearchParams({}, { replace: true });
@@ -533,9 +533,9 @@ export default function AuthPage() {
       showToast(
         "blue",
         isProfileOnboarding
-          ? "맞춤 프로필이 저장되었습니다."
+          ? "맞춤 프로필을 저장했어요"
           : displayNickname
-          ? `${displayNickname}님, 환영합니다! 보듬이 보호자님의 곁에서 함께하겠습니다`
+          ? `${displayNickname}님, 반가워요! 보듬이 곁에서 함께할게요`
           : "가입이 완료되었습니다. 보듬에 오신 것을 환영합니다!",
       );
       storeAuthNextStep("HOME");
@@ -716,7 +716,7 @@ export default function AuthPage() {
         flow === "onboarding"
           ? "h-dvh overflow-hidden"
           : "min-h-screen overflow-x-hidden overflow-y-auto",
-        flow === "onboarding" ? "bg-background-500" : "bg-main-150",
+        flow === "onboarding" ? "bg-background-500" : "bg-brand-soft",
       ].join(" ")}
     >
       {isInitializing && !keepOnboardingVisible && (

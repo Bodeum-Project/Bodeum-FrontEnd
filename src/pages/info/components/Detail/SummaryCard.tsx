@@ -1,18 +1,13 @@
 import ShareIcon from "@/assets/icons/Share.svg?react";
-import CategoryLabel from "@/components/CategoryLabel";
-import ButtonFill from "@/components/button/ButtonFill";
 import GoIcon from "@/assets/icons/arrow-up-right.svg?react"
 import ScrapIcon from "@/assets/icons/Scrap.svg?react"
 import ViewStat from "@/components/post-stat/ViewStat";
 import ScrapStat from "@/components/post-stat/ScrapStat";
 import CommentStat from "@/components/post-stat/CommentStat";
-import DateStat from "@/components/post-stat/DateStat";
-import PostTag from "@/components/PostTag";
-import ButtonOutline from "@/components/button/ButtonOutline";
-import Building from "@/assets/icons/Building.svg?react"
 import { getInfoShareUrl, toggleInfoScrap } from "@/apis/infoApi";
 import { showToast } from "@/components/Toast";
 import { useState } from "react";
+import DetailActionButton from "@/components/button/DetailActionButton";
 
 interface SummaryCardProps {
   infoItemId: number;
@@ -39,14 +34,9 @@ function InfoRow({ label, value }: InfoRowProps) {
   if (!value) return null;
 
   return (
-    <div className="flex items-center border-b border-background-250">
-      <div className="w-[60px] shrink-0 bg-background-50 py-[10px] text-h6-list text-background-500">
-        {label}
-      </div>
-
-      <div className="flex-1 text-h6-list text-background-600 break-keep">
-        {value}
-      </div>
+    <div className="flex items-start gap-[12px] py-[10px]">
+      <div className="w-[64px] shrink-0 text-[13px] leading-[20px] text-tertiary">{label}</div>
+      <div className="min-w-0 flex-1 break-keep text-[14px] leading-[20px] text-primary">{value}</div>
     </div>
   );
 }
@@ -54,7 +44,6 @@ function InfoRow({ label, value }: InfoRowProps) {
 export default function SummaryCard({
   infoItemId,
   name,
-  mainCategory,
   subCategory,
   homepageUrl,
   viewCount,
@@ -75,9 +64,9 @@ export default function SummaryCard({
 
       await navigator.clipboard.writeText(shareUrl);
 
-      showToast("green", "공유 링크가 복사되었습니다.");
+      showToast("green", "링크를 복사했어요");
     } catch {
-      showToast("red", "공유 링크를 가져오지 못했습니다.");
+      showToast("red", "링크를 복사하지 못했어요");
     }
   };
 
@@ -86,7 +75,7 @@ export default function SummaryCard({
     const refreshToken = localStorage.getItem("refreshToken");
 
     if (!accessToken && !refreshToken) {
-      showToast("blue", "로그인/회원가입 후 만나보세요");
+      showToast("blue", "로그인하면 스크랩할 수 있어요", { action: "login" });
       return;
     }
 
@@ -101,81 +90,57 @@ export default function SummaryCard({
 
       showToast(
         "green",
-        result.isScrapped
-          ? "스크랩되었습니다."
-          : "스크랩이 취소되었습니다.",
+        result.isScrapped ? "스크랩했어요" : "스크랩을 취소했어요",
       );
     } catch {
-      showToast("red", "스크랩에 실패했습니다.");
+      showToast("red", "스크랩하지 못했어요. 잠시 후 다시 시도해 주세요");
     }
   };
 
   return (
-    <div className="overflow-hidden rounded-[10px] border border-background-250 bg-background-100">
-      <div className="px-[25px] py-[24px]">
-        <div className="flex items-center gap-[10px] mb-[12px]">
-          <CategoryLabel category={mainCategory as any} />
-          
-          <PostTag
-            type="ETC"
-            label={subCategory}
-          />
+    <div className="relative overflow-hidden rounded-2xl border border-default bg-surface">
+      <div className="px-[20px] py-[22px] sm:px-[28px] sm:py-[26px]">
+        {/* 조회·스크랩·리뷰는 레이아웃과 상관없이 우측 상단에 고정 */}
+        <div className="absolute right-[20px] top-[22px] flex items-center gap-[10px] sm:right-[28px] sm:top-[26px]">
+          <ViewStat count={viewCount} />
+          <ScrapStat count={scrapCountState} isActive={scrapped} />
+          <CommentStat count={reviewCount} />
         </div>
 
-        <h1 className="text-h1-onboard">{name}</h1>
+        <span className="inline-block rounded-xs bg-surface-subtle px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-secondary">
+          {subCategory}
+        </span>
 
-        <div className="flex gap-x-5 mb-[8px]">
-          <ViewStat count={viewCount} showLabel={true} />
-          <ScrapStat
-            count={scrapCountState}
-            isActive={scrapped}
-          />
-          <CommentStat count={reviewCount} showLabel={true} />
-          <DateStat date="2026.05.04" showLabel={true} />
-        </div>
+        <h1 className="mt-[10px] break-keep text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-primary">
+          {name}
+        </h1>
 
-        <div className="border-b border-main-100 mb-[12px]" />
-
-        <div className="flex gap-[8px]">
-          <ButtonFill
+        <div className="mt-[18px] flex flex-wrap gap-[8px]">
+          <DetailActionButton
             label="홈페이지"
             icon={GoIcon}
             iconPosition="right"
+            variant="dark"
             disabled={!homepageUrl}
             onClick={() => {
-              if (homepageUrl) {
-                window.open(homepageUrl, "_blank", "noopener,noreferrer");
-              }
+              if (homepageUrl) window.open(homepageUrl, "_blank", "noopener,noreferrer");
             }}
           />
-
-          <ButtonOutline
-            tone="primary"
-            label="스크랩"
+          <DetailActionButton
+            label={scrapped ? "스크랩됨" : "스크랩"}
             icon={ScrapIcon}
-            iconPosition="left"
+            variant={scrapped ? "primarySoft" : "soft"}
+            pressed={scrapped}
             onClick={handleScrap}
           />
-
-          <ButtonOutline
-            tone="black"
-            label="공유"
-            icon={ShareIcon}
-            iconPosition="left"
-            onClick={handleShare}
-          />
+          <DetailActionButton label="공유" icon={ShareIcon} onClick={handleShare} />
         </div>
-        <div className="mt-[32px]">
-          <div className="flex flex-row items-center text-h2-list gap-2">
-            <Building />
-            <h2>기본 정보</h2>
-          </div>
-          <div className="mt-[4px] mb-[12px] overflow-hidden">
+
+        <div className="mt-[28px] border-t border-default pt-[18px]">
+          <h2 className="text-[16px] font-semibold text-primary">기본 정보</h2>
+          <div className="mt-[6px]">
             <InfoRow label="주소" value={address} />
-            <InfoRow
-              label="지역"
-              value={`${sido ?? ""} ${sigungu ?? ""}`.trim()}
-            />
+            <InfoRow label="지역" value={`${sido ?? ""} ${sigungu ?? ""}`.trim()} />
             <InfoRow label="전화번호" value={phone} />
           </div>
         </div>

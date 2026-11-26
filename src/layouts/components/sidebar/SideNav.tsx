@@ -1,8 +1,8 @@
 import HomeIcon from "@/assets/icons/Home.svg?react";
-import ChatIcon from "@/assets/icons/Chat.svg?react";
+import chatIconUrl from "@/assets/icons/Chat.svg?url";
 import InfoIcon from "@/assets/icons/Info.svg?react";
 import NewsIcon from "@/assets/icons/News.svg?react";
-import CommunityIcon from "@/assets/icons/Community.svg?react";
+import CommunityIcon from "@/assets/icons/SideCommunity.svg?react";
 import SideNavItem from "./SideNavItem";
 import SideSubNavItem from "./SideSubNavItem";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -30,8 +30,15 @@ export default function SideNav() {
       />
 
       <SideNavItem
-        icon={<ChatIcon />}
+        icon={
+          <span
+            aria-hidden="true"
+            className="ai-gradient-icon h-[20px] w-[20px]"
+            style={{ maskImage: `url("${chatIconUrl}")`, WebkitMaskImage: `url("${chatIconUrl}")` }}
+          />
+        }
         label="AI 챗봇"
+        labelClassName="ai-gradient-text font-semibold"
         active={pathname.startsWith("/aichat")}
         onClick={() => navigate("/aichat")}
       />

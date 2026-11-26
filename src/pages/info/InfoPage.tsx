@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import type { ParentCategory } from "@/types/info";
-import { infoSubCategoryMap } from "@/constants/infoCategory";
+import { infoCategoryMap, infoSubCategoryMap } from "@/constants/infoCategory";
 import CategoryChips from "./components/CategoryChips";
 import Pagination from "@/components/pagination/Pagination";
 import InfoItem from "@/pages/info/components/InfoItem";
-import CountButton from "./components/button/CountButton";
-import LocationButton from "./components/button/LocationButton";
-import { Select } from "@/components/Select";
-import LocationModal from "./components/modal/LocationModal";
+import { InlineDropdown, ResultBar, SortSelect } from "@/components/list-toolbar/ListToolbar";
+import { formatRegionDisplayLabel } from "@/constants/regions";
+import RegionPickerModal from "@/components/region/RegionPickerModal";
 import CategoryModal from "./components/modal/CategoryModal";
 import { useInfoList } from "@/hooks/useInfoList";
 import { useMyProfileQuery } from "@/hooks/useMyProfile";
@@ -235,6 +234,8 @@ export default function InfoPage() {
           ? "마이페이지 > 설정에서 활동 지역을 변경하면, 다른 지역의 추천 목록을 확인하실 수 있어요!"
           : "조건에 맞는 정보가 없습니다.";
 
+  const regionLabel = regionLevel1 ? formatRegionDisplayLabel(location) : "전체 지역";
+
   if (isPending) {
     return <AsyncState type="loading" />;
   }
@@ -244,58 +245,72 @@ export default function InfoPage() {
   }
   
   return (
-    <div className="flex min-h-screen flex-col gap-[18px] bg-background-100 px-[32px] py-[20px]">
+    <div className="flex min-h-screen flex-col gap-[14px] bg-surface px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
       
-      <h2 className="text-h1-info -mb-[10px]">
+      {/* PM 설계 문장 유지: "보호자님, (지역) (분류)의 정보를 모았어요" — 지역·분류는 문장 속 텍스트 드롭다운 */}
+      <h1 className="pt-[4px] text-[22px] font-bold leading-[34px] tracking-[-0.03em] text-primary lg:text-[24px] lg:leading-[38px]">
         {profile?.nickname || "보호자"}님,
-      </h2>
-      <div className="flex gap-[10px] items-center">
-        <LocationButton
-          value={location}
-          onClick={() => setLocationOpen(true)}
-        />
-        <CountButton
-          category={parentCategory}
-          count={count}
-          onClick={() => setCategoryOpen(true)}
-        />
-        <h2 className="text-h1-info">
-          의 정보를 모았어요
-        </h2>
-      </div>
+        <br />
+        <span className="inline-flex flex-wrap items-center gap-x-[6px]">
+          <InlineDropdown
+            onClick={() => setLocationOpen(true)}
+            ariaLabel={`지역 선택: ${regionLabel}`}
+            className="text-brand-strong"
+          >
+            {regionLabel}
+          </InlineDropdown>
+          <span className="inline-flex items-center whitespace-nowrap">
+            <InlineDropdown
+              onClick={() => setCategoryOpen(true)}
+              ariaLabel={`분류 선택: ${infoCategoryMap[parentCategory].label}`}
+              className={infoCategoryMap[parentCategory].textColor}
+            >
+              {infoCategoryMap[parentCategory].label}
+            </InlineDropdown>
+            <span>의</span>
+          </span>
+          <span>정보를 모았어요</span>
+        </span>
+      </h1>
 
-      <div className="flex items-center justify-between">
+      {/* 소식·커뮤니티와 같은 순서: (검색) → 카테고리 칩 → 결과 줄. 정보 탭 검색창은 API 합의 전까지 없음 */}
+      <div className="flex flex-col gap-[12px]">
         <CategoryChips
           parentCategory={parentCategory}
           subCategory={subCategory}
           onChange={moveToSubCategory}
         />
-        <Select
-          options={sortOptions}
-          value={sort}
-          onChange={(value) => {
-            setSort(value);
-            updatePage(1);
 
-            const params = new URLSearchParams(searchParams);
-            params.set("page", "1");
-            params.set("sort", value);
+        <ResultBar
+          count={count}
+          unit="곳"
+          sort={
+            <SortSelect
+              options={sortOptions}
+              value={sort}
+              onChange={(value) => {
+                setSort(value);
+                updatePage(1);
 
-            updateUrl(params);
-          }}
-          placeholder="조회순"
-          variant="S"
-          className="w-[120px]"
+                const params = new URLSearchParams(searchParams);
+                params.set("page", "1");
+                params.set("sort", value);
+
+                updateUrl(params);
+              }}
+              placeholder="조회순"
+            />
+          }
         />
       </div>
-      
+
       {shouldShowEmptyMessage ? (
-        <div className="flex h-[200px] items-center justify-center text-background-500">
+        <div className="flex h-[200px] items-center justify-center text-secondary">
           {emptyMessage}
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-x-[20px] gap-y-[12px]">
+          <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
             {items.map((item) => (
               <InfoItem
                 key={item.infoItemId}
@@ -314,10 +329,13 @@ export default function InfoPage() {
       )}
 
       {locationOpen && (
-        <LocationModal
-          location={location}
+        <RegionPickerModal
+          initialSido={regionLevel1}
+          initialDistrict={regionLevel2}
           onClose={() => setLocationOpen(false)}
-          onComplete={({ regionLevel1, regionLevel2 }) => {
+          onSelect={({ sido, district }) => {
+            const regionLevel1 = sido || null;
+            const regionLevel2 = sido ? district || null : null;
             setRegionLevel1(regionLevel1 ?? "");
             setRegionLevel2(regionLevel2 ?? "");
 

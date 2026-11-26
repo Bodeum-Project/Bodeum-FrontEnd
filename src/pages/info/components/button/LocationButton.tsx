@@ -1,6 +1,7 @@
 import FilterButton from "./FilterButton";
 import ChevronDownIcon from "@/assets/icons/ChevronDown.svg?react";
-import LocationSearchIcon from "@/assets/icons/LocationSearch.svg?react"
+import LocationSearchIcon from "@/assets/icons/LocationSearch.svg?react";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 
 interface LocationButtonProps {
   value: string;
@@ -19,8 +20,8 @@ export default function LocationButton({
       disabled={disabled}
       onClick={onClick}
     >
-      <LocationSearchIcon />
-      <span>{value}</span>
+      <LocationSearchIcon className="h-[16px] w-[16px]" />
+      <span>{formatRegionDisplayLabel(value)}</span>
       <ChevronDownIcon />
     </FilterButton>
   );

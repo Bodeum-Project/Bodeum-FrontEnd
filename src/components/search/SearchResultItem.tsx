@@ -19,7 +19,7 @@ function highlightText(text: string, keyword: string) {
 
   return parts.map((part, index) =>
     part.toLowerCase() === keyword.toLowerCase() ? (
-      <span key={index} className="text-background-600">
+      <span key={index} className="text-primary">
         {part}
       </span>
     ) : (
@@ -47,7 +47,7 @@ export default function SearchResultItem({
       onClick={() => onSelect(item)}
       className={`
         flex w-full items-center
-        p-3 rounded-[10px]
+        p-3 rounded-md
         text-left
         outline-none
         border-none
@@ -56,22 +56,22 @@ export default function SearchResultItem({
         focus:border-none
         ${
           isActive
-            ? "bg-background-200"
+            ? "bg-surface-subtle"
             : !isKeyboardNavigation
-              ? "hover:bg-background-200"
+              ? "hover:bg-surface-subtle"
               : ""
         }
-        active:bg-background-200
+        active:bg-surface-subtle
       `}
     >
       {Icon && <Icon className="mr-2 h-6 w-6 shrink-0" />}
 
       <div className="flex flex-col">
-        <span className="text-h3-category-sub text-background-500">
+        <span className="text-h3-category-sub text-secondary">
           {highlightText(item.name, keyword)}
         </span>
 
-        <span className="text-h3-onboard text-background-400">
+        <span className="text-h3-onboard text-tertiary">
           {[item.regionLevel1, item.regionLevel2].filter(Boolean).join(" ")}
         </span>
       </div>
