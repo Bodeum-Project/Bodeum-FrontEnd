@@ -10,6 +10,8 @@ import type {
   LogoutCurrentUserOptions,
   SocialProvider,
 } from "@/types/auth";
+import { IS_MOCK_MODE } from "@/mocks/isMockMode";
+import { clearMockLoggedOut, markMockLoggedOut } from "@/mocks/installMock";
 
 export {
   AUTH_STATE_CHANGED_EVENT,
@@ -18,13 +20,19 @@ export {
   storeAuthTokens,
 } from "./authStorage";
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl =
+  import.meta.env.VITE_BASE_URL || (IS_MOCK_MODE ? "https://mock.bodeum.local" : "");
 
 if (!baseUrl) {
   throw new Error("VITE_BASE_URL이 설정되지 않았습니다.");
 }
 
 export function getSocialLoginUrl(provider: SocialProvider) {
+  if (IS_MOCK_MODE) {
+    clearMockLoggedOut();
+    return `${window.location.origin}/auth/callback?code=mock-${provider}`;
+  }
+
   const loginUrl = new URL(
     `${baseUrl.replace(/\/+$/, "")}/api/v1/auth/login/${provider}`,
   );
@@ -67,6 +75,7 @@ export async function submitAgreements(values: AgreementFormValues) {
 export async function logoutCurrentUser(
   options: LogoutCurrentUserOptions = {},
 ) {
+  markMockLoggedOut();
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
   const tokenType = localStorage.getItem("tokenType") ?? "Bearer";

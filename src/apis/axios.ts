@@ -1,6 +1,8 @@
 import axios from "axios";
 import reissueTokens from "./reissueTokens";
 import type { RetryRequestConfig } from "@/types/api";
+import { IS_MOCK_MODE } from "@/mocks/isMockMode";
+import { installMockAdapter } from "@/mocks/installMock";
 
 function replaceLogoutRefreshToken(
   request: RetryRequestConfig,
@@ -26,7 +28,8 @@ function replaceLogoutRefreshToken(
   }
 }
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl =
+  import.meta.env.VITE_BASE_URL || (IS_MOCK_MODE ? "https://mock.bodeum.local" : "");
 
 if (!baseUrl) {
   throw new Error("VITE_BASE_URL이 설정되지 않았습니다.");
@@ -36,6 +39,8 @@ const api = axios.create({
   baseURL: baseUrl,
   timeout: 10000,
 });
+
+installMockAdapter(api);
 
 api.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem("accessToken");

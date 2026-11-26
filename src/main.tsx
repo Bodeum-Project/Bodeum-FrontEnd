@@ -10,6 +10,9 @@ import {
 import "./index.css";
 import { queryKeys } from "./queries/queryKeys";
 import { router } from "./router/router";
+import { seedMockSession } from "./mocks/installMock";
+
+seedMockSession();
 
 const queryClient = new QueryClient();
 
