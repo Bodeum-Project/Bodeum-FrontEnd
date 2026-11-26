@@ -1,17 +1,21 @@
 import { useRecommendedNews } from "@/hooks/useHome";
 import NewsCard from "@/pages/home/components/NewsCard";
 import AsyncState from "@/components/AsyncState";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { useHorizontalWheel } from "@/components/ui/useHorizontalWheel";
 
 export default function RecommendedNewsTopSection() {
   const { data: news = [], isPending, isError } = useRecommendedNews();
+  const wheelRef = useHorizontalWheel<HTMLDivElement>();
 
   if (isPending) {
     return (
       <AsyncState
         type="loading"
         variant="section"
+        skeleton="cards"
         loadingText="추천 소식을 불러오는 중입니다..."
-        className="flex h-[220px] items-center justify-center text-h6 text-background-500"
+        className="flex h-[220px] items-center justify-center text-h6 text-secondary"
         textClassName=""
       />
     )
@@ -23,22 +27,17 @@ export default function RecommendedNewsTopSection() {
         type="error"
         variant="section"
         errorText="추천 소식을 불러오지 못했습니다."
-        className="flex h-[220px] items-center justify-center text-h6 text-background-500"
+        className="flex h-[220px] items-center justify-center text-h6 text-secondary"
         textClassName=""
       />
     );
   }
 
   return (
-    <section className="flex flex-col shrink-0 overflow-hidden">
-      <div>
-        <h2 className="text-h2-list text-background-600">추천하는 소식 Top 5</h2>
-        <p className="mt-[3.6px] mb-[13.6px] text-h6-list text-background-500">
-          지역 · 활동별 맞춤 소식을 확인하세요
-        </p>
-      </div>
+    <section className="flex shrink-0 flex-col">
+      <SectionHeader title="추천 소식 TOP 5" description="지역·활동별로 골라봤어요" />
 
-      <div className="flex gap-[12px] overflow-x-auto no-scrollbar">
+      <div ref={wheelRef} className="no-scrollbar -mx-[16px] flex items-start gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
         {news.map((item) => (
           <NewsCard key={item.newsId} {...item} />
         ))}

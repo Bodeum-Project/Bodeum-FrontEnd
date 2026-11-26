@@ -19,12 +19,12 @@ export default function ArrowButton({
       onClick={onClick}
       className={`
         flex items-center gap-[4.66px]
-        text-h6-list text-background-500
+        text-h6-list text-secondary
         cursor-pointer
         hover:border-b hover:border-background-500
         disabled:cursor-default
         disabled:border-0
-        disabled:text-background-400
+        disabled:text-tertiary
         ${direction === "prev" ? "mr-1" : "ml-1"}
       `}
     >

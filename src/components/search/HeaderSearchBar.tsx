@@ -98,16 +98,16 @@ export default function HeaderSearchBar({
   }, [activeIndex]);
 
   return (
-    <div ref={wrapperRef} className={`relative w-[921px] ${className}`}>
+    <div ref={wrapperRef} className={`relative w-full ${className}`}>
       <div
         className={`
-          flex h-[40px] items-center rounded-[10px]
-          border px-[20px]
-          transition-colors
-          ${focused ? "border-main-400 bg-background-100" : "border-background-200 bg-background-200"}
+          flex h-[40px] items-center rounded-md lg:h-[48px] lg:rounded-lg
+          border px-[14px] lg:px-[20px]
+          backdrop-blur-[12px] transition-colors
+          ${focused ? "border-brand bg-surface/90" : "border-transparent bg-[rgb(234_237_242_/_0.72)]"}
         `}
       >
-        <SearchIcon className="mr-[15px] h-[18px] w-[18px] shrink-0 text-background-500" />
+        <SearchIcon className="mr-[10px] lg:mr-[15px] h-[18px] w-[18px] shrink-0 text-secondary" />
 
         <input
           aria-label="정보 검색"
@@ -116,7 +116,7 @@ export default function HeaderSearchBar({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           onKeyDown={handleKeyDown}
-          className="w-full bg-transparent text-h3-category-sub text-background-700 placeholder:text-background-500 outline-none"
+          className="w-full min-w-0 bg-transparent text-[16px] lg:text-h3-category-sub text-background-700 placeholder:text-disabled outline-none"
         />
 
         {value.trim() !== "" && (

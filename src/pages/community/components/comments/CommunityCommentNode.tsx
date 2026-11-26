@@ -3,6 +3,7 @@ import { memo, useEffect, useRef, useState } from "react";
 import ButtonFill from "@/components/button/ButtonFill";
 import ButtonOutline from "@/components/button/ButtonOutline";
 import HeartStat from "@/components/post-stat/HeartStat";
+import ModerationMenu from "@/components/moderation/ModerationMenu";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { showToast } from "@/components/Toast";
 import type { CommunityComment } from "@/types/community";
@@ -99,8 +100,8 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
     <div
       className={
         isRoot
-          ? `flex gap-[28px] pb-[20px] ${isReplyFormOpen ? "" : "border-b border-background-250"}`
-          : `relative ml-[20px] py-[20px] pl-[48px] before:absolute before:left-0 before:top-[28px] before:h-[24px] before:w-[24px] before:border-b before:border-l before:border-background-300 ${isReplyFormOpen ? "" : "after:absolute after:bottom-0 after:left-[-20px] after:right-0 after:border-b after:border-background-250"}`
+          ? `flex gap-[28px] pb-[20px] ${isReplyFormOpen ? "" : "border-b border-default"}`
+          : `relative ml-[20px] py-[20px] pl-[48px] before:absolute before:left-0 before:top-[28px] before:h-[24px] before:w-[24px] before:border-b before:border-l before:border-strong ${isReplyFormOpen ? "" : "after:absolute after:bottom-0 after:left-[-20px] after:right-0 after:border-b after:border-default"}`
       }
     >
       {isRoot && profileImage}
@@ -109,8 +110,8 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
         <div className="flex min-w-0 items-center justify-between">
           <div className="flex min-w-0 items-center gap-[8px]">
             {!isRoot && profileImage}
-            <p className="truncate text-h6 text-background-600">{authorName}</p>
-            <time className="shrink-0 text-body-sub text-background-500">
+            <p className="truncate text-h6 text-primary">{authorName}</p>
+            <time className="shrink-0 text-body-sub text-secondary">
               {getRelativeTime(comment.createdAt)}
             </time>
           </div>
@@ -124,7 +125,7 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                 aria-haspopup="menu"
                 aria-expanded={isMenuOpen}
                 onClick={() => setIsMenuOpen((current) => !current)}
-                className="flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-[6px] text-background-500 hover:bg-background-200"
+                className="flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-xs text-secondary hover:bg-surface-subtle"
               >
                 <span aria-hidden="true" className="text-[18px] leading-none">
                   ⋮
@@ -135,13 +136,13 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                 <div
                   role="menu"
                   aria-label={`${isRoot ? "댓글" : "답글"} 메뉴`}
-                  className="absolute right-0 top-[32px] z-20 min-w-[140px] overflow-hidden rounded-[10px] border border-background-300 bg-background-100 py-1 shadow-md"
+                  className="motion-drop absolute right-0 top-[32px] z-20 min-w-[140px] overflow-hidden rounded-md border border-strong bg-surface py-1 shadow-md"
                 >
                   <button
                     role="menuitem"
                     type="button"
                     onClick={startEditing}
-                    className="block w-full px-4 py-2 text-left text-body-sub text-background-600 hover:bg-background-200 focus:bg-background-200"
+                    className="block w-full px-4 py-2 text-left text-body-sub text-primary hover:bg-surface-subtle focus:bg-surface-subtle"
                   >
                     수정
                   </button>
@@ -152,7 +153,7 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                       setIsMenuOpen(false);
                       onDelete(comment.commentId);
                     }}
-                    className="block w-full px-4 py-2 text-left text-body-sub text-sub-red hover:bg-background-200 focus:bg-background-200"
+                    className="block w-full px-4 py-2 text-left text-body-sub text-danger hover:bg-surface-subtle focus:bg-surface-subtle"
                   >
                     삭제
                   </button>
@@ -160,10 +161,14 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
               )}
             </div>
           )}
+
+          {!isDeleted && !comment.isMine && (
+            <ModerationMenu target="comment" className="-my-[5px]" />
+          )}
         </div>
 
         {isDeleted ? (
-          <p className="mt-[8px] text-h3-onboard text-background-500">삭제된 댓글입니다.</p>
+          <p className="mt-[8px] text-h3-onboard text-secondary">삭제된 댓글입니다.</p>
         ) : isEditing ? (
           <div className="mt-3 pr-[14px]">
             <CommunityTextarea
@@ -194,8 +199,8 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
           </div>
         ) : (
           <>
-            <p className="mt-[8px] text-h3-onboard text-background-600">{comment.content}</p>
-            <div className="mt-[16px] flex items-center gap-[24px] text-body-sub text-background-500">
+            <p className="mt-[8px] text-h3-onboard text-primary">{comment.content}</p>
+            <div className="mt-[16px] flex items-center gap-[24px] text-body-sub text-secondary">
               {!canAdopt && (
                 <HeartStat
                   count={comment.likeCount}
@@ -215,7 +220,7 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
                     event?.stopPropagation();
 
                     if (comment.isMine && !comment.isAccepted) {
-                      showToast("red", "본인이 작성한 댓글 혹은 답글은 채택할 수 없습니다.");
+                      showToast("red", "내가 쓴 댓글은 채택할 수 없어요");
                       return;
                     }
 
@@ -243,12 +248,14 @@ function CommunityCommentNode({ comment, depth = 0 }: CommunityCommentNodeProps)
   );
 
   const replyForm = isReplyFormOpen && (
-    <CommunityReplyForm
-      targetAuthor={authorName}
-      isSubmitting={isReplyPending}
-      onCancel={onCancelReply}
-      onSubmit={(content) => onSubmitReply(comment.commentId, content)}
-    />
+    <div className="motion-drop">
+      <CommunityReplyForm
+        targetAuthor={authorName}
+        isSubmitting={isReplyPending}
+        onCancel={onCancelReply}
+        onSubmit={(content) => onSubmitReply(comment.commentId, content)}
+      />
+    </div>
   );
 
   const replies = comment.replies?.map((reply) => (

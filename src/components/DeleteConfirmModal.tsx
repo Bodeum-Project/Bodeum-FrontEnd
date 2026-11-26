@@ -103,14 +103,14 @@ export default function DeleteConfirmModal({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto px-[20px] py-[40px]"
+      className="fixed inset-0 z-modal flex items-center justify-center overflow-y-auto px-[20px] py-[40px]"
     >
       <OnboardCancelBox
         title={title}
         description={description}
         leftButtonText={cancelText}
         rightButtonText={confirmText}
-        className="z-[70]!"
+        className="z-modal-nested!"
         rightButtonColor="sub-red"
         onLeftButtonClick={() => {
           if (!loading) onCancel();

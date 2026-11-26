@@ -45,7 +45,7 @@ export default function AiCheckbox({
       <Icon
         aria-hidden="true"
         className={joinClassNames(
-          "size-[24px] shrink-0 text-background-500",
+          "size-[24px] shrink-0 text-secondary",
           iconClassName,
         )}
       />

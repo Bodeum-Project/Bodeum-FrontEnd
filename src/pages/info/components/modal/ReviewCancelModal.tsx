@@ -23,11 +23,11 @@ export default function ReviewCancelModal({
       onRightButtonClick={onCancel}
     >
       <div>
-        <h2 className="text-h1-onboard text-background-600">
+        <h2 className="text-h1-onboard text-primary">
           후기 작성을 멈추시겠어요?
         </h2>
 
-        <p className="mt-[28px] text-h2-onboard text-background-500">
+        <p className="mt-[28px] text-h2-onboard text-secondary">
           지금 종료하시면 작성 중이던 후기는 저장되지 않습니다.
         </p>
       </div>

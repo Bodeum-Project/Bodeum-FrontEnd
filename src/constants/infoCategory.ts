@@ -14,43 +14,42 @@ export const infoCategoryMap = {
   INSTITUTION: {
     label: "기관",
     icon: InstitutionIcon,
-    bgColor: "bg-sub-yellow-2",
-    textColor: "text-sub-yellow",
+    bgColor: "bg-category-agency-soft",
+    textColor: "text-category-agency",
     buttonClass:
-      "bg-sub-yellow-2 text-sub-yellow active:bg-sub-yellow active:text-sub-yellow-2",
+      "bg-category-agency-soft text-category-agency active:bg-category-agency active:text-category-agency-soft",
   },
   HOSPITAL: {
     label: "병원",
     icon: HospitalIcon,
-    bgColor: "bg-main-150",
-    textColor: "text-main-500",
+    bgColor: "bg-category-hospital-soft",
+    textColor: "text-category-hospital",
     buttonClass:
-      "bg-main-150 text-main-500 active:bg-main-500 active:text-main-150",
+      "bg-category-hospital-soft text-category-hospital active:bg-category-hospital active:text-category-hospital-soft",
   },
   WELFARE: {
     label: "복지",
     icon: WelfareIcon,
-    bgColor: "bg-sub-green-2",
-    textColor: "text-sub-green",
+    bgColor: "bg-category-welfare-soft",
+    textColor: "text-category-welfare",
     buttonClass:
-      "bg-sub-green-2 text-sub-green active:bg-sub-green active:text-sub-green-2",
+      "bg-category-welfare-soft text-category-welfare active:bg-category-welfare active:text-category-welfare-soft",
   },
   EDUCATION: {
     label: "교육",
     icon: EducationIcon,
-    bgColor: "bg-sub-purple-2",
-    textColor: "text-sub-purple",
+    bgColor: "bg-category-edu-soft",
+    textColor: "text-category-edu",
     buttonClass:
-      "bg-sub-purple-2 text-sub-purple active:bg-sub-purple active:text-sub-purple-2",
-
+      "bg-category-edu-soft text-category-edu active:bg-category-edu active:text-category-edu-soft",
   },
   EMPLOYMENT: {
     label: "취업",
     icon: EmploymentIcon,
-    bgColor: "bg-sub-red-2",
-    textColor: "text-sub-red",
+    bgColor: "bg-category-job-soft",
+    textColor: "text-category-job",
     buttonClass:
-      "bg-sub-red-2 text-sub-red active:bg-sub-red active:text-sub-red-2",
+      "bg-category-job-soft text-category-job active:bg-category-job active:text-category-job-soft",
   },
 } as const;
 

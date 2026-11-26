@@ -1,35 +1,39 @@
-import NewsCard from "./NewsCard";
-import PostSection from "@/components/PostSection";
-import PostListItem from "@/components/PostListItem";
-import { useHomeNewsPreview, useRecommendedNews } from "@/hooks/useHome";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NewsCard from "./NewsCard";
+import PostListItem from "@/components/PostListItem";
 import AsyncState from "@/components/AsyncState";
+import SectionHeader from "@/components/ui/SectionHeader";
+import TextTabs from "@/components/ui/TextTabs";
+import { useHomeNewsPreview, useRecommendedNews } from "@/hooks/useHome";
+import { formatRegionDisplayLabel } from "@/constants/regions";
+import { useHorizontalWheel } from "@/components/ui/useHorizontalWheel";
+
+type NewsTab = "ACTIVITY" | "LOCAL";
 
 export default function RecommendedNewsSection() {
   const navigate = useNavigate();
+  const [tab, setTab] = useState<NewsTab>("ACTIVITY");
   const { data: activityNews = [] } = useHomeNewsPreview("ACTIVITY");
   const { data: localNews = [] } = useHomeNewsPreview("LOCAL");
-  const {
-    data: news = [],
-    isPending,
-    isError,
-  } = useRecommendedNews();
+  const { data: news = [], isPending, isError } = useRecommendedNews();
+  const wheelRef = useHorizontalWheel<HTMLDivElement>();
+  const list = tab === "ACTIVITY" ? activityNews : localNews;
 
   return (
-    <section className="flex flex-col shrink-0 overflow-hidden">
-      <div>
-        <h2 className="mt-[20px] text-h2-list text-background-600">추천하는 소식 Top 5</h2>
-        <p className="mt-[3.6px] mb-[13.6px] text-h6-list text-background-500">
-          지역 · 활동별 맞춤 소식을 확인하세요
-        </p>
-      </div>
+    <section className="flex min-w-0 flex-col">
+      <SectionHeader
+        title="추천 소식 TOP 5"
+        description="지역·활동별로 골라봤어요"
+      />
 
       {isPending ? (
         <AsyncState
           type="loading"
           variant="section"
+          skeleton="cards"
           loadingText="불러오는 중입니다..."
-          className="flex h-[180px] items-center justify-center text-background-500"
+          className="flex h-[180px] items-center justify-center text-tertiary"
           textClassName=""
         />
       ) : isError ? (
@@ -37,48 +41,44 @@ export default function RecommendedNewsSection() {
           type="error"
           variant="section"
           errorText="추천 소식을 불러오지 못했습니다."
-          className="flex h-[180px] items-center justify-center text-background-500"
+          className="flex h-[180px] items-center justify-center text-tertiary"
           textClassName=""
         />
       ) : (
-        <div className="flex gap-[12px] overflow-x-auto no-scrollbar">
+        <div ref={wheelRef} className="motion-stagger no-scrollbar -mx-[16px] flex items-start gap-[12px] overflow-x-auto px-[16px] md:-mx-[24px] md:px-[24px] lg:mx-0 lg:px-0">
           {news.map((item) => (
             <NewsCard key={item.newsId} {...item} />
           ))}
         </div>
       )}
 
-      <div className="flex flex-row mt-[20.5px] gap-[24px]">
-        <PostSection
-          title="활동소식"
-          onMoreClick={() => navigate("/news?newsType=ACTIVITY")}
-        >
-          {activityNews.map((news) => (
+      <div className="mt-[28px]">
+        <TextTabs
+          value={tab}
+          onChange={setTab}
+          options={[
+            { value: "ACTIVITY", label: "활동소식" },
+            { value: "LOCAL", label: "지역소식" },
+          ]}
+        />
+        <div className="motion-stagger mt-[2px]">
+          {list.map((item) => (
             <PostListItem
-              key={news.newsId}
-              title={news.title}
-              region={`${news.regionLevel1} ${news.regionLevel2}`}
-              likes={news.likeCount}
-              views={news.viewCount}
-              onClick={() => navigate(`/news/${news.newsId}`)}
+              key={item.newsId}
+              title={item.title}
+              tag={formatRegionDisplayLabel(`${item.regionLevel1} ${item.regionLevel2}`.trim()) || "전국"}
+              views={item.viewCount}
+              onClick={() => navigate(`/news/${item.newsId}`)}
             />
           ))}
-        </PostSection>
-        <PostSection
-          title="지역소식"
-          onMoreClick={() => navigate("/news?newsType=LOCAL")}
+        </div>
+        <button
+          type="button"
+          onClick={() => navigate(`/news?newsType=${tab}`)}
+          className="mt-[4px] h-[44px] w-full cursor-pointer rounded-lg bg-surface-subtle text-[14px] font-medium text-secondary active:bg-surface-muted"
         >
-          {localNews.map((news) => (
-            <PostListItem
-              key={news.newsId}
-              title={news.title}
-              region={`${news.regionLevel1} ${news.regionLevel2}`}
-              likes={news.likeCount}
-              views={news.viewCount}
-              onClick={() => navigate(`/news/${news.newsId}`)}
-            />
-          ))}
-        </PostSection>
+          {tab === "ACTIVITY" ? "활동소식" : "지역소식"} 더보기
+        </button>
       </div>
     </section>
   );

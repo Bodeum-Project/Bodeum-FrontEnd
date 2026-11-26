@@ -14,22 +14,21 @@ export default function OnboardButton({
   disabled = false,
 }: OnboardButtonProps) {
   const baseStyle =
-    "w-full py-[5px] rounded-[8px] text-h6 transition-all duration-200 cursor-pointer";
+    "w-full py-[8px] rounded-md text-[12px] font-semibold transition-colors duration-200 cursor-pointer";
 
   const variantStyle =
     variant === "primary"
       ? `
-        bg-main-400 text-background-100
-        hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)]
+        btn-primary
       `
       : variant === "secondary"
         ? `
-        border-1 border-background-400 bg-background-100 text-background-400
-        hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)]
+        border-1 border-default bg-surface text-secondary
+        hover:bg-surface-subtle
       `
         : `
-            bg-main-150 text-main-400
-            hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)]
+            bg-brand-soft text-brand-strong
+            hover:bg-brand-tint
           `;
 
   return (

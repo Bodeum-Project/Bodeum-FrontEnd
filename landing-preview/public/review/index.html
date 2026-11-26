@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보듬보듬 랜딩페이지 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  *{box-sizing:border-box}body{margin:0;color:#2a3546;background:white;word-break:keep-all;overflow-wrap:anywhere;font:400 17px/1.65 "Pretendard Variable","Malgun Gothic",sans-serif}
+  header{border-bottom:1px solid #eaedf2}.wrap{width:min(calc(100% - 44px),1120px);margin:auto}header .wrap{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}header b{font-size:1.2rem}nav{display:flex;gap:16px;flex-wrap:wrap}
+  a{color:inherit;text-underline-offset:4px}h1,h2,h3,b,strong{font-weight:600}h1,h2,h3,p,figure{margin:0;letter-spacing:inherit}h1{font-size:clamp(2.35rem,5.6vw,4.5rem);line-height:1.1}h2{font-size:clamp(1.85rem,4.2vw,3.2rem);line-height:1.18}h3{font-size:1.3rem}
+  p{margin-top:14px;color:#566173}.eyebrow{font-size:.875rem;margin:0 0 14px;font-weight:600}.section{padding-block:clamp(55px,8vw,108px)}.soft{background:#f0fcfc}.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,5vw,62px);align-items:center}
+  .photo{display:block;width:100%;aspect-ratio:1.32;object-fit:cover;border-radius:20px}.end-photo{aspect-ratio:1.7}.photo-caption{display:block;color:#566173;margin-top:6px;font-size:.82rem}
+  .cta{display:inline-flex;align-items:center;min-height:46px;margin-top:20px;padding:0 15px;border-radius:12px;text-decoration:none;background:#1bb8bc;font-weight:600}
+  .product{background:#f5f7fa}.switcher{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 12px}.switcher button{min-height:44px;border:1px solid #d6dbe3;background:white;color:inherit;padding:0 13px;border-radius:10px;font:inherit;font-size:.93rem;font-weight:600;cursor:pointer}.switcher button[aria-pressed=true]{color:white;background:#2a3546;border-color:#2a3546}.story-pair{margin-top:24px}
+  .frame{border:1px solid #d6dbe3;border-radius:20px;background:white;overflow:hidden;box-shadow:0 12px 48px #2a354612}.frame img{display:block;width:100%;height:auto}.frame img[hidden],.example[hidden]{display:none}.frame-title{padding:10px 16px;border-bottom:1px solid #eaedf2;font-size:.875rem;font-weight:600}.example{padding:clamp(18px,4vw,42px);background:#f0fcfc}.example-cards{display:grid;gap:8px;margin-top:16px}.example-cards div{padding:12px;background:white;border:1px solid #eaedf2;border-radius:10px}
+  .founder{max-width:720px}.founder p{font-size:1.12rem;line-height:1.8}.founder p+p{margin-top:18px}.founder h2{margin-bottom:24px}.founder .eyebrow{font-size:.875rem;margin-bottom:12px}
+  .story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:16px;margin-top:28px}
+  .story-card{display:flex;flex-direction:column;justify-content:space-between;min-height:244px;gap:20px;padding:24px;border-radius:20px;background:#e9f7f8}
+  .story-card:nth-child(2){background:#e8f3ff}.story-card:nth-child(3){background:#ffeef0}
+  .story-card svg{display:block;align-self:center;width:110px;height:92px}.story-card p{margin-top:6px;font-size:1rem}
+  :focus-visible{outline:3px solid #0e9198;outline-offset:3px}
+  @media(max-width:700px){.split{grid-template-columns:1fr}.wrap{width:calc(100% - 36px)}header .wrap{padding-block:10px;font-size:.9rem}}
+</style>
+<header><div class="wrap"><b>보듬보듬</b><nav aria-label="시안 살펴보기"><a href="#product">서비스 소개</a><a href="#founder">파운더 스토리</a></nav></div></header>
+<main>
+  <section class="section soft"><div class="wrap split">
+    <div><p class="eyebrow">아이와 보호자를 위한 복지 정보</p><h1>아이를 위한 고민이<br>하나쯤은 줄어들도록</h1><p>모든 고민을 대신할 수는 없지만, 필요한 정보를 찾는 일은 함께 하겠습니다</p><a class="cta" href="https://bodeum-site-git-renewal-design-bodeum2.vercel.app/">데모 둘러보기</a></div>
+    <figure><img class="photo" src="hero.webp" alt="동네 공원을 손잡고 걷는 아이와 보호자"></figure>
+  </div></section>
+  <section class="section" id="story"><div class="wrap">
+    <p class="eyebrow">우리의 이야기</p><h2>아이에게 맞는 도움,<br>어디서부터 알아볼까요?</h2><p>지원 제도부터 가까운 기관까지, 매번 처음부터 알아봐야 하는 일을 줄이고 싶었습니다</p>
+    <div class="story-grid">
+      <article class="story-card">
+        <svg viewBox="0 0 110 92" fill="none" aria-hidden="true">
+          <rect x="21" y="20" width="52" height="60" rx="9" fill="#8fdcdf"/><rect x="29" y="11" width="49" height="61" rx="9" fill="white"/><path d="M40 29h24M40 39h19M40 49h13" stroke="#0e9198" stroke-width="3.5" stroke-linecap="round"/><circle cx="75" cy="59" r="13" fill="#dff5f5" stroke="#0e9198" stroke-width="4"/><path d="m85 69 9 9" stroke="#0e9198" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div><h3>어떤 지원을 받을 수 있을까요?</h3><p>흩어진 복지 제도와 신청 조건을 한곳에서 살펴볼 수 있습니다</p></div>
+      </article>
+      <article class="story-card">
+        <svg viewBox="0 0 110 92" fill="none" aria-hidden="true">
+          <rect x="14" y="20" width="79" height="59" rx="15" fill="#c5e1fb"/><path d="M51 18a6 6 0 0 1 6 0l24 14c3 2 2 6-2 6H29c-4 0-5-4-2-6z" fill="#3182f6"/><rect x="34" y="44" width="8" height="23" rx="3" fill="#3182f6"/><rect x="50" y="44" width="8" height="23" rx="3" fill="#3182f6"/><rect x="66" y="44" width="8" height="23" rx="3" fill="#3182f6"/><rect x="28" y="69" width="53" height="7" rx="3.5" fill="#245f9f"/>
+        </svg>
+        <div><h3>어떤 기관을 찾아가면 좋을까요?</h3><p>아이에게 맞는 기관을 가까운 지역부터 찾아볼 수 있습니다</p></div>
+      </article>
+      <article class="story-card">
+        <svg viewBox="0 0 110 92" fill="none" aria-hidden="true">
+          <path d="M17 19h46a9 9 0 0 1 9 9v23a9 9 0 0 1-9 9H36L22 71V60h-5a9 9 0 0 1-9-9V28a9 9 0 0 1 9-9Z" fill="#f4b4bf"/><path d="M52 37h40a9 9 0 0 1 9 9v19a9 9 0 0 1-9 9h-4v10L75 74H52a9 9 0 0 1-9-9V46a9 9 0 0 1 9-9Z" fill="white"/><path d="M57 51h28M57 61h20" stroke="#b55369" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <div><h3>이 고민을 누구에게 물어볼까요?</h3><p>비슷한 고민을 해 본 보호자의 경험을 읽고 이야기를 나눌 수 있습니다</p></div>
+      </article>
+    </div>
+  </div></section>
+  <section class="section product" id="product"><div class="wrap">
+    <p class="eyebrow">서비스 소개</p><h2>필요한 정보를 한곳에서 만나보세요</h2><p id="demo-description">복지 정보를 찾고, 궁금한 점을 묻고, 비슷한 경험을 나눌 수 있습니다</p>
+    <div class="switcher" role="group" aria-label="제품 화면 선택">
+      <button type="button" data-screen="home" aria-pressed="true">홈</button><button type="button" data-screen="info" aria-pressed="false">정보</button><button type="button" data-screen="news" aria-pressed="false">소식</button><button type="button" data-screen="community" aria-pressed="false">커뮤니티</button><button type="button" data-screen="ai" aria-pressed="false">AI 챗봇</button>
+    </div>
+    <figure class="frame" aria-live="polite">
+      <figcaption id="frame-title" class="frame-title">제품 시안</figcaption>
+      <img id="screen" alt="" hidden>
+      <div id="example" class="example"><h3 id="example-title"></h3><div id="example-cards" class="example-cards"></div></div>
+    </figure>
+    <a class="cta" id="demo-link" href="https://bodeum-site-git-renewal-design-bodeum2.vercel.app/">데모에서 살펴보기</a>
+  </div></section>
+  <section class="section" id="founder"><div class="wrap founder">
+    <p class="eyebrow">파운더 스토리</p><h2>한 편의 웹툰에서<br>작은 질문이 시작됐습니다</h2>
+    <p>대학생이던 저는 어느 날 아이의 말이 더디게 트여 걱정하던 부모의 이야기를 읽었습니다<br>먼저 겪어 본 누군가의 이야기를 들을 수 있었다면, 혼자 답을 찾아 헤매는 시간이 조금은 덜 막막했겠다고 생각했습니다</p>
+    <p>그 질문을 품고 UMC 10기에서 동료들을 만났습니다<br>여덟 명의 대학생이 기획과 디자인, 개발을 함께하며 첫 번째 보듬보듬을 만들었습니다</p>
+    <p>흩어진 복지 정보를 모으고 출처를 찾아볼 수 있게 했습니다<br>비슷한 고민을 겪은 보호자의 경험도 한곳에서 읽을 수 있도록 했습니다</p>
+    <p>아이에게 맞는 도움을 찾는 누군가에게 그 첫걸음이 조금 더 가벼워지기를 바랍니다</p>
+  </div></section>
+  <section class="section soft"><div class="wrap split">
+    <div><h2>어디에 살든<br>필요한 도움을 함께 찾아요</h2><p>정보에 쏟는 시간을 덜고, 아이와 보내는 시간에 더 마음을 쓸 수 있기를 바랍니다</p></div>
+    <figure><img class="photo end-photo" src="closing-caregiver.webp" alt="도서관에서 등을 보인 아이의 그림을 바라보는 보호자"></figure>
+  </div></section>
+</main>
+<script>
+  const screens = {
+    home: ['홈','/','복지 정보를 찾고, 궁금한 점을 묻고, 비슷한 경험을 나눌 수 있습니다','우리 아이에게 필요한 정보',['기관 · 병원 · 복지 · 교육','우리 동네 소식','보호자 커뮤니티']],
+    info: ['정보','/info','가까운 지역에서 아이에게 맞는 도움을 찾아볼 수 있습니다','우리 아이에게 맞는 정보',['기관 · 병원 · 복지 · 교육','지역 전체','관심 있는 항목의 상세 정보']],
+    news: ['소식','/news','우리 동네 프로그램과 지원 소식을 모아 볼 수 있습니다','우리 동네 소식',['지역과 분야 고르기','지역 프로그램','지원사업']],
+    community: ['커뮤니티','/community','비슷한 고민을 한 보호자의 경험과 질문을 살펴볼 수 있습니다','보호자 커뮤니티',['치료 · 성장 기록','정보 · 질문 광장','우리 동네 소식']],
+    ai: ['AI 챗봇','/aichat','궁금한 복지 정보를 물어볼 수 있습니다','AI 챗봇',['로그인 후 데모에서 실제 챗봇을 이용할 수 있습니다']],
+  };
+  let selected;
+  const buttons = document.querySelectorAll('[data-screen]');
+  const image = document.querySelector('#screen');
+  const example = document.querySelector('#example');
+  const title = document.querySelector('#frame-title');
+  function show(key) {
+    selected = key;
+    const [name,path,description,heading,cards] = screens[key];
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.screen === key)));
+    document.querySelector('#demo-link').href = new URL(path, 'https://bodeum-site-git-renewal-design-bodeum2.vercel.app');
+    document.querySelector('#demo-description').textContent = description;
+    document.querySelector('#example-title').textContent = heading;
+    document.querySelector('#example-cards').replaceChildren(...cards.map(text => Object.assign(document.createElement('div'), {textContent:text})));
+    image.hidden = true;
+    example.hidden = false;
+    title.textContent = name + ' · 화면 구성 시안';
+    const capture = new Image();
+    capture.onload = () => {
+      if (selected !== key) return;
+      image.src = capture.src;
+      image.alt = '보듬보듬 데모의 ' + name + ' 화면';
+      example.hidden = true;
+      image.hidden = false;
+      title.textContent = name + ' · 데모 화면' + (key === 'news' || key === 'community' ? '에 예시 문구 적용' : '');
+    };
+    capture.src = key === 'ai' ? 'demo-ai-signed-in.jpg' : 'demo-' + key + '.webp';
+  }
+  buttons.forEach(button => button.addEventListener('click', () => show(button.dataset.screen)));
+  show('home');
+</script>
+</html>

@@ -21,6 +21,8 @@ export function clearAuthTokens() {
 
   sessionStorage.removeItem("info-region-level1");
   sessionStorage.removeItem("info-region-level2");
+  sessionStorage.removeItem("news-region-level1");
+  sessionStorage.removeItem("news-region-level2");
   
   resetAiChatSession();
   notifyAuthStateChanged();

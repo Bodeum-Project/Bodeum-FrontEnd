@@ -91,7 +91,7 @@ export function useMyPageActivities() {
         queryClient.invalidateQueries({ queryKey: USER_SCRAPS_QUERY_KEY }),
         queryClient.invalidateQueries({ queryKey: USER_DASHBOARD_QUERY_KEY }),
       ]);
-      showToast("green", "저장한 정보에서 삭제했습니다.");
+      showToast("green", "저장한 정보에서 뺐어요");
     } catch (error) {
       showToast("red", getApiErrorMessage(error, "저장한 정보를 삭제하지 못했습니다."));
     } finally {
@@ -113,7 +113,7 @@ export function useMyPageActivities() {
         queryClient.invalidateQueries({ queryKey: USER_POSTS_QUERY_KEY }),
         queryClient.invalidateQueries({ queryKey: USER_DASHBOARD_QUERY_KEY }),
       ]);
-      showToast("green", "게시글을 삭제했습니다.");
+      showToast("green", "게시글을 삭제했어요");
       setPostToDelete(null);
     } catch (error) {
       showToast("red", getApiErrorMessage(error, "게시글을 삭제하지 못했습니다."));
@@ -136,7 +136,7 @@ export function useMyPageActivities() {
         queryClient.invalidateQueries({ queryKey: USER_COMMENTS_QUERY_KEY }),
         queryClient.invalidateQueries({ queryKey: USER_DASHBOARD_QUERY_KEY }),
       ]);
-      showToast("green", "댓글을 삭제했습니다.");
+      showToast("green", "댓글을 삭제했어요");
       setCommentToDelete(null);
     } catch (error) {
       showToast("red", getApiErrorMessage(error, "댓글을 삭제하지 못했습니다."));

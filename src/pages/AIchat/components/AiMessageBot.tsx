@@ -43,7 +43,7 @@ export default function AiMessageBot({
       <div className="flex w-full items-end gap-[10px]">
         <AIMsgIcon aria-hidden="true" className="size-[32px] shrink-0" />
 
-        <div className="flex w-[708px] shrink-0 flex-col items-start">
+        <div className="flex w-full min-w-0 max-w-[708px] flex-1 flex-col items-start">
           <AiMessageBubble
             variant={variant}
             message={message}
@@ -56,7 +56,7 @@ export default function AiMessageBot({
       </div>
 
       {suggestions.length > 0 && (
-        <div className="flex w-full flex-nowrap items-center gap-[10px] pl-[42px]">
+        <div className="motion-stagger no-scrollbar flex w-full flex-nowrap items-center gap-[8px] overflow-x-auto pl-[42px] sm:gap-[10px] [&>*]:shrink-0">
           {suggestions.map((suggestion) => (
             <AiSuggestChip
               key={suggestion}
@@ -70,7 +70,7 @@ export default function AiMessageBot({
       )}
 
       {showFeedback && (
-        <div className="flex h-[20px] w-[708px] items-center gap-[20px] px-[40px]">
+        <div className="flex h-[20px] w-full max-w-[708px] items-center gap-[16px] pl-[42px] sm:gap-[20px] sm:px-[40px]">
           <FeedbackButton
             feedbackType="Good"
             label="도움이 됐어요"

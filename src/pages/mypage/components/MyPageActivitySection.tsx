@@ -1,3 +1,4 @@
+import { RowsSkeleton } from "@/components/skeleton/Skeleton";
 import { getApiErrorMessage } from "@/apis/apiError";
 import DeleteConfirmModal from "@/components/DeleteConfirmModal";
 import Pagination from "@/components/pagination/Pagination";
@@ -27,7 +28,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
 
   return (
     <>
-      <section className="col-start-1 row-start-1">
+      <section className="lg:col-start-1 lg:row-start-1">
         <MyPageTabs
           activeTab={activity.activeTab}
           counts={counts}
@@ -35,26 +36,23 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
         />
       </section>
 
-      <div className="col-start-1 row-start-2 flex flex-col gap-[8px]">
+      <div className="motion-stagger flex flex-col gap-[8px] lg:col-start-1 lg:row-start-2">
         {activity.isPending && (
-          <div
-            role="status"
-            className="flex h-[144px] items-center justify-center rounded-[10px] border border-background-250 bg-background-100 text-[13px] text-background-500"
-          >
-            {pendingMessage[activity.activeTab]}
+          <div className="rounded-xl border border-default bg-surface px-[16px] py-[14px]">
+            <RowsSkeleton count={3} label={pendingMessage[activity.activeTab]} />
           </div>
         )}
 
         {activity.error && (
           <div
             role="alert"
-            className="flex h-[144px] flex-col items-center justify-center gap-[12px] rounded-[10px] border border-background-250 bg-background-100 text-[13px] text-background-500"
+            className="flex h-[144px] flex-col items-center justify-center gap-[12px] rounded-xl border border-default bg-surface text-[13px] text-secondary"
           >
             <p>{getApiErrorMessage(activity.error, errorMessage[activity.activeTab])}</p>
             <button
               type="button"
               onClick={activity.retry}
-              className="cursor-pointer text-main-400 underline"
+              className="cursor-pointer text-brand underline"
             >
               다시 시도
             </button>
@@ -73,7 +71,7 @@ export default function MyPageActivitySection({ counts }: MyPageActivitySectionP
           ))}
 
         {!activity.isPending && !activity.error && activity.items.length === 0 && (
-          <div className="flex h-[144px] items-center justify-center rounded-[10px] border border-background-250 bg-background-100 text-[13px] text-background-500">
+          <div className="flex h-[144px] items-center justify-center rounded-xl border border-default bg-surface text-[13px] text-secondary">
             표시할 항목이 없습니다.
           </div>
         )}

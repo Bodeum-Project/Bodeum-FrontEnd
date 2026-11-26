@@ -158,7 +158,7 @@ export function useProfileSettingsForm() {
       setIsEditing(false);
 
       if (hasProfileChanges || uploadedProfile) notifyUserProfileChanged();
-      showToast("green", "프로필이 저장되었습니다.");
+      showToast("green", "프로필을 저장했어요");
     } catch (error) {
       showToast("red", getApiErrorDetailMessage(error, "프로필을 저장하지 못했습니다."));
     } finally {

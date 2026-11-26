@@ -11,7 +11,7 @@ function StatItem({ icon, label, value, ariaLabel }: StatItemProps) {
   const displayValue = typeof value === "number" ? value.toLocaleString() : value;
 
   return (
-    <span className="inline-flex h-5 items-center gap-1 text-background-500">
+    <span className="inline-flex h-5 items-center gap-1 text-secondary">
       {ariaLabel && <span className="sr-only">{ariaLabel}</span>}
       <span className="inline-flex items-center gap-1" aria-hidden={ariaLabel ? "true" : undefined}>
         <span className="inline-flex shrink-0 items-center">{icon}</span>

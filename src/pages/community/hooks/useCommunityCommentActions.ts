@@ -99,7 +99,7 @@ export function useCommunityCommentActions({
         onSuccess: () => {
           showToast(
             "green",
-            isAccepted ? "댓글 채택이 취소되었습니다." : "댓글이 채택되었습니다.",
+            isAccepted ? "댓글 채택을 취소했어요" : "댓글을 채택했어요",
           );
         },
         onError: (error) => showMutationError(error, "댓글을 채택하지 못했습니다."),
@@ -111,7 +111,7 @@ export function useCommunityCommentActions({
   const removeComment = useCallback(
     (commentId: number) => {
       deleteComment(commentId, {
-        onSuccess: () => showToast("green", "댓글을 삭제했습니다."),
+        onSuccess: () => showToast("green", "댓글을 삭제했어요"),
         onError: (error) => showMutationError(error, "댓글을 삭제하지 못했습니다."),
       });
     },
@@ -125,7 +125,7 @@ export function useCommunityCommentActions({
         {
           onSuccess: () => {
             onSuccess();
-            showToast("green", "댓글을 수정했습니다.");
+            showToast("green", "댓글을 수정했어요");
           },
           onError: (error) => showMutationError(error, "댓글을 수정하지 못했습니다."),
         },

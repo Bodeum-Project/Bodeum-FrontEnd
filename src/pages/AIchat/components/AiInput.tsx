@@ -153,12 +153,12 @@ export default function AiInput({
   return (
     <div
       data-variant={variant}
-      className={`flex w-full items-center gap-[10px] overflow-hidden rounded-[10px] border px-[18px] py-[10px] ${
+      className={`flex w-full items-center gap-[10px] overflow-hidden rounded-md border px-[18px] py-[10px] ${
         isExpanded ? "h-[64px]" : "h-[44px]"
       } ${
         variant === "typing" || variant === "variant4"
-          ? "border-main-400 bg-background-100"
-          : "border-transparent bg-main-100"
+          ? "border-brand bg-surface"
+          : "border-transparent bg-surface-subtle"
       } ${className ?? ""}`}
     >
       <textarea
@@ -170,7 +170,7 @@ export default function AiInput({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onScroll={(event) => syncScrollThumb(event.currentTarget)}
-        className="no-scrollbar max-h-[42px] min-h-[21px] min-w-0 flex-1 resize-none overflow-y-auto bg-transparent text-h4-list text-background-600 outline-none placeholder:text-background-500"
+        className="no-scrollbar max-h-[48px] min-h-[21px] min-w-0 flex-1 resize-none overflow-y-auto bg-transparent text-[16px] leading-[24px] sm:max-h-[42px] sm:text-h4-list text-primary outline-none placeholder:text-secondary"
       />
 
       {isOverflowing && (
@@ -181,10 +181,10 @@ export default function AiInput({
           onPointerMove={handleScrollbarPointerMove}
           onPointerUp={handleScrollbarPointerUp}
           onPointerCancel={handleScrollbarPointerUp}
-          className="relative w-[8px] self-stretch shrink-0 touch-none overflow-hidden rounded-[12px] bg-background-250"
+          className="relative w-[8px] self-stretch shrink-0 touch-none overflow-hidden rounded-lg bg-surface-muted"
         >
           <span
-            className="absolute left-0 top-0 h-[10px] w-[8px] rounded-[12px] bg-background-300 transition-transform duration-75"
+            className="absolute left-0 top-0 h-[10px] w-[8px] rounded-lg bg-background-300 transition-transform duration-75"
             style={{ transform: `translateY(${thumbOffset}px)` }}
           />
         </span>

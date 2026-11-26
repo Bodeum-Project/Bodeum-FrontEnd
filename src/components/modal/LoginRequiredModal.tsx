@@ -5,16 +5,18 @@ import Modal from "./Modal";
 interface LoginRequiredModalProps {
   open: boolean;
   onClose: () => void;
+  backdrop?: "dim" | "blur";
 }
 
 export default function LoginRequiredModal({
   open,
   onClose,
+  backdrop = "dim",
 }: LoginRequiredModalProps) {
   const navigate = useNavigate();
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} backdrop={backdrop}>
       <OnboardCancelBox
         title="로그인하고 더 많은 기능을 이용해 보세요!"
         description={`회원가입 후 프로필을 등록하시면,

@@ -1,13 +1,10 @@
 import type { ReactNode } from "react";
 
-import HeartIcon from "@/assets/icons/HeartDisabled.svg?react";
-import TalkIcon from "@/assets/icons/Community.svg?react";
-import ViewIcon from "@/assets/icons/Views.svg?react";
-import RegionLabel from "@/components/RegionLabel";
-
 interface PostListItemProps {
   title: string;
-  region: string;
+  /** 지역(회색) 또는 카테고리(민트) 칩 */
+  tag: string;
+  tagTone?: "gray" | "mint";
   likes?: number;
   talks?: number;
   views?: number;
@@ -17,48 +14,41 @@ interface PostListItemProps {
 
 export default function PostListItem({
   title,
-  region,
+  tag,
+  tagTone = "gray",
   likes,
   talks,
   views,
   rightSlot,
   onClick,
 }: PostListItemProps) {
+  const stats = [
+    likes !== undefined && `좋아요 ${likes.toLocaleString()}`,
+    talks !== undefined && `댓글 ${talks.toLocaleString()}`,
+    views !== undefined && `조회 ${views.toLocaleString()}`,
+  ].filter(Boolean);
+
   return (
     <button
       onClick={onClick}
-      className="flex w-full items-center justify-between rounded-[10px] bg-background-200 px-[16px] py-[12px] cursor-pointer"
+      className="press group flex w-full cursor-pointer items-center gap-[12px] border-b border-default py-[14px] text-left last:border-b-0 active:opacity-70"
     >
-      <div className="flex min-w-0 items-center gap-3">
-        <RegionLabel region={region} />
-
-        <p className="truncate text-h4-list text-gray-800">{title}</p>
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-[15px] font-medium tracking-[-0.02em] text-primary transition-colors group-hover:text-brand-strong">{title}</p>
+        <div className="mt-[6px] flex min-w-0 items-center gap-[6px] text-[12px] text-tertiary">
+          {tag && (
+            <span
+              className={`shrink-0 rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${
+                tagTone === "mint" ? "bg-brand-soft text-brand-strong" : "bg-surface-subtle text-secondary"
+              }`}
+            >
+              {tag}
+            </span>
+          )}
+          {stats.length > 0 && <span className="truncate">{stats.join(" · ")}</span>}
+        </div>
       </div>
-
-      <div className="flex shrink-0 items-center gap-[8px] text-h4-list text-background-500">
-        {likes !== undefined && (
-          <div className="flex items-center gap-1">
-            <HeartIcon className="w-[12px] h-[12px]" />
-            <span>{likes.toLocaleString()}</span>
-          </div>
-        )}
-
-        {talks !== undefined && (
-          <div className="flex items-center gap-1">
-            <TalkIcon className="w-[12px] h-[12px]" />
-            <span>{talks.toLocaleString()}</span>
-          </div>
-        )}
-
-        {views !== undefined && (
-          <div className="flex items-center gap-1">
-            <ViewIcon className="w-[12px] h-[12px]" />
-            <span>{views.toLocaleString()}</span>
-          </div>
-        )}
-
-        {rightSlot}
-      </div>
+      {rightSlot}
     </button>
   );
 }

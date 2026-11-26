@@ -54,5 +54,5 @@ export default function KakaoMap({
     };
   }, [address]);
 
-  return <div ref={mapRef} className="h-[313px] w-full rounded-[10px]" />;
+  return <div ref={mapRef} className="h-[313px] w-full rounded-md" />;
 };

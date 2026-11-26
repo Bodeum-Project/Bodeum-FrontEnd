@@ -1,4 +1,4 @@
-import Logo from "@/assets/icons/Logo_kr.svg?react";
+import BrandLogo from "@/components/BrandLogo";
 
 type AuthLoadingStateProps = {
   message: string;
@@ -17,20 +17,20 @@ export default function AuthLoadingState({
       aria-live="polite"
       className="flex min-h-[220px] flex-col items-center justify-center gap-[24px]"
     >
-      <Logo className="h-[35px] w-[90px]" aria-label="보듬" />
+      <BrandLogo className="h-[34px]" />
       <div
         aria-hidden="true"
         className={[
           "size-[32px] animate-spin rounded-full border-[3px]",
           isInverse
-            ? "border-background-300 border-t-main-400"
-            : "border-main-200 border-t-main-500",
+            ? "border-strong border-t-brand"
+            : "border-brand-tint border-t-brand-strong",
         ].join(" ")}
       />
       <p
         className={[
           "text-center text-h2-onboard",
-          isInverse ? "text-background-100" : "text-background-500",
+          isInverse ? "text-inverse" : "text-secondary",
         ].join(" ")}
       >
         {message}

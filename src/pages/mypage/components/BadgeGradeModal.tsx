@@ -32,10 +32,9 @@ export default function BadgeGradeModal({ onClose }: BadgeGradeModalProps) {
       showFooter={false}
       onClose={onClose}
       className="!h-fit !w-fit max-w-[calc(100vw-40px)] !py-[48px]"
-      overlayClassName="!bg-black/50"
     >
       <section aria-labelledby="badge-grade-title" className="flex flex-col gap-[20px]">
-        <h2 id="badge-grade-title" className="text-h1-onboard text-background-600">
+        <h2 id="badge-grade-title" className="text-h1-onboard text-primary">
           지혜를 나누고 보듬 뱃지를 키워보세요.
           <br />
           보듬 커뮤니티에서 이웃과 마음을 나누면 포인트가 차곡차곡 쌓입니다.
@@ -43,9 +42,9 @@ export default function BadgeGradeModal({ onClose }: BadgeGradeModalProps) {
 
         <ul className="flex flex-col gap-[20px]">
           {pointActivities.map((activity) => (
-            <li key={activity.title} className="rounded-[8px] bg-background-200 p-[12px]">
-              <h3 className="text-h2-list text-main-400">{activity.title}</h3>
-              <p className="mt-[4px] text-h2-onboard text-background-500">{activity.description}</p>
+            <li key={activity.title} className="rounded-sm bg-surface-subtle p-[12px]">
+              <h3 className="text-h2-list text-brand">{activity.title}</h3>
+              <p className="mt-[4px] text-h2-onboard text-secondary">{activity.description}</p>
             </li>
           ))}
         </ul>

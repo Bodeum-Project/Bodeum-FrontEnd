@@ -86,12 +86,12 @@ export default function WithdrawalModal({
 
     onConfirm();
     navigate("/", { replace: true, flushSync: true });
-    showToast("green", "회원 탈퇴가 완료되었습니다.");
+    showToast("green", "탈퇴를 마쳤어요. 그동안 함께해 주셔서 고마워요");
   };
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto px-[40px] py-[44px]"
+      className="fixed inset-0 z-modal flex items-center justify-center overflow-y-auto px-[20px] py-[40px] sm:px-[40px] sm:py-[44px]"
       onMouseDown={() => {
         if (!isSubmitting) {
           onClose();
@@ -105,7 +105,7 @@ export default function WithdrawalModal({
           leftButtonText="취소"
           rightButtonText="탈퇴하기"
           rightButtonColor="sub-red"
-          className="!z-[70] !w-[581px]"
+          className="!z-modal-nested !w-full max-w-[581px]"
           onLeftButtonClick={onClose}
           onRightButtonClick={() => void handleConfirm()}
           leftButtonDisabled={isSubmitting}

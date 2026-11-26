@@ -1,6 +1,5 @@
-import ImagePlaceholder from "@/assets/images/news-img.svg";
-import PostTag from "@/components/PostTag";
-import ViewIcon from "@/assets/icons/Views.svg?react";
+import { formatRegionDisplayLabel } from "@/constants/regions";
+import MegaphoneIcon from "@/assets/icons/Megaphone.svg?react";
 import { useNavigate } from "react-router-dom";
 
 interface NewsCardProps {
@@ -26,38 +25,43 @@ export default function NewsCard({
   thumbnailUrl,
 }: NewsCardProps) {
   const navigate = useNavigate();
-  const hasTag = dDay != null || status != null;
+  const tag = dDay != null ? `D-${dDay}` : status;
 
   return (
     <button
       onClick={() => navigate(`/news/${newsId}`)}
-      className="shrink-0 w-[210px] overflow-hidden rounded-[8px] border border-background-250 bg-white text-left cursor-pointer"
+      className="press group flex w-[200px] shrink-0 cursor-pointer flex-col self-start text-left sm:w-[220px]"
     >
-      <img
-        src={thumbnailUrl || ImagePlaceholder}
-        alt={title}
-        className="h-[133px] w-full object-cover"
-      />
-      <div className="flex flex-col gap-[6px] py-[8px] px-[10px]">
-        <p className="line-clamp-1 leading-none text-h6 text-background-600">{title}</p>
-
-        <div className="text-body-label text-background-400">
-          {[regionLevel1, regionLevel2].filter(Boolean).join(" · ") || "-"}
-        </div>
-
-        <div className="flex items-center">
-          {hasTag && (
-            <PostTag
-              type="ETC"
-              label={dDay != null ? `D-${dDay}` : status}
-            />
-          )}
-          
-          <ViewIcon className={`h-[12px] w-[12px] ${hasTag ? "ml-[8px]" : ""} mr-[4px]`} />
-          <span className="text-body-sub leading-none text-background-500 mr-[4px]">조회</span>
-          <span className="text-h4-list leading-none text-gray-500">{viewCount}</span>
-        </div>
+      <div className="relative h-[128px] overflow-hidden rounded-xl bg-surface-subtle">
+        {thumbnailUrl ? (
+          // 포스터는 보통 제목이 위쪽에 있어서, 꽉 채우되 윗부분 기준으로 자른다
+          <img
+            src={thumbnailUrl}
+            alt={title}
+            loading="lazy"
+            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div
+            className="flex h-full w-full items-center justify-center text-brand"
+            style={{ backgroundImage: "var(--gradient-accent-soft)" }}
+          >
+            <MegaphoneIcon className="h-[36px] w-[36px]" />
+          </div>
+        )}
+        {tag && (
+          <span className="absolute bottom-[10px] left-[10px] rounded-sm bg-cta/80 px-[7px] py-[3px] text-[11px] font-semibold text-inverse backdrop-blur">
+            {tag}
+          </span>
+        )}
       </div>
+
+      <p className="mt-[10px] line-clamp-2 text-[15px] font-semibold leading-[21px] tracking-[-0.02em] text-primary transition-colors group-hover:text-brand-strong">
+        {title}
+      </p>
+      <p className="mt-[4px] truncate text-[12px] text-tertiary">
+        {formatRegionDisplayLabel([regionLevel1, regionLevel2].filter(Boolean).join(" ")) || "전국"} · 조회 {viewCount.toLocaleString()}
+      </p>
     </button>
   );
 }

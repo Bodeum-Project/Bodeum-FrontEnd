@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { hasStoredAuthSession } from "@/apis/authApi";
 import { useBreadcrumb } from "@/contexts/BreadcrumbContext";
+import { DetailPageSkeleton } from "@/components/skeleton/Skeleton";
 import AIChatButton from "@/components/button/AIChatButton";
 import { useNews, useNewsDetail, useToggleNewsScrap } from "@/hooks/useNews";
 import type { NewsType } from "@/types/news";
@@ -58,13 +59,15 @@ export default function NewsDetailPage() {
     return () => setBreadcrumb([]);
   }, [breadcrumbLabel, setBreadcrumb]);
 
-  if (newsId === undefined || isPending || isError || !news) {
+  if (newsId !== undefined && isPending) {
+    return <DetailPageSkeleton label="소식 정보를 불러오는 중입니다." />;
+  }
+
+  if (newsId === undefined || isError || !news) {
     return (
       <div className="flex min-h-full items-center justify-center px-[32px] py-[20px]">
-        <div className="text-center text-h5 text-background-500">
-          {newsId !== undefined && isPending
-            ? "소식 정보를 불러오는 중입니다..."
-            : "소식 정보를 불러오지 못했습니다."}
+        <div className="text-center text-h5 text-secondary">
+          소식 정보를 불러오지 못했습니다.
         </div>
       </div>
     );
@@ -117,7 +120,7 @@ export default function NewsDetailPage() {
     }
 
     if (!hasStoredAuthSession()) {
-      showToast("blue", "로그인/회원가입 후 만나보세요");
+      showToast("blue", "로그인하면 스크랩할 수 있어요", { action: "login" });
       return;
     }
 
@@ -125,23 +128,23 @@ export default function NewsDetailPage() {
       onSuccess: (result) => {
         showToast(
           "green",
-          result.scrapped ? "소식을 스크랩했습니다." : "소식 스크랩을 취소했습니다.",
+          result.scrapped ? "스크랩했어요" : "스크랩을 취소했어요",
         );
       },
       onError: (error) => {
         if (isUnauthorizedError(error)) {
-          showToast("blue", "로그인/회원가입 후 만나보세요");
+          showToast("blue", "로그인하면 스크랩할 수 있어요", { action: "login" });
           return;
         }
 
-        showToast("red", getApiErrorMessage(error, "스크랩 상태를 변경하지 못했습니다."));
+        showToast("red", getApiErrorMessage(error, "스크랩하지 못했어요. 잠시 후 다시 시도해 주세요"));
       },
     });
   };
 
   return (
-    <div className="min-h-full px-[32px] py-[20px]">
-      <div className="mx-auto flex w-[680px] flex-col gap-[18px]">
+    <div className="motion-fade min-h-full px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
+      <div className="mx-auto flex w-full max-w-[760px] flex-col gap-[18px]">
         <div className="flex flex-col gap-[10px]">
           <NewsDetailHeader
             news={news}

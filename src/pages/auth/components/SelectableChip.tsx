@@ -24,7 +24,7 @@ export default function SelectableChip({
       aria-pressed={selected}
       onClick={onClick}
       className={joinClassNames(
-        "max-w-full shrink-0 cursor-pointer rounded-[120px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-400",
+        "press-sm max-w-full shrink-0 cursor-pointer rounded-[120px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
         buttonClassName,
       )}
     >
@@ -32,8 +32,8 @@ export default function SelectableChip({
         className={joinClassNames(
           "h-[40px]! rounded-[120px]! border! px-[18px]! py-[8px]! text-h3-category-sub!",
           selected
-            ? "border-main-400! bg-main-200! text-main-400!"
-            : "border-background-300! bg-background-100! text-background-500!",
+            ? "border-brand! bg-brand-tint! text-brand!"
+            : "border-strong! bg-surface! text-secondary!",
           className,
         )}
       >

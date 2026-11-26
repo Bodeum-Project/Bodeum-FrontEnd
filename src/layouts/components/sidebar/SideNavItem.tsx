@@ -3,6 +3,7 @@ import ChevronRightIcon from "@/assets/icons/ChevronRight.svg?react";
 interface SideNavItemProps {
   icon: React.ReactNode;
   label: string;
+  labelClassName?: string;
 
   active?: boolean;     
   expanded?: boolean;   
@@ -16,6 +17,7 @@ interface SideNavItemProps {
 export default function SideNavItem({
   icon,
   label,
+  labelClassName = "",
   active = false,
   expanded = false,
   disabled = false,
@@ -28,29 +30,38 @@ export default function SideNavItem({
         onClick={onClick}
         disabled={disabled}
         className={`
-          flex w-full items-center justify-between rounded-[10px] px-[15px] py-[9.5px] transition-colors text-h3-category-sub cursor-pointer
+          flex w-full items-center justify-between rounded-md px-[15px] py-[9.5px] transition-colors text-h3-category-sub cursor-pointer
           ${active
-            ? "bg-main-150 text-main-400"
+            ? "bg-brand-soft text-brand"
             : `
-              text-background-600
-              hover:bg-background-100
-              hover:shadow-[1px_2px_15px_rgba(0,0,0,0.15)]
-
-              active:bg-main-400
-              active:text-background-100
+              text-secondary
+              hover:bg-surface-subtle
+              hover:text-primary
+              active:bg-surface-muted
             `
           }
         `}
       >
         <div className="flex items-center gap-[10px]">
           {icon}
-          <span>{label}</span>
+          <span className={labelClassName}>{label}</span>
         </div>
 
-        {children && <ChevronRightIcon />}
+        {children && (
+          <ChevronRightIcon
+            className={`transition-transform duration-200 motion-reduce:transition-none ${expanded ? "rotate-90" : ""}`}
+          />
+        )}
       </button>
 
-      {expanded && <div className="mt-4 ml-12">{children}</div>}
+      {children && (
+        // 하위 메뉴가 높이째 부드럽게 펼쳐짐
+        <div className="motion-collapse" data-open={expanded} inert={!expanded}>
+          <div>
+            <div className="mt-4 ml-12">{children}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

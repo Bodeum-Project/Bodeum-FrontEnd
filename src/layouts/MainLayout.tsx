@@ -3,7 +3,9 @@ import SideBar from "./components/sidebar/SideBar";
 import SearchTopBar from "./components/Header/SearchTopBar";
 import BackTopBar from "./components/Header/BackTopBar";
 import { BreadcrumbProvider } from "@/contexts/BreadcrumbContext";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import MobileTabBar from "./components/mobile/MobileTabBar";
+import MobileDrawer from "./components/mobile/MobileDrawer";
 
 export default function MainLayout() {
   const navigationType = useNavigationType();
@@ -14,6 +16,14 @@ export default function MainLayout() {
 
   const mainRef = useRef<HTMLElement>(null);
   const location = useLocation();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // 스크롤을 내리면 상단바 경계선·그림자가 서서히 나타남
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // 페이지 이동 시 모바일 메뉴 닫기
+  useEffect(() => {
+    setIsDrawerOpen(false);
+  }, [location.pathname, location.search]);
 
   // 현재 스크롤 위치 저장
   useEffect(() => {
@@ -22,6 +32,7 @@ export default function MainLayout() {
     if (!main) return;
 
     const handleScroll = () => {
+      setIsScrolled(main.scrollTop > 4);
       sessionStorage.setItem(
         `scroll:${location.pathname}`,
         String(main.scrollTop),
@@ -69,21 +80,43 @@ export default function MainLayout() {
   return (
     <BreadcrumbProvider>
       <div className="fixed inset-0 flex overflow-hidden">
-        <SideBar />
+        <div className="hidden lg:flex">
+          <SideBar />
+        </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-          {header === "back" ? <BackTopBar /> : <SearchTopBar />}
+        <div className="relative flex min-h-0 min-w-0 flex-1 flex-col">
+          {/* 상단바가 스크롤 영역 위에 떠 있어 뒤 콘텐츠가 블러로 비침 */}
+          <div
+            data-scrolled={isScrolled}
+            className="group/header absolute inset-x-0 top-0 z-header"
+          >
+            {header === "back" ? (
+              <BackTopBar />
+            ) : (
+              <SearchTopBar onMenuClick={() => setIsDrawerOpen(true)} />
+            )}
+          </div>
 
           <main
             ref={mainRef}
-            className="min-h-0 flex-1 overflow-auto"
+            className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pt-[56px] pb-[calc(74px+env(safe-area-inset-bottom))] lg:pt-[72px] lg:pb-0"
           >
-            <div className="min-w-[1227px]">
+            {/* 페이지 이동 시 본문만 살짝 떠오르며 등장 (뒤로가기는 페이드만) */}
+            <div
+              key={location.pathname}
+              className={`mx-auto w-full ${navigationType === "POP" ? "motion-fade" : "motion-page"}`}
+            >
               <Outlet />
             </div>
           </main>
+
+          <MobileTabBar />
         </div>
       </div>
+
+      <MobileDrawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <SideBar variant="drawer" />
+      </MobileDrawer>
     </BreadcrumbProvider>
   );
 }

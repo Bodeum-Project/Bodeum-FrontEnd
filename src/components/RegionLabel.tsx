@@ -7,9 +7,9 @@ export default function RegionLabel({
 }: RegionLabelProps) {
   return (
     <div
-      className="shrink-0 inline-flex h-[20px] items-center justify-center rounded-[6px] bg-main-150 px-[8px]"
+      className="shrink-0 inline-flex h-[20px] items-center justify-center rounded-xs bg-brand-soft px-[6px]"
     >
-      <span className="text-body-label text-main-400">
+      <span className="text-body-label font-semibold text-brand-strong">
         {region}
       </span>
     </div>

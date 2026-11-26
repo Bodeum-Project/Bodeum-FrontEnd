@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
+import { usePresence } from "@/hooks/usePresence";
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
   className?: string;
+  /** @deprecated 모든 모달이 같은 배경(modal-backdrop)을 씀. 호출부 호환용 */
+  backdrop?: "dim" | "blur";
 }
 
 export default function Modal({
@@ -31,11 +34,16 @@ export default function Modal({
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  const { isMounted, isClosing } = usePresence(open, 160);
+
+  if (!isMounted) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40"
+      data-closing={isClosing}
+      className={`fixed inset-0 z-modal flex items-center justify-center px-[20px] modal-backdrop motion-backdrop ${
+        isClosing ? "pointer-events-none" : ""
+      }`}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -46,7 +54,8 @@ export default function Modal({
         ref={modalRef}
         role="dialog"
         aria-modal="true"
-        className={className}
+        data-closing={isClosing}
+        className={`motion-pop ${className}`}
       >
         {children}
       </div>

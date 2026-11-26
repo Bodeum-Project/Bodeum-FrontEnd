@@ -1,5 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "framework": null,
+  "installCommand": "npm ci --prefix landing-preview",
+  "buildCommand": "VITE_LAUNCH_SIGNUPS_MODE=preview npm --prefix landing-preview run build -- --logLevel warn",
+  "outputDirectory": "landing-preview/dist"
 }

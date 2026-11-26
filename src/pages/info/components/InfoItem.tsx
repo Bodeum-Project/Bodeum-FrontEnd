@@ -1,8 +1,7 @@
 import Chip from "@/components/Chips";
-import ViewStat from "@/components/post-stat/ViewStat";
-import ScrapStat from "@/components/post-stat/ScrapStat";
-import CategoryLabel from "@/components/CategoryLabel";
+import { infoCategoryMap } from "@/constants/infoCategory";
 import BaseInfoCard from "../../../components/BaseInfoCard";
+import { formatRegionDisplayLabel } from "@/constants/regions";
 
 import InfoItemInstitutionIcon from "@/assets/icons/InfoItem-institution.svg?react";
 import InfoItemHospitalIcon from "@/assets/icons/InfoItem-hospital.svg?react";
@@ -12,8 +11,6 @@ import InfoItemEducationIcon from "@/assets/icons/Infoitem-education.svg?react";
 
 import type { ParentCategory } from "@/types/info";
 import type { ComponentType, SVGProps } from "react";
-
-const noop = () => {};
 
 const infoItemIconMap = {
   INSTITUTION: InfoItemInstitutionIcon,
@@ -26,30 +23,17 @@ const infoItemIconMap = {
   ComponentType<SVGProps<SVGSVGElement>>
 >;
 
-const infoItemPressedBorderMap = {
-  INSTITUTION: "peer-active:border-sub-yellow",
-  HOSPITAL: "peer-active:border-main-400",
-  WELFARE: "peer-active:border-sub-green",
-  EDUCATION: "peer-active:border-sub-purple",
-  EMPLOYMENT: "peer-active:border-sub-red",
-} satisfies Record<ParentCategory, string>;
-
-const infoItemIconSizeMap = {
-  INSTITUTION: "h-[43.73px] w-[43.73px]",
-  HOSPITAL: "h-[43.73px] w-[43.73px]",
-  WELFARE: "h-[43.73px] w-[43.73px]",
-  EDUCATION: "h-[43.73px] w-[43.73px]",
-  EMPLOYMENT: "h-[43.73px] w-[43.73px]",
-} satisfies Record<ParentCategory, string>;
-
 interface InfoItemProps {
   mainCategory: ParentCategory;
   name: string;
-  address: string;
+  address: string | null;
+  sido?: string;
+  sigungu?: string;
   phone?: string;
   subCategoryKo: string;
-  viewCount: number;
-  scrapCount: number;
+  /** 목록 카드에서는 보여주지 않음(상세에서 확인). 호출부 호환용으로만 남김 */
+  viewCount?: number;
+  scrapCount?: number;
   isScrapped?: boolean;
   onClick?: () => void;
   onScrapClick?: () => void;
@@ -60,67 +44,60 @@ export default function InfoItem({
   mainCategory,
   name,
   address,
+  sido,
+  sigungu,
   phone,
   subCategoryKo,
-  viewCount,
-  scrapCount,
-  isScrapped = false,
   onClick,
-  onScrapClick,
   clickable = true,
 }: InfoItemProps) {
   const Icon = infoItemIconMap[mainCategory];
-  const pressedBorderColor = infoItemPressedBorderMap[mainCategory];
-  const iconSize = infoItemIconSizeMap[mainCategory];
+  const { bgColor, textColor } = infoCategoryMap[mainCategory];
+  const region = [sido, sigungu].filter(Boolean).join(" ");
+  const regionLabel = region ? formatRegionDisplayLabel(region) : "";
+  // 지역은 딱지로 보여주므로 주소 앞의 시/도·시/군/구는 떼고 도로명부터
+  // 주소가 비어 있는(null) 항목이 있음 (예: 복지)
+  const fullAddress = address ?? "";
+  const streetAddress =
+    region && fullAddress.startsWith(region) ? fullAddress.slice(region.length).trim() : fullAddress;
 
   return (
     <BaseInfoCard
-      pressedBorderColor={pressedBorderColor}
       onClick={clickable ? onClick : undefined}
       icon={
-        <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-[10px] bg-main-100">
-          <Icon className={iconSize} />
+        <div className={`mr-[4px] flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-[18px] sm:mr-[8px] sm:h-[78px] sm:w-[78px] sm:rounded-2xl ${bgColor} ${textColor}`}>
+          <Icon className="h-[32px] w-[32px] sm:h-[38px] sm:w-[38px]" />
         </div>
       }
       left={
-        <div className="min-w-0">
-          <div className="flex min-w-0 items-center gap-[4px]">
-            <CategoryLabel category={mainCategory} />
-            <h3 className="truncate text-h2-list text-background-600">
-              {name}
-            </h3>
+        <div className="flex min-w-0 flex-col py-[2px]">
+          {/* 정보·소식 공통 3줄: 제목 → 주소 → 딱지(세부 분류·지역). 조회·스크랩 수는 상세에서만 */}
+          <h3 className={`truncate text-[16px] font-semibold leading-[22px] tracking-[-0.02em] text-primary ${phone ? "sm:pr-[120px]" : ""}`}>
+            {name}
+          </h3>
+
+          {streetAddress && (
+            <p className="mt-[4px] truncate text-[13px] leading-[19px] text-secondary">{streetAddress}</p>
+          )}
+
+          <div className="mt-[8px] flex min-w-0 items-center gap-[6px]">
+            <span className={`shrink-0 ${bgColor} rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] ${textColor}`}>{subCategoryKo}</span>
+            {regionLabel && (
+              <span className="min-w-0 truncate bg-surface-subtle rounded-xs px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-secondary">
+                {regionLabel}
+              </span>
+            )}
           </div>
-
-          <p className="mt-1 truncate text-h6-list text-background-600">
-            {address}
-          </p>
-
-          <p className="mt-0.5 truncate text-body-sub text-background-500">
-            {subCategoryKo}
-          </p>
         </div>
       }
       right={
-        <div className="flex h-[64px] w-[130px] shrink-0 flex-col items-end justify-center gap-[11px]">
-          <div className="flex h-[33px] w-full items-end justify-center">
-            {phone && (
+        phone ? (
+            <div className="absolute right-[16px] top-[16px] hidden sm:block sm:right-[24px] sm:top-[18px]">
               <Chip variant="default" className="min-w-[100px]">
                 {phone}
               </Chip>
-            )}
-          </div>
-
-          <div className="flex h-5 w-full items-center justify-center gap-2">
-            <ViewStat count={viewCount} />
-            <span className="relative z-20 inline-flex h-5 items-center">
-              <ScrapStat
-                count={scrapCount}
-                isActive={isScrapped}
-                onClick={onScrapClick ?? noop}
-              />
-            </span>
-          </div>
-        </div>
+            </div>
+        ) : null
       }
     />
   );

@@ -21,7 +21,7 @@ export default function CommunityCommentForm({
   return (
     <>
       <form
-        className="mt-[16px] flex items-center gap-[26.5px]"
+        className="mt-[16px] flex items-center gap-[10px] sm:gap-[14px]"
         onSubmit={(event) => {
           event.preventDefault();
           if (!content || isSubmitting) return;
@@ -31,27 +31,27 @@ export default function CommunityCommentForm({
         <ProfileAvatar
           imageUrl={userBrief?.isLoggedIn ? userBrief.profileImageUrl : null}
           alt="내 프로필"
-          className="h-[40px] w-[40px]"
+          className="h-[36px] w-[36px] shrink-0 sm:h-[40px] sm:w-[40px]"
         />
         <input
           value={comment}
           disabled={isSubmitting}
           onChange={(event) => setComment(event.target.value)}
-          placeholder="이웃 부모에게 따뜻한 댓글을 남겨주세요"
-          className={`h-[44px] w-[947px] flex-1 rounded-[10px] border px-[18px] py-[10px] text-h4-list text-background-600 outline-none placeholder:text-background-500 focus:border-main-400 focus:bg-background-100 disabled:cursor-not-allowed disabled:opacity-50 ${
+          placeholder="따뜻한 댓글을 남겨주세요"
+          className={`h-[44px] w-full min-w-0 flex-1 rounded-lg border px-[14px] py-[10px] text-[14px] text-primary outline-none placeholder:text-disabled sm:px-[18px] focus:border-brand focus:bg-surface disabled:cursor-not-allowed disabled:opacity-50 ${
             comment.length > 0
-              ? "border-main-400 bg-background-100"
-              : "border-transparent bg-main-100"
+              ? "border-brand bg-surface"
+              : "border-transparent bg-surface-subtle"
           }`}
         />
         <ButtonFill
           type="submit"
           label="등록"
           disabled={!content || isSubmitting}
-          className="!h-[44px]"
+          className="!h-[44px] shrink-0 !rounded-lg !px-[16px]"
         />
       </form>
-      <p className="mt-2 pl-[66.5px] text-body-sub text-background-400">
+      <p className="mt-2 pl-[46px] text-body-sub text-tertiary sm:pl-[54px]">
         욕설·비방·광고성 링크가 포함된 댓글은 별도 안내 없이 삭제될 수 있습니다.
       </p>
     </>

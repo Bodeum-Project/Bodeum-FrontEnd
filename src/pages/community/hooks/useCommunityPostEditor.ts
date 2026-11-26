@@ -72,7 +72,7 @@ export function useCommunityPostEditor({ allowNavigation }: UseCommunityPostEdit
     if (!isEditMode || !post || post.isMine) return;
 
     allowNavigation();
-    showToast("red", "본인이 작성한 게시글만 수정할 수 있습니다.");
+    showToast("red", "내가 쓴 글만 수정할 수 있어요");
     navigate(`/community/${post.postId}`, { replace: true });
   }, [allowNavigation, isEditMode, navigate, post]);
 
@@ -127,7 +127,7 @@ export function useCommunityPostEditor({ allowNavigation }: UseCommunityPostEdit
         allowNavigation();
         showToast(
           "green",
-          isEditMode ? "게시글이 수정되었습니다." : "게시물이 성공적으로 등록됐습니다!",
+          isEditMode ? "게시글을 수정했어요" : "게시글을 올렸어요",
         );
         navigate(cancelPath);
       } catch (error) {
