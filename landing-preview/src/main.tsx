@@ -153,8 +153,8 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         <div className="wrap intro" data-reveal>
           <h2 id="start-title">아이를 위한 정보를 찾을 때<br />보듬보듬이 함께할게요</h2>
           <p>어떤 정보를 찾을 수 있는지 데모에서 먼저 살펴보실 수 있습니다</p>
-          <img className="closing-brand" src={logo} alt="보듬보듬" />
           <LandingActions onSubscribe={onSubscribe} />
+          <p className="cta-note">이메일만 남기면 보듬보듬이 열릴 때 가장 먼저 알려드려요</p>
         </div>
       </section>
     </main>;
