@@ -610,7 +610,7 @@ fieldset {
   0% { transform: translateY(0); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { transform: translateY(68px); opacity: 0; }
+  100% { transform: translateY(var(--scan-distance, 68px)); opacity: 0; }
 }
 .receipt-scan-line { animation: receipt-scan 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {

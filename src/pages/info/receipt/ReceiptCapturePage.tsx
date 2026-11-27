@@ -14,11 +14,12 @@ import {
   type ReceiptRouteState,
 } from "./receiptTypes";
 
-type Step = "permission" | "camera" | "denied" | "confirm" | "analyzing" | "result";
+type Step = "permission" | "camera" | "denied" | "analyzing" | "result";
 
 /**
  * 영수증 리뷰 촬영 흐름 (모바일·태블릿)
- * 카메라 권한 안내 → 촬영 → 사진 확인 → 정보 추출 → 결과 → 후기 작성 화면
+ * 카메라 권한 안내 → 촬영 → 정보 추출(취소 가능) → 결과 → 후기 작성 화면
+ * 촬영하면 확인 단계 없이 바로 분석하고, 잘못 찍었으면 분석 중 취소하거나 결과 화면에서 다시 찍는다.
  */
 export default function ReceiptCapturePage() {
   const { category, id } = useParams();
@@ -36,6 +37,8 @@ export default function ReceiptCapturePage() {
   const [result, setResult] = useState<ParseResult | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  /** 분석 요청마다 번호를 매겨, 취소된 요청의 결과는 버린다 */
+  const analyzeRunRef = useRef(0);
 
   const writePath = `/info/${category}/${id}/review/write`;
 
@@ -56,6 +59,7 @@ export default function ReceiptCapturePage() {
   }, [stream, step]);
 
   const close = () => {
+    analyzeRunRef.current += 1;
     stopStream();
     if (routeState.from === "write") {
       navigate(writePath, { replace: true, state: { draft: routeState.draft } });
@@ -99,17 +103,19 @@ export default function ReceiptCapturePage() {
 
   const shoot = () => {
     const video = videoRef.current;
+    let captured: string | null = null;
     if (stream && video && video.videoWidth > 0) {
       const canvas = document.createElement("canvas");
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       canvas.getContext("2d")?.drawImage(video, 0, 0);
-      setPhoto(canvas.toDataURL("image/jpeg", 0.85));
+      captured = canvas.toDataURL("image/jpeg", 0.85);
+      setPhoto(captured);
     } else {
       setPhoto(null); // 샘플 영수증
     }
     stopStream();
-    setStep("confirm");
+    void analyze(captured);
   };
 
   const pickFromAlbum = (file: File | undefined) => {
@@ -117,21 +123,26 @@ export default function ReceiptCapturePage() {
     const reader = new FileReader();
     reader.onload = () => {
       stopStream();
-      setPhoto(typeof reader.result === "string" ? reader.result : null);
-      setStep("confirm");
+      const picked = typeof reader.result === "string" ? reader.result : null;
+      setPhoto(picked);
+      void analyze(picked);
     };
     reader.readAsDataURL(file);
   };
 
   const retake = () => {
+    analyzeRunRef.current += 1;
     setPhoto(null);
     setResult(null);
     void openCamera();
   };
 
-  const analyze = async () => {
+  const analyze = async (image: string | null) => {
+    const run = ++analyzeRunRef.current;
+    setResult(null);
     setStep("analyzing");
-    const parsed = await parseReceipt(photo, storeName, searchParams.get("result"));
+    const parsed = await parseReceipt(image, storeName, searchParams.get("result"));
+    if (run !== analyzeRunRef.current) return; // 분석 중 취소됨
     setResult(parsed);
     setStep("result");
   };
@@ -253,43 +264,6 @@ export default function ReceiptCapturePage() {
     );
   }
 
-  /* ───────── 사진 확인 ───────── */
-  if (step === "confirm") {
-    return (
-      <div className="fixed inset-0 z-modal flex flex-col bg-[#0E1116] text-white">
-        <TopBar title="사진 확인" onClose={close} dark />
-        <div className="flex flex-1 items-center justify-center overflow-hidden px-[24px] py-[12px]">
-          {photo ? (
-            <img src={photo} alt="촬영한 영수증" className="max-h-full max-w-full rounded-lg object-contain" />
-          ) : (
-            <div className="w-[min(62vw,280px)] drop-shadow-[0_10px_24px_rgba(0,0,0,0.35)]">
-              <SampleReceipt storeName={storeName} />
-            </div>
-          )}
-        </div>
-        <p className="px-[24px] text-center text-[14px] leading-[20px] text-white/75">
-          글자가 흐리거나 잘리지 않았는지 확인해 주세요
-        </p>
-        <div className="flex gap-[8px] px-[20px] pb-[calc(20px+env(safe-area-inset-bottom))] pt-[16px]">
-          <button
-            type="button"
-            onClick={retake}
-            className="h-[52px] flex-1 cursor-pointer rounded-lg bg-white/12 text-[16px] font-bold text-white"
-          >
-            다시 찍기
-          </button>
-          <button
-            type="button"
-            onClick={() => void analyze()}
-            className="btn-primary h-[52px] flex-[1.4] cursor-pointer rounded-lg text-[16px] font-bold"
-          >
-            이 사진으로 인증하기
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   /* ───────── 이하 밝은 화면 ───────── */
   return (
     <div className="fixed inset-0 z-modal flex flex-col bg-surface text-primary">
@@ -297,14 +271,38 @@ export default function ReceiptCapturePage() {
       <TopBar title="방문 인증" onClose={close} />
 
       {step === "analyzing" && (
-        <div className="flex flex-1 flex-col items-center justify-center px-[24px] pb-[60px] motion-fade" role="status">
-          <div className="relative flex h-[96px] w-[80px] items-center justify-center overflow-hidden rounded-xl bg-brand-soft text-brand">
-            <ReceiptIcon width={44} height={44} />
-            <span className="receipt-scan-line absolute left-[10px] right-[10px] top-[12px] h-[3px] rounded-full bg-brand shadow-[0_0_10px_var(--color-brand)]" />
+        <>
+          <div className="flex flex-1 flex-col items-center justify-center px-[24px] motion-fade" role="status">
+            <div className="relative h-[150px] w-[112px] overflow-hidden rounded-lg bg-surface-subtle shadow-[0_6px_20px_rgba(15,23,42,0.12)]">
+              {photo ? (
+                <img src={photo} alt="찍은 영수증" className="h-full w-full object-cover" />
+              ) : IS_MOCK_MODE ? (
+                <div className="absolute inset-0 flex scale-[0.42] items-center justify-center">
+                  <div className="w-[260px] shrink-0">
+                    <SampleReceipt storeName={storeName} />
+                  </div>
+                </div>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-brand">
+                  <ReceiptIcon width={44} height={44} />
+                </div>
+              )}
+              <span className="absolute inset-0 bg-brand/10" aria-hidden="true" />
+              <span className="receipt-scan-line absolute left-[8px] right-[8px] top-[12px] [--scan-distance:122px] h-[3px] rounded-full bg-brand shadow-[0_0_10px_var(--color-brand)]" />
+            </div>
+            <p className="mt-[22px] text-[20px] font-bold leading-[28px]">영수증을 확인하고 있어요</p>
+            <p className="mt-[6px] text-[15px] leading-[22px] text-secondary">가게 이름과 방문 날짜를 읽는 중이에요</p>
           </div>
-          <p className="mt-[22px] text-[20px] font-bold leading-[28px]">영수증을 확인하고 있어요</p>
-          <p className="mt-[6px] text-[15px] leading-[22px] text-secondary">가게 이름과 방문 날짜를 읽는 중이에요</p>
-        </div>
+          <div className="mx-auto w-full max-w-[520px] px-[20px] pb-[calc(16px+env(safe-area-inset-bottom))] pt-[12px]">
+            <button
+              type="button"
+              onClick={retake}
+              className="h-[52px] w-full cursor-pointer rounded-lg bg-surface-subtle text-[16px] font-bold text-secondary hover:bg-surface-muted"
+            >
+              취소하고 다시 찍기
+            </button>
+          </div>
+        </>
       )}
 
       {step === "denied" && (
