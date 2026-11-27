@@ -47,7 +47,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         </div>
       </section>
 
-      <section id="story" className="section wrap" aria-labelledby="story-title">
+      <section id="story" className="section wrap glow glow--story" aria-labelledby="story-title">
         <div className="intro" data-reveal>
           <p className="label">우리의 이야기</p>
           <h2 id="story-title">아이에게 맞는 도움,<br />어디서부터 알아볼까요?</h2>
@@ -75,7 +75,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         </div>
       </section>
 
-      <section className="section inverse" aria-labelledby="beginning-title">
+      <section className="section inverse glow glow--dark" aria-labelledby="beginning-title">
         <div className="wrap intro" data-reveal>
           <p className="label">정보를 찾는 일이 또 하나의 고민이 되지 않도록</p>
           <h2 id="beginning-title">그래서 보듬보듬을 만들었어요</h2>
@@ -88,7 +88,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         </div>
       </section>
 
-      <section id="service" className="section subtle" aria-labelledby="service-title">
+      <section id="service" className="section subtle glow glow--service" aria-labelledby="service-title">
         <div className="wrap">
           <div className="intro" data-reveal>
             <p className="label">서비스 소개</p>
@@ -132,7 +132,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="start-title">
+      <section className="section glow glow--cta" aria-labelledby="start-title">
         <div className="wrap intro" data-reveal>
           <h2 id="start-title">아이를 위한 정보를 찾을 때<br />보듬보듬이 함께할게요</h2>
           <p>어떤 정보를 찾을 수 있는지 데모에서 먼저 살펴보실 수 있습니다</p>
