@@ -8,6 +8,14 @@ import { LaunchDialog } from './LaunchDialog';
 import './v2-tokens.css';
 import './landing.css';
 
+/** 앱과 같은 솔리드 투톤 아이콘: currentColor + 옅은 면 */
+const commitmentIcons = [
+  <svg key="source" viewBox="0 0 24 24" fill="currentColor"><path fillOpacity=".25" d="M12 2.5 4 5.6v5.9c0 4.7 3.3 8.8 8 10 4.7-1.2 8-5.3 8-10V5.6z" /><path d="M10.6 15.4 7.4 12.2l1.4-1.4 1.8 1.8 4.6-4.6 1.4 1.4z" /></svg>,
+  <svg key="link" viewBox="0 0 24 24" fill="currentColor"><rect fillOpacity=".25" x="3" y="3" width="15" height="18" rx="3" /><path d="M7 8h7v1.8H7zm0 3.6h4.5v1.8H7z" /><path d="M14.5 13H21v6.5h-2v-3.1l-4.3 4.3-1.4-1.4 4.3-4.3h-3.1z" /></svg>,
+  <svg key="privacy" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5a4.5 4.5 0 0 0-4.5 4.5v2.5h2V7a2.5 2.5 0 0 1 5 0v2.5h2V7A4.5 4.5 0 0 0 12 2.5" /><rect fillOpacity=".25" x="4" y="9" width="16" height="12.5" rx="3" /><path d="M11 14.2a1.6 1.6 0 1 1 2 0V17h-2z" /></svg>,
+  <svg key="ai" viewBox="0 0 24 24" fill="currentColor"><path fillOpacity=".25" d="M5 3.5h14a2.5 2.5 0 0 1 2.5 2.5v9a2.5 2.5 0 0 1-2.5 2.5h-6l-4.5 3.5v-3.5H5A2.5 2.5 0 0 1 2.5 15V6A2.5 2.5 0 0 1 5 3.5" /><path d="m12 6.5 1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9L8 10.5l2.9-1.1z" /></svg>,
+];
+
 function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
   useEffect(() => {
     if (!('IntersectionObserver' in window)) return;
@@ -65,11 +73,11 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
             <div><h3>이 고민을 누구에게 물어볼까요?</h3><p>비슷한 고민을 해 본 보호자의 경험을 읽고 이야기를 나눌 수 있습니다</p></div>
           </article>
         </div>
-        <p className="story-close" data-reveal>정보를 찾는 일이 또 하나의 고민이 되지 않도록</p>
       </section>
 
       <section className="section inverse" aria-labelledby="beginning-title">
         <div className="wrap intro" data-reveal>
+          <p className="label">정보를 찾는 일이 또 하나의 고민이 되지 않도록</p>
           <h2 id="beginning-title">그래서 보듬보듬을 만들었어요</h2>
           <p>모든 고민에 답할 수는 없지만, 필요한 정보를 찾는 일은 더 쉬워질 수 있다고 생각했습니다</p>
           <p>복잡한 제도는 쉽게 풀고 흩어진 소식은 한곳에 모았습니다<br />비슷한 고민을 나눌 수 있는 공간도 마련했습니다</p>
@@ -110,7 +118,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
             <p>어디서 나온 정보인지 확인하고, 확실하게 알기 어려울 때는 조심스럽게 안내합니다</p>
           </div>
           <ul className="commitments" data-reveal>{commitments.map(([title, body], index) =>
-            <li key={title}><span aria-hidden="true">{['✓', '↗', '◇', '◎'][index]}</span><h3>{title}</h3><p>{body}</p></li>)}</ul>
+            <li key={title}><span aria-hidden="true">{commitmentIcons[index]}</span><h3>{title}</h3><p>{body}</p></li>)}</ul>
         </div>
       </section>
 
@@ -128,7 +136,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         <div className="wrap intro" data-reveal>
           <h2 id="start-title">아이를 위한 정보를 찾을 때<br />보듬보듬이 함께할게요</h2>
           <p>어떤 정보를 찾을 수 있는지 데모에서 먼저 살펴보실 수 있습니다</p>
-          <p className="closing-brand">보듬보듬</p>
+          <img className="closing-brand" src={logo} alt="보듬보듬" />
           <LandingActions onSubscribe={onSubscribe} />
         </div>
       </section>

@@ -37,7 +37,11 @@ function NavGroup({ id, title, links }: { id: string; title: string; links: read
 }
 
 export function LandingHeader({ onSubscribe }: { onSubscribe: () => void }) {
-  return <header className="site-header">
+  const [menuOpen, setMenuOpen] = useState(false);
+  const close = () => setMenuOpen(false);
+  return <header className="site-header" onKeyDown={event => {
+    if (event.key === 'Escape' && menuOpen) setMenuOpen(false);
+  }}>
     <div className="wrap header-row">
       <a href="#top" className="brand" aria-label="보듬보듬 처음으로"><img src={logo} alt="보듬보듬" /></a>
       <nav aria-label="주 메뉴">
@@ -45,6 +49,21 @@ export function LandingHeader({ onSubscribe }: { onSubscribe: () => void }) {
         <NavGroup id="service" title="서비스 소개" links={guides.map(guide => ({ href: `#/guide/${guide.id}`, label: guide.label }))} />
       </nav>
       <LandingActions compact onSubscribe={onSubscribe} />
+      <button type="button" className="menu-toggle" aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'} aria-expanded={menuOpen}
+        aria-controls="mobile-menu" onClick={() => setMenuOpen(value => !value)}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          {menuOpen ? <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            : <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />}
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" className="mobile-menu" hidden={!menuOpen}>
+      <div className="wrap">
+        <a href="#story" onClick={close}>우리의 이야기</a>
+        <a href="#service" onClick={close}>서비스 소개</a>
+        <ul>{guides.map(guide => <li key={guide.id}><a href={`#/guide/${guide.id}`} onClick={close}>{guide.label}</a></li>)}</ul>
+        <button className="button secondary" type="button" onClick={() => { close(); onSubscribe(); }}>출시알림받기</button>
+      </div>
     </div>
   </header>;
 }
