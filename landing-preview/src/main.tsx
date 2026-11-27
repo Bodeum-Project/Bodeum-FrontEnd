@@ -83,7 +83,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
           <p>모든 고민에 답할 수는 없지만, 필요한 정보를 찾는 일은 더 쉬워질 수 있다고 생각했습니다</p>
           <p>복잡한 제도는 쉽게 풀고 흩어진 소식은 한곳에 모았습니다<br />비슷한 고민을 나눌 수 있는 공간도 마련했습니다</p>
           <div className="name-story">
-            <p>아이를 보듬는 마음과,<br />그 마음을 보듬는 마음</p>
+            <p>아이를 보듬어 주는 마음</p>
             <img className="name-story-logo" src={logo} alt="보듬보듬" data-reveal />
           </div>
         </div>
