@@ -17,7 +17,8 @@ const commitmentIcons = [
   <svg key="ai" viewBox="0 0 24 24" fill="currentColor"><path fillOpacity=".25" d="M5 3.5h14a2.5 2.5 0 0 1 2.5 2.5v9a2.5 2.5 0 0 1-2.5 2.5h-6l-4.5 3.5v-3.5H5A2.5 2.5 0 0 1 2.5 15V6A2.5 2.5 0 0 1 5 3.5" /><path d="m12 6.5 1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9L8 10.5l2.9-1.1z" /></svg>,
 ];
 
-function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
+/** 화면에 들어온 [data-reveal] 요소를 등장시키고, 보이는 .glow 섹션에서만 배경 애니메이션을 재생합니다 */
+function useReveal(key = '') {
   useEffect(() => {
     if (!('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver(entries => {
@@ -27,17 +28,16 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         observer.unobserve(entry.target);
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
-    return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
-    // 배경 애니메이션은 화면에 보이는 섹션에서만 재생합니다 (화면 밖에서는 일시정지)
-    if (!('IntersectionObserver' in window)) return;
+    document.querySelectorAll('[data-reveal]:not(.revealed)').forEach(element => observer.observe(element));
     const io = new IntersectionObserver(entries => entries.forEach(entry =>
       entry.target.classList.toggle('in-view', entry.isIntersecting)), { rootMargin: '120px 0px' });
     document.querySelectorAll('.glow').forEach(element => io.observe(element));
-    return () => io.disconnect();
-  }, []);
+    return () => { observer.disconnect(); io.disconnect(); };
+  }, [key]);
+}
+
+function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
+  useReveal();
   useEffect(() => {
     // 히어로 배경 사진 패럴랙스: 스크롤보다 조금 느리게 움직이고 살짝 확대됩니다
     const hero = document.querySelector<HTMLElement>('.hero');
@@ -169,31 +169,58 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
     </main>;
 }
 
+const guideIcons: Record<string, string> = { ai: '#3182f6', info: '#0e9198', news: '#0e9198', community: '#b55369' };
+
 function GuidePage({ guide, onSubscribe }: { guide: typeof guides[number]; onSubscribe: () => void }) {
   const feature = features.find(item => item.id === guide.id)!;
+  useReveal(guide.id);
   return <main id="content" className="guide" tabIndex={-1}>
-    <section className="guide-hero">
+    <section className="guide-hero glow glow--guide">
       <div className="wrap">
-        <a className="guide-back" href="#service">서비스 소개</a>
+        <a className="guide-back" href="#service">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          서비스 소개
+        </a>
         <div className="guide-layout">
-          <div>
-            <h1>{guide.label}</h1>
-            <p>{feature.title.join(' ')}</p>
+          <div className="guide-copy">
+            <p className="label">{feature.label}</p>
+            <h1>{feature.title[0]}<br />{feature.title[1]}</h1>
             <p>{feature.body}</p>
           </div>
-          <ProductPreview screen={guide.id} />
+          <div className="snip-host" data-reveal key={guide.id}><FeatureSnippet screen={guide.id} /></div>
         </div>
       </div>
     </section>
-    <section className="section wrap" aria-labelledby="guide-steps">
-      <h2 id="guide-steps">이렇게 써 보세요</h2>
-      <ol className="guide-steps">{guide.steps.map(([title, description]) =>
-        <li key={title}><h3>{title}</h3><p>{description}</p></li>)}</ol>
-      <LandingActions onSubscribe={onSubscribe} />
+    <section className="section wrap guide-how" aria-labelledby="guide-steps">
+      <div className="intro" data-reveal>
+        <p className="label">{guide.label} 이용 안내</p>
+        <h2 id="guide-steps">이렇게 써 보세요</h2>
+      </div>
+      <ol className="guide-steps" data-reveal>{guide.steps.map(([title, description], index) =>
+        <li key={title}><span className="guide-step-num" aria-hidden="true">{index + 1}</span><h3>{title}</h3><p>{description}</p></li>)}</ol>
     </section>
-    <nav className="wrap guide-links" aria-label="다른 기능 안내">
-      {guides.filter(item => item.id !== guide.id).map(item =>
-        <a key={item.id} href={`#/guide/${item.id}`}>{item.label}</a>)}
+    <section className="section glow glow--cta guide-cta" aria-labelledby="guide-cta-title">
+      <div className="wrap intro" data-reveal>
+        <h2 id="guide-cta-title">{guide.label}, 직접 살펴보세요</h2>
+        <p>데모에서 실제 화면을 먼저 둘러보실 수 있습니다</p>
+        <LandingActions onSubscribe={onSubscribe} />
+        <p className="cta-note">이메일만 남기면 보듬보듬이 열릴 때 가장 먼저 알려드려요</p>
+      </div>
+    </section>
+    <nav className="section subtle guide-more" aria-labelledby="guide-more-title">
+      <div className="wrap">
+        <h2 id="guide-more-title">다른 기능도 살펴보세요</h2>
+        <ul className="guide-links" data-reveal>{guides.filter(item => item.id !== guide.id).map(item => {
+          const other = features.find(f => f.id === item.id)!;
+          return <li key={item.id}><a href={`#/guide/${item.id}`} style={{ '--accent': guideIcons[item.id] } as React.CSSProperties}>
+            <span className="label">{other.label}</span>
+            <strong>{other.title[0]}<br />{other.title[1]}</strong>
+            <span className="guide-link-go">{item.label} 안내 보기
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </a></li>;
+        })}</ul>
+      </div>
     </nav>
   </main>;
 }
