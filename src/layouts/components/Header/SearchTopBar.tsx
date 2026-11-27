@@ -15,7 +15,7 @@ export default function SearchTopBar({ onMenuClick }: SearchTopBarProps) {
   const { data: results = [] } = useInfoSearch(keyword);
 
   return (
-    <header className="flex h-[56px] shrink-0 items-center gap-[12px] border-b border-default/70 bg-surface/70 transition-[border-color,box-shadow] duration-200 group-data-[scrolled=false]/header:border-transparent group-data-[scrolled=true]/header:shadow-[0_4px_16px_rgb(42_53_70_/_0.05)] px-[16px] backdrop-blur-[16px] backdrop-saturate-150 lg:h-[72px] lg:justify-between lg:gap-[24px] lg:px-[48px]">
+    <header className="flex h-[56px] shrink-0 items-center gap-[12px] border-b border-default/70 bg-surface/70 transition-[border-color,box-shadow] duration-200 group-data-[scrolled=false]/header:border-transparent group-data-[scrolled=true]/header:shadow-[0_4px_16px_rgb(42_53_70_/_0.05)] px-[16px] backdrop-blur-[16px] backdrop-saturate-150 lg:h-[72px] lg:justify-between lg:gap-[24px] lg:pl-[48px] lg:pr-[calc(48px+var(--frame-gutter))]">
       <button
         type="button"
         aria-label="메뉴 열기"

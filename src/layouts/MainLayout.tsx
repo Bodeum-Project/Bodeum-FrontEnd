@@ -80,7 +80,7 @@ export default function MainLayout() {
   return (
     <BreadcrumbProvider>
       <div className="fixed inset-0 flex overflow-hidden">
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex lg:pl-[var(--frame-gutter)]">
           <SideBar />
         </div>
 
@@ -104,7 +104,7 @@ export default function MainLayout() {
             {/* 페이지 이동 시 본문만 살짝 떠오르며 등장 (뒤로가기는 페이드만) */}
             <div
               key={location.pathname}
-              className={`mx-auto w-full ${navigationType === "POP" ? "motion-fade" : "motion-page"}`}
+              className={`mx-auto w-full lg:pr-[var(--frame-gutter)] ${navigationType === "POP" ? "motion-fade" : "motion-page"}`}
             >
               <Outlet />
             </div>

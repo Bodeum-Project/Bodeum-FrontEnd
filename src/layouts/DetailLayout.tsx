@@ -6,7 +6,7 @@ export default function DetailLayout() {
   return (
     <BreadcrumbProvider>
       <div className="fixed inset-0 flex flex-col overflow-hidden">
-        <div className="shrink-0">
+        <div className="shrink-0 lg:pl-[var(--frame-gutter)]">
           <BackTopBar />
         </div>
 

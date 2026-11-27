@@ -17,6 +17,8 @@
 
 /* 1. 원시값 */
 :root {
+  /* 넓은 화면에서 사이드바·상단바·본문을 1440px 틀 안으로 모으는 바깥 여백 */
+  --frame-gutter: max(0px, calc((100vw - 1440px) / 2));
   --palette-mint-50: #F0FCFC;
   --palette-mint-100: #E9F7F8;
   --palette-mint-200: #DDF3F4;
