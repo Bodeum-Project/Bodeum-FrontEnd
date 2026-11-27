@@ -43,7 +43,7 @@ h1 { font-size: clamp(2.125rem, 4.55vw, 4.5rem); line-height: 1.15; }
 h2 { font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.2; }
 h3 { font-size: clamp(1.125rem, 2vw, 1.625rem); line-height: 1.35; }
 h1, h2 { text-wrap: balance; }
-.hero-copy > p:not(.label), .intro > p:not(.label) { text-wrap: balance; }
+.hero-copy > p:not(.label), .intro > p:not(.label), .vision p { text-wrap: balance; }
 .story-card p { text-wrap: pretty; }
 .feature p { text-wrap: balance; }
 .feature h2, .vision h2 { font-size: clamp(1.75rem, 3vw, 2.75rem); }
@@ -82,7 +82,10 @@ main .label { margin: 0 0 16px; font-size: .9375rem; font-weight: 600; color: va
 .landing-photo { display: block; width: 100%; aspect-ratio: 1.32; object-fit: cover; border-radius: var(--radius-2xl); }
 .hero-photo { animation: enter 1.15s var(--ease-out-soft) both; }
 /* Hero: photo as a soft full-height background that fades into the copy side */
-.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero, .vision { position: relative; overflow: hidden; isolation: isolate; }
+.vision .vision-layout { grid-template-columns: minmax(0, 1fr); min-height: clamp(360px, 30vw, 460px); }
+.vision-layout > div { max-width: 520px; }
+.vision-bg { animation: none; opacity: .5; object-position: 50% 35%; }
 .hero-bg { position: absolute; z-index: -1; top: 0; right: 0; width: 64%; height: 100%; object-fit: cover; object-position: 50% 28%; opacity: .5; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 50%); mask-image: linear-gradient(to right, transparent 0%, #000 50%); animation: hero-bg-in 1.4s var(--ease-out-soft) both; }
 .hero .hero-layout { grid-template-columns: minmax(0, 1fr); min-height: clamp(520px, 42vw, 640px); }
 .hero-copy { max-width: 620px; }
@@ -91,6 +94,8 @@ main .label { margin: 0 0 16px; font-size: .9375rem; font-weight: 600; color: va
 @media (width < 900px) {
   .hero-bg { top: auto; bottom: 0; width: 100%; height: 52%; object-position: 45% 30%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); }
   .hero .hero-layout { min-height: 0; padding-bottom: clamp(300px, 80vw, 420px); }
+  .vision .vision-layout { min-height: 0; padding-bottom: clamp(240px, 64vw, 360px); }
+  .vision-bg { height: 50%; object-position: 50% 30%; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-bg { animation: none; } }
 .closing-photo { aspect-ratio: 1.7; }

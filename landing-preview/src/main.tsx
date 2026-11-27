@@ -123,12 +123,12 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
       </section>
 
       <section className="section vision" aria-labelledby="vision-title">
+        <img className="hero-bg vision-bg" src={reviewAsset('closing-caregiver.webp')} alt="" aria-hidden="true" loading="lazy" />
         <div className="wrap vision-layout" data-reveal>
           <div>
             <h2 id="vision-title">어디에 살든<br />필요한 도움을 함께 찾아요</h2>
             <p>정보에 쏟는 시간을 덜고, 아이와 보내는 시간에 더 마음을 쓸 수 있기를 바랍니다</p>
           </div>
-          <img className="landing-photo closing-photo" src={reviewAsset('closing-caregiver.webp')} alt="도서관에서 등을 보인 아이의 그림을 바라보는 보호자" loading="lazy" />
         </div>
       </section>
 
