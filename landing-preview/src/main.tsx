@@ -32,6 +32,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
 
   return <main id="content" tabIndex={-1}>
       <section id="top" className="hero" aria-labelledby="hero-title">
+        <img className="hero-bg" src={reviewAsset('hero.webp')} alt="" aria-hidden="true" fetchPriority="high" />
         <div className="wrap hero-layout">
           <div className="hero-copy">
             <p className="label">발달이 느린 아이와 보호자를 위한 복지 정보</p>
@@ -42,7 +43,6 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
             <p>발달장애 진단 전후로 무엇부터 알아봐야 할지 막막할 때, 필요한 정보를 찾는 일은 함께 하겠습니다</p>
             <LandingActions onSubscribe={onSubscribe} />
           </div>
-          <img className="landing-photo hero-photo" src={reviewAsset('hero.webp')} alt="동네 공원에서 손잡고 걷는 아이와 보호자" fetchPriority="high" />
           <a className="scroll-link" href="#story"><span aria-hidden="true">↓</span> 우리의 이야기</a>
         </div>
       </section>
