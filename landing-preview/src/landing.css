@@ -224,9 +224,9 @@ main { overflow-x: clip; }
 /* Dark band: deep mint glow rising from the bottom + cool blue on the top-left */
 .glow--dark { overflow: hidden; }
 .glow--dark::before { bottom: -38%; left: 50%; width: min(1200px, 140vw); height: 560px; translate: -50% 0;
-  background: radial-gradient(closest-side, rgb(27 184 188 / .34), rgb(14 145 152 / .14) 55%, transparent); filter: blur(30px); }
+  background: radial-gradient(closest-side, rgb(27 184 188 / .34), rgb(14 145 152 / .14) 55%, transparent); }
 .glow--dark::after { top: -30%; left: -10%; width: 620px; height: 460px;
-  background: radial-gradient(closest-side, rgb(80 120 200 / .22), transparent); filter: blur(40px); }
+  background: radial-gradient(closest-side, rgb(80 120 200 / .22), transparent); }
 
 /* Service (grey): barely-there mint wash from the top so the product shot floats */
 .glow--service { overflow: hidden; }
@@ -235,19 +235,19 @@ main { overflow-x: clip; }
 
 /* Final CTA: two soft orbs (mint + sky), a clear but gentle finish */
 .glow--cta { overflow: hidden; }
-.glow--cta::before { top: 50%; left: 50%; width: 540px; height: 540px; translate: -78% -50%;
-  background: radial-gradient(circle at 40% 40%, rgb(143 220 223 / .55), rgb(143 220 223 / .18) 55%, transparent 72%); filter: blur(40px); }
-.glow--cta::after { top: 50%; left: 50%; width: 500px; height: 500px; translate: -18% -42%;
-  background: radial-gradient(circle at 60% 50%, rgb(180 212 255 / .5), rgb(180 212 255 / .14) 55%, transparent 72%); filter: blur(40px); }
+.glow--cta::before { top: 50%; left: 50%; width: 720px; height: 720px; translate: -78% -50%;
+  background: radial-gradient(closest-side, rgb(143 220 223 / .55), rgb(143 220 223 / .22) 45%, rgb(143 220 223 / .06) 75%, transparent); }
+.glow--cta::after { top: 50%; left: 50%; width: 680px; height: 680px; translate: -18% -42%;
+  background: radial-gradient(closest-side, rgb(180 212 255 / .5), rgb(180 212 255 / .18) 45%, rgb(180 212 255 / .05) 75%, transparent); }
 
 /* Hero: a little mint light behind the copy so the left side isn't flat */
 .hero::before { content: ""; position: absolute; z-index: -1; pointer-events: none; top: 10%; left: -12%; width: 760px; height: 560px; border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(255 255 255 / .9), rgb(221 243 244 / .5) 50%, transparent); filter: blur(10px); }
+  background: radial-gradient(closest-side, rgb(255 255 255 / .9), rgb(221 243 244 / .5) 50%, transparent); }
 
 @media (width < 768px) {
   .glow--story::before { background-size: 260% 100%; background-position: 30% center; }
-  .glow--cta::before { width: 340px; height: 340px; }
-  .glow--cta::after { width: 320px; height: 320px; }
+  .glow--cta::before { width: 440px; height: 440px; }
+  .glow--cta::after { width: 420px; height: 420px; }
   .hero::before { display: none; }
 }
 
@@ -390,7 +390,7 @@ main { overflow-x: clip; }
 @keyframes flow { from { background-position: 100% 0; } to { background-position: -150% 0; } }
 
 /* 5. Hero photo parallax (driven by --hero-progress from scroll) */
-.hero-bg { transform: translate3d(0, calc(var(--hero-progress, 0) * 90px), 0) scale(calc(1 + var(--hero-progress, 0) * .06)); will-change: transform; }
+.hero-bg { will-change: transform; }
 
 /* 6. Story curve drifts very slowly */
 .glow--story::before { animation: curve-drift 22s ease-in-out infinite alternate; }
@@ -417,3 +417,7 @@ main { overflow-x: clip; }
 @media (hover: hover) { .glow--cta .button.secondary:hover { background: #fff; box-shadow: inset 0 0 0 1.5px var(--color-brand), 0 14px 28px -16px rgb(14 145 152 / .6); } }
 main .cta-note { margin-top: 18px; font-size: .875rem; color: var(--text-color-tertiary, #8b95a1); }
 @media (width < 768px) { .glow--cta .actions { flex-direction: column; align-items: stretch; max-width: 320px; margin-inline: auto; } }
+
+/* Performance: promote animated glows to their own layers and pause them while off-screen */
+.glow--story::before, .glow--cta::before, .glow--cta::after, .ripple span { will-change: transform, opacity; backface-visibility: hidden; }
+.glow:not(.in-view)::before, .glow:not(.in-view)::after, .glow:not(.in-view) .ripple span { animation-play-state: paused; }

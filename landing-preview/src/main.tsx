@@ -31,14 +31,23 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
     return () => observer.disconnect();
   }, []);
   useEffect(() => {
+    // 배경 애니메이션은 화면에 보이는 섹션에서만 재생합니다 (화면 밖에서는 일시정지)
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(entries => entries.forEach(entry =>
+      entry.target.classList.toggle('in-view', entry.isIntersecting)), { rootMargin: '120px 0px' });
+    document.querySelectorAll('.glow').forEach(element => io.observe(element));
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
     // 히어로 배경 사진 패럴랙스: 스크롤보다 조금 느리게 움직이고 살짝 확대됩니다
     const hero = document.querySelector<HTMLElement>('.hero');
     if (!hero || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const bg = hero.querySelector<HTMLElement>('.hero-bg');
     let frame = 0;
     const update = () => {
       frame = 0;
       const progress = Math.min(Math.max(window.scrollY / hero.offsetHeight, 0), 1);
-      hero.style.setProperty('--hero-progress', progress.toFixed(3));
+      if (bg) bg.style.transform = `translate3d(0, ${(progress * 90).toFixed(1)}px, 0) scale(${(1 + progress * 0.06).toFixed(4)})`;
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
