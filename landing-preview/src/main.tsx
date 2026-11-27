@@ -34,12 +34,12 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
       <section id="top" className="hero" aria-labelledby="hero-title">
         <div className="wrap hero-layout">
           <div className="hero-copy">
-            <p className="label">아이와 보호자를 위한 복지 정보</p>
+            <p className="label">발달이 느린 아이와 보호자를 위한 복지 정보</p>
             <h1 id="hero-title">
               <span>아이를 위한 고민이</span>{' '}
               <span>하나쯤은 줄어들도록</span>
             </h1>
-            <p>모든 고민을 대신할 수는 없지만, 필요한 정보를 찾는 일은 함께 하겠습니다</p>
+            <p>발달장애 진단 전후로 무엇부터 알아봐야 할지 막막할 때, 필요한 정보를 찾는 일은 함께 하겠습니다</p>
             <LandingActions onSubscribe={onSubscribe} />
           </div>
           <img className="landing-photo hero-photo" src={reviewAsset('hero.webp')} alt="동네 공원에서 손잡고 걷는 아이와 보호자" fetchPriority="high" />
@@ -51,26 +51,26 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
         <div className="intro" data-reveal>
           <p className="label">우리의 이야기</p>
           <h2 id="story-title">아이에게 맞는 도움,<br />어디서부터 알아볼까요?</h2>
-          <p>지원 제도부터 가까운 기관까지, 매번 처음부터 알아봐야 하는 일을 줄이고 싶었습니다</p>
+          <p>발달이 느린 아이를 키우며 지원 제도부터 치료기관까지 매번 처음부터 알아봐야 하는 일을 줄이고 싶었습니다</p>
         </div>
         <div className="story-grid" data-reveal>
           <article className="story-card">
             <svg viewBox="0 0 110 92" fill="none" aria-hidden="true">
               <rect x="21" y="20" width="52" height="60" rx="9" fill="#8fdcdf"/><rect x="29" y="11" width="49" height="61" rx="9" fill="white"/><path d="M40 29h24M40 39h19M40 49h13" stroke="#0e9198" strokeWidth="3.5" strokeLinecap="round"/><circle cx="75" cy="59" r="13" fill="#dff5f5" stroke="#0e9198" strokeWidth="4"/><path d="m85 69 9 9" stroke="#0e9198" strokeWidth="4" strokeLinecap="round"/>
             </svg>
-            <div><h3>어떤 지원을 받을 수 있을까요?</h3><p>흩어진 복지 제도와 신청 조건을 한곳에서 살펴볼 수 있습니다</p></div>
+            <div><h3>어떤 지원을 받을 수 있을까요?</h3><p>발달재활서비스 바우처처럼 흩어진 복지 제도와 신청 조건을 한곳에서 살펴볼 수 있습니다</p></div>
           </article>
           <article className="story-card">
             <svg viewBox="0 0 110 92" fill="none" aria-hidden="true">
               <rect x="14" y="20" width="79" height="59" rx="15" fill="#c5e1fb"/><path d="M51 18a6 6 0 0 1 6 0l24 14c3 2 2 6-2 6H29c-4 0-5-4-2-6z" fill="#3182f6"/><rect x="34" y="44" width="8" height="23" rx="3" fill="#3182f6"/><rect x="50" y="44" width="8" height="23" rx="3" fill="#3182f6"/><rect x="66" y="44" width="8" height="23" rx="3" fill="#3182f6"/><rect x="28" y="69" width="53" height="7" rx="3.5" fill="#245f9f"/>
             </svg>
-            <div><h3>어떤 기관을 찾아가면 좋을까요?</h3><p>아이에게 맞는 기관을 가까운 지역부터 찾아볼 수 있습니다</p></div>
+            <div><h3>어떤 기관을 찾아가면 좋을까요?</h3><p>언어·놀이·감각통합 치료기관을 가까운 지역부터 찾아볼 수 있습니다</p></div>
           </article>
           <article className="story-card">
             <svg viewBox="0 0 110 92" fill="none" aria-hidden="true">
               <path d="M17 19h46a9 9 0 0 1 9 9v23a9 9 0 0 1-9 9H36L22 71V60h-5a9 9 0 0 1-9-9V28a9 9 0 0 1 9-9Z" fill="#f4b4bf"/><path d="M52 37h40a9 9 0 0 1 9 9v19a9 9 0 0 1-9 9h-4v10L75 74H52a9 9 0 0 1-9-9V46a9 9 0 0 1 9-9Z" fill="white"/><path d="M57 51h28M57 61h20" stroke="#b55369" strokeWidth="3.5" strokeLinecap="round"/>
             </svg>
-            <div><h3>이 고민을 누구에게 물어볼까요?</h3><p>비슷한 고민을 해 본 보호자의 경험을 읽고 이야기를 나눌 수 있습니다</p></div>
+            <div><h3>이 고민을 누구에게 물어볼까요?</h3><p>발달이 느린 아이를 먼저 키워 본 보호자의 경험을 읽고 이야기를 나눌 수 있습니다</p></div>
           </article>
         </div>
       </section>
@@ -185,7 +185,7 @@ function App() {
   }, []);
 
   useLayoutEffect(() => {
-    document.title = guide ? `${guide.label} 이용 안내 | 보듬보듬` : '보듬보듬 | 아이를 위한 고민이 하나쯤은 줄어들도록';
+    document.title = guide ? `${guide.label} 이용 안내 | 보듬보듬` : '보듬보듬 | 발달장애·발달이 느린 아이 가족을 위한 복지 정보';
     if (guide) {
       window.scrollTo({ top: 0, behavior: 'instant' });
       document.getElementById('content')?.focus({ preventScroll: true });
