@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { guides, serviceUrl } from './content';
 import logo from './logo-bodeum.png';
 
@@ -39,7 +39,24 @@ function NavGroup({ id, title, links }: { id: string; title: string; links: read
 export function LandingHeader({ onSubscribe }: { onSubscribe: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const close = () => setMenuOpen(false);
-  return <header className="site-header" onKeyDown={event => {
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    // 아래로 스크롤하면 헤더를 숨기고, 위로 올리면 다시 보여줍니다
+    let last = window.scrollY, ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY, delta = y - last;
+        if (Math.abs(delta) > 6) { setHidden(delta > 0 && y > 160); last = y; }
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  const isHidden = hidden && !menuOpen;
+  return <header className={'site-header' + (isHidden ? ' is-hidden' : '')} onFocus={() => setHidden(false)} onKeyDown={event => {
     if (event.key === 'Escape' && menuOpen) setMenuOpen(false);
   }}>
     <div className="wrap header-row">

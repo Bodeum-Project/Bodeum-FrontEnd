@@ -338,3 +338,70 @@ main { overflow-x: clip; }
   .snip-grid > li:nth-child(even) { translate: none; }
   .snip-grid > li:nth-child(n+3) { display: none; }
 }
+
+/* ================= Motion & interaction ================= */
+/* 1. AI chat replays when the feature scrolls into view: question → typing… → answer lines */
+.snip-answer { position: relative; }
+.snip-typing { position: absolute; top: 30px; left: 70px; display: flex; gap: 5px; opacity: 0; }
+.snip-typing i { width: 7px; height: 7px; border-radius: 50%; background: #8fdcdf; }
+.feature:not(.revealed) .snip-bubble, .feature:not(.revealed) .snip-answer, .feature:not(.revealed) .snip-answer-body > * { opacity: 0; }
+.feature.revealed .snip-bubble { animation: rise .55s var(--ease-out-soft) .25s both; }
+.feature.revealed .snip-answer { animation: rise .55s var(--ease-out-soft) .85s both; }
+.feature.revealed .snip-typing { animation: typing-show 1.3s ease 1.1s both; }
+.feature.revealed .snip-typing i { animation: dot 0.9s ease-in-out 1.1s 2; }
+.feature.revealed .snip-typing i:nth-child(2) { animation-delay: 1.25s; }
+.feature.revealed .snip-typing i:nth-child(3) { animation-delay: 1.4s; }
+.feature.revealed .snip-answer-body > * { animation: line-in .5s var(--ease-out-soft) both; }
+.feature.revealed .snip-answer-body > :nth-child(1) { animation-delay: 2.4s; }
+.feature.revealed .snip-answer-body > :nth-child(2) { animation-delay: 2.8s; }
+.feature.revealed .snip-answer-body > :nth-child(3) { animation-delay: 3.3s; }
+@keyframes typing-show { 0%, 100% { opacity: 0; } 12%, 85% { opacity: 1; } }
+@keyframes dot { 0%, 100% { translate: 0 0; opacity: .5; } 40% { translate: 0 -4px; opacity: 1; } }
+@keyframes line-in { from { opacity: 0; translate: 0 6px; } to { opacity: 1; translate: 0 0; } }
+
+/* 2. Cards rise in one by one */
+@keyframes rise { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+.feature:not(.revealed) :is(.snip-stack, .snip-grid) > li,
+.story-grid:not(.revealed) > .story-card,
+.commitments:not(.revealed) > li { opacity: 0; }
+.feature.revealed :is(.snip-stack, .snip-grid) > li,
+.story-grid.revealed > .story-card,
+.commitments.revealed > li { animation: rise .6s var(--ease-out-soft) both; }
+:is(.feature.revealed .snip-stack, .feature.revealed .snip-grid, .story-grid.revealed, .commitments.revealed) > :nth-child(1) { animation-delay: .15s; }
+:is(.feature.revealed .snip-stack, .feature.revealed .snip-grid, .story-grid.revealed, .commitments.revealed) > :nth-child(2) { animation-delay: .27s; }
+:is(.feature.revealed .snip-stack, .feature.revealed .snip-grid, .story-grid.revealed, .commitments.revealed) > :nth-child(3) { animation-delay: .39s; }
+:is(.feature.revealed .snip-stack, .feature.revealed .snip-grid, .story-grid.revealed, .commitments.revealed) > :nth-child(4) { animation-delay: .51s; }
+.snip-grid > li:nth-child(even) { translate: none; margin-top: 22px; margin-bottom: -22px; }
+
+/* 3. Hover: cards lift, story icons hop */
+.snip-card, .story-card, .commitments li { transition: transform .35s var(--ease-out-soft), box-shadow .35s var(--ease-out-soft); }
+.story-card svg { transition: transform .45s cubic-bezier(.34, 1.56, .64, 1); }
+@media (hover: hover) {
+  .snip-card:hover, .commitments li:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -24px rgb(20 40 60 / .34), 0 4px 10px -4px rgb(20 40 60 / .08); }
+  .story-card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -26px rgb(20 40 60 / .3); }
+  .story-card:hover svg { transform: translateY(-8px) rotate(-3deg); }
+}
+
+/* 4. Buttons: press feedback + slow-flowing mint on the primary */
+.button { transition: scale .12s cubic-bezier(.4, 0, .2, 1), background-color .2s ease, filter .15s ease; }
+.button:active { scale: .97; }
+.button.btn-primary { background-image: linear-gradient(110deg, #1bb8bc 0%, #1bb8bc 30%, #5fd3d6 50%, #1bb8bc 70%, #1bb8bc 100%); background-size: 250% 100%; background-position: 100% 0; }
+@media (hover: hover) { .button.btn-primary:hover { filter: none; animation: flow 2.4s linear infinite; } }
+@keyframes flow { from { background-position: 100% 0; } to { background-position: -150% 0; } }
+
+/* 5. Hero photo parallax (driven by --hero-progress from scroll) */
+.hero-bg { transform: translate3d(0, calc(var(--hero-progress, 0) * 90px), 0) scale(calc(1 + var(--hero-progress, 0) * .06)); will-change: transform; }
+
+/* 6. Story curve drifts very slowly */
+.glow--story::before { animation: curve-drift 22s ease-in-out infinite alternate; }
+@keyframes curve-drift { from { transform: translateX(-2.5%) translateY(0); } to { transform: translateX(2.5%) translateY(-14px); } }
+
+/* 7. Header hides on scroll down, returns on scroll up */
+.site-header { transition: transform .35s var(--ease-out-soft); }
+.site-header.is-hidden { transform: translateY(-100%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header.is-hidden { transform: none; }
+  .snip-typing { display: none; }
+}
+@media (width < 768px) { .snip-grid > li:nth-child(even) { margin: 0; } }

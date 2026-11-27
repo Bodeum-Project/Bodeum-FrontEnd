@@ -30,6 +30,21 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
     document.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+  useEffect(() => {
+    // 히어로 배경 사진 패럴랙스: 스크롤보다 조금 느리게 움직이고 살짝 확대됩니다
+    const hero = document.querySelector<HTMLElement>('.hero');
+    if (!hero || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const progress = Math.min(Math.max(window.scrollY / hero.offsetHeight, 0), 1);
+      hero.style.setProperty('--hero-progress', progress.toFixed(3));
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(frame); };
+  }, []);
 
   return <main id="content" tabIndex={-1}>
       <section id="top" className="hero" aria-labelledby="hero-title">

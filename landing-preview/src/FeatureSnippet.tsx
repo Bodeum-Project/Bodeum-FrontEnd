@@ -46,7 +46,8 @@ function Ai() {
     <p className="snip-bubble">성북구에서 바우처로 언어치료 받을 수 있는 곳 알려줘</p>
     <div className="snip-card snip-answer">
       <span className="snip-bot"><Spark /></span>
-      <div>
+      <span className="snip-typing"><i /><i /><i /></span>
+      <div className="snip-answer-body">
         <p>성북구에서 <b>발달재활서비스 바우처</b>로 언어치료를 받을 수 있는 곳을 정리했어요.</p>
         <ol>
           <li><b>성북 아이숲 발달센터</b> (보문로)<span>언어치료·감각통합·놀이치료, 토요일 오전 운영</span></li>
