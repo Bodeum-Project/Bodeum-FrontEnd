@@ -26,7 +26,7 @@ function ScreenImage({ screen }: { screen: Screen }) {
   </picture>;
 }
 
-function DemoLink({ screen }: { screen: Screen }) {
+export function DemoLink({ screen }: { screen: Screen }) {
   const demo = demos[screen];
   return <a className="product-link" href={new URL(demo.path, serviceUrl).href}>
     {screen === 'home' ? '데모 둘러보기' : demo.label + ' 데모 열기'}

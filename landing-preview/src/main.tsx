@@ -1,3 +1,4 @@
+import { FeatureSnippet } from './FeatureSnippet';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { commitments, features, guides, legalLinks, reviewAsset } from './content';
@@ -107,7 +108,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
             <h2>{feature.title[0]}<br />{feature.title[1]}</h2>
             <p>{feature.body}</p>
           </div>
-          <ProductPreview screen={feature.id} />
+          <FeatureSnippet screen={feature.id} />
         </article>)}
       </section>
 
