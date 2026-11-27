@@ -76,6 +76,7 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
       </section>
 
       <section className="section inverse glow glow--dark" aria-labelledby="beginning-title">
+        <div className="ripple" aria-hidden="true"><span /><span /><span /></div>
         <div className="wrap intro" data-reveal>
           <p className="label">정보를 찾는 일이 또 하나의 고민이 되지 않도록</p>
           <h2 id="beginning-title">그래서 보듬보듬을 만들었어요</h2>
