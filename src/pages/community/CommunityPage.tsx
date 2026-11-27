@@ -164,7 +164,7 @@ export default function CommunityPage() {
 
   return (
     <div className="min-h-[calc(100vh-72px)] bg-surface">
-      <div className="mx-auto flex flex-col px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
+      <div className="mx-auto flex w-full max-w-[1180px] flex-col px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
         <CommunitySection onWriteClick={handleWriteClick} onPostClick={handlePostClick} />
 
         <div className="mt-[18px] flex flex-col gap-[16px]">

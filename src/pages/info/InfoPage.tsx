@@ -245,7 +245,7 @@ export default function InfoPage() {
   }
   
   return (
-    <div className="flex min-h-screen flex-col gap-[14px] bg-surface px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
+    <div className="mx-auto flex min-h-screen w-full max-w-[1180px] flex-col gap-[14px] bg-surface px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
       
       {/* PM 설계 문장 유지: "보호자님, (지역) (분류)의 정보를 모았어요" — 지역·분류는 문장 속 텍스트 드롭다운 */}
       <h1 className="pt-[4px] text-[22px] font-bold leading-[34px] tracking-[-0.03em] text-primary lg:text-[24px] lg:leading-[38px]">

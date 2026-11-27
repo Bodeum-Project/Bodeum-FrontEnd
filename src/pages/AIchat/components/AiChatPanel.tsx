@@ -64,7 +64,7 @@ export default function AiChatPanel({
     <section
       className="relative flex h-full min-h-0 w-full flex-col items-start overflow-hidden bg-surface"
     >
-      <header className="flex h-[60px] w-full shrink-0 items-center justify-center gap-[10px] border-b border-default bg-surface px-[14px] py-[10px] sm:h-[70px] sm:gap-[12px] sm:border-b-0 sm:px-[20px] sm:py-[16px]">
+      <header className="mx-auto flex h-[60px] w-full max-w-[960px] shrink-0 items-center justify-center gap-[10px] border-b border-default bg-surface px-[14px] py-[10px] sm:h-[70px] sm:gap-[12px] sm:border-b-0 sm:px-[20px] sm:py-[16px]">
         <AIMsgIcon aria-hidden="true" className="size-[32px] shrink-0" />
 
         <div className="flex min-w-0 flex-1 items-center justify-between">
@@ -93,7 +93,7 @@ export default function AiChatPanel({
       {isNoticeOpen && (
         <div
           role="status"
-          className="absolute left-[12px] right-[12px] top-[68px] sm:left-[26px] sm:right-[26px] sm:top-[78px] z-10 flex items-start gap-[12px] rounded-sm border border-brand-muted bg-brand-tint px-[14px] py-[10px] text-body-sub text-brand-strong shadow-[1px_2px_8px_rgba(0,0,0,0.12)]"
+          className="absolute left-[12px] right-[12px] top-[68px] sm:left-[26px] sm:right-[26px] sm:top-[78px] z-10 mx-auto max-w-[908px] flex items-start gap-[12px] rounded-sm border border-brand-muted bg-brand-tint px-[14px] py-[10px] text-body-sub text-brand-strong shadow-[1px_2px_8px_rgba(0,0,0,0.12)]"
         >
           <p className="min-w-0 flex-1">
             AI 답변의 특성상 최신 변경된 제도와 일부 다를 수 있습니다. 정확한
@@ -115,7 +115,7 @@ export default function AiChatPanel({
         ref={messagesRef}
         className="min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto bg-surface-subtle px-[14px] sm:px-[26px] [scrollbar-color:#C1C6D1_transparent] [scrollbar-width:thin]"
       >
-        <div className="flex min-h-full w-full flex-col items-start">
+        <div className="mx-auto flex min-h-full w-full max-w-[908px] flex-col items-start">
           {children}
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function AiChatPanel({
           isInputExpanded ? "h-[107px]" : "h-[87px]"
         }`}
       >
-        <div className="flex w-full items-start justify-end gap-[10px]">
+        <div className="flex w-full max-w-[928px] items-start justify-end gap-[10px]">
           <AiInput
             value={inputValue}
             variant={inputVariant}
