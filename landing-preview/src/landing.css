@@ -92,8 +92,13 @@ main .label { margin: 0 0 16px; font-size: .9375rem; font-weight: 600; color: va
 .hero-copy > p:not(.label) { max-width: 30em; }
 @keyframes hero-bg-in { from { opacity: 0; scale: 1.04; } to { opacity: .5; scale: 1; } }
 @media (width < 900px) {
-  .hero-bg { top: auto; bottom: 0; width: 100%; height: 52%; object-position: 45% 30%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); }
-  .hero .hero-layout { min-height: 0; padding-bottom: clamp(300px, 80vw, 420px); }
+  /* Mobile hero: photo across the top, fading down into centred copy */
+  .hero-bg { width: 100%; height: clamp(300px, 46vh, 420px); object-position: 40% 20%; -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 88%); mask-image: linear-gradient(to bottom, #000 20%, transparent 88%); }
+  .vision-bg { top: auto; bottom: 0; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); }
+  .hero .hero-layout { min-height: 0; padding-block: clamp(150px, 24vh, 220px) 64px; }
+  .hero-copy { margin-inline: auto; text-align: center; }
+  .hero-copy .actions { justify-content: center; margin-top: 32px; }
+  .hero .scroll-link { display: none; }
   .vision .vision-layout { min-height: 0; padding-bottom: clamp(240px, 64vw, 360px); }
   .vision-bg { height: 50%; object-position: 50% 30%; }
 }
