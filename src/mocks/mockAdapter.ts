@@ -561,6 +561,7 @@ const routes: Array<[string, RegExp, Handler]> = [
       helpfulCount: 0,
       isHelpful: false,
       createdAt: new Date().toISOString(),
+      isReceiptVerified: body.isReceiptVerified === true,
     };
     (infoReviews[id] ??= []).unshift(review);
     findInfo(id).reviewCount += 1;

@@ -1,6 +1,6 @@
 import { DetailPageSkeleton } from "@/components/skeleton/Skeleton";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { useBreadcrumb } from "@/contexts/BreadcrumbContext";
 import { infoCategoryMap } from "@/constants/infoCategory";
@@ -18,6 +18,8 @@ import { useInfoDetail } from "@/hooks/useInfoDetail";
 import { useCreateInfoReviewMutation } from "@/hooks/useCreateInfoReviewMutation";
 import { showToast } from "@/components/Toast";
 import { uploadReviewImage } from "@/apis/infoApi";
+import { IS_MOCK_MODE } from "@/mocks/isMockMode";
+import type { ReceiptInfo, ReceiptRouteState } from "./receipt/receiptTypes";
 
 export default function WriteReviewPage() {
   const { category, id } = useParams();
@@ -33,9 +35,20 @@ export default function WriteReviewPage() {
     ? infoCategoryMap[category as ParentCategory]
     : undefined;
 
-  const [rating, setRating] = useState(0);
-  const [content, setContent] = useState("");
-  const [images, setImages] = useState<File[]>([]);
+  // 영수증 촬영 화면에 다녀와도 작성 중인 내용이 남도록 route state 로 주고받는다
+  const location = useLocation();
+  const routeState = (location.state ?? {}) as ReceiptRouteState;
+  const [rating, setRating] = useState(routeState.draft?.rating ?? 0);
+  const [content, setContent] = useState(routeState.draft?.content ?? "");
+  const [images, setImages] = useState<File[]>(routeState.draft?.images ?? []);
+  const [receipt, setReceipt] = useState<ReceiptInfo | null>(routeState.receipt ?? null);
+
+  const startReceipt = () => {
+    navigate(`/info/${category}/${id}/review/receipt`, {
+      replace: true,
+      state: { from: "write", draft: { rating, content, images } } satisfies ReceiptRouteState,
+    });
+  };
 
   const isValid = rating > 0 && content.trim().length > 0;
 
@@ -78,6 +91,8 @@ export default function WriteReviewPage() {
             rating,
             content,
             imageUrls,
+            // 데모 목업에서만 인증 여부를 함께 보냄 (실제 서버 API 확정 전)
+            ...(IS_MOCK_MODE && receipt ? { isReceiptVerified: true } : {}),
           },
         },
         {
@@ -131,7 +146,11 @@ export default function WriteReviewPage() {
             onChange={setRating}
           />
 
-          <ReceiptVerifyCard />
+          <ReceiptVerifyCard
+            receipt={receipt}
+            onStart={startReceipt}
+            onRemove={() => setReceipt(null)}
+          />
 
           <ReviewTextArea
             value={content}

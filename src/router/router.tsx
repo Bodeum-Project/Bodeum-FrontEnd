@@ -11,6 +11,7 @@ import InfoPage from "@/pages/info/InfoPage";
 import NewsDetailPage from "@/pages/news/NewsDetailPage";
 import NewsPage from "@/pages/news/NewsPage";
 import WriteReviewPage from "@/pages/info/WriteReviewPage";
+import ReceiptCapturePage from "@/pages/info/receipt/ReceiptCapturePage";
 import CommunityPage from "@/pages/community/CommunityPage";
 import CommunityDetailPage from "@/pages/community/CommunityDetailPage";
 import CommunityWritePage from "@/pages/community/CommunityWritePage";
@@ -90,6 +91,15 @@ export const router = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        // 영수증 리뷰 촬영 흐름 (전체 화면)
+        path: "/info/:category/:id/review/receipt",
+        element: (
+          <AuthStateGate>
+            <ReceiptCapturePage />
+          </AuthStateGate>
+        ),
       },
       {
         path: "/auth",

@@ -600,3 +600,19 @@ fieldset {
   .motion-collapse { transition: none; }
   .motion-slide-indicator { transition: none !important; }
 }
+
+/* 영수증 리뷰: 샘플 영수증 아래쪽 톱니 모양, 분석 중 스캔 라인 */
+.receipt-paper {
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 12px 100%;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 12px 100%;
+}
+@keyframes receipt-scan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(68px); opacity: 0; }
+}
+.receipt-scan-line { animation: receipt-scan 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .receipt-scan-line { animation: none; }
+}

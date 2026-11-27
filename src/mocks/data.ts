@@ -238,6 +238,7 @@ infoDetails.forEach((detail, index) => {
       helpfulCount: 12 - i * 3 + (index % 3),
       isHelpful: i === 0 && index % 2 === 0,
       createdAt: daysAgo(3 + i * 9 + (index % 5)),
+      isReceiptVerified: i === 0 || (i + index) % 3 === 0,
     };
   });
   detail.reviewCount = infoReviews[detail.infoItemId].length;

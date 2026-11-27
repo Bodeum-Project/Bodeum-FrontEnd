@@ -5,6 +5,8 @@ import ReviewSummary from "./ReviewSummary";
 import ReviewCard from "./ReviewCard";
 import ButtonOutline from "@/components/button/ButtonOutline";
 import { useState } from "react";
+import { IS_MOCK_MODE } from "@/mocks/isMockMode";
+import ReceiptReviewBanner from "./ReceiptReviewBanner";
 
 interface Review {
   infoReviewId: number;
@@ -16,6 +18,7 @@ interface Review {
   isHelpful: boolean;
   helpfulCount: number;
   createdAt: string;
+  isReceiptVerified?: boolean;
 }
 
 interface ReviewSectionProps {
@@ -24,6 +27,7 @@ interface ReviewSectionProps {
   totalReviewCount: number;
   averageRating: number;
   onWriteReview: () => void;
+  onReceiptReview?: () => void;
 }
 
 const INITIAL_COUNT = 3;
@@ -33,6 +37,7 @@ export default function ReviewSection({
   totalReviewCount,
   averageRating,
   onWriteReview,
+  onReceiptReview,
   infoItemId
 }: ReviewSectionProps) {
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
@@ -52,6 +57,10 @@ export default function ReviewSection({
         </>
       }
     >
+      {IS_MOCK_MODE && onReceiptReview && (
+        <ReceiptReviewBanner onStart={onReceiptReview} />
+      )}
+
       {reviews.length === 0 ? (
         <EmptyReview onWriteReview={onWriteReview} />
       ) : (

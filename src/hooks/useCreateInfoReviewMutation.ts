@@ -14,6 +14,7 @@ export const useCreateInfoReviewMutation = () => {
         rating: number;
         content: string;
         imageUrls: string[];
+        isReceiptVerified?: boolean;
       };
     }) => createInfoReview(infoItemId, body),
 

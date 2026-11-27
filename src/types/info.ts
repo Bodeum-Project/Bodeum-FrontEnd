@@ -90,6 +90,8 @@ export interface CreateInfoReviewRequest {
   rating: number;
   content: string;
   imageUrls: string[];
+  /** 데모 목업 전용 — 영수증 인증 API 확정 전 */
+  isReceiptVerified?: boolean;
 }
 
 export interface InfoReview {
@@ -102,6 +104,7 @@ export interface InfoReview {
   helpfulCount: number;
   isHelpful: boolean;
   createdAt: string;
+  isReceiptVerified?: boolean;
 }
 
 export interface GetInfoReviewsParams {

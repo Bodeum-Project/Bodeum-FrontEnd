@@ -95,6 +95,9 @@ export default function InfoDetailPage() {
           totalReviewCount={reviewData?.totalElements ?? 0}
           averageRating={reviewData?.averageRating ?? 0}
           onWriteReview={() => navigate(`/info/${category}/${id}/review/write`)}
+          onReceiptReview={() =>
+            navigate(`/info/${category}/${id}/review/receipt`, { state: { from: "detail" } })
+          }
         />
       </main>
       {categoryOpen && (
