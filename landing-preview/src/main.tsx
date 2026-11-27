@@ -172,10 +172,10 @@ function LandingPage({ onSubscribe }: { onSubscribe: () => void }) {
 const guideIcons: Record<string, string> = { ai: '#3182f6', info: '#0e9198', news: '#0e9198', community: '#b55369' };
 
 const guideCtaTitles: Record<string, string> = {
-  ai: '궁금한 점이 생기면\n편하게 물어보세요',
-  info: '우리 아이에게 맞는 정보,\n함께 찾아봐요',
-  news: '우리 동네 소식,\n먼저 만나보세요',
-  community: '혼자 고민하지 않아도 괜찮아요',
+  ai: 'AI 챗봇,\n미리 한번 써 보세요',
+  info: '정보 찾기,\n미리 한번 써 보세요',
+  news: '소식 둘러보기,\n미리 한번 써 보세요',
+  community: '커뮤니티,\n미리 한번 둘러보세요',
 };
 
 function GuidePage({ guide, onSubscribe }: { guide: typeof guides[number]; onSubscribe: () => void }) {
@@ -209,7 +209,7 @@ function GuidePage({ guide, onSubscribe }: { guide: typeof guides[number]; onSub
     <section className="section glow glow--cta guide-cta" aria-labelledby="guide-cta-title">
       <div className="wrap intro" data-reveal>
         <h2 id="guide-cta-title">{guideCtaTitles[guide.id]}</h2>
-        <p>데모에서 실제 화면을 먼저 둘러보실 수 있습니다</p>
+        <p>예시 화면으로 어떻게 쓰는지 살펴보실 수 있습니다</p>
         <LandingActions onSubscribe={onSubscribe} />
         <p className="cta-note">이메일만 남기면 보듬보듬이 열릴 때 가장 먼저 알려드려요</p>
       </div>
