@@ -446,4 +446,4 @@ main[tabindex="-1"]:focus { outline: none; }
 .guide-cta h2 { white-space: pre-line; }
 
 .header-actions .button.secondary::before { width: 15px; height: 15px; }
-.header-actions .button.secondary { gap: 6px; box-shadow: inset 0 0 0 1.5px var(--color-brand-muted); }
+header .header-actions .button.secondary { gap: 6px; box-shadow: inset 0 0 0 1.5px var(--color-brand-muted); }
