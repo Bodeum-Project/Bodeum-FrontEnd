@@ -75,9 +75,9 @@ export default function CommunityDetailPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-72px)] bg-surface-subtle px-[16px] py-[16px] md:px-[32px] md:py-[20px]">
+    <div className="min-h-[calc(100vh-72px)] bg-surface px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
       <div
-        className="motion-fade mx-auto flex w-full max-w-[760px] flex-col gap-[18px]"
+        className="motion-fade mx-auto flex w-full max-w-[880px] flex-col gap-[24px]"
       >
         <CommunityPostDetailCard
           key={post.postId}

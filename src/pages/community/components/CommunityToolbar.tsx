@@ -48,7 +48,7 @@ export default function CommunityToolbar({
   count,
 }: CommunityToolbarProps) {
   return (
-    <div className="flex flex-col gap-[12px]">
+    <div className="flex flex-col gap-[16px]">
       <Input
         search
         searchType="community"

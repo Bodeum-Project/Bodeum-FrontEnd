@@ -25,7 +25,7 @@ export default function NewsListSection({ items, isError }: NewsListSectionProps
   }
 
   return (
-    <section className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
+    <section className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 md:gap-y-[16px]">
       {items.length === 0 && (
         <div className="col-span-full flex min-h-[240px] items-center justify-center px-[24px] py-[48px] text-center text-body1 text-secondary">
           조건에 맞는 뉴스가 없습니다.

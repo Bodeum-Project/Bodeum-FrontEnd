@@ -167,7 +167,7 @@ export default function CommunityPage() {
       <div className="mx-auto flex w-full max-w-[1180px] flex-col px-[16px] py-[16px] md:px-[24px] lg:px-[48px] lg:py-[36px]">
         <CommunitySection onWriteClick={handleWriteClick} onPostClick={handlePostClick} />
 
-        <div className="mt-[18px] flex flex-col gap-[16px]">
+        <div className="mt-[32px] flex flex-col gap-[20px] lg:mt-[56px]">
           <CommunityToolbar
             keyword={inputKeyword}
             suggestions={suggestions}
@@ -191,7 +191,7 @@ export default function CommunityPage() {
           {visiblePosts.length === 0 ? (
             <div className="py-16 text-center text-secondary">검색 결과가 없습니다.</div>
           ) : (
-            <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
+            <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 md:gap-y-[16px]">
               {visiblePosts.map((post) => {
                 const postCategory = getCommunityCategoryByCode(post.boardType);
 
@@ -215,7 +215,7 @@ export default function CommunityPage() {
         </div>
 
         {data && data.totalPages > 1 && (
-          <div className="mt-[5px] py-2">
+          <div className="mt-[16px] py-2">
             <Pagination currentPage={page} totalPages={data.totalPages} onChange={updatePage} />
           </div>
         )}

@@ -17,7 +17,7 @@ export default function SectionHeader({
   right,
 }: SectionHeaderProps) {
   return (
-    <div className="mb-[14px] flex items-end justify-between gap-[12px]">
+    <div className="mb-[16px] flex items-end justify-between gap-[12px]">
       <div className="min-w-0">
         <h2 className="text-[20px] font-bold leading-[28px] tracking-[-0.02em] text-primary">
           {title}

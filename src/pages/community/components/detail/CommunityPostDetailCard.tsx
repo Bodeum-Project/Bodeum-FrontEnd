@@ -100,7 +100,7 @@ export default function CommunityPostDetailCard({
 
   return (
     <article className="rounded-2xl border border-default bg-surface px-[20px] py-[22px] sm:min-h-[574px] sm:px-[28px] sm:py-[26px]">
-      <header className="flex items-center justify-between border-b border-default pb-[20px]">
+      <header className="flex items-center justify-between gap-[12px] border-b border-default pb-[20px]">
         <div className="flex min-w-0 items-center gap-[10px]">
           <span className="inline-block shrink-0 rounded-xs bg-brand-soft px-[7px] py-[3px] text-[11px] font-medium leading-[14px] text-brand-strong">
             {communityCategoryMap[category]}

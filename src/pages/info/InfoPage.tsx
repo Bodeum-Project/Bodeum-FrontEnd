@@ -245,7 +245,7 @@ export default function InfoPage() {
   }
   
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-[1180px] flex-col gap-[14px] bg-surface px-[16px] py-[16px] md:px-[24px] lg:gap-[20px] lg:px-[48px] lg:py-[36px]">
+    <div className="mx-auto flex min-h-screen w-full max-w-[1180px] flex-col gap-[16px] bg-surface px-[16px] py-[16px] md:px-[24px] lg:gap-[24px] lg:px-[48px] lg:py-[36px]">
       
       {/* PM 설계 문장 유지: "보호자님, (지역) (분류)의 정보를 모았어요" — 지역·분류는 문장 속 텍스트 드롭다운 */}
       <h1 className="pt-[4px] text-[22px] font-bold leading-[34px] tracking-[-0.03em] text-primary lg:text-[24px] lg:leading-[38px]">
@@ -274,7 +274,7 @@ export default function InfoPage() {
       </h1>
 
       {/* 소식·커뮤니티와 같은 순서: (검색) → 카테고리 칩 → 결과 줄. 정보 탭 검색창은 API 합의 전까지 없음 */}
-      <div className="flex flex-col gap-[12px]">
+      <div className="flex flex-col gap-[16px]">
         <CategoryChips
           parentCategory={parentCategory}
           subCategory={subCategory}
@@ -310,7 +310,7 @@ export default function InfoPage() {
         </div>
       ) : (
         <>
-          <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
+          <div className="motion-stagger grid grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 md:gap-y-[16px]">
             {items.map((item) => (
               <InfoItem
                 key={item.infoItemId}

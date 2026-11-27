@@ -46,7 +46,7 @@ export function ListCardSkeleton({ icon = true }: { icon?: boolean }) {
 
 export function ListCardsSkeleton({ count = 6, icon = true }: { count?: number; icon?: boolean }) {
   return (
-    <div className="grid grid-cols-1 gap-x-[20px] gap-y-[10px] md:grid-cols-2 md:gap-y-[12px]">
+    <div className="grid grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 md:gap-y-[16px]">
       {Array.from({ length: count }, (_, index) => (
         <ListCardSkeleton key={index} icon={icon} />
       ))}
