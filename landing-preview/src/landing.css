@@ -459,3 +459,4 @@ main .cta-note { margin-top: 18px; font-size: .875rem; color: var(--text-color-t
   .guide-hero { padding-block: 28px 64px; }
 }
 main[tabindex="-1"]:focus { outline: none; }
+.guide-cta h2 { white-space: pre-line; }
